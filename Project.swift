@@ -1,23 +1,18 @@
 import ProjectDescription
+import ProjectDescriptionHelpers
 
 let project = Project(
   name: "Barc",
   organizationName: "Cocoatype, LLC",
   targets: [
-    Target(
-      name: "BarcAppMobile",
-      platform: .iOS,
-      product: .app,
-      bundleId: "com.cocoatype.Barc",
-      infoPlist: .extendingDefault(with: [
-        "UILaunchStoryboardName": "LaunchScreen.storyboard",
-      ]),
-      sources: [
-        "App/Mobile/Sources/**",
-      ],
-      resources: [
-        "App/Mobile/Resources/**",
-      ]
-    ),
-  ]
+    AppMobile.target,
+    BarcodeGenerator.target,
+    BarcodeGenerator.testTarget,
+    ErrorHandling.target,
+    ErrorHandling.testTarget,
+  ],
+  fileHeaderTemplate: .string("""
+    Created by ___FULLUSERNAME___ on ___DATE___.
+  //  ___COPYRIGHT___
+  """)
 )
