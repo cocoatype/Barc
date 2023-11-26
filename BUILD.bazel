@@ -25,6 +25,7 @@ ios_application(
     ],
     frameworks = [
         "//BarcodeGenerator:BarcodeGenerator.iOS",
+        "//Library:Library.iOS",
     ],
     visibility = ["//visibility:public"],
 )

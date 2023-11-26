@@ -13,6 +13,7 @@ swift_library(
     ],
     deps = [
         "//BarcodeGenerator",
+        "//Library",
     ],
     visibility = ["//visibility:public"],
 )
