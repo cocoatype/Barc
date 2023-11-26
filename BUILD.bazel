@@ -9,9 +9,15 @@ load(
 )
 
 load(
+    "@rules_apple//apple:apple.bzl",
+    "local_provisioning_profile",
+)
+
+load(
     "@rules_xcodeproj//xcodeproj:defs.bzl",
     "xcodeproj",
     "top_level_target",
+    "xcode_provisioning_profile",
 )
 
 ios_application(
@@ -27,7 +33,20 @@ ios_application(
         "//BarcodeGenerator:BarcodeGenerator.iOS",
         "//Library:Library.iOS",
     ],
+    provisioning_profile = ":xcode_profile",
     visibility = ["//visibility:public"],
+)
+
+xcode_provisioning_profile(
+    name = "xcode_profile",
+    managed_by_xcode = True,
+    provisioning_profile = ":provisioning_profile",
+)
+
+local_provisioning_profile(
+    name = "provisioning_profile",
+    profile_name = "iOS Team Provisioning Profile: *",
+    team_id = "287EDDET2B",
 )
 
 xcodeproj(
@@ -35,6 +54,6 @@ xcodeproj(
     project_name = "Barc",
     tags = ["manual"],
     top_level_targets = [
-        top_level_target(":MobileApp", target_environments = ["simulator"]),
+        top_level_target(":MobileApp", target_environments = ["device", "simulator"]),
     ],
 )
