@@ -4,10 +4,10 @@
 import ErrorHandling
 import SwiftUI
 
-enum Barcode: View {
+public enum Barcode: View {
     case ean(_ value: String)
 
-    var body: some View {
+    public var body: some View {
         switch self {
         case .ean(let value):
             EANBarcode(value: value)

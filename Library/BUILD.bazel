@@ -21,6 +21,7 @@ swift_library(
         "Sources/**/*.swift",
     ]),
     deps = [
+        "//BarcodeGenerator",
     ],
     visibility = ["//visibility:public"],
 )
@@ -31,6 +32,7 @@ ios_framework(
         ":Library",
     ],
     frameworks = [
+        "//BarcodeGenerator:BarcodeGenerator.iOS",
     ],
     bundle_id = "com.cocoatype.Barc.Library",
     families = ["iphone", "ipad"],

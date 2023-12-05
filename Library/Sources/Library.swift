@@ -13,7 +13,8 @@ public struct Library: View {
                     .padding([.horizontal, .bottom])
                 LibraryGrid()
             }
-        }.contentMargins(LibraryGrid.spacing)
+        }
+        .contentMargins(.vertical, LibraryGrid.spacing)
     }
 }
 
