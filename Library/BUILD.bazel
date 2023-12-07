@@ -1,0 +1,65 @@
+load(
+    "//:constants.bzl",
+    "MINIMUM_IOS_VERSION",
+)
+
+load(
+    "@rules_apple//apple:ios.bzl",
+    "ios_framework",
+    "ios_unit_test",
+)
+
+load(
+    "@rules_swift//swift:swift.bzl",
+    "swift_library",
+)
+
+swift_library(
+    name = "Library",
+    module_name = "Library",
+    srcs = glob([
+        "Sources/**/*.swift",
+    ]),
+    deps = [
+        "//BarcodeGenerator",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+ios_framework(
+    name = "Library.iOS",
+    deps = [
+        ":Library",
+    ],
+    frameworks = [
+        "//BarcodeGenerator:BarcodeGenerator.iOS",
+    ],
+    bundle_id = "com.cocoatype.Barc.Library",
+    families = ["iphone", "ipad"],
+    infoplists = ["//Shared:Info.plist"],
+    minimum_os_version = MINIMUM_IOS_VERSION,
+    visibility = ["//visibility:public"],
+)
+
+swift_library(
+    name = "LibraryTests",
+    testonly = True,
+    srcs = glob([
+        "Tests/Sources/**/*.swift",
+    ]),
+    deps = [
+        ":Library",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+ios_unit_test(
+    name = "Tests",
+    minimum_os_version = MINIMUM_IOS_VERSION,
+    deps = [
+        ":LibraryTests",
+    ],
+    runner = "@rules_apple//apple/testing/default_runner:ios_xctestrun_random_runner",
+    visibility = ["//visibility:public"],
+)
+

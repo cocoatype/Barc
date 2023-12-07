@@ -4,31 +4,18 @@
 import ErrorHandling
 import SwiftUI
 
-struct Barcode: View {
-    private let encodedValue: [Bool]
-    init(value: String) {
-        do {
-            self.encodedValue = try EANValue(value).encodedValue
-        } catch {
-            ErrorHandling.fatalError(String(describing: error))
+public enum Barcode: View {
+    case ean(_ value: String)
+
+    public var body: some View {
+        switch self {
+        case .ean(let value):
+            EANBarcode(value: value)
         }
     }
-
-    @Environment(\.displayScale) private var displayScale
-    var body: some View {
-        let _ = print(encodedValue.count)
-        Path { path in
-            for i in 0..<encodedValue.count {
-                guard encodedValue[i] else { continue }
-                path.addRect(CGRect(x: i, y: 0, width: 1, height: encodedValue.count))
-            }
-        }
-        .frame(width: Double(encodedValue.count), height: Double(encodedValue.count))
-    }
-
 }
 
 #Preview {
-    Barcode(value: "4444444444444")
+    Barcode.ean("4444444444444")
         .previewLayout(.sizeThatFits)
 }
