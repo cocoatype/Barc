@@ -50,7 +50,7 @@ swift_library(
     deps = [
         ":BarcodeGenerator",
     ],
-    visibility = ["//visibility:public"],
+    visibility = ["//visibility:private"],
 )
 
 ios_unit_test(
@@ -60,5 +60,6 @@ ios_unit_test(
         ":BarcodeGeneratorTests",
     ],
     runner = "@rules_apple//apple/testing/default_runner:ios_xctestrun_random_runner",
+    size = "small",
     visibility = ["//visibility:public"],
 )

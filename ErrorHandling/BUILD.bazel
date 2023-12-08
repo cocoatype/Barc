@@ -6,6 +6,7 @@ load(
 load(
     "@rules_apple//apple:ios.bzl",
     "ios_framework",
+    "ios_unit_test",
 )
 
 load(
@@ -31,5 +32,28 @@ ios_framework(
     families = ["iphone", "ipad"],
     infoplists = ["//Shared:Info.plist"],
     minimum_os_version = MINIMUM_IOS_VERSION,
+    visibility = ["//visibility:public"],
+)
+
+swift_library(
+    name = "ErrorHandlingTests",
+    testonly = True,
+    srcs = glob([
+        "Tests/Sources/**/*.swift",
+    ]),
+    deps = [
+        ":ErrorHandling",
+    ],
+    visibility = ["//visibility:private"],
+)
+
+ios_unit_test(
+    name = "Tests",
+    minimum_os_version = MINIMUM_IOS_VERSION,
+    deps = [
+        ":ErrorHandlingTests",
+    ],
+    runner = "@rules_apple//apple/testing/default_runner:ios_xctestrun_random_runner",
+    size = "small",
     visibility = ["//visibility:public"],
 )
