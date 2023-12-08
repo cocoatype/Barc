@@ -13,7 +13,7 @@ struct LibraryCell: View {
                 .fill(Color.white)
                 .frame(width: Self.size, height: Self.size)
                 .overlay {
-                    Barcode.ean("4444444444444")
+                    QRBarcode(value: "49163140367")
                         .padding(.horizontal, 8)
                         .clipShape(ContainerRelativeShape().inset(by: 8))
                         .containerShape(RoundedRectangle(cornerRadius: 22))

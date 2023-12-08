@@ -10,7 +10,11 @@ struct QRPayload: ExpressibleByStringLiteral {
         self.data = data
     }
 
-    init(stringLiteral value: String) {
+    init(string value: String) {
         self.init(data: value.data(using: .utf8) ?? Data())
+    }
+
+    init(stringLiteral value: String) {
+        self.init(string: value)
     }
 }
