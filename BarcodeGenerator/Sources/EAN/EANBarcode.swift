@@ -29,7 +29,6 @@ struct EANBarcode: View {
             .offset(x: floor(Double(padding) / 2.0))
         }
     }
-
 }
 
 #Preview {
