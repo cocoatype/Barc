@@ -6,7 +6,7 @@ import XCTest
 @testable import BarcodeGenerator
 @testable import ErrorHandling
 
-final class BarcodeTests: XCTestCase {
+final class EANBarcodeTests: XCTestCase {
     func testInitFatalErrorsForInvalidValue() {
         let expectation = expectation(description: "fatalError")
 
@@ -17,7 +17,7 @@ final class BarcodeTests: XCTestCase {
         }
 
         DispatchQueue.global(qos: .userInitiated).async {
-            _ = Barcode(value: "42")
+            _ = EANBarcode(value: "42")
         }
 
         waitForExpectations(timeout: 1)
