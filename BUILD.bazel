@@ -1,52 +1,8 @@
 load(
-    "//:constants.bzl",
-    "MINIMUM_IOS_VERSION",
-)
-
-load(
-    "@rules_apple//apple:ios.bzl",
-    "ios_application",
-)
-
-load(
-    "@rules_apple//apple:apple.bzl",
-    "local_provisioning_profile",
-)
-
-load(
     "@rules_xcodeproj//xcodeproj:defs.bzl",
     "xcodeproj",
     "top_level_target",
     "xcode_provisioning_profile",
-)
-
-ios_application(
-    name = "MobileApp",
-    bundle_id = "com.cocoatype.Barc",
-    families = ["iphone", "ipad"],
-    infoplists = ["//App/Mobile:Info.plist"],
-    minimum_os_version = MINIMUM_IOS_VERSION,
-    deps = [
-        "//App/Mobile",
-    ],
-    frameworks = [
-        "//BarcodeGenerator:BarcodeGenerator.iOS",
-        "//Library:Library.iOS",
-    ],
-    provisioning_profile = ":xcode_profile",
-    visibility = ["//visibility:public"],
-)
-
-xcode_provisioning_profile(
-    name = "xcode_profile",
-    managed_by_xcode = True,
-    provisioning_profile = ":provisioning_profile",
-)
-
-local_provisioning_profile(
-    name = "provisioning_profile",
-    profile_name = "iOS Team Provisioning Profile: *",
-    team_id = "287EDDET2B",
 )
 
 xcodeproj(
@@ -54,7 +10,7 @@ xcodeproj(
     project_name = "Barc",
     tags = ["manual"],
     top_level_targets = [
-        top_level_target(":MobileApp", target_environments = ["device", "simulator"]),
+        top_level_target("//App/Mobile", target_environments = ["device", "simulator"]),
     ],
 )
 

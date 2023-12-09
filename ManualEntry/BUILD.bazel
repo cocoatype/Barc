@@ -1,0 +1,65 @@
+load(
+    "//:constants.bzl",
+    "MINIMUM_IOS_VERSION",
+)
+
+load(
+    "@rules_apple//apple:ios.bzl",
+    "ios_framework",
+    "ios_unit_test",
+)
+
+load(
+    "@rules_swift//swift:swift.bzl",
+    "swift_library",
+)
+
+swift_library(
+    name = "ManualEntry",
+    module_name = "ManualEntry",
+    srcs = glob([
+        "Sources/**/*.swift",
+    ]),
+    deps = [
+        "//ErrorHandling",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+ios_framework(
+    name = "ManualEntry.iOS",
+    deps = [
+        ":ManualEntry",
+    ],
+    frameworks = [
+        "//ErrorHandling:ErrorHandling.iOS",
+    ],
+    bundle_id = "com.cocoatype.Barc.ManualEntry",
+    families = ["iphone", "ipad"],
+    infoplists = ["//Shared:Info.plist"],
+    minimum_os_version = MINIMUM_IOS_VERSION,
+    visibility = ["//visibility:public"],
+)
+
+swift_library(
+    name = "ManualEntryTests",
+    testonly = True,
+    srcs = glob([
+        "Tests/Sources/**/*.swift",
+    ]),
+    deps = [
+        ":ManualEntry",
+    ],
+    visibility = ["//visibility:private"],
+)
+
+ios_unit_test(
+    name = "Tests",
+    minimum_os_version = MINIMUM_IOS_VERSION,
+    deps = [
+        ":ManualEntryTests",
+    ],
+    runner = "@rules_apple//apple/testing/default_runner:ios_xctestrun_random_runner",
+    size = "small",
+    visibility = ["//visibility:public"],
+)
