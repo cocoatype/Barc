@@ -4,9 +4,9 @@
 import ErrorHandling
 import SwiftUI
 
-struct EANBarcode: View {
+public struct EANBarcode: View {
     private let encodedValue: [Bool]
-    init(value: String) {
+    public init(value: String) {
         do {
             self.encodedValue = try EANValue(value).encodedValue
         } catch {
@@ -15,7 +15,7 @@ struct EANBarcode: View {
     }
 
     @Environment(\.displayScale) private var displayScale
-    var body: some View {
+    public var body: some View {
         GeometryReader { proxy in
             let barcodeWidth = proxy.size.width / Double(encodedValue.count)
             let padding = 0

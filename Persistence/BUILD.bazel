@@ -15,28 +15,26 @@ load(
 )
 
 swift_library(
-    name = "ManualEntry",
-    module_name = "ManualEntry",
+    name = "Persistence",
+    module_name = "Persistence",
     srcs = glob([
         "Sources/**/*.swift",
     ]),
     deps = [
         "//ErrorHandling",
-        "//Persistence",
     ],
     visibility = ["//visibility:public"],
 )
 
 ios_framework(
-    name = "ManualEntry.iOS",
+    name = "Persistence.iOS",
     deps = [
-        ":ManualEntry",
+        ":Persistence",
     ],
     frameworks = [
         "//ErrorHandling:ErrorHandling.iOS",
-        "//Persistence:Persistence.iOS",
     ],
-    bundle_id = "com.cocoatype.Barc.ManualEntry",
+    bundle_id = "com.cocoatype.Barc.Persistence",
     families = ["iphone", "ipad"],
     infoplists = ["//Shared:Info.plist"],
     minimum_os_version = MINIMUM_IOS_VERSION,
@@ -44,13 +42,13 @@ ios_framework(
 )
 
 swift_library(
-    name = "ManualEntryTests",
+    name = "PersistenceTests",
     testonly = True,
     srcs = glob([
         "Tests/Sources/**/*.swift",
     ]),
     deps = [
-        ":ManualEntry",
+        ":Persistence",
     ],
     visibility = ["//visibility:private"],
 )
@@ -59,7 +57,7 @@ ios_unit_test(
     name = "Tests",
     minimum_os_version = MINIMUM_IOS_VERSION,
     deps = [
-        ":ManualEntryTests",
+        ":PersistenceTests",
     ],
     runner = "@rules_apple//apple/testing/default_runner:ios_xctestrun_random_runner",
     size = "small",
