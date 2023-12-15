@@ -7,5 +7,7 @@ public struct PreviewBarcodeRepository: BarcodeRepository {
         BarcodeModel.qr(value: "49163140367", correctionLevel: "M"),
     ]
 
+    public func add(_ barcode: BarcodeModel) {}
+
     public init() {}
 }

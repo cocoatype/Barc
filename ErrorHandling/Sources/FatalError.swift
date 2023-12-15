@@ -13,6 +13,10 @@ public func fatalError(_ message: String, file: StaticString = #fileID, line: UI
     fatalErrorBehavior(message, file, line)
 }
 
+public func fatalError(_ error: Error, file: StaticString = #fileID, line: UInt = #line) -> Never {
+    ErrorHandling.fatalError(String(describing: error), file: file, line: line)
+}
+
 func hangForever() -> Never {
     repeat {
         RunLoop.current.run()

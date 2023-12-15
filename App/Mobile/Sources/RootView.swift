@@ -7,10 +7,12 @@ import SwiftUI
 
 struct RootView: View {
     @State var isShowingManualEntry = false
+    @State var refreshID = UUID()
 
     var body: some View {
         NavigationStack {
             Library()
+                .id(refreshID)
                 .toolbar {
                     ToolbarItem {
                         Button {
@@ -21,6 +23,8 @@ struct RootView: View {
                     }
                 }
                 .sheet(isPresented: $isShowingManualEntry) {
+                    refreshID = UUID()
+                } content: {
                     ManualEntry()
                 }
         }

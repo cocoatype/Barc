@@ -2,5 +2,6 @@
 //  Copyright © 2023 Cocoatype, LLC. All rights reserved.
 
 public protocol BarcodeRepository {
-    var barcodes: [BarcodeModel] { get }
+    var barcodes: [BarcodeModel] { get throws }
+    func add(_ barcode: BarcodeModel) throws
 }
