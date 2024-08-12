@@ -17,6 +17,9 @@ let project = Project(
         // doubles
         // test helpers
         // tests
+        BarcodeGenerator.testTarget,
+        ErrorHandling.testTarget,
+        Library.testTarget,
     ],
     schemes: [
         .scheme(
