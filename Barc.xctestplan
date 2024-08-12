@@ -1,0 +1,38 @@
+{
+  "configurations" : [
+    {
+      "id" : "489925D2-9320-4586-BBE4-AB05C73701DF",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Barc.xcodeproj",
+        "identifier" : "4AE089AF9F5FBD1A9DDAAD19",
+        "name" : "BarcodeGeneratorTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Barc.xcodeproj",
+        "identifier" : "E57DB4010BF5291B8973BCE2",
+        "name" : "ErrorHandlingTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Barc.xcodeproj",
+        "identifier" : "DE3175A6F25839D8B453EED7",
+        "name" : "LibraryTests"
+      }
+    }
+  ],
+  "version" : 1
+}

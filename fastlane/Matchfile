@@ -1,0 +1,15 @@
+git_url "git@github.com:cocoatype/certificates.git"
+storage_mode "git"
+readonly true
+type "development" # The default type, can be: appstore, adhoc, enterprise or development
+username "buddybuild@cocoatype.com"
+
+for_lane :beta do
+  type "appstore"
+end
+
+for_platform :ios do
+  app_identifier([
+                   "com.cocoatype.Barc",
+                 ])
+end
