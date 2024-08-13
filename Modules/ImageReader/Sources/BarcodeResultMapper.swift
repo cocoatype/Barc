@@ -4,8 +4,10 @@
 import Barcodes
 import Vision
 
-struct BarcodeResultMapper {
-    func barcodeModel(from observation: VNBarcodeObservation) -> BarcodeModel? {
+public struct BarcodeResultMapper {
+    public init() {}
+    
+    public func barcodeModel(from observation: VNBarcodeObservation) -> BarcodeModel? {
         return switch observation.symbology {
         case .ean13: eanCodeModel(from: observation)
         case .qr: qrCodeModel(from: observation)

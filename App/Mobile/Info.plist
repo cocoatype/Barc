@@ -29,6 +29,8 @@
 	</dict>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen.storyboard</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Barc uses the camera to scan barcodes to add to your library.</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

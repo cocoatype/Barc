@@ -14,9 +14,7 @@ public enum App {
             "App/Mobile/Resources/**",
         ]),
         dependencies: [
-            .target(BarcodeGenerator.target),
-            .target(Library.target),
-            .target(ManualEntry.target),
+            .target(Root.target),
         ],
         settings: .settings(
             base: [
@@ -24,10 +22,10 @@ public enum App {
                 "TARGETED_DEVICE_FAMILY": "1,2,6",
             ],
             debug: [
-                "PROVISIONING_PROFILE_SPECIFIER": "match Development com.cocoatype.Highlighter",
+                "PROVISIONING_PROFILE_SPECIFIER": "match Development com.cocoatype.Barc",
                 "ENABLE_DEBUG_DYLIB": false,
             ], release: [
-                "PROVISIONING_PROFILE_SPECIFIER": "match AppStore com.cocoatype.Highlighter",
+                "PROVISIONING_PROFILE_SPECIFIER": "match AppStore com.cocoatype.Barc",
             ],
             defaultSettings: .recommended(excluding: [
                 "CODE_SIGN_IDENTITY",

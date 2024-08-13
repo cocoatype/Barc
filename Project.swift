@@ -16,6 +16,8 @@ let project = Project(
         Library.target,
         ManualEntry.target,
         Persistence.target,
+        Root.target,
+        Scanner.target,
         // doubles
         // test helpers
         // tests
@@ -24,6 +26,8 @@ let project = Project(
         ErrorHandling.testTarget,
         ImageReader.testTarget,
         Library.testTarget,
+        Root.testTarget,
+        Scanner.testTarget,
     ],
     schemes: [
         .scheme(
