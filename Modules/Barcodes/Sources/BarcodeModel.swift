@@ -8,7 +8,7 @@ public struct BarcodeModel: Identifiable {
     public let type: BarcodeModelType
     public let id: ID
 
-    init(type: BarcodeModelType, id: ID) {
+    public init(type: BarcodeModelType, id: ID) {
         self.type = type
         self.id = id
     }

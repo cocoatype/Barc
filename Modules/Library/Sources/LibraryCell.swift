@@ -1,8 +1,8 @@
 //  Created by Geoff Pado on 11/26/23.
 //  Copyright © 2023 Cocoatype, LLC. All rights reserved.
 
+import Barcodes
 import BarcodeGenerator
-import Persistence
 import SwiftUI
 
 struct LibraryCell: View {

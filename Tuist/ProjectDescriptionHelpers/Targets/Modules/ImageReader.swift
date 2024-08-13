@@ -1,17 +1,16 @@
 import ProjectDescription
 
-public enum Library {
+public enum ImageReader {
     public static let target = Target.moduleTarget(
-        name: "Library",
+        name: "ImageReader",
         dependencies: [
             .target(Barcodes.target),
-            .target(BarcodeGenerator.target),
-            .target(Persistence.target),
+            .target(ErrorHandling.target),
         ]
     )
 
     public static let testTarget = Target.moduleTestTarget(
-        name: "Library",
+        name: "ImageReader",
         dependencies: [
         ]
     )
