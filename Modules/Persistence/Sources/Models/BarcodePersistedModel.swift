@@ -6,7 +6,7 @@ import SwiftData
 
 @Model
 final class BarcodePersistedModel {
-    let type: BarcodeModelType
+    var type: BarcodeModelType
 
     init(type: BarcodeModelType) {
         self.type = type

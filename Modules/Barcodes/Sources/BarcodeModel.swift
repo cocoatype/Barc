@@ -4,7 +4,7 @@
 import Foundation
 import SwiftData
 
-public struct BarcodeModel: Identifiable {
+public struct BarcodeModel: Identifiable, Sendable {
     public let type: BarcodeModelType
     public let id: ID
 
@@ -25,7 +25,7 @@ public struct BarcodeModel: Identifiable {
         BarcodeModel(type: .qr(QRBarcodeModel(value: value, correctionLevel: correctionLevel)), uuid: UUID())
     }
 
-    public enum ID: Hashable {
+    public enum ID: Hashable, Sendable {
         case swiftData(PersistentIdentifier)
         case uuid(UUID)
 
