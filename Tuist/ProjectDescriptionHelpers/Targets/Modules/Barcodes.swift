@@ -1,17 +1,15 @@
 import ProjectDescription
 
-public enum Library {
+public enum Barcodes {
     public static let target = Target.moduleTarget(
-        name: "Library",
+        name: "Barcodes",
+        usesMaxSwiftVersion: true,
         dependencies: [
-            .target(Barcodes.target),
-            .target(BarcodeGenerator.target),
-            .target(Persistence.target),
         ]
     )
 
     public static let testTarget = Target.moduleTestTarget(
-        name: "Library",
+        name: "Barcodes",
         dependencies: [
         ]
     )

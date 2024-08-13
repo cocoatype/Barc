@@ -1,16 +1,18 @@
 import ProjectDescription
 
-public enum ManualEntry {
+public enum ImageReader {
     public static let target = Target.moduleTarget(
-        name: "ManualEntry",
+        name: "ImageReader",
+        usesMaxSwiftVersion: true,
         dependencies: [
+            .target(Barcodes.target),
             .target(ErrorHandling.target),
-            .target(Persistence.target),
         ]
     )
 
     public static let testTarget = Target.moduleTestTarget(
-        name: "ManualEntry",
+        name: "ImageReader",
+        hasResources: true,
         dependencies: [
         ]
     )

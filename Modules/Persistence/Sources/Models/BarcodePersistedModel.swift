@@ -1,11 +1,12 @@
 //  Created by Geoff Pado on 12/9/23.
 //  Copyright © 2023 Cocoatype, LLC. All rights reserved.
 
+import Barcodes
 import SwiftData
 
 @Model
 final class BarcodePersistedModel {
-    let type: BarcodeModelType
+    var type: BarcodeModelType
 
     init(type: BarcodeModelType) {
         self.type = type

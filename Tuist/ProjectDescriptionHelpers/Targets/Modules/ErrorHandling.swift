@@ -3,6 +3,7 @@ import ProjectDescription
 public enum ErrorHandling {
     public static let target = Target.moduleTarget(
         name: "ErrorHandling",
+        usesMaxSwiftVersion: false,
         dependencies: [
         ]
     )
