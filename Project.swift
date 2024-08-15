@@ -9,8 +9,9 @@ let project = Project(
         // products
         App.target,
         // modules
-        Barcodes.target,
         BarcodeGenerator.target,
+        Barcodes.target,
+        BarcodeView.target,
         DesignSystem.target,
         ErrorHandling.target,
         ImageReader.target,
@@ -22,8 +23,9 @@ let project = Project(
         // doubles
         // test helpers
         // tests
-        Barcodes.testTarget,
         BarcodeGenerator.testTarget,
+        Barcodes.testTarget,
+        BarcodeView.testTarget,
         ErrorHandling.testTarget,
         ImageReader.testTarget,
         Library.testTarget,
