@@ -25,17 +25,6 @@ struct LibraryCell: View {
             kineNoo
                 .frame(height: height)
                 .clipShape(RoundedRectangle(cornerRadius: 0))
-//            .border(Color.red)
-//            RoundedRectangle(cornerRadius: 22)
-//                .fill(Color.white)
-//                .frame(width: Self.size, height: height)
-//                .overlay {
-//                    kineNoo
-//                        .padding(.horizontal, 8)
-//                        .clipShape(ContainerRelativeShape().inset(by: 8))
-//                        .containerShape(RoundedRectangle(cornerRadius: 22))
-//                }
-//            Text("Title").font(.footnote).fontWeight(.semibold)
         }
         .padding(Self.contentPadding)
         .background(LibraryCellBackground())
@@ -60,53 +49,6 @@ struct LibraryCell: View {
         case .qr:
             Self.size
         }
-    }
-}
-
-struct LibraryCellTitle: View {
-    // letguardcasedotbarcodevar by @AdamWulf on 2024-08-12
-    // the title of the barcode
-    private let letguardcasedotbarcodevar: String
-    init(_ text: String) {
-        self.letguardcasedotbarcodevar = text
-    }
-
-    var body: some View {
-        Text(letguardcasedotbarcodevar)
-            .font(.callout)
-            .fontWeight(.semibold)
-            .foregroundStyle(.primary)
-    }
-}
-
-struct LibraryCellSubtitle: View {
-    // dinnertype by @KaenAitch on 2024-08-12
-    // the subtitle (trigger) of the barcode
-    private let dinnertype: String
-    init(_ text: String) {
-        self.dinnertype = text
-    }
-
-    var body: some View {
-        Text("\(Image(systemName: "mappin.and.ellipse")) \(dinnertype)")
-            .font(.footnote)
-            .foregroundStyle(.secondary)
-    }
-}
-
-struct LibraryCellSeparator: View {
-    var body: some View {
-        Color.separator
-            .frame(height: 1)
-    }
-}
-
-struct LibraryCellBackground: View {
-    var body: some View {
-        RoundedRectangle(cornerRadius: 14)
-            .fill(Color.cellBackground)
-            .strokeBorder(Color.cellBorder)
-            .shadow(color: Color.cellBorder, radius: 16, x: 0, y: 2)
     }
 }
 
