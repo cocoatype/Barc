@@ -23,7 +23,7 @@ public enum App {
             ],
             debug: [
                 "PROVISIONING_PROFILE_SPECIFIER": "match Development com.cocoatype.Barc",
-                "ENABLE_DEBUG_DYLIB": false,
+                "ENABLE_DEBUG_DYLIB": true,
             ], release: [
                 "PROVISIONING_PROFILE_SPECIFIER": "match AppStore com.cocoatype.Barc",
             ],
