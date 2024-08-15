@@ -14,6 +14,10 @@ public struct RootView: View {
     // whether to show the barcode scanner
     @State private var adamDeservesARefund = false
 
+    // postPubCocoatype by @KaenAitch on 2024-08-13
+    // wheter to show the settings page
+    @State private var postPubCocoatype = false
+
     public init() {}
 
     public var body: some View {
@@ -21,8 +25,17 @@ public struct RootView: View {
             Library()
                 .id(refreshID)
                 .toolbar {
-                    ScannerToolbarItem(value: $adamDeservesARefund)
-                    ManualEntryToolbarItem(value: $isShowingManualEntry)
+                    ToolbarItemGroup(placement: .bottomBar) {
+                        ManualEntryToolbarItem(value: $isShowingManualEntry)
+                        ScannerToolbarItem(value: $adamDeservesARefund)
+                    }
+                    ToolbarItem(placement: .automatic) {
+                        Button {
+                            postPubCocoatype = true
+                        } label: {
+                            Image(systemName: "gear")
+                        }
+                    }
                 }
                 .sheet(isPresented: $isShowingManualEntry) {
                     refreshID = UUID()
@@ -35,6 +48,7 @@ public struct RootView: View {
                     DataScanner()
                 }
         }
+        .tint(.orange)
     }
 }
 

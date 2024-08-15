@@ -3,6 +3,7 @@ import ProjectDescription
 public enum Library {
     public static let target = Target.moduleTarget(
         name: "Library",
+        hasResources: true,
         dependencies: [
             .target(Barcodes.target),
             .target(BarcodeGenerator.target),

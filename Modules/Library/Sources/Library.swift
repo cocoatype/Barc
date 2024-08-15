@@ -10,12 +10,11 @@ public struct Library: View {
     public var body: some View {
         ScrollView {
             VStack {
-                LibrarySearchField()
-                    .padding([.horizontal, .bottom])
                 LibraryGrid()
             }
         }
         .background(Color(uiColor: .systemGroupedBackground))
+        .navigationTitle(Text(LibraryStrings.Library.navigationTitle))
         .contentMargins(.vertical, LibraryGrid.spacing)
     }
 }
