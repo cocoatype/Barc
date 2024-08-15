@@ -13,22 +13,16 @@ struct LibraryGrid: View {
     @State private var barcodes = [BarcodeModel]()
 
     var body: some View {
-        LazyVGrid(
-            columns: [
-                GridItem(
-                    .adaptive(
-                        minimum: LibraryCell.size,
-                        maximum: LibraryCell.size
-                    ),
-                    spacing: Self.spacing
-                )
-            ], spacing: Self.spacing
+        WaterfallGrid(
+            minWidth: 160,
+            maxWidth: 180,
+            spacing: Self.spacing
         ) {
             ForEach(barcodes) { barcode in
                 LibraryCell(barcode: barcode)
-                    .border(.red)
             }
-        }.onAppear {
+        }
+        .onAppear {
             do {
                 barcodes = try repository.barcodes
             } catch {
