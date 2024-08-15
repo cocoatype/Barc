@@ -15,6 +15,7 @@ public struct Library: View {
                 LibraryGrid()
             }
         }
+        .background(Color(uiColor: .systemGroupedBackground))
         .contentMargins(.vertical, LibraryGrid.spacing)
     }
 }

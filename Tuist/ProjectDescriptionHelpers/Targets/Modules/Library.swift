@@ -6,6 +6,7 @@ public enum Library {
         dependencies: [
             .target(Barcodes.target),
             .target(BarcodeGenerator.target),
+            .target(DesignSystem.target),
             .target(Persistence.target),
         ]
     )
