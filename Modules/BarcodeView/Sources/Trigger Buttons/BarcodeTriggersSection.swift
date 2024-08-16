@@ -1,15 +1,17 @@
 import SwiftUI
 
 struct BarcodeTriggersSection: View {
+    private typealias Strings = BarcodeViewStrings.BarcodeTriggersSection
+
     var body: some View {
         Section {
             BarcodeTriggersButton(
-                title: "Location",
+                title: Strings.locationButtonTitle,
                 subtitle: "123 Fake Street",
                 route: .locationEditor
             )
             BarcodeTriggersButton(
-                title: "Date",
+                title: Strings.dateButtonTitle,
                 subtitle: "None",
                 route: .dateEditor
             )
