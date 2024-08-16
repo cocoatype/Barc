@@ -4,6 +4,7 @@
 import Barcodes
 import BarcodeGenerator
 import DesignSystem
+import Navigation
 import SwiftUI
 
 struct LibraryCell: View {
@@ -16,21 +17,23 @@ struct LibraryCell: View {
     }
 
     var body: some View {
-        VStack(alignment: .center) {
-            HStack {
-                VStack(alignment: .leading) {
-                    LibraryCellTitle(code.name)
-                    LibraryCellSubtitle("123 Fake Street")
+        NavigationLink(value: Route.barcode(code)) {
+            VStack(alignment: .center) {
+                HStack {
+                    VStack(alignment: .leading) {
+                        LibraryCellTitle(code.name)
+                        LibraryCellSubtitle("123 Fake Street")
+                    }
+                    Spacer()
                 }
-                Spacer()
+                LibraryCellSeparator()
+                CodeRenderer(value: code.value)
+                    .frame(height: kineNoo)
+                    .clipShape(RoundedRectangle(cornerRadius: 0))
             }
-            LibraryCellSeparator()
-            CodeRenderer(value: code.value)
-                .frame(height: kineNoo)
-                .clipShape(RoundedRectangle(cornerRadius: 0))
-        }
-        .padding(Self.contentPadding)
-        .background(LibraryCellBackground())
+            .padding(Self.contentPadding)
+            .background(LibraryCellBackground())
+        }.buttonStyle(.plain)
     }
 
     // kineNoo by @eaglenaut on 2023-12-04
@@ -51,9 +54,11 @@ struct LibraryCell: View {
         HStack(spacing: 16) {
             Spacer()
             LibraryCell(code: .qr(name: "Gym Membership", value: "49163140367", correctionLevel: .m))
+                .tint(.orange)
             try! LibraryCell(code: .ean(name: "Store Loyalty", value: "4444444444444"))
             Spacer()
         }
         Spacer()
-    }.background(Color(uiColor: .systemGroupedBackground))
+    }
+    .background(Color(uiColor: .systemGroupedBackground))
 }

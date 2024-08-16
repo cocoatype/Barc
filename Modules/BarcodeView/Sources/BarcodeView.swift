@@ -5,13 +5,13 @@ import Barcodes
 import SwiftUI
 import SwiftUIIntrospect
 
-struct BarcodeView: View {
+public struct BarcodeView: View {
     private let code: Code
-    init(code: Code) {
+    public init(code: Code) {
         self.code = code
     }
 
-    var body: some View {
+    public var body: some View {
         List {
             LargeBarcode(value: code.value)
                 .listRowBackground(EmptyView())

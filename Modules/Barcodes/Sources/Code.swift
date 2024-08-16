@@ -3,17 +3,17 @@
 
 import Foundation
 
-public struct Code: Identifiable, Sendable {
+public struct Code: Hashable, Identifiable, Sendable {
     public let name: String
     public let value: CodeValue
-    public let triggers: [any Trigger]
+//    public let triggers: [any Trigger]
 
     public var id: String { value.id }
 
     public init(name: String, value: CodeValue, triggers: [any Trigger]) {
         self.name = name
         self.value = value
-        self.triggers = triggers
+//        self.triggers = triggers
     }
 
     public static func qr(name: String, value: String, correctionLevel: QRCodeValue.CorrectionLevel) -> Code {

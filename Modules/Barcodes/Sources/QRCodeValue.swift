@@ -3,7 +3,7 @@
 
 import Foundation
 
-public struct QRCodeValue: Identifiable, Sendable {
+public struct QRCodeValue: Hashable, Identifiable, Sendable {
     public let payload: Payload
     public let correctionLevel: CorrectionLevel
 
@@ -22,7 +22,7 @@ public struct QRCodeValue: Identifiable, Sendable {
         case l, m, q, h
     }
 
-    public struct Payload: ExpressibleByStringLiteral, Identifiable, Sendable {
+    public struct Payload: ExpressibleByStringLiteral, Hashable, Identifiable, Sendable {
         public let data: Data
         public var id: Data { data }
 

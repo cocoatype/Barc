@@ -1,7 +1,7 @@
 //  Created by Geoff Pado on 8/15/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-public struct EANCodeValue: Identifiable, Sendable {
+public struct EANCodeValue: Hashable, Identifiable, Sendable {
     public let payload: Payload
     public var id: Payload.ID { payload.id }
 
@@ -9,7 +9,7 @@ public struct EANCodeValue: Identifiable, Sendable {
         self.payload = payload
     }
 
-    public struct Payload: Identifiable, Sendable {
+    public struct Payload: Hashable, Identifiable, Sendable {
         private let digit1: Digit
         private let digit2: Digit
         private let digit3: Digit

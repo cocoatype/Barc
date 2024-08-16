@@ -1,22 +1,21 @@
 //  Created by Geoff Pado on 8/15/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
+import Navigation
 import SwiftUI
 
-typealias Cashable = Codable & Hashable
-
-struct BarcodeTriggersButton<NavigationValue: Cashable>: View {
+struct BarcodeTriggersButton: View {
     private let title: String
     private let subtitle: String
-    private let navigationValue: NavigationValue
-    init(title: String, subtitle: String, navigationValue: NavigationValue) {
+    private let route: Route
+    init(title: String, subtitle: String, route: Route) {
         self.title = title
         self.subtitle = subtitle
-        self.navigationValue = navigationValue
+        self.route = route
     }
 
     var body: some View {
-        NavigationLink(value: navigationValue) {
+        NavigationLink(value: route) {
             HStack(alignment: .firstTextBaseline) {
                 BarcodeTriggersButtonPrimaryText(title)
                 Spacer()
@@ -26,6 +25,7 @@ struct BarcodeTriggersButton<NavigationValue: Cashable>: View {
     }
 }
 
+import Barcodes
 #Preview {
-    BarcodeTriggersButton(title: "Location", subtitle: "None", navigationValue: String?.none)
+    BarcodeTriggersButton(title: "Location", subtitle: "None", route: .barcode(Code(name: "", value: .qr(value: "", correctionLevel: .m), triggers: [])))
 }

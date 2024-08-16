@@ -1,7 +1,7 @@
 //  Created by Geoff Pado on 8/16/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-public enum CodeValue: Identifiable, Sendable {
+public enum CodeValue: Hashable, Identifiable, Sendable {
     case qr(QRCodeValue)
     case ean(EANCodeValue)
 

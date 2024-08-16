@@ -16,5 +16,6 @@ struct LibraryCellTitle: View {
             .font(.callout)
             .fontWeight(.semibold)
             .foregroundStyle(.primary)
+            .multilineTextAlignment(.leading)
     }
 }

@@ -15,6 +15,41 @@
     {
       "target" : {
         "containerPath" : "container:Barc.xcodeproj",
+        "identifier" : "1A65C8AF15A5FD9E4FD4DB1E",
+        "name" : "ImageReaderTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Barc.xcodeproj",
+        "identifier" : "DE3175A6F25839D8B453EED7",
+        "name" : "LibraryTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Barc.xcodeproj",
+        "identifier" : "2C70B1BC6D8E4A3DA8C4425C",
+        "name" : "BarcodesTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Barc.xcodeproj",
+        "identifier" : "E57DB4010BF5291B8973BCE2",
+        "name" : "ErrorHandlingTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Barc.xcodeproj",
+        "identifier" : "9EFEFCABDA65A3DF2E59E2C6",
+        "name" : "NavigationTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Barc.xcodeproj",
         "identifier" : "DF44043385DB2727C0C65E5D",
         "name" : "BarcodeViewTests"
       }
@@ -29,36 +64,8 @@
     {
       "target" : {
         "containerPath" : "container:Barc.xcodeproj",
-        "identifier" : "DE3175A6F25839D8B453EED7",
-        "name" : "LibraryTests"
-      }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:Barc.xcodeproj",
-        "identifier" : "E57DB4010BF5291B8973BCE2",
-        "name" : "ErrorHandlingTests"
-      }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:Barc.xcodeproj",
         "identifier" : "3C5D35113DA903F97D4B6553",
         "name" : "RootTests"
-      }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:Barc.xcodeproj",
-        "identifier" : "1A65C8AF15A5FD9E4FD4DB1E",
-        "name" : "ImageReaderTests"
-      }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:Barc.xcodeproj",
-        "identifier" : "2C70B1BC6D8E4A3DA8C4425C",
-        "name" : "BarcodesTests"
       }
     },
     {

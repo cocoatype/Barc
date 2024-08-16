@@ -8,6 +8,7 @@ public enum Library {
             .target(Barcodes.target),
             .target(BarcodeGenerator.target),
             .target(DesignSystem.target),
+            .target(Navigation.target),
             .target(Persistence.target),
         ]
     )
