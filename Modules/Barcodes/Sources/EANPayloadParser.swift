@@ -4,13 +4,15 @@
 public struct EANPayloadParser {
     public init() {}
 
-    public func payload(for value: String) throws(EANPayloadParseError) -> EANCodeValue.Payload {
+    public func payload(for value: String) throws -> EANCodeValue.Payload {
         let enhancedValue: String
         if value.count == 12 {
             enhancedValue = "0" + value
         } else { enhancedValue = value }
 
-        guard enhancedValue.count == 13, enhancedValue.allSatisfy(\.isNumber) else { throw .invalidBarcodeValue(value) }
+        guard enhancedValue.count == 13, enhancedValue.allSatisfy(\.isNumber) else {
+            throw EANPayloadParseError.invalidBarcodeValue(value)
+        }
 
         return try Payload(
             digit1: digit(for: enhancedValue.character(at: 0)),
@@ -29,8 +31,11 @@ public struct EANPayloadParser {
         )
     }
 
-    private func digit(for character: Character) throws(EANPayloadParseError) -> Payload.Digit {
-        guard let int = Int(String(character)) else { throw .valueContainsNonIntegerCharacter(character: character) }
+    private func digit(for character: Character) throws -> Payload.Digit {
+        guard let int = Int(String(character)) else {
+            throw EANPayloadParseError.valueContainsNonIntegerCharacter(character: character)
+        }
+
         return switch int {
         case 0: Payload.Digit.d0
         case 1: Payload.Digit.d1
@@ -42,7 +47,7 @@ public struct EANPayloadParser {
         case 7: Payload.Digit.d7
         case 8: Payload.Digit.d8
         case 9: Payload.Digit.d9
-        default: throw .valueContainsInvalidDigit(digit: int)
+        default: throw EANPayloadParseError.valueContainsInvalidDigit(digit: int)
         }
     }
 
