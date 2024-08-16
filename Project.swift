@@ -26,7 +26,6 @@ let project = Project(
         // tests
         BarcodeGenerator.testTarget,
         Barcodes.testTarget,
-        BarcodeView.testTarget,
         ErrorHandling.testTarget,
         ImageReader.testTarget,
         Library.testTarget,
