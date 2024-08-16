@@ -4,20 +4,20 @@
 import Barcodes
 
 struct EANEncoder {
-    func encodedValue(from payload: EANCodeValue.Payload) throws -> [Bool] {
+    func encodedValue(from payload: EANCodeValue.Payload) -> [Bool] {
         let digits = payload.digits
         let sectionMap = sectionMap(forFirstDigit: digits[0])
 
         let left = digits[1..<7]
         let right = digits[7..<13]
 
-        let encodedLeft: [Bool] = try zip(left, sectionMap).flatMap { try encoding(for: $0.0, section: $0.1) }
-        let encodedRight: [Bool] = try right.flatMap { try encoding(for: $0, section: .r) }
+        let encodedLeft: [Bool] = zip(left, sectionMap).flatMap { encoding(for: $0.0, section: $0.1) }
+        let encodedRight: [Bool] = right.flatMap { encoding(for: $0, section: .r) }
 
         return [true, false, true] + encodedLeft + [false, true, false, true, false] + encodedRight + [true, false, true]
     }
 
-    private func encoding(for digit: EANCodeValue.Payload.Digit, section: Section) throws -> [Bool] {
+    private func encoding(for digit: EANCodeValue.Payload.Digit, section: Section) -> [Bool] {
         let intRepresentation = switch (digit, section) {
         case (.d0, .l): 0b0001101
         case (.d0, .g): 0b0100111

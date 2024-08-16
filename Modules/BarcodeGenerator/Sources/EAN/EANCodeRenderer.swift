@@ -9,11 +9,7 @@ public struct EANCodeRenderer: View {
     private let encodedValue: [Bool]
     private let encoder = EANEncoder()
     public init(value: EANCodeValue) {
-        do {
-            self.encodedValue = try encoder.encodedValue(from: value.payload)
-        } catch {
-            ErrorHandling.fatalError(String(describing: error))
-        }
+        self.encodedValue = encoder.encodedValue(from: value.payload)
     }
 
     @Environment(\.displayScale) private var displayScale

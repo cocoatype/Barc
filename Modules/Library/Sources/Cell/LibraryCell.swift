@@ -17,9 +17,12 @@ struct LibraryCell: View {
 
     var body: some View {
         VStack(alignment: .center) {
-            VStack(alignment: .leading) {
-                LibraryCellTitle("Gym Membership")
-                LibraryCellSubtitle("123 Fake Street")
+            HStack {
+                VStack(alignment: .leading) {
+                    LibraryCellTitle(code.name)
+                    LibraryCellSubtitle("123 Fake Street")
+                }
+                Spacer()
             }
             LibraryCellSeparator()
             CodeRenderer(value: code.value)
