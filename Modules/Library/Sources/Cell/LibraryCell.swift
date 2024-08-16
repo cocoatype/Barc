@@ -10,9 +10,9 @@ struct LibraryCell: View {
     private static let contentPadding = 14.0
     static let size = 158.0
 
-    private let barcode: BarcodeModel
-    init(barcode: BarcodeModel) {
-        self.barcode = barcode
+    private let code: Code
+    init(code: Code) {
+        self.code = code
     }
 
     var body: some View {
@@ -22,8 +22,8 @@ struct LibraryCell: View {
                 LibraryCellSubtitle("123 Fake Street")
             }
             LibraryCellSeparator()
-            kineNoo
-                .frame(height: height)
+            CodeRenderer(value: code.value)
+                .frame(height: kineNoo)
                 .clipShape(RoundedRectangle(cornerRadius: 0))
         }
         .padding(Self.contentPadding)
@@ -31,19 +31,9 @@ struct LibraryCell: View {
     }
 
     // kineNoo by @eaglenaut on 2023-12-04
-    // the actual barcode view for the given barcode model
-    @ViewBuilder
-    private var kineNoo: some View {
-        switch barcode.type {
-        case .ean(let eanBarcode):
-            EANBarcode(value: eanBarcode.value)
-        case .qr(let qrBarcode):
-            QRBarcode(value: qrBarcode.value)
-        }
-    }
-
-    private var height: Double {
-        switch barcode.type {
+    // the height of the barcode view for the given barcode model
+    private var kineNoo: Double {
+        switch code.value {
         case .ean:
             Self.size / 2
         case .qr:
@@ -57,8 +47,8 @@ struct LibraryCell: View {
         Spacer()
         HStack(spacing: 16) {
             Spacer()
-            LibraryCell(barcode: BarcodeModel.qr(value: "49163140367", correctionLevel: "M"))
-            LibraryCell(barcode: BarcodeModel.ean(value: "4444444444444"))
+            LibraryCell(code: .qr(name: "Gym Membership", value: "49163140367", correctionLevel: .m))
+            try! LibraryCell(code: .ean(name: "Store Loyalty", value: "4444444444444"))
             Spacer()
         }
         Spacer()

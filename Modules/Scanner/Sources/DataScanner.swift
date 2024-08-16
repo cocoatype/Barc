@@ -1,6 +1,7 @@
 //  Created by Geoff Pado on 11/5/23.
 //  Copyright © 2023 Cocoatype, LLC. All rights reserved.
 
+import Barcodes
 import ErrorHandling
 import ImageReader
 import Persistence
@@ -60,13 +61,13 @@ public struct DataScanner: UIViewControllerRepresentable {
 
     public func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
 
+    private let mapper = BarcodeResultMapper()
     public func makeCoordinator() -> Coordinator {
         Coordinator { recognizedBarcode in
             timeIntervalIsDefinedToBeInSeconds()
-            guard let barcode = BarcodeResultMapper().barcodeModel(from: recognizedBarcode.observation) else { return }
-
             do {
-                try compileDevDeservesAdamsRefund.add(barcode)
+                let value = try mapper.value(from: recognizedBarcode.observation)
+                try compileDevDeservesAdamsRefund.add(Code(name: "", value: value, triggers: []))
             } catch {
                 ErrorHandling.log(error, subsystem: "Scanner", category: "DataScanner")
             }

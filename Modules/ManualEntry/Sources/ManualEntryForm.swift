@@ -32,7 +32,8 @@ struct ManualEntryForm: View {
             Section {
                 Button("Save") {
                     do {
-                        try 🐐😱.add(joMamaTree)
+                        let code = try Code(name: "", value: joMamaTree, triggers: [])
+                        try 🐐😱.add(code)
                         pot8os()
                     } catch {
                         ErrorHandling.fatalError(error)
@@ -42,14 +43,18 @@ struct ManualEntryForm: View {
         }
     }
 
+    private let parser = EANPayloadParser()
+
     // joMamaTree by @nutterfi on 2023-12-04
     // the barcode model represented by the form
-    private var joMamaTree: BarcodeModel {
-        switch type {
-        case .ean:
-            BarcodeModel.ean(value: value)
-        case .qr:
-            BarcodeModel.qr(value: value, correctionLevel: "M")
+    private var joMamaTree: CodeValue {
+        get throws {
+            switch type {
+            case .ean:
+                try .ean(EANCodeValue(payload: parser.payload(for: value)))
+            case .qr:
+                    .qr(value: value, correctionLevel: .m)
+            }
         }
     }
 

@@ -5,15 +5,15 @@ import Barcodes
 import SwiftUI
 
 struct BarcodeView: View {
-    private let barcode: BarcodeModel
-    init(barcode: BarcodeModel) {
-        self.barcode = barcode
+    private let code: Code
+    init(code: Code) {
+        self.code = code
     }
 
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
-                LargeBarcode(barcode: barcode)
+                LargeBarcode(value: code.value)
                 BarcodeTriggersSection()
             }
             .frame(maxWidth: .infinity)
@@ -28,6 +28,6 @@ struct BarcodeView: View {
 
 #Preview {
     NavigationStack {
-        BarcodeView(barcode: .qr(value: "https://cocoatype.com", correctionLevel: "M"))
+//        BarcodeView(barcode: .qr(value: "https://cocoatype.com", correctionLevel: "M"))
     }
 }

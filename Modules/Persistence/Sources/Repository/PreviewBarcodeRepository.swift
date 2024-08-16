@@ -4,14 +4,14 @@
 import Barcodes
 
 public struct PreviewBarcodeRepository: BarcodeRepository {
-    public let barcodes = [
-        BarcodeModel.qr(value: "https://cocoatype.com", correctionLevel: "M"),
-        BarcodeModel.ean(value: "4444444444444"),
-        BarcodeModel.qr(value: "https://iosdev.club", correctionLevel: "M"),
-        BarcodeModel.qr(value: "https://blackhighlighter.app/appstore", correctionLevel: "M"),
+    public let codes = [
+        Code(name: "Cocoatype", value: .qr(value: "https://cocoatype.com", correctionLevel: .m), triggers: []),
+        try! Code(name: "Fours", value: .ean(value: "4444444444444"), triggers: []),
+        Code(name: "Discord", value: .qr(value: "https://iosdev.club", correctionLevel: .m), triggers: []),
+        Code(name: "Black Highlighter", value: .qr(value: "https://blackhighlighter.app/appstore", correctionLevel: .m), triggers: []),
     ]
 
-    public func add(_ barcode: BarcodeModel) {}
+    public func add(_ code: Code) {}
 
     public init() {}
 }

@@ -1,14 +1,16 @@
 //  Created by Geoff Pado on 12/4/23.
 //  Copyright © 2023 Cocoatype, LLC. All rights reserved.
 
+import Barcodes
 import ErrorHandling
 import SwiftUI
 
-public struct EANBarcode: View {
+public struct EANCodeRenderer: View {
     private let encodedValue: [Bool]
-    public init(value: String) {
+    private let encoder = EANEncoder()
+    public init(value: EANCodeValue) {
         do {
-            self.encodedValue = try EANValue(value).encodedValue
+            self.encodedValue = try encoder.encodedValue(from: value.payload)
         } catch {
             ErrorHandling.fatalError(String(describing: error))
         }
@@ -32,8 +34,12 @@ public struct EANBarcode: View {
 }
 
 #Preview {
-    EANBarcode(value: "4444444444444")
-        .background(Color.white)
-        .frame(width: 180, height: 180)
-        .previewLayout(.sizeThatFits)
+    if let payload = try? EANPayloadParser().payload(for: "444444444444") {
+        EANCodeRenderer(value: EANCodeValue(payload: payload))
+            .background(Color.white)
+            .frame(width: 180, height: 180)
+            .previewLayout(.sizeThatFits)
+    } else {
+        EmptyView()
+    }
 }

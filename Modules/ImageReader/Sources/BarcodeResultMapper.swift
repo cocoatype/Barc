@@ -7,23 +7,28 @@ import Vision
 public struct BarcodeResultMapper {
     public init() {}
     
-    public func barcodeModel(from observation: VNBarcodeObservation) -> BarcodeModel? {
+    public func value(from observation: VNBarcodeObservation) throws -> CodeValue {
         return switch observation.symbology {
-        case .ean13: eanCodeModel(from: observation)
-        case .qr: qrCodeModel(from: observation)
-        default: nil
+        case .ean13: try eanCodeModel(from: observation)
+        case .qr: try qrCodeModel(from: observation)
+        default: throw BarcodeResultMapperError.invalidSymbology(observation.symbology)
         }
     }
 
-    private func qrCodeModel(from observation: VNBarcodeObservation) -> BarcodeModel? {
-        guard let string = observation.payloadStringValue else { return nil }
+    private func qrCodeModel(from observation: VNBarcodeObservation) throws -> CodeValue {
+        guard let string = observation.payloadStringValue else { throw BarcodeResultMapperError.missingPayloadStringValue }
 
-        return .qr(value: string, correctionLevel: "M")
+        return .qr(value: string, correctionLevel: .m)
     }
 
-    private func eanCodeModel(from observation: VNBarcodeObservation) -> BarcodeModel? {
-        guard let string = observation.payloadStringValue else { return nil }
+    private func eanCodeModel(from observation: VNBarcodeObservation) throws -> CodeValue {
+        guard let string = observation.payloadStringValue else { throw BarcodeResultMapperError.missingPayloadStringValue }
 
-        return .ean(value: string)
+        return try .ean(value: string)
     }
+}
+
+enum BarcodeResultMapperError: Error {
+    case missingPayloadStringValue
+    case invalidSymbology(VNBarcodeSymbology)
 }

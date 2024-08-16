@@ -6,24 +6,25 @@ import ErrorHandling
 import SwiftData
 
 struct FileBarcodeRepository: BarcodeRepository {
-    @MainActor var barcodes: [BarcodeModel] {
+    @MainActor var codes: [Code] {
         get throws {
-            let models = try modelContainer.mainContext.fetch(FetchDescriptor<BarcodePersistedModel>())
-            return models.map(\.barcodeModel)
+            let models = try modelContainer.mainContext.fetch(FetchDescriptor<BarcodeModel>())
+            return try models.map { try mapper.code(from: $0) }
         }
     }
 
-    @MainActor func add(_ barcode: BarcodeModel) throws {
-        modelContainer.mainContext.insert(BarcodePersistedModel(barcodeModel: barcode))
+    @MainActor func add(_ code: Code) throws {
+        try modelContainer.mainContext.insert(mapper.barcodeModel(from: code))
         try modelContainer.mainContext.save()
     }
 
     private let modelContainer = {
         do {
-            let modelContainer = try ModelContainer(for: BarcodePersistedModel.self)
-            return modelContainer
+            return try ModelContainer(for: BarcodeModel.self)
         } catch {
             ErrorHandling.fatalError(error)
         }
     }()
+
+    private let mapper = BarcodeModelMapper()
 }
