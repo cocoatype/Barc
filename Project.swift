@@ -9,24 +9,27 @@ let project = Project(
         // products
         App.target,
         // modules
-        Barcodes.target,
         BarcodeGenerator.target,
+        Barcodes.target,
+        BarcodeView.target,
         DesignSystem.target,
         ErrorHandling.target,
         ImageReader.target,
         Library.target,
         ManualEntry.target,
+        Navigation.target,
         Persistence.target,
         Root.target,
         Scanner.target,
         // doubles
         // test helpers
         // tests
-        Barcodes.testTarget,
         BarcodeGenerator.testTarget,
+        Barcodes.testTarget,
         ErrorHandling.testTarget,
         ImageReader.testTarget,
         Library.testTarget,
+        Navigation.testTarget,
         Root.testTarget,
         Scanner.testTarget,
     ],

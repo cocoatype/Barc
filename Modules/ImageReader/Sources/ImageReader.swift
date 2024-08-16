@@ -6,14 +6,18 @@ import CoreGraphics
 import Vision
 
 struct ImageReader {
-    func barcode(in image: CGImage, orientation: CGImagePropertyOrientation = .up) async throws -> BarcodeModel? {
+    func codeValue(in image: CGImage, orientation: CGImagePropertyOrientation = .up) async throws -> CodeValue? {
         return try await withCheckedThrowingContinuation { continuation in
             let requestHandler = VNImageRequestHandler(cgImage: image, orientation: orientation)
             let request = VNDetectBarcodesRequest { request, error in
                 guard let barcodesRequest = request as? VNDetectBarcodesRequest else { return continuation.resume(throwing: ImageReaderError.incorrectRequestType) }
                 guard let firstResult = barcodesRequest.results?.first else { return continuation.resume(returning: nil) }
 
-                return continuation.resume(returning: mapper.barcodeModel(from: firstResult))
+                do {
+                    try continuation.resume(returning: mapper.value(from: firstResult))
+                } catch {
+                    return continuation.resume(throwing: error)
+                }
             }
 
 #if targetEnvironment(simulator)

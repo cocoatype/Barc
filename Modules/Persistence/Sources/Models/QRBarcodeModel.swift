@@ -1,11 +1,13 @@
 //  Created by Geoff Pado on 12/9/23.
 //  Copyright © 2023 Cocoatype, LLC. All rights reserved.
 
-public struct QRBarcodeModel: Codable, Sendable {
-    public let value: String
-    public let correctionLevel: String
+import Foundation
 
-    public init(value: String, correctionLevel: String) {
+struct QRBarcodeModel: Codable, Sendable {
+    let value: Data
+    let correctionLevel: String
+
+    init(value: Data, correctionLevel: String) {
         self.value = value
         self.correctionLevel = correctionLevel
     }

@@ -4,6 +4,7 @@ public enum Navigation {
     public static let target = Target.moduleTarget(
         name: "Navigation",
         dependencies: [
+            .target(Barcodes.target),
         ]
     )
 

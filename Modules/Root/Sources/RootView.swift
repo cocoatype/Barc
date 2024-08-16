@@ -3,9 +3,11 @@
 
 import Library
 import ManualEntry
+import Navigation
 import Scanner
 import SwiftUI
 
+@MainActor
 public struct RootView: View {
     @State private var isShowingManualEntry = false
     @State private var refreshID = UUID()
@@ -17,6 +19,8 @@ public struct RootView: View {
     // postPubCocoatype by @KaenAitch on 2024-08-13
     // wheter to show the settings page
     @State private var postPubCocoatype = false
+
+    private let routeMapper = RouteMapper()
 
     public init() {}
 
@@ -46,6 +50,9 @@ public struct RootView: View {
                     refreshID = UUID()
                 } content: {
                     DataScanner()
+                }
+                .navigationDestination(for: Route.self) {
+                    routeMapper.view(for: $0)
                 }
         }
         .tint(.orange)

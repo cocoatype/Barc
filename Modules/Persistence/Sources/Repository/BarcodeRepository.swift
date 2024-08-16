@@ -4,6 +4,6 @@
 import Barcodes
 
 public protocol BarcodeRepository {
-    var barcodes: [BarcodeModel] { get throws }
-    func add(_ barcode: BarcodeModel) throws
+    @MainActor var codes: [Code] { get throws }
+    @MainActor func add(_ code: Code) throws
 }

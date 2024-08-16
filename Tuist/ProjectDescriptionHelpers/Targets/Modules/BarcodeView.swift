@@ -1,20 +1,20 @@
 import ProjectDescription
 
-public enum Library {
+public enum BarcodeView {
     public static let target = Target.moduleTarget(
-        name: "Library",
+        name: "BarcodeView",
         hasResources: true,
         dependencies: [
             .target(Barcodes.target),
             .target(BarcodeGenerator.target),
             .target(DesignSystem.target),
             .target(Navigation.target),
-            .target(Persistence.target),
+            .external(name: "SwiftUIIntrospect-Dynamic"),
         ]
     )
 
     public static let testTarget = Target.moduleTestTarget(
-        name: "Library",
+        name: "BarcodeView",
         dependencies: [
         ]
     )

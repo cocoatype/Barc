@@ -3,18 +3,18 @@
 
 import Barcodes
 
-extension BarcodeModel {
-    var ean: EANBarcodeModel? {
-        return switch type {
-        case .ean(let model): model
+extension CodeValue {
+    var ean: EANCodeValue? {
+        return switch self {
+        case .ean(let value): value
         case .qr: nil
         }
     }
 
-    var qr: QRBarcodeModel? {
-        return switch type {
+    var qr: QRCodeValue? {
+        return switch self {
         case .ean: nil
-        case .qr(let model): model
+        case .qr(let value): value
         }
     }
 }

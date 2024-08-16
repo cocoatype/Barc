@@ -10,9 +10,9 @@ class ImageReaderTests: XCTestCase {
         let image = try Constants.image
         let reader = ImageReader()
 
-        let barcode = try await reader.barcode(in: image)
-        let eanCode = try XCTUnwrap(barcode?.ean)
+        let value = try await reader.codeValue(in: image)
+        let eanCode = try XCTUnwrap(value?.ean)
 
-        XCTAssertEqual(eanCode.value, "0023100137698")
+        XCTAssertEqual(eanCode.payload.digits, [.d0, .d0, .d2, .d3, .d1, .d0, .d0, .d1, .d3, .d7, .d6, .d9, .d8]) // "0023100137698"
     }
 }

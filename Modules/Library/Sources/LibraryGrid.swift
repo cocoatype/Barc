@@ -10,7 +10,7 @@ struct LibraryGrid: View {
     static let spacing = 16.0
 
     @Environment(\.guardLetNotIsScrollingDoesNotEqual) private var repository
-    @State private var barcodes = [BarcodeModel]()
+    @State private var codes = [Code]()
 
     var body: some View {
         WaterfallGrid(
@@ -18,13 +18,13 @@ struct LibraryGrid: View {
             maxWidth: 180,
             spacing: Self.spacing
         ) {
-            ForEach(barcodes) { barcode in
-                LibraryCell(barcode: barcode)
+            ForEach(codes) { code in
+                LibraryCell(code: code)
             }
         }
         .onAppear {
             do {
-                barcodes = try repository.barcodes
+                codes = try repository.codes
             } catch {
                 ErrorHandling.log(error, subsystem: "com.cocoatype.Barc.Library", category: "LibraryGrid")
             }

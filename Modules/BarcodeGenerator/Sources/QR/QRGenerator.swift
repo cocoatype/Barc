@@ -1,16 +1,17 @@
 //  Created by Geoff Pado on 12/8/23.
 //  Copyright © 2023 Cocoatype, LLC. All rights reserved.
 
+import Barcodes
 import CoreImage.CIFilterBuiltins
 import SwiftUI
 
 enum QRGenerator {
-    static func generateQRImage(payload errorCorrectedPayload: QRPayload, errorCorrectionLevel: QRCorrectionLevel, size: CGSize) throws -> Image {
-        let data = errorCorrectedPayload.data
+    static func generateQRImage(value: QRCodeValue, size: CGSize) throws -> Image {
+        let data = value.payload.data
 
         let filter = CIFilter.qrCodeGenerator()
         filter.message = data
-        filter.correctionLevel = value(for: errorCorrectionLevel)
+        filter.correctionLevel = Self.value(for: value.correctionLevel)
 
         guard let output = filter.outputImage else {
             throw QRGenerationError.cannotReturnOutput
@@ -29,7 +30,7 @@ enum QRGenerator {
         return Image(cgImage, scale: 1, label: Text("QR Code"))
     }
 
-    private static func value(for correctionLevel: QRCorrectionLevel) -> String {
+    private static func value(for correctionLevel: QRCodeValue.CorrectionLevel) -> String {
         return switch correctionLevel {
         case .l: "L"
         case .m: "M"

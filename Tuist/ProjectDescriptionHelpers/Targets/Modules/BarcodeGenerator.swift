@@ -4,6 +4,7 @@ public enum BarcodeGenerator {
     public static let target = Target.moduleTarget(
         name: "BarcodeGenerator",
         dependencies: [
+            .target(Barcodes.target),
             .target(ErrorHandling.target),
         ]
     )
