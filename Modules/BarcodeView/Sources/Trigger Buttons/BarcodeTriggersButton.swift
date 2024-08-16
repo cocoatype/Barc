@@ -3,32 +3,29 @@
 
 import SwiftUI
 
-struct BarcodeTriggersButton: View {
+typealias Cashable = Codable & Hashable
+
+struct BarcodeTriggersButton<NavigationValue: Cashable>: View {
     private let title: String
     private let subtitle: String
-    private let action: () -> Void
-    init(title: String, subtitle: String, action: @escaping () -> Void) {
+    private let navigationValue: NavigationValue
+    init(title: String, subtitle: String, navigationValue: NavigationValue) {
         self.title = title
         self.subtitle = subtitle
-        self.action = action
+        self.navigationValue = navigationValue
     }
 
     var body: some View {
-        Button(action: action) {
-            HStack(alignment: .firstTextBaseline, spacing: 8) {
+        NavigationLink(value: navigationValue) {
+            HStack(alignment: .firstTextBaseline) {
                 BarcodeTriggersButtonPrimaryText(title)
-                    .padding(.vertical, 12)
-
                 Spacer()
                 BarcodeTriggersButtonSecondaryText(subtitle)
-                BarcodeTriggersButtonChevron()
             }
-            .padding(.horizontal, 16)
         }
-        .buttonStyle(BarcodeTriggersButtonStyle())
     }
 }
 
 #Preview {
-    BarcodeTriggersButton(title: "Location", subtitle: "None") {}
+    BarcodeTriggersButton(title: "Location", subtitle: "None", navigationValue: String?.none)
 }

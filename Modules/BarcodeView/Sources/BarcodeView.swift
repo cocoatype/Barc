@@ -3,6 +3,7 @@
 
 import Barcodes
 import SwiftUI
+import SwiftUIIntrospect
 
 struct BarcodeView: View {
     private let code: Code
@@ -11,23 +12,34 @@ struct BarcodeView: View {
     }
 
     var body: some View {
-        ScrollView {
-            VStack(spacing: 20) {
-                LargeBarcode(value: code.value)
-                BarcodeTriggersSection()
-            }
-            .frame(maxWidth: .infinity)
+        List {
+            LargeBarcode(value: code.value)
+                .listRowBackground(EmptyView())
+                .introspect(.listCell, on: .iOS(.v17, .v18)) { cell in
+                    cell.clipsToBounds = false
+                }
+
+            BarcodeTriggersSection()
         }
         .listStyle(.insetGrouped)
         .scrollContentBackground(.hidden)
         .background(BarcodeViewBackground())
         .navigationBarTitleDisplayMode(.inline)
-        .navigationTitle("Gym Membership")
+        .navigationTitle(code.name)
     }
 }
 
 #Preview {
     NavigationStack {
-//        BarcodeView(barcode: .qr(value: "https://cocoatype.com", correctionLevel: "M"))
+        BarcodeView(
+            code: Code(
+                name: "Cocoatype Website",
+                value: .qr(
+                    value: "https://cocoatype.com",
+                    correctionLevel: .m
+                ),
+                triggers: []
+            )
+        )
     }
 }
