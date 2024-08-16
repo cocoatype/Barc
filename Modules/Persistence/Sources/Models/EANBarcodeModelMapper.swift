@@ -4,7 +4,7 @@
 import Barcodes
 
 struct EANBarcodeModelMapper {
-    func barcodeModel(from value: EANCodeValue) throws -> EANBarcodeModel {
+    func barcodeModel(from value: EANCodeValue) -> EANBarcodeModel {
         let string = value.payload.digits.map { digit in
             switch digit {
             case .d0: "0"

@@ -4,12 +4,12 @@
 import Barcodes
 
 struct BarcodeModelMapper {
-    func barcodeModel(from code: Code) throws -> BarcodeModel {
+    func barcodeModel(from code: Code) -> BarcodeModel {
         let type: BarcodeModelType = switch code.value {
         case .qr(let value):
             BarcodeModelType.qr(qrMapper.barcodeModel(from: value))
         case .ean(let value):
-            try BarcodeModelType.ean(eanMapper.barcodeModel(from: value))
+            BarcodeModelType.ean(eanMapper.barcodeModel(from: value))
         }
 
         return BarcodeModel(name: code.name, type: type)

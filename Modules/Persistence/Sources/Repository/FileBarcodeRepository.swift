@@ -14,7 +14,7 @@ struct FileBarcodeRepository: BarcodeRepository {
     }
 
     @MainActor func add(_ code: Code) throws {
-        try modelContainer.mainContext.insert(mapper.barcodeModel(from: code))
+        modelContainer.mainContext.insert(mapper.barcodeModel(from: code))
         try modelContainer.mainContext.save()
     }
 

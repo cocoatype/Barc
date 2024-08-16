@@ -7,6 +7,7 @@ import Navigation
 import Scanner
 import SwiftUI
 
+@MainActor
 public struct RootView: View {
     @State private var isShowingManualEntry = false
     @State private var refreshID = UUID()
