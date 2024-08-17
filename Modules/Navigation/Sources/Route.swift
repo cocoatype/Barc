@@ -5,7 +5,7 @@ import Barcodes
 import SwiftUI
 
 public enum Route: Hashable {
-    case barcode(Code)
+    case barcodeDetails(Code)
     case dateEditor
     case locationEditor
 }

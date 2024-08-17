@@ -10,7 +10,7 @@ struct RouteMapper {
     @ViewBuilder
     func view(for route: Route) -> some View {
         switch route {
-        case .barcode(let code): BarcodeView(code: code)
+        case .barcodeDetails(let code): BarcodeView(code: code)
         case .dateEditor, .locationEditor: EmptyView()
         }
     }

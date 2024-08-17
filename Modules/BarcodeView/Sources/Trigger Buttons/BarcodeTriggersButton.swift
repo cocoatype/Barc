@@ -27,5 +27,5 @@ struct BarcodeTriggersButton: View {
 
 import Barcodes
 #Preview {
-    BarcodeTriggersButton(title: "Location", subtitle: "None", route: .barcode(Code(name: "", value: .qr(value: "", correctionLevel: .m), triggers: [])))
+    BarcodeTriggersButton(title: "Location", subtitle: "None", route: .locationEditor)
 }
