@@ -3,14 +3,13 @@ import ProjectDescription
 extension Target {
     static func moduleTarget(
         name: String,
-        sdk: SDK = .catalyst,
         hasResources: Bool = false,
         usesMaxSwiftVersion: Bool = true,
         dependencies: [TargetDependency] = []
     ) -> Target {
         Target.target(
-            name: name + sdk.nameSuffix,
-            destinations: sdk.destinations,
+            name: name,
+            destinations: [.iPhone],
             product: .framework,
             bundleId: "com.cocoatype.Barc.\(name)",
             sources: ["Modules/\(name)/Sources/**"],
@@ -30,33 +29,31 @@ extension Target {
 
     static func moduleTestTarget(
         name: String,
-        sdk: SDK = .catalyst,
         hasResources: Bool = false,
         dependencies: [TargetDependency] = []
     ) -> Target {
         return Target.target(
-            name: "\(name + sdk.nameSuffix)Tests",
-            destinations: sdk.destinations,
+            name: "\(name)Tests",
+            destinations: [.iPhone],
             product: .unitTests,
-            bundleId: "com.cocoatype.Barc.\(name + sdk.nameSuffix)Tests",
+            bundleId: "com.cocoatype.Barc.\(name)Tests",
             sources: ["Modules/\(name)/Tests/**"],
             resources: hasResources ? ["Modules/\(name)/TestResources/**"] : nil,
-            dependencies: [.target(name: name + sdk.nameSuffix)] + dependencies
+            dependencies: [.target(name: name)] + dependencies
         )
     }
 
     static func moduleDoublesTarget(
-        name: String,
-        sdk: SDK = .catalyst
+        name: String
     ) -> Target {
         return Target.target(
-            name: "\(name + sdk.nameSuffix)Doubles",
-            destinations: sdk.destinations,
+            name: "\(name)Doubles",
+            destinations: [.iPhone],
             product: .framework,
-            bundleId: "com.cocoatype.Barc.\(name + sdk.nameSuffix)Doubles",
+            bundleId: "com.cocoatype.Barc.\(name)Doubles",
             sources: ["Modules/\(name)/Doubles/**"],
             dependencies: [
-                .target(name: name + sdk.nameSuffix),
+                .target(name: name),
                 .target(TestHelpers.interfaceTarget),
             ],
             settings: .settings(
