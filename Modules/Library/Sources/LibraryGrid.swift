@@ -29,6 +29,7 @@ struct LibraryGrid: View {
                 ErrorHandling.log(error, subsystem: "com.cocoatype.Barc.Library", category: "LibraryGrid")
             }
         }
+        .onUpdate(to: repository) { codes = $0 }
     }
 }
 

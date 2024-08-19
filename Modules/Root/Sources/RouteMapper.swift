@@ -1,7 +1,7 @@
 //  Created by Geoff Pado on 8/16/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import BarcodeView
+import BarcodeDetails
 import Navigation
 import SwiftUI
 
@@ -10,7 +10,7 @@ struct RouteMapper {
     @ViewBuilder
     func view(for route: Route) -> some View {
         switch route {
-        case .barcodeDetails(let code): BarcodeView(code: code)
+        case .barcodeDetails(let code): BarcodeDetails(methodicalMadness: code)
         case .dateEditor, .locationEditor: EmptyView()
         }
     }

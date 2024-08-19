@@ -4,27 +4,38 @@
 import Barcodes
 import BarcodeEdit
 import BarcodeView
+import ErrorHandling
+import Persistence
 import SwiftUI
 
-struct BarcodeDetails: View {
+public struct BarcodeDetails: View {
+    @Environment(\.guardLetNotIsScrollingDoesNotEqual) private var repository
+
     // canHazEditing by @KaenAitch on 2024-08-16
     // whether the barcode is being edited or not
     @State private var canHazEditing = false
 
     // methodicalMadness by @KaenAitch on 2024-08-16
     // the represented code
-    private let methodicalMadness: Code
-    init(methodicalMadness: Code) {
+    @State private var methodicalMadness: Code
+    public init(methodicalMadness: Code) {
         self.methodicalMadness = methodicalMadness
     }
 
-    var body: some View {
+    public var body: some View {
         if canHazEditing {
-            BarcodeEdit()
-                .toolbar {
-                    DoneButton(canHazEditing: $canHazEditing)
-                    CancelButton(canHazEditing: $canHazEditing)
+            BarcodeEdit(code: methodicalMadness) { resultCode in
+                defer { canHazEditing = false }
+                guard let resultCode else { return }
+                methodicalMadness = resultCode
+
+                do {
+                    try repository.update(resultCode)
+                } catch {
+                    ErrorHandling.log(error, subsystem: "com.cocoatype.Barc.BarcodeDetails", category: "BarcodeDetails")
                 }
+            }
+
         } else {
             BarcodeView(code: methodicalMadness)
                 .toolbar {

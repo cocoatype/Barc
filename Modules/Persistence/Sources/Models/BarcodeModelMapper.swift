@@ -26,7 +26,15 @@ struct BarcodeModelMapper {
         return Code(name: model.name, value: value, triggers: [])
     }
 
-    // MARK: Mappers
+    // MARK: Updates
+
+    func update(_ model: BarcodeModel, from code: Code) {
+        let newModel = barcodeModel(from: code)
+        model.name = newModel.name
+        model.type = newModel.type
+    }
+
+    // MARK: Sub-mappers
 
     private let qrMapper = QRBarcodeModelMapper()
     private let eanMapper = EANBarcodeModelMapper()

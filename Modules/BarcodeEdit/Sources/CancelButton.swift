@@ -4,16 +4,16 @@
 import SwiftUI
 
 struct CancelButton: ToolbarContent {
-    @Binding private var canHazEditing: Bool
-    init(canHazEditing: Binding<Bool>) {
-        _canHazEditing = canHazEditing
+    private let action: () -> Void
+    init(action: @escaping () -> Void) {
+        self.action = action
     }
 
     var body: some ToolbarContent {
         ToolbarItem(placement: .cancellationAction) {
-            Button(BarcodeDetailsStrings.CancelButton   .title) {
+            Button(BarcodeEditStrings.CancelButton.title) {
                 withAnimation {
-                    canHazEditing = false
+                    action()
                 }
             }
         }

@@ -9,6 +9,8 @@ public enum BarcodeDetails {
             .target(Barcodes.target),
             .target(BarcodeEdit.target),
             .target(BarcodeView.target),
+            .target(ErrorHandling.target),
+            .target(Persistence.target),
         ]
     )
 

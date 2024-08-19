@@ -4,16 +4,16 @@
 import SwiftUI
 
 struct DoneButton: ToolbarContent {
-    @Binding private var canHazEditing: Bool
-    init(canHazEditing: Binding<Bool>) {
-        _canHazEditing = canHazEditing
+    private let action: () -> Void
+    init(action: @escaping () -> Void) {
+        self.action = action
     }
 
     var body: some ToolbarContent {
         ToolbarItem(placement: .confirmationAction) {
-            Button(BarcodeDetailsStrings.DoneButton.title) {
+            Button(BarcodeEditStrings.DoneButton.title) {
                 withAnimation {
-                    canHazEditing = false
+                    action()
                 }
             }
         }

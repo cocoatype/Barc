@@ -1,8 +1,2 @@
-// The title for the cancel button when editing barcode details
-"CancelButton.title" = "Cancel";
-
-// The title for the done button when editing barcode details
-"DoneButton.title" = "Done";
-
 // The title for the edit button when viewing barcode details
 "EditButton.title" = "Edit";
