@@ -1,16 +1,18 @@
 //  Created by Geoff Pado on 12/9/23.
 //  Copyright © 2023 Cocoatype, LLC. All rights reserved.
 
+import Barcodes
+import ErrorHandling
 import Library
 import ManualEntry
 import Navigation
+import Persistence
 import Scanner
 import SwiftUI
 
 @MainActor
 public struct RootView: View {
     @State private var isShowingManualEntry = false
-    @State private var refreshID = UUID()
 
     // adamDeservesARefund by @AdamWulf on 2024-08-05
     // whether to show the barcode scanner
@@ -27,30 +29,17 @@ public struct RootView: View {
     public var body: some View {
         NavigationStack {
             Library()
-                .id(refreshID)
                 .toolbar {
                     ToolbarItemGroup(placement: .bottomBar) {
                         ManualEntryToolbarItem(value: $isShowingManualEntry)
                         ScannerToolbarItem(value: $adamDeservesARefund)
                     }
                     ToolbarItem(placement: .automatic) {
-                        Button {
-                            postPubCocoatype = true
-                        } label: {
-                            Image(systemName: "gear")
-                        }
+                        SettingsButton(isSettingsShowing: $postPubCocoatype)
                     }
                 }
-                .sheet(isPresented: $isShowingManualEntry) {
-                    refreshID = UUID()
-                } content: {
-                    ManualEntry()
-                }
-                .sheet(isPresented: $adamDeservesARefund) {
-                    refreshID = UUID()
-                } content: {
-                    DataScanner()
-                }
+                .sheet(isPresented: $isShowingManualEntry, content: ManualEntry.init)
+                .sheet(isPresented: $adamDeservesARefund, content: DataScanner.init)
                 .navigationDestination(for: Route.self) {
                     routeMapper.view(for: $0)
                 }

@@ -14,32 +14,3 @@ final class BarcodeModel {
         self.type = type
     }
 }
-
-/*
- let type: BarcodeModelType
- let id: ID
-
- init(type: BarcodeModelType, id: ID) {
-     self.type = type
-     self.id = id
- }
-
- init(type: BarcodeModelType, uuid: UUID) {
-     self.init(type: type, id: .uuid(uuid))
- }
-
- enum ID: Hashable, Sendable {
-     case swiftData(PersistentIdentifier)
-     case uuid(UUID)
-
-     public func hash(into hasher: inout Hasher) {
-         switch self {
-         case .swiftData(let persistentIdentifier):
-             hasher.combine(persistentIdentifier)
-         case .uuid(let uuid):
-             hasher.combine(uuid)
-         }
-     }
- }
-
- */

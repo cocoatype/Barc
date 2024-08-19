@@ -17,7 +17,7 @@ struct LibraryCell: View {
     }
 
     var body: some View {
-        NavigationLink(value: Route.barcode(code)) {
+        NavigationLink(value: Route.barcodeDetails(code)) {
             VStack(alignment: .center) {
                 HStack {
                     VStack(alignment: .leading) {

@@ -6,4 +6,6 @@ import Barcodes
 public protocol BarcodeRepository {
     @MainActor var codes: [Code] { get throws }
     @MainActor func add(_ code: Code) throws
+    @MainActor func update(_ code: Code) throws
+    @MainActor func subscribeToUpdates() -> AsyncStream<[Code]>
 }

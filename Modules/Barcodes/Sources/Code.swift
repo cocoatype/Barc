@@ -4,7 +4,7 @@
 import Foundation
 
 public struct Code: Hashable, Identifiable, Sendable {
-    public let name: String
+    public var name: String
     public let value: CodeValue
 //    public let triggers: [any Trigger]
 

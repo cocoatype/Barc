@@ -11,6 +11,8 @@ let project = Project(
         // modules
         BarcodeGenerator.target,
         Barcodes.target,
+        BarcodeDetails.target,
+        BarcodeEdit.target,
         BarcodeView.target,
         DesignSystem.target,
         ErrorHandling.target,
