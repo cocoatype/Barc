@@ -48,6 +48,7 @@ public struct BarcodeEdit: View {
             }
 
             BarcodeTriggersSection(
+                selectedLocation: code.location,
                 isLocationEditorShowing: $isLocationEditorShowing,
                 isDateEditorShowing: $isDateEditorShowing
             )

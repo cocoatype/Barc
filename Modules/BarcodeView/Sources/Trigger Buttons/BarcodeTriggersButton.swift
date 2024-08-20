@@ -4,7 +4,7 @@
 import Navigation
 import SwiftUI
 
-struct BarcodeTriggersButton: View {
+struct BarcodeTriggersItem: View {
     private let title: String
     private let subtitle: String
     init(title: String, subtitle: String) {
@@ -23,5 +23,5 @@ struct BarcodeTriggersButton: View {
 
 import Barcodes
 #Preview {
-    BarcodeTriggersButton(title: "Location", subtitle: "None")
+    BarcodeTriggersItem(title: "Location", subtitle: "None")
 }

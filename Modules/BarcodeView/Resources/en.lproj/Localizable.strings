@@ -3,3 +3,6 @@
 
 // The title for the view displaying a barcode's location
 "BarcodeTriggersSection.locationButtonTitle" = "Location";
+
+// The text to display when a given trigger is not set
+"BarcodeTriggersSection.notSetSubtitle" = "None";

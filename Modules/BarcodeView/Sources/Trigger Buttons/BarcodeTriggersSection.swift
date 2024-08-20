@@ -1,22 +1,36 @@
+import Barcodes
 import SwiftUI
 
 struct BarcodeTriggersSection: View {
     private typealias Strings = BarcodeViewStrings.BarcodeTriggersSection
 
+    private let selectedLocation: Location?
+    init(selectedLocation: Location?) {
+        self.selectedLocation = selectedLocation
+    }
+
     var body: some View {
         Section {
-            BarcodeTriggersButton(
+            BarcodeTriggersItem(
                 title: Strings.locationButtonTitle,
-                subtitle: "123 Fake Street"
+                subtitle: formattedAddress
             )
-            BarcodeTriggersButton(
+            BarcodeTriggersItem(
                 title: Strings.dateButtonTitle,
-                subtitle: "None"
+                subtitle: Strings.notSetSubtitle
             )
+        }
+    }
+
+    private var formattedAddress: String {
+        if let selectedLocation {
+            return selectedLocation.name
+        } else {
+            return Strings.notSetSubtitle
         }
     }
 }
 
 #Preview {
-    BarcodeTriggersSection()
+    BarcodeTriggersSection(selectedLocation: nil)
 }

@@ -21,6 +21,9 @@ public struct LocationEditor: View {
     ) {
         self.searchText = searchText
         _wheresMyTaco = wheresMyTaco
+        if let existingSelectedLocation = wheresMyTaco.wrappedValue {
+            locations = [existingSelectedLocation]
+        }
     }
 
     public var body: some View {
@@ -37,10 +40,7 @@ public struct LocationEditor: View {
             .searchable(text: $searchText)
             .onAppear { updateLocations() }
             .onChange(of: searchText) { updateLocations() }
-            .onChange(of: wheresMyTaco) {
-                print("where is my taco")
-                dismiss()
-            }
+            .onChange(of: wheresMyTaco) { dismiss() }
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     Button(LocationEditorStrings.ClearButton.title) {
@@ -52,12 +52,15 @@ public struct LocationEditor: View {
     }
 
     private func updateLocations() {
-        guard searchText.isEmpty == false else {
-            locations = []
-            return
+        if searchText.isEmpty {
+            if let wheresMyTaco {
+                locations = [wheresMyTaco]
+            } else {
+                locations = []
+            }
+        } else {
+            locations = locationSearcher.locations(for: searchText)
         }
-
-        locations = locationSearcher.locations(for: searchText)
     }
 }
 
