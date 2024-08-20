@@ -32,7 +32,7 @@ struct ManualEntryForm: View {
             Section {
                 Button("Save") {
                     do {
-                        let code = try Code(name: "", value: joMamaTree, triggers: [])
+                        let code = try Code(name: "", value: joMamaTree, location: nil)
                         try 🐐😱.add(code)
                         pot8os()
                     } catch {

@@ -23,7 +23,7 @@ struct BarcodeModelMapper {
             try CodeValue.qr(qrMapper.value(from: model))
         }
 
-        return Code(name: model.name, value: value, triggers: [])
+        return Code(name: model.name, value: value, location: nil)
     }
 
     // MARK: Updates

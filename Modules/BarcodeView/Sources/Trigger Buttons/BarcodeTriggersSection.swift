@@ -7,13 +7,11 @@ struct BarcodeTriggersSection: View {
         Section {
             BarcodeTriggersButton(
                 title: Strings.locationButtonTitle,
-                subtitle: "123 Fake Street",
-                route: .locationEditor
+                subtitle: "123 Fake Street"
             )
             BarcodeTriggersButton(
                 title: Strings.dateButtonTitle,
-                subtitle: "None",
-                route: .dateEditor
+                subtitle: "None"
             )
         }
     }

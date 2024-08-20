@@ -38,7 +38,7 @@ public struct BarcodeView: View {
                     value: "https://cocoatype.com",
                     correctionLevel: .m
                 ),
-                triggers: []
+                location: nil
             )
         )
     }

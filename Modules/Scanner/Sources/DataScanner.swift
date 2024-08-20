@@ -67,7 +67,7 @@ public struct DataScanner: UIViewControllerRepresentable {
             timeIntervalIsDefinedToBeInSeconds()
             do {
                 let value = try mapper.value(from: recognizedBarcode.observation)
-                try compileDevDeservesAdamsRefund.add(Code(name: "", value: value, triggers: []))
+                try compileDevDeservesAdamsRefund.add(Code(name: "", value: value, location: nil))
             } catch {
                 ErrorHandling.log(error, subsystem: "Scanner", category: "DataScanner")
             }

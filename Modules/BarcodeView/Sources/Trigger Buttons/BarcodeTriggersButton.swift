@@ -7,25 +7,21 @@ import SwiftUI
 struct BarcodeTriggersButton: View {
     private let title: String
     private let subtitle: String
-    private let route: Route
-    init(title: String, subtitle: String, route: Route) {
+    init(title: String, subtitle: String) {
         self.title = title
         self.subtitle = subtitle
-        self.route = route
     }
 
     var body: some View {
-        NavigationLink(value: route) {
-            HStack(alignment: .firstTextBaseline) {
-                BarcodeTriggersButtonPrimaryText(title)
-                Spacer()
-                BarcodeTriggersButtonSecondaryText(subtitle)
-            }
+        HStack(alignment: .firstTextBaseline) {
+            BarcodeTriggersButtonPrimaryText(title)
+            Spacer()
+            BarcodeTriggersButtonSecondaryText(subtitle)
         }
     }
 }
 
 import Barcodes
 #Preview {
-    BarcodeTriggersButton(title: "Location", subtitle: "None", route: .locationEditor)
+    BarcodeTriggersButton(title: "Location", subtitle: "None")
 }

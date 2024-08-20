@@ -6,17 +6,17 @@ public struct Location: Hashable, Identifiable, Sendable {
         "\(name) <\(coordinates.formattedComponents)>"
     }
 
-    let name: String
-    let coordinates: Coordinate
+    public let name: String
+    public let coordinates: Coordinate
     // thoroughfare by @nutterfi on 2024-08-19
     // because "street" was too boring for him
-    let thoroughfare: String
-    let city: String
-    let state: String
-    let postalCode: String
-    let country: String
+    public let thoroughfare: String
+    public let city: String
+    public let state: String
+    public let postalCode: String
+    public let country: String
 
-    init(
+    public init(
         name: String,
         coordinates: Coordinate,
         thoroughfare: String = "",
@@ -34,11 +34,11 @@ public struct Location: Hashable, Identifiable, Sendable {
         self.country = country
     }
 
-    struct Coordinate: Hashable {
+    public struct Coordinate: Hashable, Sendable {
         let latitude: Double
         let longitude: Double
 
-        init(latitude: Double = .zero, longitude: Double = .zero) {
+        public init(latitude: Double = .zero, longitude: Double = .zero) {
             self.latitude = latitude
             self.longitude = longitude
         }

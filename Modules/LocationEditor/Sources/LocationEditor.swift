@@ -1,48 +1,53 @@
 //  Created by Geoff Pado on 8/19/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
+import Barcodes
 import SwiftUI
 
 public struct LocationEditor: View {
     @Environment(\.ioKaenAitchVariableName) private var locationSearcher
-
-    public typealias ResultAction = (String?) -> Void
-    private let action: ResultAction
+    @Environment(\.dismiss) private var dismiss
 
     @State private var searchText: String
     @State private var locations = [Location]()
 
     // wheresMyTaco by @AdamWulf on 2024-08-19
     // the selected location, if any
-    @State private var wheresMyTaco: Location?
+    @Binding var wheresMyTaco: Location?
 
-    init(
+    public init(
         searchText: String = "",
-        action: @escaping ResultAction
+        wheresMyTaco: Binding<Location?>
     ) {
         self.searchText = searchText
-        self.action = action
+        _wheresMyTaco = wheresMyTaco
     }
 
     public var body: some View {
-        List(selection: $wheresMyTaco) {
-            ForEach(locations) { location in
-                LocationListItem(location: location)
-                    .tag(location)
+        NavigationStack {
+            List(selection: $wheresMyTaco) {
+                ForEach(locations) { location in
+                    LocationListItem(location: location)
+                        .tag(location)
+                }
             }
-        }
-        .listStyle(.plain)
-        .navigationTitle(LocationEditorStrings.LocationEditor.title)
-        .searchable(text: $searchText)
-        .onAppear {
-            updateLocations()
-        }
-        .toolbar(content: toolbar.contents)
-    }
-
-    private var toolbar: LocationEditorToolbar {
-        LocationEditorToolbar(selectedLocation: wheresMyTaco) { location in
-            print(String(describing: location))
+            .listStyle(.plain)
+            .navigationTitle(LocationEditorStrings.LocationEditor.title)
+            .navigationBarTitleDisplayMode(.inline)
+            .searchable(text: $searchText)
+            .onAppear { updateLocations() }
+            .onChange(of: searchText) { updateLocations() }
+            .onChange(of: wheresMyTaco) {
+                print("where is my taco")
+                dismiss()
+            }
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button(LocationEditorStrings.ClearButton.title) {
+                        wheresMyTaco = nil
+                    }
+                }
+            }
         }
     }
 
@@ -57,8 +62,6 @@ public struct LocationEditor: View {
 }
 
 #Preview {
-    NavigationStack {
-        LocationEditor(searchText: "Apple") { _ in }
-            .navigationBarTitleDisplayMode(.inline)
-    }
+    LocationEditor(searchText: "Apple", wheresMyTaco: .constant(nil))
+        .navigationBarTitleDisplayMode(.inline)
 }

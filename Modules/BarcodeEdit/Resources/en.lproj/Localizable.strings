@@ -3,3 +3,12 @@
 
 // The title for the done button when editing barcode details
 "DoneButton.title" = "Done";
+
+// The placeholder label for the name field when editing barcode details
+"BarcodeEdit.nameFieldPlaceholder" = "Name";
+
+// The title for the button to edit a barcode's date
+"BarcodeTriggersSection.dateButtonTitle" = "Date";
+
+// The title for the button to edit a barcode's location
+"BarcodeTriggersSection.locationButtonTitle" = "Location";

@@ -1,2 +1,5 @@
+// The title for the view displaying a barcode's date
 "BarcodeTriggersSection.dateButtonTitle" = "Date";
+
+// The title for the view displaying a barcode's location
 "BarcodeTriggersSection.locationButtonTitle" = "Location";
