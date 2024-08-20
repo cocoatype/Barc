@@ -1,0 +1,8 @@
+// The title of the view for selecting a location
+"LocationEditor.title" = "Location";
+
+// The title for the cancel button when selecting a location
+"CancelButton.title" = "Cancel";
+
+// The title for the done button when selecting a location
+"DoneButton.title" = "Done";
