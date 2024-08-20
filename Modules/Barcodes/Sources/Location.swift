@@ -35,8 +35,8 @@ public struct Location: Hashable, Identifiable, Sendable {
     }
 
     public struct Coordinate: Hashable, Sendable {
-        let latitude: Double
-        let longitude: Double
+        public let latitude: Double
+        public let longitude: Double
 
         public init(latitude: Double = .zero, longitude: Double = .zero) {
             self.latitude = latitude

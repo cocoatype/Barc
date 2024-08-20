@@ -12,7 +12,11 @@ struct BarcodeModelMapper {
             BarcodeModelType.ean(eanMapper.barcodeModel(from: value))
         }
 
-        return BarcodeModel(name: code.name, type: type)
+        return BarcodeModel(
+            name: code.name,
+            type: type,
+            location: code.location.map(locationMapper.barcodeLocation(from:))
+        )
     }
 
     func code(from model: BarcodeModel) throws -> Code {
@@ -23,7 +27,11 @@ struct BarcodeModelMapper {
             try CodeValue.qr(qrMapper.value(from: model))
         }
 
-        return Code(name: model.name, value: value, location: nil)
+        return Code(
+            name: model.name,
+            value: value,
+            location: model.location.map(locationMapper.location(from:))
+        )
     }
 
     // MARK: Updates
@@ -32,10 +40,12 @@ struct BarcodeModelMapper {
         let newModel = barcodeModel(from: code)
         model.name = newModel.name
         model.type = newModel.type
+        model.location = newModel.location
     }
 
     // MARK: Sub-mappers
 
     private let qrMapper = QRBarcodeModelMapper()
     private let eanMapper = EANBarcodeModelMapper()
+    private let locationMapper = BarcodeLocationMapper()
 }
