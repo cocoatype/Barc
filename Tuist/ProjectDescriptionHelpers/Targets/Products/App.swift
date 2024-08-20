@@ -3,7 +3,7 @@ import ProjectDescription
 public enum App {
     public static let target = Target.target(
         name: "Barc",
-        destinations: SDK.catalyst.destinations,
+        destinations: [.iPhone],
         product: .app,
         bundleId: "com.cocoatype.Barc",
         infoPlist: "App/Mobile/Info.plist",
@@ -19,7 +19,7 @@ public enum App {
         settings: .settings(
             base: [
                 "DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER": "NO",
-                "TARGETED_DEVICE_FAMILY": "1,2,6",
+                "TARGETED_DEVICE_FAMILY": "1",
             ],
             debug: [
                 "PROVISIONING_PROFILE_SPECIFIER": "match Development com.cocoatype.Barc",
