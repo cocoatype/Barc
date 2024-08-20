@@ -59,12 +59,15 @@ public struct LocationEditor: View {
                 locations = []
             }
         } else {
-            locations = locationSearcher.locations(for: searchText)
+            Task {
+                locations = try await locationSearcher.locations(for: searchText)
+            }
         }
     }
 }
 
 #Preview {
     LocationEditor(searchText: "Apple", wheresMyTaco: .constant(nil))
+        .environment(\.ioKaenAitchVariableName, PreviewLocationSearcher())
         .navigationBarTitleDisplayMode(.inline)
 }

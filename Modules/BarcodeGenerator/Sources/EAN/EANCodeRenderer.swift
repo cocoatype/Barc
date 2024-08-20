@@ -29,12 +29,11 @@ public struct EANCodeRenderer: View {
     }
 }
 
-#Preview {
+#Preview(traits: .sizeThatFitsLayout) {
     if let payload = try? EANPayloadParser().payload(for: "444444444444") {
         EANCodeRenderer(value: EANCodeValue(payload: payload))
             .background(Color.white)
             .frame(width: 180, height: 180)
-            .previewLayout(.sizeThatFits)
     } else {
         EmptyView()
     }

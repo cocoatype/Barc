@@ -7,16 +7,16 @@ struct PreviewLocationSearcher: LocationSearcher {
     static let allLocations: [Location] = [
         Location(
             name: "1 Infinite Loop",
-            coordinates: Location.Coordinate(),
+            coordinate: Location.Coordinate(),
             thoroughfare: "1 Infinite Loop",
             city: "Cupertino",
             state: "CA",
             postalCode: "95014",
             country: "United States"
         ),
-        Location(name: "Apple Park", coordinates: Location.Coordinate()),
-        Location(name: "Steve Jobs Theater", coordinates: Location.Coordinate()),
-        Location(name: "Moscone Center", coordinates: Location.Coordinate()),
+        Location(name: "Apple Park", coordinate: Location.Coordinate()),
+        Location(name: "Steve Jobs Theater", coordinate: Location.Coordinate()),
+        Location(name: "Moscone Center", coordinate: Location.Coordinate()),
     ]
 
     func locations(for string: String) -> [Location] {

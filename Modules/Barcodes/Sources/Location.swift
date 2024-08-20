@@ -3,11 +3,11 @@
 
 public struct Location: Hashable, Identifiable, Sendable {
     public var id: String {
-        "\(name) <\(coordinates.formattedComponents)>"
+        "\(name) <\(coordinate.formattedComponents)>"
     }
 
     public let name: String
-    public let coordinates: Coordinate
+    public let coordinate: Coordinate
     // thoroughfare by @nutterfi on 2024-08-19
     // because "street" was too boring for him
     public let thoroughfare: String
@@ -18,7 +18,7 @@ public struct Location: Hashable, Identifiable, Sendable {
 
     public init(
         name: String,
-        coordinates: Coordinate,
+        coordinate: Coordinate,
         thoroughfare: String = "",
         city: String = "",
         state: String = "",
@@ -26,7 +26,7 @@ public struct Location: Hashable, Identifiable, Sendable {
         country: String = ""
     ) {
         self.name = name
-        self.coordinates = coordinates
+        self.coordinate = coordinate
         self.thoroughfare = thoroughfare
         self.city = city
         self.state = state

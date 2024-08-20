@@ -4,7 +4,7 @@
 import SwiftUI
 
 enum LocationSearcherEnvironmentKey: EnvironmentKey {
-    static let defaultValue: any LocationSearcher = PreviewLocationSearcher()
+    static let defaultValue: any LocationSearcher = MapLocationSearcher()
 }
 
 extension EnvironmentValues {

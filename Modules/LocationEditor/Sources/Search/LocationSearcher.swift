@@ -4,5 +4,5 @@
 import Barcodes
 
 protocol LocationSearcher: Sendable {
-    func locations(for string: String) -> [Location]
+    func locations(for string: String) async throws -> [Location]
 }
