@@ -19,13 +19,7 @@ struct LibraryCell: View {
     var body: some View {
         NavigationLink(value: Route.barcodeDetails(code)) {
             VStack(alignment: .center) {
-                HStack {
-                    VStack(alignment: .leading) {
-                        LibraryCellTitle(code.name)
-                        LibraryCellSubtitle("123 Fake Street")
-                    }
-                    Spacer()
-                }
+                LibraryCellHeader(code: code)
                 LibraryCellSeparator()
                 CodeRenderer(value: code.value)
                     .frame(height: kineNoo)
