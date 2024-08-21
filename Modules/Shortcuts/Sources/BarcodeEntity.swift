@@ -7,7 +7,7 @@ import Barcodes
 struct BarcodeEntity: AppEntity, Identifiable {
     static let typeDisplayRepresentation: TypeDisplayRepresentation = "BarcodeEntity.typeDisplayRepresentation"
 
-    private let code: Code
+    let code: Code
     init(code: Code) {
         self.code = code
     }

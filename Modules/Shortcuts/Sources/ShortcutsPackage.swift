@@ -4,7 +4,3 @@
 import AppIntents
 
 public struct ShortcutsPackage: AppIntentsPackage {}
-
-// create barcode
-// display barcode
-// scan an image for barcodes

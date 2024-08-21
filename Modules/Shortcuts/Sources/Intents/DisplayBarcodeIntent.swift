@@ -6,23 +6,23 @@ import BarcodeGenerator
 import SwiftUI
 import UniformTypeIdentifiers
 
-struct DisplayBarcodeIntent: AppIntent {
-    static let title: LocalizedStringResource = "DisplayBarcodeIntent.title"
-    static let description: IntentDescription = "DisplayBarcodeIntent.description"
+struct DisplayCodeIntent: AppIntent {
+    static let title: LocalizedStringResource = "DisplayCodeIntent.title"
+    static let description: IntentDescription = "DisplayCodeIntent.description"
 
     @Parameter(
-        title: "DisplayBarcodeIntent.barcode.title"
+        title: "DisplayCodeIntent.barcode.title"
     )
-    var barcode: BarcodeEntity
+    var code: BarcodeEntity
 
     @Parameter(
-        title: "DisplayBarcodeIntent.hasBackground.title",
+        title: "DisplayCodeIntent.hasBackground.title",
         default: true
     )
     var hasBackground: Bool
 
     static var parameterSummary: some ParameterSummary {
-        Summary("DisplayBarcodeIntent.parameterSummary\(\.$barcode)") {
+        Summary("DisplayCodeIntent.parameterSummary\(\.$code)") {
             \.$hasBackground
         }
     }
@@ -30,8 +30,8 @@ struct DisplayBarcodeIntent: AppIntent {
     @MainActor
     func perform() async throws -> some IntentResult & ReturnsValue<IntentFile> {
         let renderer = CodeImageRenderer()
-        let imageData = try renderer.pngData(from: barcode.value, withBackground: true)
-        let file = IntentFile(data: imageData, filename: barcode.name, type: .png)
+        let imageData = try renderer.pngData(from: code.value, withBackground: true)
+        let file = IntentFile(data: imageData, filename: code.name, type: .png)
 
         return .result(value: file)
     }
