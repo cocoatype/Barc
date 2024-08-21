@@ -8,6 +8,7 @@ let project = Project(
     targets: [
         // products
         App.target,
+        Widgets.target,
         // modules
         BarcodeGenerator.target,
         Barcodes.target,
@@ -25,6 +26,7 @@ let project = Project(
         Root.target,
         Scanner.target,
         Shortcuts.target,
+        WidgetContents.target,
         // doubles
         // test helpers
         // tests
@@ -37,6 +39,7 @@ let project = Project(
         Root.testTarget,
         Scanner.testTarget,
         Shortcuts.testTarget,
+        WidgetContents.testTarget,
     ],
     schemes: [
         .scheme(

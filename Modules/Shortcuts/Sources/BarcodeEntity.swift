@@ -20,5 +20,8 @@ struct BarcodeEntity: AppEntity, Identifiable {
         DisplayRepresentation(title: "\(name)")
     }
 
-    @MainActor static let defaultQuery = BarcodeQuery()
+    #if compiler(<6.0)
+    @MainActor
+    #endif
+    static let defaultQuery = BarcodeQuery()
 }

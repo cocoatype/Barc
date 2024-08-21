@@ -1,22 +1,17 @@
 import ProjectDescription
 
-public enum App {
+public enum Widgets {
     public static let target = Target.target(
-        name: "Barc",
+        name: "Widgets",
         destinations: [.iPhone],
-        product: .app,
-        bundleId: "com.cocoatype.Barc",
-        infoPlist: "App/Mobile/Info.plist",
+        product: .appExtension,
+        bundleId: "com.cocoatype.Barc.Widgets",
+        infoPlist: "Products/Widgets/Info.plist",
         sources: [
-            "App/Mobile/Sources/**",
+            "Products/Widgets/Sources/**",
         ],
-        resources: .resources([
-            "App/Mobile/Resources/**",
-        ]),
         dependencies: [
-            .target(Root.target),
-            .target(Shortcuts.target),
-            .target(Widgets.target),
+            .target(WidgetContents.target),
         ],
         settings: .settings(
             base: [
@@ -24,10 +19,10 @@ public enum App {
                 "TARGETED_DEVICE_FAMILY": "1",
             ],
             debug: [
-                "PROVISIONING_PROFILE_SPECIFIER": "match Development com.cocoatype.Barc",
+                "PROVISIONING_PROFILE_SPECIFIER": "match Development com.cocoatype.Barc.Widgets",
                 "ENABLE_DEBUG_DYLIB": true,
             ], release: [
-                "PROVISIONING_PROFILE_SPECIFIER": "match AppStore com.cocoatype.Barc",
+                "PROVISIONING_PROFILE_SPECIFIER": "match AppStore com.cocoatype.Barc.Widgets",
             ],
             defaultSettings: .recommended(excluding: [
                 "CODE_SIGN_IDENTITY",
