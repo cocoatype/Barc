@@ -15,31 +15,24 @@ struct DisplayBarcodeIntent: AppIntent {
     )
     var barcode: BarcodeEntity
 
+    @Parameter(
+        title: "DisplayBarcodeIntent.hasBackground.title",
+        default: true
+    )
+    var hasBackground: Bool
+
     static var parameterSummary: some ParameterSummary {
-        Summary("DisplayBarcodeIntent.parameterSummary\(\.$barcode)")
+        Summary("DisplayBarcodeIntent.parameterSummary\(\.$barcode)") {
+            \.$hasBackground
+        }
     }
 
     @MainActor
     func perform() async throws -> some IntentResult & ReturnsValue<IntentFile> {
-        let view = CodeRenderer(value: barcode.value).frame(width: 200, height: 200)
-        let imageRenderer = ImageRenderer(content: view)
-        guard let image = imageRenderer.cgImage else { throw DisplayBarcodeIntentError.cannotGenerateImage }
-
-        let data = NSMutableData()
-        guard let imageDestination = CGImageDestinationCreateWithData(data, UTType.png.identifier as CFString, 1, nil) else {
-            throw DisplayBarcodeIntentError.cannotCreateImageDestination
-        }
-
-        CGImageDestinationAddImage(imageDestination, image, nil)
-        CGImageDestinationFinalize(imageDestination)
-
-        let file = IntentFile(data: data as Data, filename: "\(barcode.name).png")
+        let renderer = CodeImageRenderer()
+        let imageData = try renderer.pngData(from: barcode.value, withBackground: true)
+        let file = IntentFile(data: imageData, filename: barcode.name, type: .png)
 
         return .result(value: file)
     }
-}
-
-enum DisplayBarcodeIntentError: Error {
-    case cannotCreateImageDestination
-    case cannotGenerateImage
 }

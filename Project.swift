@@ -57,5 +57,6 @@ let project = Project(
                 )
             )
         ),
-    ]
+    ],
+    fileHeaderTemplate: "  Created by ___FULLUSERNAME___ on ___DATE___.\n//  ___COPYRIGHT___"
 )

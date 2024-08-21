@@ -1,1 +1,6 @@
+"DisplayBarcodeIntent.title" = "Show Code";
+"DisplayBarcodeIntent.description" = "Displays an image of a code.";
 
+"DisplayBarcodeIntent.barcode.title" = "Code";
+"DisplayBarcodeIntent.hasBackground.title" = "With Background";
+"DisplayBarcodeIntent.parameterSummary${barcode}" = "Show ${barcode}";

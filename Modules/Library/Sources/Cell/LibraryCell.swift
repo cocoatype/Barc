@@ -26,7 +26,7 @@ struct LibraryCell: View {
                     .clipShape(RoundedRectangle(cornerRadius: 0))
             }
             .padding(Self.contentPadding)
-            .background(LibraryCellBackground())
+            .background(CodeBackground())
         }.buttonStyle(.plain)
     }
 

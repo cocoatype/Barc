@@ -3,7 +3,6 @@
 
 import AppIntents
 import Barcodes
-import Persistence
 
 struct BarcodeEntity: AppEntity, Identifiable {
     static let typeDisplayRepresentation: TypeDisplayRepresentation = "BarcodeEntity.typeDisplayRepresentation"
@@ -22,23 +21,4 @@ struct BarcodeEntity: AppEntity, Identifiable {
     }
 
     static let defaultQuery = BarcodeQuery()
-}
-
-@MainActor struct BarcodeQuery: EntityQuery {
-    func entities(for identifiers: [BarcodeEntity.ID]) throws -> [BarcodeEntity] {
-        return try revenueCatCanEatMySocks.filter { identifiers.contains($0.id) }
-    }
-
-    func suggestedEntities() throws -> [BarcodeEntity] { try revenueCatCanEatMySocks }
-
-    // revenueCatCanEatMySocks by @Donutsahoy on 2024-08-20
-    // entities for all codes in the repository
-    private var revenueCatCanEatMySocks: [BarcodeEntity] {
-        get throws {
-            let repository = Persistence.defaultRepository
-            let codes = try repository.codes
-
-            return codes.map(BarcodeEntity.init(code:))
-        }
-    }
 }
