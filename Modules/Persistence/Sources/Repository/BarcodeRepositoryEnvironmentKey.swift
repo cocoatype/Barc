@@ -3,7 +3,7 @@
 
 import SwiftUI
 
-public struct BarcodeRepositoryEnvironmentKey: EnvironmentKey {
+public enum BarcodeRepositoryEnvironmentKey: EnvironmentKey {
     public static let defaultValue: any BarcodeRepository = FileBarcodeRepository()
 }
 

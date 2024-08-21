@@ -1,16 +1,18 @@
 import ProjectDescription
 
-public enum Navigation {
+public enum LocationEditor {
     public static let target = Target.moduleTarget(
-        name: "Navigation",
+        name: "LocationEditor",
+        hasResources: true,
         dependencies: [
             .target(Barcodes.target),
-            .target(LocationEditor.target),
+            .target(DesignSystem.target),
+            .target(ErrorHandling.target),
         ]
     )
 
     public static let testTarget = Target.moduleTestTarget(
-        name: "Navigation",
+        name: "LocationEditor",
         dependencies: [
         ]
     )

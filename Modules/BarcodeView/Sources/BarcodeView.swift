@@ -19,7 +19,7 @@ public struct BarcodeView: View {
                     cell.clipsToBounds = false
                 }
 
-            BarcodeTriggersSection()
+            BarcodeTriggersSection(selectedLocation: code.location)
         }
         .listStyle(.insetGrouped)
         .scrollContentBackground(.hidden)
@@ -38,7 +38,7 @@ public struct BarcodeView: View {
                     value: "https://cocoatype.com",
                     correctionLevel: .m
                 ),
-                triggers: []
+                location: nil
             )
         )
     }

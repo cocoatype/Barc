@@ -2,6 +2,7 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import BarcodeDetails
+import LocationEditor
 import Navigation
 import SwiftUI
 
@@ -11,7 +12,6 @@ struct RouteMapper {
     func view(for route: Route) -> some View {
         switch route {
         case .barcodeDetails(let code): BarcodeDetails(methodicalMadness: code)
-        case .dateEditor, .locationEditor: EmptyView()
         }
     }
 }

@@ -1,0 +1,5 @@
+// The title of the view for selecting a location
+"LocationEditor.title" = "Location";
+
+// The title for the clear button when selecting a location
+"ClearButton.title" = "Clear";

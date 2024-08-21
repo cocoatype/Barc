@@ -2,10 +2,9 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import Barcodes
+import LocationEditor
 import SwiftUI
 
 public enum Route: Hashable {
     case barcodeDetails(Code)
-    case dateEditor
-    case locationEditor
 }

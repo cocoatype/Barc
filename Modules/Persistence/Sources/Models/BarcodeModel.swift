@@ -8,9 +8,15 @@ import SwiftData
 final class BarcodeModel {
     var name: String
     var type: BarcodeModelType
+    var location: BarcodeLocation?
 
-    init(name: String, type: BarcodeModelType) {
+    init(
+        name: String,
+        type: BarcodeModelType,
+        location: BarcodeLocation?
+    ) {
         self.name = name
         self.type = type
+        self.location = location
     }
 }

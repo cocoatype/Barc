@@ -47,6 +47,6 @@ public struct BarcodeDetails: View {
 
 #Preview {
     NavigationStack {
-        BarcodeDetails(methodicalMadness: Code(name: "Cocoatype Website", value: .qr(value: "https://cocoatype.com", correctionLevel: .m), triggers: []))
+        BarcodeDetails(methodicalMadness: Code(name: "Cocoatype Website", value: .qr(value: "https://cocoatype.com", correctionLevel: .m), location: nil))
     }
 }
