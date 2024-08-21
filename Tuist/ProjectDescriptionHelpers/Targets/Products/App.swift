@@ -15,6 +15,7 @@ public enum App {
         ]),
         dependencies: [
             .target(Root.target),
+            .target(Shortcuts.target),
         ],
         settings: .settings(
             base: [

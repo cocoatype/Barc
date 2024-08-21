@@ -17,7 +17,7 @@ struct BarcodePreview: View {
             CodeRenderer(value: value)
                 .frame(width: 140, height: 140)
                 .padding(14)
-                .background(BarcodePreviewBackground())
+                .background(CodeBackground())
             Spacer()
         }
     }

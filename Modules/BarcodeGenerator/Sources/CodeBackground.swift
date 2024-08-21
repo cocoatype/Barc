@@ -4,8 +4,12 @@
 import DesignSystem
 import SwiftUI
 
-struct LargeBarcodeBackground: View {
-    var body: some View {
+public struct CodeBackground: View {
+    public static let padding = 14.0
+    
+    public init() {}
+
+    public var body: some View {
         RoundedRectangle(cornerRadius: 14)
             .fill(Color.cellBackground)
             .strokeBorder(Color.cellBorder)
@@ -14,5 +18,5 @@ struct LargeBarcodeBackground: View {
 }
 
 #Preview {
-    LargeBarcodeBackground()
+    CodeBackground()
 }

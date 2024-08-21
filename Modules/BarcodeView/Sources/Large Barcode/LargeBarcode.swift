@@ -15,7 +15,7 @@ struct LargeBarcode: View {
         CodeRenderer(value: value)
             .frame(width: 280, height: 280)
             .padding(14)
-            .background(LargeBarcodeBackground())
+            .background(CodeBackground())
     }
 }
 

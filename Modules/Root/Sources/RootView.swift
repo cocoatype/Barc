@@ -22,12 +22,16 @@ public struct RootView: View {
     // wheter to show the settings page
     @State private var postPubCocoatype = false
 
+    @Binding private var path: NavigationPath
+
     private let routeMapper = RouteMapper()
 
-    public init() {}
+    public init(path: Binding<NavigationPath>) {
+        _path = path
+    }
 
     public var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             Library()
                 .toolbar {
                     ToolbarItemGroup(placement: .bottomBar) {
@@ -46,8 +50,12 @@ public struct RootView: View {
         }
         .tint(.orange)
     }
+
+    public func navigate(to route: Route) {
+        path = NavigationPath([route])
+    }
 }
 
 #Preview {
-    RootView()
+    RootView(path: .constant(NavigationPath()))
 }
