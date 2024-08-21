@@ -24,6 +24,7 @@ let project = Project(
         Persistence.target,
         Root.target,
         Scanner.target,
+        Shortcuts.target,
         // doubles
         // test helpers
         // tests
@@ -35,6 +36,7 @@ let project = Project(
         Navigation.testTarget,
         Root.testTarget,
         Scanner.testTarget,
+        Shortcuts.testTarget,
     ],
     schemes: [
         .scheme(

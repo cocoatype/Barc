@@ -4,7 +4,7 @@
 import SwiftUI
 
 public enum BarcodeRepositoryEnvironmentKey: EnvironmentKey {
-    public static let defaultValue: any BarcodeRepository = FileBarcodeRepository()
+    public static let defaultValue = Persistence.defaultRepository
 }
 
 public extension EnvironmentValues {
