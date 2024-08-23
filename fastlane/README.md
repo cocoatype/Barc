@@ -47,6 +47,14 @@ Submit a new beta build to the public TestFlight beta
 
 Set up developer environment
 
+### ios certs
+
+```sh
+[bundle exec] fastlane ios certs
+```
+
+Regenerate all signing certs
+
 ----
 
 This README.md is auto-generated and will be re-generated every time [_fastlane_](https://fastlane.tools) is run.

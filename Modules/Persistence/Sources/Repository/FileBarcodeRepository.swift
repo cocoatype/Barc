@@ -10,7 +10,14 @@ import SwiftData
 
     var codes: [Code] {
         get throws {
-            return try models.map { try mapper.code(from: $0) }
+            return try models.compactMap {
+                do {
+                    return try mapper.code(from: $0)
+                } catch {
+                    ErrorHandling.log(error, subsystem: "com.cocoatype.Barc.Persistence", category: "FileBarcodeRepository")
+                    return nil
+                }
+            }
         }
     }
 
@@ -59,7 +66,10 @@ import SwiftData
 
     private let modelContainer = {
         do {
-            let configuration = ModelConfiguration(groupContainer: .identifier("group.com.cocoatype.Barc"))
+            let configuration = ModelConfiguration(
+                groupContainer: .identifier("group.com.cocoatype.Barc"),
+                cloudKitDatabase: .private("iCloud.com.cocoatype.Barc")
+            )
             return try ModelContainer(for: BarcodeModel.self, configurations: configuration)
         } catch {
             ErrorHandling.fatalError(error)

@@ -61,4 +61,11 @@ platform :ios do
   lane :dev do
     sync_code_signing
   end
+
+  desc "Regenerate all signing certs"
+  lane :certs do
+    sync_code_signing(readonly: false, type: "development")
+    sync_code_signing(readonly: false, type: "appstore")
+  end
+
 end
