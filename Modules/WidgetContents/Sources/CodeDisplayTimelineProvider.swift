@@ -10,7 +10,12 @@ struct CodeDisplayTimelineProvider: AppIntentTimelineProvider {
     private static let sampleCode = Code(name: "Cocoatype", value: CodeDisplayTimelineEntry.qrCodeValue, location: nil)
 
     func placeholder(in context: Context) -> CodeDisplayTimelineEntry {
-        CodeDisplayTimelineEntry(code: Self.sampleCode)
+        let placeholderCode = Code(
+            name: "Cocoatype",
+            value: .qr(value: "https://cocoatype.com", correctionLevel: .m),
+            location: nil
+        )
+        return CodeDisplayTimelineEntry(code: placeholderCode)
     }
 
     func snapshot(for configuration: CodeDisplayConfigurationIntent, in context: Context) async -> CodeDisplayTimelineEntry {

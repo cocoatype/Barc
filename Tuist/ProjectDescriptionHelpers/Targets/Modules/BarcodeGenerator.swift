@@ -5,6 +5,7 @@ public enum BarcodeGenerator {
         name: "BarcodeGenerator",
         dependencies: [
             .target(Barcodes.target),
+            .target(DesignSystem.target),
             .target(ErrorHandling.target),
         ]
     )

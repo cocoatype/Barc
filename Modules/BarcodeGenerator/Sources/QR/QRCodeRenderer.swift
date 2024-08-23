@@ -14,7 +14,8 @@ public struct QRCodeRenderer: View {
     public var body: some View {
         GeometryReader { proxy in
             codeImage(size: proxy.size)
-                .position(x: proxy.frame(in: .local).midX, y: proxy.frame(in: .local).midY)
+                .resizable()
+                .frame(width: proxy.size.width, height: proxy.size.height)
         }.background(Color.white)
     }
 
@@ -27,7 +28,7 @@ public struct QRCodeRenderer: View {
     }
 }
 
-#Preview {
+#Preview(traits: .sizeThatFitsLayout) {
     QRCodeRenderer(value: QRCodeValue(string: "https://cocoatype.com", correctionLevel: .m), symbolVersion: 1)
         .frame(width: 180, height: 180)
 }

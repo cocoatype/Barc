@@ -18,7 +18,7 @@ public struct CodeDisplayWidget: Widget {
                     if let code = entry.code {
                         CodeDisplayView(code: code)
                     } else {
-                        Color.red
+                        CodeMissingView()
                     }
                 }
                 .containerBackground(for: .widget) {
@@ -30,11 +30,11 @@ public struct CodeDisplayWidget: Widget {
 }
 
 #Preview(
-    as: .systemMedium,
+    as: .systemSmall,
     using: CodeDisplayConfigurationIntent(
         code: Code(
             name: "Website",
-            value: CodeDisplayTimelineEntry.eanCodeValue,
+            value: CodeDisplayTimelineEntry.qrCodeValue,
             location: nil
         )
     ),
@@ -47,7 +47,7 @@ public struct CodeDisplayWidget: Widget {
 )
 
 #Preview(
-    as: .systemMedium,
+    as: .systemSmall,
     using: CodeDisplayConfigurationIntent(),
     widget: {
         CodeDisplayWidget()
