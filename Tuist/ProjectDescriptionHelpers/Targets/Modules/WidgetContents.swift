@@ -1,17 +1,19 @@
 import ProjectDescription
 
-public enum BarcodeGenerator {
+public enum WidgetContents {
     public static let target = Target.moduleTarget(
-        name: "BarcodeGenerator",
+        name: "WidgetContents",
+        hasResources: true,
         dependencies: [
             .target(Barcodes.target),
-            .target(DesignSystem.target),
+            .target(BarcodeGenerator.target),
             .target(ErrorHandling.target),
+            .target(Shortcuts.target),
         ]
     )
 
     public static let testTarget = Target.moduleTestTarget(
-        name: "BarcodeGenerator",
+        name: "WidgetContents",
         dependencies: [
         ]
     )

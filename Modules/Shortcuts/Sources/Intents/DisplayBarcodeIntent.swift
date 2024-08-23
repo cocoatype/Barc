@@ -11,7 +11,7 @@ struct DisplayCodeIntent: AppIntent {
     static let description: IntentDescription = "DisplayCodeIntent.description"
 
     @Parameter(
-        title: "DisplayCodeIntent.barcode.title"
+        title: "DisplayCodeIntent.code.title"
     )
     var code: BarcodeEntity
 

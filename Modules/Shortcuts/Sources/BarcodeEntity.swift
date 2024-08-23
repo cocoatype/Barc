@@ -4,21 +4,24 @@
 import AppIntents
 import Barcodes
 
-struct BarcodeEntity: AppEntity, Identifiable {
-    static let typeDisplayRepresentation: TypeDisplayRepresentation = "BarcodeEntity.typeDisplayRepresentation"
+public struct BarcodeEntity: AppEntity, Identifiable {
+    public static let typeDisplayRepresentation: TypeDisplayRepresentation = "BarcodeEntity.typeDisplayRepresentation"
 
-    let code: Code
-    init(code: Code) {
+    public let code: Code
+    public init(code: Code) {
         self.code = code
     }
 
-    var id: Code.ID { code.id }
+    public var id: Code.ID { code.id }
     var name: String { code.name }
     var value: CodeValue { code.value }
 
-    var displayRepresentation: DisplayRepresentation {
+    public var displayRepresentation: DisplayRepresentation {
         DisplayRepresentation(title: "\(name)")
     }
 
-    @MainActor static let defaultQuery = BarcodeQuery()
+    #if compiler(<6.0)
+    @MainActor
+    #endif
+    public static let defaultQuery = BarcodeQuery()
 }

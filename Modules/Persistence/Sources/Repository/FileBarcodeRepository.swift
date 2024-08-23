@@ -59,7 +59,8 @@ import SwiftData
 
     private let modelContainer = {
         do {
-            return try ModelContainer(for: BarcodeModel.self)
+            let configuration = ModelConfiguration(groupContainer: .identifier("group.com.cocoatype.Barc"))
+            return try ModelContainer(for: BarcodeModel.self, configurations: configuration)
         } catch {
             ErrorHandling.fatalError(error)
         }
