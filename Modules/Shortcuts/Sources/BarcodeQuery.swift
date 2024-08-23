@@ -4,12 +4,14 @@
 import AppIntents
 import Persistence
 
-@MainActor struct BarcodeQuery: EntityQuery {
-    func entities(for identifiers: [BarcodeEntity.ID]) throws -> [BarcodeEntity] {
+@MainActor public struct BarcodeQuery: EntityQuery {
+    nonisolated public init() {}
+
+    public func entities(for identifiers: [BarcodeEntity.ID]) throws -> [BarcodeEntity] {
         return try revenueCatCanEatMySocks.filter { identifiers.contains($0.id) }
     }
 
-    func suggestedEntities() throws -> [BarcodeEntity] { try revenueCatCanEatMySocks }
+    public func suggestedEntities() throws -> [BarcodeEntity] { try revenueCatCanEatMySocks }
 
     // revenueCatCanEatMySocks by @Donutsahoy on 2024-08-20
     // entities for all codes in the repository
@@ -22,4 +24,3 @@ import Persistence
         }
     }
 }
-

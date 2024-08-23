@@ -10,8 +10,9 @@ public enum Widgets {
         sources: [
             "Products/Widgets/Sources/**",
         ],
+        entitlements: "Products/Widgets/Widgets.entitlements",
         dependencies: [
-            .target(WidgetContents.target),
+           .target(WidgetContents.target),
         ],
         settings: .settings(
             base: [

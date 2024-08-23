@@ -1,27 +1,58 @@
 //  Created by Geoff Pado on 8/21/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
+import Barcodes
+import Shortcuts
 import SwiftUI
 import WidgetKit
 
 public struct CodeDisplayWidget: Widget {
     public init() {}
-    
+
     public var body: some WidgetConfiguration {
-        StaticConfiguration(
+        AppIntentConfiguration(
             kind: "com.cocoatype.Barc.Widgets.CodeDisplayWidget",
+            intent: CodeDisplayConfigurationIntent.self,
             provider: CodeDisplayTimelineProvider()) { entry in
-                CodeDisplayView(code: entry.code)
-                    .containerBackground(for: .widget) {
-                        Color.white
+                Group {
+                    if let code = entry.code {
+                        CodeDisplayView(code: code)
+                    } else {
+                        Color.red
                     }
+                }
+                .containerBackground(for: .widget) {
+                    Color.cellBackground
+                }
             }
             .contentMarginsDisabled()
     }
 }
 
-#Preview(as: .systemSmall, widget: {
-    CodeDisplayWidget()
-}, timelineProvider: {
-    CodeDisplayTimelineProvider()
-})
+#Preview(
+    as: .systemMedium,
+    using: CodeDisplayConfigurationIntent(
+        code: Code(
+            name: "Website",
+            value: CodeDisplayTimelineEntry.eanCodeValue,
+            location: nil
+        )
+    ),
+    widget: {
+        CodeDisplayWidget()
+    },
+    timelineProvider: {
+        CodeDisplayTimelineProvider()
+    }
+)
+
+#Preview(
+    as: .systemMedium,
+    using: CodeDisplayConfigurationIntent(),
+    widget: {
+        CodeDisplayWidget()
+    },
+    timelineProvider: {
+        CodeDisplayTimelineProvider()
+    }
+)

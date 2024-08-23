@@ -2,7 +2,7 @@
 "DisplayCodeIntent.description" = "Displays an image of a code.";
 
 // The title for the code parameter in the "display code" intent
-"DisplayCodeIntent.barcode.title" = "Code";
+"DisplayCodeIntent.code.title" = "Code";
 
 // The title for the "has background" parameter in the "display code" intent
 "DisplayCodeIntent.hasBackground.title" = "With Background";

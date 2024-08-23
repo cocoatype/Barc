@@ -13,6 +13,7 @@ public enum App {
         resources: .resources([
             "App/Mobile/Resources/**",
         ]),
+        entitlements: "App/Mobile/Barc.entitlements",
         dependencies: [
             .target(Root.target),
             .target(Shortcuts.target),
