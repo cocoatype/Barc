@@ -25,10 +25,14 @@ struct BarcodeModelMapper {
             try CodeValue.ean(eanMapper.value(from: model))
         case .qr(let model):
             try CodeValue.qr(qrMapper.value(from: model))
+        case .none:
+            throw BarcodeModelMapperError.noValueSet
         }
 
+        guard let name = model.name else { throw BarcodeModelMapperError.noNameSet }
+
         return Code(
-            name: model.name,
+            name: name,
             value: value,
             location: model.location.map(locationMapper.location(from:))
         )
@@ -48,4 +52,9 @@ struct BarcodeModelMapper {
     private let qrMapper = QRBarcodeModelMapper()
     private let eanMapper = EANBarcodeModelMapper()
     private let locationMapper = BarcodeLocationMapper()
+}
+
+enum BarcodeModelMapperError: Error {
+    case noNameSet
+    case noValueSet
 }

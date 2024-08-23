@@ -6,8 +6,8 @@ import SwiftData
 
 @Model
 final class BarcodeModel {
-    var name: String
-    var type: BarcodeModelType
+    var name: String?
+    var type: BarcodeModelType?
     var location: BarcodeLocation?
 
     init(
