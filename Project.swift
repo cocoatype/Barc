@@ -20,6 +20,7 @@ let project = Project(
         ImageReader.target,
         Library.target,
         LocationEditor.target,
+        Logging.target,
         ManualEntry.target,
         Navigation.target,
         Persistence.target,
@@ -28,13 +29,18 @@ let project = Project(
         Shortcuts.target,
         WidgetContents.target,
         // doubles
+        ErrorHandling.doublesTarget,
+        Logging.doublesTarget,
         // test helpers
+        TestHelpers.target,
+        TestHelpers.interfaceTarget,
         // tests
         BarcodeGenerator.testTarget,
         Barcodes.testTarget,
         ErrorHandling.testTarget,
         ImageReader.testTarget,
         Library.testTarget,
+        Logging.testTarget,
         Navigation.testTarget,
         Root.testTarget,
         Scanner.testTarget,
