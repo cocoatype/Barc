@@ -10,19 +10,12 @@ struct DefaultHandler: ErrorHandler {
     }
 
     private let eventFactory = EventFactory()
-    func log(_ error: any Error) {
-        logger.log(eventFactory.event(from: error))
+    func log(_ error: any Error, module: StaticString, type: StaticString) {
+        logger.log(eventFactory.event(from: error, module: module, type: type))
     }
     
     func fatalError(message: StaticString, file: StaticString, line: UInt) -> Never {
         // log a message, then
         Swift.fatalError(String(message), file: file, line: line)
-    }
-}
-
-fileprivate extension String {
-    init(_ staticString: StaticString) {
-        let buffer = staticString.withUTF8Buffer { $0 }
-        self.init(decoding: buffer, as: UTF8.self)
     }
 }

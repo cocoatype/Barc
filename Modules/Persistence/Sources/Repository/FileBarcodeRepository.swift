@@ -5,8 +5,17 @@ import Barcodes
 import ErrorHandling
 import SwiftData
 
-@MainActor struct FileBarcodeRepository: BarcodeRepository {
-    nonisolated init() {}
+struct FileBarcodeRepository: BarcodeRepository {
+    private let errorHandler: any ErrorHandler
+    nonisolated init(errorHandler: any ErrorHandler = ErrorHandling.defaultHandler) {
+        self.errorHandler = errorHandler
+        do {
+            self.modelContainer = try Self.createModelContainer()
+        } catch {
+            errorHandler.log(error, module: "com.cocoatype.Barc.Persistence", type: "FileBarcodeRepository")
+            errorHandler.fatalError("Failed to create model container")
+        }
+    }
 
     var codes: [Code] {
         get throws {
@@ -14,34 +23,34 @@ import SwiftData
                 do {
                     return try mapper.code(from: $0)
                 } catch {
-                    ErrorHandling.log(error, subsystem: "com.cocoatype.Barc.Persistence", category: "FileBarcodeRepository")
+                    errorHandler.log(error, module: "com.cocoatype.Barc.Persistence", type: "FileBarcodeRepository")
                     return nil
                 }
             }
         }
     }
 
-    private var models: [BarcodeModel] {
+    @MainActor private var models: [BarcodeModel] {
         get throws {
             try modelContainer.mainContext.fetch(FetchDescriptor<BarcodeModel>())
         }
     }
 
-    private func findModel(for code: Code) throws -> BarcodeModel? {
+    @MainActor private func findModel(for code: Code) throws -> BarcodeModel? {
         return try models.first(where: { model in
             let modelCode = try mapper.code(from: model)
             return modelCode.value == code.value
         })
     }
 
-    private func model(for code: Code) throws -> BarcodeModel {
+    @MainActor private func model(for code: Code) throws -> BarcodeModel {
         if let model = try findModel(for: code) {
             return model
         } else { return try insertModel(for: code) }
     }
 
     private let watcher = RepositoryWatcher()
-    @discardableResult private func insertModel(for code: Code) throws -> BarcodeModel {
+    @MainActor @discardableResult private func insertModel(for code: Code) throws -> BarcodeModel {
         let model = mapper.barcodeModel(from: code)
         modelContainer.mainContext.insert(model)
         try modelContainer.mainContext.save()
@@ -64,17 +73,16 @@ import SwiftData
         return watcher.newSubscriber()
     }
 
-    private let modelContainer = {
-        do {
-            let configuration = ModelConfiguration(
+    nonisolated private static func createModelContainer() throws -> ModelContainer {
+        return try ModelContainer(
+            for: BarcodeModel.self,
+            configurations: ModelConfiguration(
                 groupContainer: .identifier("group.com.cocoatype.Barc"),
                 cloudKitDatabase: .private("iCloud.com.cocoatype.Barc")
             )
-            return try ModelContainer(for: BarcodeModel.self, configurations: configuration)
-        } catch {
-            ErrorHandling.fatalError(error)
-        }
-    }()
+        )
+    }
 
+    private let modelContainer: ModelContainer
     private let mapper = BarcodeModelMapper()
 }

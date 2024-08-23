@@ -5,9 +5,9 @@ import Foundation
 import Logging
 
 struct EventFactory {
-    func event(from error: Error) -> Event {
+    func event(from error: Error, module: StaticString, type: StaticString) -> Event {
         let errorID: String
-        if type(of: error) is NSError.Type {
+        if Swift.type(of: error) is NSError.Type {
             let nsError = error as NSError
             errorID = "\(nsError.domain) - \(nsError.code)"
         } else {
@@ -18,6 +18,8 @@ struct EventFactory {
             name: Self.logError,
             info: [
                 Self.telemetryErrorIDKey: errorID,
+                Self.errorModuleKey: String(module),
+                Self.errorTypeKey: String(type),
             ]
         )
     }
@@ -36,4 +38,6 @@ struct EventFactory {
     // MARK: Event Keys
 
     private static let telemetryErrorIDKey = "TelemetryDeck.Error.id"
+    private static let errorModuleKey = "Barc.Error.module"
+    private static let errorTypeKey = "Barc.Error.type"
 }

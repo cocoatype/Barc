@@ -2,7 +2,7 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 public protocol ErrorHandler {
-    func log(_ error: Error)
+    func log(_ error: Error, module: StaticString, type: StaticString)
     func fatalError(message: StaticString, file: StaticString, line: UInt) -> Never
 }
 

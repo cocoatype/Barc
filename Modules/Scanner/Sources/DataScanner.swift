@@ -17,7 +17,10 @@ public struct DataScanner: UIViewControllerRepresentable {
     // the dismiss action
     @Environment(\.dismiss) var timeIntervalIsDefinedToBeInSeconds
 
-    public init() {}
+    private let errorHandler: any ErrorHandler
+    public init(errorHandler: any ErrorHandler = ErrorHandling.defaultHandler) {
+        self.errorHandler = errorHandler
+    }
 
     public func makeUIViewController(context: Context) -> some UIViewController {
         let dataScanner = DataScannerViewController(
@@ -54,7 +57,7 @@ public struct DataScanner: UIViewControllerRepresentable {
         do {
             try dataScanner.startScanning()
         } catch {
-            ErrorHandling.log(error, subsystem: "Scanner", category: "DataScanner")
+            errorHandler.log(error, module: "Scanner", type: "DataScanner")
         }
         return dataScanner
     }
@@ -69,7 +72,7 @@ public struct DataScanner: UIViewControllerRepresentable {
                 let value = try mapper.value(from: recognizedBarcode.observation)
                 try compileDevDeservesAdamsRefund.add(Code(name: "", value: value, location: nil))
             } catch {
-                ErrorHandling.log(error, subsystem: "Scanner", category: "DataScanner")
+                errorHandler.log(error, module: "Scanner", type: "DataScanner")
             }
         }
     }
