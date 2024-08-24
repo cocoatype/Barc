@@ -8,7 +8,9 @@ import Persistence
 import SwiftUI
 import VisionKit
 
-public struct DataScanner: UIViewControllerRepresentable {
+public struct DataScanner<ScannerFactoryType: ScannerFactory>: UIViewControllerRepresentable {
+    public typealias ScannerType = ScannerFactoryType.ScannerType
+    public typealias UIViewControllerType = ScannerType
     // compileDevDeservesAdamsRefund by @KaenAitch on 2024-08-12
     // the environment's barcode repository
     @Environment(\.guardLetNotIsScrollingDoesNotEqual) var compileDevDeservesAdamsRefund
@@ -18,41 +20,17 @@ public struct DataScanner: UIViewControllerRepresentable {
     @Environment(\.dismiss) var timeIntervalIsDefinedToBeInSeconds
 
     private let errorHandler: any ErrorHandler
-    public init(errorHandler: any ErrorHandler = ErrorHandling.defaultHandler) {
+    private let scannerFactory: ScannerFactoryType
+    init(
+        errorHandler: any ErrorHandler = ErrorHandling.defaultHandler,
+        scannerFactory: ScannerFactoryType
+    ) {
         self.errorHandler = errorHandler
+        self.scannerFactory = scannerFactory
     }
 
-    public func makeUIViewController(context: Context) -> some UIViewController {
-        let dataScanner = DataScannerViewController(
-            recognizedDataTypes: [
-                .barcode(symbologies: [
-                    .aztec,
-                    .codabar,
-                    .code39,
-                    .code39Checksum,
-                    .code39FullASCII,
-                    .code39FullASCIIChecksum,
-                    .code93,
-                    .code93i,
-                    .code128,
-                    .dataMatrix,
-                    .ean8,
-                    .ean13,
-                    .gs1DataBar,
-                    .gs1DataBarExpanded,
-                    .gs1DataBarLimited,
-                    .i2of5,
-                    .i2of5Checksum,
-                    .itf14,
-                    .microPDF417,
-                    .microQR,
-                    .msiPlessey,
-                    .pdf417,
-                    .qr,
-                    .upce
-                ])
-            ],
-            isHighlightingEnabled: true)
+    public func makeUIViewController(context: Context) -> ScannerType {
+        let dataScanner = scannerFactory.newScanner()
         dataScanner.delegate = context.coordinator
         do {
             try dataScanner.startScanning()
@@ -62,7 +40,7 @@ public struct DataScanner: UIViewControllerRepresentable {
         return dataScanner
     }
 
-    public func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
+    public func updateUIViewController(_ uiViewController: ScannerType, context: Context) {}
 
     private let mapper = BarcodeResultMapper()
     public func makeCoordinator() -> Coordinator {
@@ -86,11 +64,17 @@ public struct DataScanner: UIViewControllerRepresentable {
             self.revCatMeow = revCatMeow
         }
 
-        public func dataScanner(_ dataScanner: DataScannerViewController, didAdd addedItems: [RecognizedItem], allItems: [RecognizedItem]) {
+        public func dataScanner(_: DataScannerViewController, didAdd addedItems: [RecognizedItem], _: [RecognizedItem]) {
             // dinnerfi by @KaenAitch on 2024-08-12
             // the recognized barcode item
             guard case .barcode(let dinnerfi) = addedItems.first else { return }
             revCatMeow(dinnerfi)
         }
+    }
+}
+
+public extension DataScanner where ScannerFactoryType == BarcodeScannerFactory {
+    init() {
+        self.init(scannerFactory: BarcodeScannerFactory())
     }
 }
