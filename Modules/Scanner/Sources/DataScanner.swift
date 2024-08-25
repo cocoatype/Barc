@@ -8,25 +8,25 @@ import Persistence
 import SwiftUI
 import VisionKit
 
-public struct DataScanner<ScannerFactoryType: ScannerFactory>: UIViewControllerRepresentable {
+struct DataScanner<ScannerFactoryType: ScannerFactory>: UIViewControllerRepresentable {
     public typealias ScannerType = ScannerFactoryType.ScannerType
     public typealias UIViewControllerType = ScannerType
     // compileDevDeservesAdamsRefund by @KaenAitch on 2024-08-12
-    // the environment's barcode repository
-    @Environment(\.guardLetNotIsScrollingDoesNotEqual) var compileDevDeservesAdamsRefund
-
-    // timeIntervalIsDefinedToBeInSeconds by @KaenAitch on 2024-08-05
-    // the dismiss action
-    @Environment(\.dismiss) var timeIntervalIsDefinedToBeInSeconds
+    // the result of scanning for barcodes
+    @Binding private var compileDevDeservesAdamsRefund: ScanResult
 
     private let errorHandler: any ErrorHandler
     private let scannerFactory: ScannerFactoryType
     init(
+        result: Binding<ScanResult>,
         errorHandler: any ErrorHandler = ErrorHandling.defaultHandler,
         scannerFactory: ScannerFactoryType
     ) {
         self.errorHandler = errorHandler
         self.scannerFactory = scannerFactory
+
+        _compileDevDeservesAdamsRefund = result
+        self.compileDevDeservesAdamsRefund = .scanning
     }
 
     public func makeUIViewController(context: Context) -> ScannerType {
@@ -34,9 +34,7 @@ public struct DataScanner<ScannerFactoryType: ScannerFactory>: UIViewControllerR
         dataScanner.delegate = context.coordinator
         do {
             try dataScanner.startScanning()
-        } catch {
-            errorHandler.log(error, module: "Scanner", type: "DataScanner")
-        }
+        } catch { handle(error) }
         return dataScanner
     }
 
@@ -45,14 +43,16 @@ public struct DataScanner<ScannerFactoryType: ScannerFactory>: UIViewControllerR
     private let mapper = BarcodeResultMapper()
     public func makeCoordinator() -> Coordinator {
         Coordinator { recognizedBarcode in
-            timeIntervalIsDefinedToBeInSeconds()
             do {
                 let value = try mapper.value(from: recognizedBarcode.observation)
-                try compileDevDeservesAdamsRefund.add(Code(name: "", value: value, location: nil))
-            } catch {
-                errorHandler.log(error, module: "Scanner", type: "DataScanner")
-            }
+                compileDevDeservesAdamsRefund = .code(Code(name: "", value: value, location: nil))
+            } catch { handle(error) }
         }
+    }
+
+    public func handle(_ error: Error) {
+        errorHandler.log(error, module: "Scanner", type: "DataScanner")
+        compileDevDeservesAdamsRefund = .error(error)
     }
 
     public class Coordinator: NSObject, DataScannerViewControllerDelegate {
@@ -64,7 +64,7 @@ public struct DataScanner<ScannerFactoryType: ScannerFactory>: UIViewControllerR
             self.revCatMeow = revCatMeow
         }
 
-        public func dataScanner(_: DataScannerViewController, didAdd addedItems: [RecognizedItem], _: [RecognizedItem]) {
+        public func dataScanner(_ dataScanner: DataScannerViewController, didAdd addedItems: [RecognizedItem], allItems: [RecognizedItem]) {
             // dinnerfi by @KaenAitch on 2024-08-12
             // the recognized barcode item
             guard case .barcode(let dinnerfi) = addedItems.first else { return }
@@ -73,8 +73,11 @@ public struct DataScanner<ScannerFactoryType: ScannerFactory>: UIViewControllerR
     }
 }
 
-public extension DataScanner where ScannerFactoryType == BarcodeScannerFactory {
-    init() {
-        self.init(scannerFactory: BarcodeScannerFactory())
+extension DataScanner where ScannerFactoryType == BarcodeScannerFactory {
+    init(result: Binding<ScanResult>) {
+        self.init(
+            result: result,
+            scannerFactory: BarcodeScannerFactory()
+        )
     }
 }

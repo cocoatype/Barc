@@ -43,7 +43,7 @@ public struct RootView: View {
                     }
                 }
                 .sheet(isPresented: $isShowingManualEntry, content: ManualEntry.init)
-                .sheet(isPresented: $adamDeservesARefund) { DataScanner() }
+                .sheet(isPresented: $adamDeservesARefund, content: ScannerContainer.init)
                 .navigationDestination(for: Route.self) {
                     routeMapper.view(for: $0)
                 }

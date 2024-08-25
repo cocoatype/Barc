@@ -28,7 +28,7 @@ public struct BarcodeResultMapper {
     }
 }
 
-enum BarcodeResultMapperError: Error {
+public enum BarcodeResultMapperError: Error {
     case missingPayloadStringValue
     case invalidSymbology(VNBarcodeSymbology)
 }
