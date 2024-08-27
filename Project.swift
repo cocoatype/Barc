@@ -8,6 +8,7 @@ let project = Project(
     targets: [
         // products
         App.target,
+        Share.target,
         Widgets.target,
         // modules
         BarcodeGenerator.target,
