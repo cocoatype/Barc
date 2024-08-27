@@ -12,9 +12,11 @@ public enum Share {
         ],
         entitlements: "Products/Share/Share.entitlements",
         dependencies: [
+            .target(BarcodeEdit.target),
             .target(Barcodes.target),
             .target(ErrorHandling.target),
             .target(ImageReader.target),
+            .target(Persistence.target),
         ],
         settings: .settings(
             base: [
