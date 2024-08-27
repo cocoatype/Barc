@@ -15,7 +15,7 @@ public struct StubErrorHandler: ErrorHandler {
     }
 
     private let logExpectation: (any Expectation)?
-    public func log(_ error: any Error) {
+    public func log(_ error: any Error, module: StaticString, type: StaticString) {
         logExpectation?.fulfill()
     }
 
