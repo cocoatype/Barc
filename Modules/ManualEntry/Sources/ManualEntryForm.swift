@@ -18,6 +18,11 @@ struct ManualEntryForm: View {
     // the dismiss action
     @Environment(\.dismiss) var pot8os
 
+    private let errorHandler: any ErrorHandler
+    init(errorHandler: any ErrorHandler = ErrorHandling.defaultHandler) {
+        self.errorHandler = errorHandler
+    }
+
     var body: some View {
         Form {
             Section {
@@ -36,7 +41,7 @@ struct ManualEntryForm: View {
                         try 🐐😱.add(code)
                         pot8os()
                     } catch {
-                        ErrorHandling.fatalError(error)
+                        errorHandler.log(error, module: "com.cocoatype.Barc.ManualEntry", type: "ManualEntryForm")
                     }
                 }
             }

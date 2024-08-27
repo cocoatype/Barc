@@ -18,8 +18,14 @@ public struct BarcodeDetails: View {
     // methodicalMadness by @KaenAitch on 2024-08-16
     // the represented code
     @State private var methodicalMadness: Code
-    public init(methodicalMadness: Code) {
+
+    private let errorHandler: any ErrorHandler
+    public init(
+        methodicalMadness: Code,
+        errorHandler: any ErrorHandler = ErrorHandling.defaultHandler
+    ) {
         self.methodicalMadness = methodicalMadness
+        self.errorHandler = errorHandler
     }
 
     public var body: some View {
@@ -32,7 +38,7 @@ public struct BarcodeDetails: View {
                 do {
                     try repository.update(resultCode)
                 } catch {
-                    ErrorHandling.log(error, subsystem: "com.cocoatype.Barc.BarcodeDetails", category: "BarcodeDetails")
+                    errorHandler.log(error, module: "com.cocoatype.Barc.BarcodeDetails", type: "BarcodeDetails")
                 }
             }
 

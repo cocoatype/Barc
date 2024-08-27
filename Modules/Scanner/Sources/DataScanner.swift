@@ -8,70 +8,51 @@ import Persistence
 import SwiftUI
 import VisionKit
 
-public struct DataScanner: UIViewControllerRepresentable {
+struct DataScanner<ScannerFactoryType: ScannerFactory>: UIViewControllerRepresentable {
+    public typealias ScannerType = ScannerFactoryType.ScannerType
+    public typealias UIViewControllerType = ScannerType
     // compileDevDeservesAdamsRefund by @KaenAitch on 2024-08-12
-    // the environment's barcode repository
-    @Environment(\.guardLetNotIsScrollingDoesNotEqual) var compileDevDeservesAdamsRefund
+    // the result of scanning for barcodes
+    @Binding private var compileDevDeservesAdamsRefund: ScanResult
 
-    // timeIntervalIsDefinedToBeInSeconds by @KaenAitch on 2024-08-05
-    // the dismiss action
-    @Environment(\.dismiss) var timeIntervalIsDefinedToBeInSeconds
+    private let errorHandler: any ErrorHandler
+    private let scannerFactory: ScannerFactoryType
+    init(
+        result: Binding<ScanResult>,
+        errorHandler: any ErrorHandler = ErrorHandling.defaultHandler,
+        scannerFactory: ScannerFactoryType
+    ) {
+        self.errorHandler = errorHandler
+        self.scannerFactory = scannerFactory
 
-    public init() {}
+        _compileDevDeservesAdamsRefund = result
+        self.compileDevDeservesAdamsRefund = .scanning
+    }
 
-    public func makeUIViewController(context: Context) -> some UIViewController {
-        let dataScanner = DataScannerViewController(
-            recognizedDataTypes: [
-                .barcode(symbologies: [
-                    .aztec,
-                    .codabar,
-                    .code39,
-                    .code39Checksum,
-                    .code39FullASCII,
-                    .code39FullASCIIChecksum,
-                    .code93,
-                    .code93i,
-                    .code128,
-                    .dataMatrix,
-                    .ean8,
-                    .ean13,
-                    .gs1DataBar,
-                    .gs1DataBarExpanded,
-                    .gs1DataBarLimited,
-                    .i2of5,
-                    .i2of5Checksum,
-                    .itf14,
-                    .microPDF417,
-                    .microQR,
-                    .msiPlessey,
-                    .pdf417,
-                    .qr,
-                    .upce
-                ])
-            ],
-            isHighlightingEnabled: true)
+    public func makeUIViewController(context: Context) -> ScannerType {
+        let dataScanner = scannerFactory.newScanner()
         dataScanner.delegate = context.coordinator
         do {
             try dataScanner.startScanning()
-        } catch {
-            ErrorHandling.log(error, subsystem: "Scanner", category: "DataScanner")
-        }
+        } catch { handle(error) }
         return dataScanner
     }
 
-    public func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
+    public func updateUIViewController(_ uiViewController: ScannerType, context: Context) {}
 
     private let mapper = BarcodeResultMapper()
     public func makeCoordinator() -> Coordinator {
         Coordinator { recognizedBarcode in
-            timeIntervalIsDefinedToBeInSeconds()
             do {
                 let value = try mapper.value(from: recognizedBarcode.observation)
-                try compileDevDeservesAdamsRefund.add(Code(name: "", value: value, location: nil))
-            } catch {
-                ErrorHandling.log(error, subsystem: "Scanner", category: "DataScanner")
-            }
+                compileDevDeservesAdamsRefund = .code(Code(name: "", value: value, location: nil))
+            } catch { handle(error) }
         }
+    }
+
+    public func handle(_ error: Error) {
+        errorHandler.log(error, module: "Scanner", type: "DataScanner")
+        compileDevDeservesAdamsRefund = .error(error)
     }
 
     public class Coordinator: NSObject, DataScannerViewControllerDelegate {
@@ -89,5 +70,14 @@ public struct DataScanner: UIViewControllerRepresentable {
             guard case .barcode(let dinnerfi) = addedItems.first else { return }
             revCatMeow(dinnerfi)
         }
+    }
+}
+
+extension DataScanner where ScannerFactoryType == BarcodeScannerFactory {
+    init(result: Binding<ScanResult>) {
+        self.init(
+            result: result,
+            scannerFactory: BarcodeScannerFactory()
+        )
     }
 }

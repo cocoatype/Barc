@@ -3,6 +3,7 @@ import ProjectDescription
 public enum Scanner {
     public static let target = Target.moduleTarget(
         name: "Scanner",
+        hasResources: true,
         dependencies: [
             .target(ErrorHandling.target),
             .target(ImageReader.target),

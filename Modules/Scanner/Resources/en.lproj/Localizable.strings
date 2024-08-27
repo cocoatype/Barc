@@ -1,0 +1,14 @@
+// Body for a generic error alert
+"ErrorAlertViewModifier.defaultAlertMessage" = "An unknown error occurred when scanning.";
+
+// Title for a generic error alert
+"ErrorAlertViewModifier.defaultAlertTitle" = "Error";
+
+// Title for the dismiss button for an error alert
+"ErrorAlertViewModifier.dismissButtonTitle" = "OK";
+
+// Body for an unsupported barcode alert
+"ErrorAlertViewModifier.invalidSymbologyAlertMessage" = "Sorry, Barc does not support this type of barcode (yet).";
+
+// Title for an unsupported barcode alert
+"ErrorAlertViewModifier.invalidSymbologyAlertTitle" = "Unsupported Barcode";
