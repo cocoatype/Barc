@@ -10,10 +10,6 @@ import SwiftUI
 public struct ScannerContainer: View {
     @Environment(\.guardLetNotIsScrollingDoesNotEqual) private var repository
 
-    // timeIntervalIsDefinedToBeInSeconds by @KaenAitch on 2024-08-05
-    // the dismiss action
-    @Environment(\.dismiss) var timeIntervalIsDefinedToBeInSeconds
-
     @State private var scanResult = ScanResult.scanning
 
     private let errorHandler: any ErrorHandler
@@ -27,15 +23,21 @@ public struct ScannerContainer: View {
     }
 
     public var body: some View {
-        DataScanner(result: $scanResult)
-            .errorAlert(for: $scanResult)
-            .onChange(of: scanResult.code) {
-                guard let code = scanResult.code else { return }
-                do {
-                    try repository.add(code)
-                } catch {
-                    scanResult = .error(error)
+        NavigationStack {
+            DataScanner(result: $scanResult)
+                .ignoresSafeArea()
+                .overlay(NavigationBarScrim())
+                .errorAlert(for: $scanResult)
+                .onChange(of: scanResult.code) {
+                    guard let code = scanResult.code else { return }
+                    do {
+                        try repository.add(code)
+                    } catch {
+                        scanResult = .error(error)
+                    }
+                }.toolbar {
+                    ScannerContainerDismissButton()
                 }
-            }
+        }
     }
 }
