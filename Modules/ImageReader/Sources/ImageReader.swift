@@ -5,8 +5,10 @@ import Barcodes
 import CoreGraphics
 import Vision
 
-struct ImageReader {
-    func codeValue(in image: CGImage, orientation: CGImagePropertyOrientation = .up) async throws -> CodeValue? {
+public struct ImageReader {
+    public init() {}
+
+    public func codeValue(in image: CGImage, orientation: CGImagePropertyOrientation = .up) async throws -> CodeValue? {
         return try await withCheckedThrowingContinuation { continuation in
             let requestHandler = VNImageRequestHandler(cgImage: image, orientation: orientation)
             let request = VNDetectBarcodesRequest { request, error in

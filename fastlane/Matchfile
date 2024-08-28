@@ -11,6 +11,7 @@ end
 for_platform :ios do
   app_identifier([
                    "com.cocoatype.Barc",
+                   "com.cocoatype.Barc.Share",
                    "com.cocoatype.Barc.Widgets",
                  ])
 end

@@ -8,6 +8,7 @@ let project = Project(
     targets: [
         // products
         App.target,
+        Share.target,
         Widgets.target,
         // modules
         BarcodeGenerator.target,
@@ -26,6 +27,7 @@ let project = Project(
         Persistence.target,
         Root.target,
         Scanner.target,
+        ShareContents.target,
         Shortcuts.target,
         WidgetContents.target,
         // doubles
