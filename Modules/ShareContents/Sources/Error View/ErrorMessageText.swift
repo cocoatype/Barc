@@ -11,7 +11,13 @@ struct ErrorMessageText: View {
 
     var attributedString: AttributedString {
         do {
-            return try AttributedString(markdown: string)
+            var baseString = try AttributedString(markdown: string)
+            baseString.runs
+                .filter { $0.link != nil }
+                .forEach { run in
+                    baseString[run.range].underlineStyle = .init(pattern: .solid)
+                }
+            return baseString
         } catch {
             return AttributedString(string)
         }
@@ -24,5 +30,6 @@ struct ErrorMessageText: View {
 }
 
 #Preview {
-    ErrorMessageText("Hello, world!")
+    ErrorMessageText("Hello, [hello@cocoatype.com](mailto:hello@cocoatype.com)!")
+        .tint(.primary)
 }

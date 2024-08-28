@@ -9,3 +9,6 @@
 
 // Title for an error when no code is detected
 "ErrorView.noCodeTitle" = "No Barcodes Detected";
+
+// Text displayed to users while waiting for the image detection code
+"LoadingView.label" = "Scanning…";

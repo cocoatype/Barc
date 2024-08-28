@@ -16,7 +16,7 @@ public struct ShareView: View {
         Group {
             switch viewState {
             case .loading:
-                Text("Loading…")
+                LoadingView()
             case .success(let codeValue):
                 SuccessView(value: codeValue)
             case .error(let error):
@@ -43,4 +43,8 @@ public struct ShareView: View {
         case success(CodeValue)
         case error(Error)
     }
+}
+
+#Preview {
+    ShareView()
 }
