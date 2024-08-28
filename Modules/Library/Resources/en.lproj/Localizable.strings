@@ -1,4 +1,17 @@
 // Created by Geoff Pado on 8/14/24.
 // Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
+// Navigation title for the main library view
 "Library.navigationTitle" = "Barcodes";
+
+// The title of the menu item to delete a code.
+"DeleteMenuItem.title" = "Delete Barcode";
+
+// The title of the confirmation button on the delete alert.
+"DeleteAlertViewModifier.confirmButtonTitle" = "Delete Barcode";
+
+// The title of the cancel button on the delete alert.
+"DeleteAlertViewModifier.cancelButtonTitle" = "Cancel";
+
+// The title of the delete alert (including barcode name).
+"DeleteAlertViewModifier.title" = "Are you sure you want to delete the barcode “%@”?";

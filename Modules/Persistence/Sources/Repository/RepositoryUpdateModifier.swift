@@ -8,7 +8,7 @@ import SwiftUI
 #if compiler(<6.0)
 @MainActor
 #endif
-public struct RepositoryUpdateModifier: ViewModifier {
+struct RepositoryUpdateModifier: ViewModifier {
     let updateTask: Task<Void, Never>
     init(repository: any BarcodeRepository, action: @escaping ([Code]) -> Void) {
         let updates = repository.subscribeToUpdates()
@@ -19,7 +19,7 @@ public struct RepositoryUpdateModifier: ViewModifier {
         }
     }
 
-    public func body(content: Content) -> some View { content }
+    func body(content: Content) -> some View { content }
 }
 
 public extension View {
@@ -29,7 +29,7 @@ public extension View {
     func onUpdate(
         to repository: any BarcodeRepository,
         perform action: @escaping ([Code]) -> Void
-    ) -> ModifiedContent<Self, RepositoryUpdateModifier> {
+    ) -> some View {
         return self.modifier(RepositoryUpdateModifier(repository: repository, action: action))
     }
 }
