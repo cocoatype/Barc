@@ -6,7 +6,7 @@ import BarcodeEdit
 import Persistence
 import SwiftUI
 
-struct CodeValueSuccessView: View {
+struct SuccessView: View {
     @Environment(\.extensionContext) private var extensionContext
 
     private let value: CodeValue
@@ -36,4 +36,8 @@ struct CodeValueSuccessView: View {
             extensionContext?.completeRequest(returningItems: nil)
         }
     }
+}
+
+#Preview {
+    SuccessView(value: .qr(value: "https://cocoatype.com", correctionLevel: .m))
 }

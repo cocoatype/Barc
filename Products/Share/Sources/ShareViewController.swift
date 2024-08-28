@@ -1,6 +1,7 @@
 //  Created by Geoff Pado on 8/26/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
+import ShareContents
 import SwiftUI
 import UIKit
 
@@ -22,15 +23,4 @@ class ShareViewController: UIHostingController<AnyView> {
         rootView = AnyView(newRoot)
     }
     //self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
-}
-
-public enum ExtensionContextEnvironmentKey: EnvironmentKey {
-    public static let defaultValue: NSExtensionContext? = nil
-}
-
-public extension EnvironmentValues {
-    var extensionContext: NSExtensionContext? {
-        get { self[ExtensionContextEnvironmentKey.self] }
-        set { self[ExtensionContextEnvironmentKey.self] = newValue }
-    }
 }

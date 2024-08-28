@@ -2,30 +2,25 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import Barcodes
-import ErrorHandling
 import ImageReader
 import SwiftUI
 
-struct ShareView: View {
+public struct ShareView: View {
     @Environment(\.extensionContext) private var extensionContext
     @State private var viewState = ViewState.loading
 
-    private let errorHandler: any ErrorHandler
     private let inputHandler = ExtensionInputHandler()
-    init(errorHandler: any ErrorHandler = ErrorHandling.defaultHandler) {
-        self.errorHandler = errorHandler
-    }
+    public init() {}
 
-    var body: some View {
+    public var body: some View {
         Group {
             switch viewState {
             case .loading:
                 Text("Loading…")
             case .success(let codeValue):
-                CodeValueSuccessView(value: codeValue)
+                SuccessView(value: codeValue)
             case .error(let error):
-                let _ = errorHandler.log(error, module: "com.cocoatype.Barc.Share", type: "ShareView")
-                Text(String(describing: error))
+                ErrorView(error: error)
             }
         }
         .tint(.primary)

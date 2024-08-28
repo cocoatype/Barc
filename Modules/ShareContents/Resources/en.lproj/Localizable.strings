@@ -1,0 +1,11 @@
+// Message for a generic error
+"ErrorView.genericErrorMessage" = "An error occurred while scanning for barcodes in this image. If you continue to experience this, please contact support at [hello@cocoatype.com](mailto:hello@cocoatype.com).";
+
+// Title for a generic error
+"ErrorView.genericErrorTitle" = "Unexpected Error";
+
+// Message for an error when no code is detected
+"ErrorView.noCodeMessage" = "No barcodes were found in this image. If you think one should have been found, please contact support at [hello@cocoatype.com](mailto:hello@cocoatype.com).";
+
+// Title for an error when no code is detected
+"ErrorView.noCodeTitle" = "No Barcodes Detected";
