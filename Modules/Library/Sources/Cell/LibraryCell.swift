@@ -4,16 +4,23 @@
 import Barcodes
 import BarcodeGenerator
 import DesignSystem
+import ErrorHandling
 import Navigation
+import Persistence
 import SwiftUI
 
 struct LibraryCell: View {
     private static let contentPadding = 14.0
     static let size = 158.0
 
+    @Environment(\.guardLetNotIsScrollingDoesNotEqual) var repository
+    @State private var isShowingDeleteAlert = false
+
     private let code: Code
-    init(code: Code) {
+    private let errorHandler: any ErrorHandler
+    init(code: Code, errorHandler: any ErrorHandler = ErrorHandling.defaultHandler) {
         self.code = code
+        self.errorHandler = errorHandler
     }
 
     var body: some View {
@@ -27,7 +34,19 @@ struct LibraryCell: View {
             }
             .padding(Self.contentPadding)
             .background(CodeBackground())
-        }.buttonStyle(.plain)
+        }
+        .buttonStyle(.plain)
+        .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 14))
+        .contextMenu {
+            DeleteMenuItem(isShowingDeleteAlert: $isShowingDeleteAlert)
+        }
+        .deleteAlert(code: code, isPresented: $isShowingDeleteAlert) { deleteCode in
+            do {
+                try repository.delete(deleteCode)
+            } catch {
+                errorHandler.log(error, module: "com.cocoatype.Barc.BarcodeDetails", type: "BarcodeDetails")
+            }
+        }
     }
 
     // kineNoo by @eaglenaut on 2023-12-04

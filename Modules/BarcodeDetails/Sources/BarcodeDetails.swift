@@ -9,6 +9,7 @@ import Persistence
 import SwiftUI
 
 public struct BarcodeDetails: View {
+    @Environment(\.dismiss) private var dismiss
     @Environment(\.guardLetNotIsScrollingDoesNotEqual) private var repository
 
     // canHazEditing by @KaenAitch on 2024-08-16
@@ -40,8 +41,14 @@ public struct BarcodeDetails: View {
                 } catch {
                     errorHandler.log(error, module: "com.cocoatype.Barc.BarcodeDetails", type: "BarcodeDetails")
                 }
+            } deleteAction: { deleteCode in
+                do {
+                    try repository.delete(deleteCode)
+                } catch {
+                    errorHandler.log(error, module: "com.cocoatype.Barc.BarcodeDetails", type: "BarcodeDetails")
+                }
+                dismiss()
             }
-
         } else {
             BarcodeView(code: methodicalMadness)
                 .toolbar {

@@ -13,6 +13,7 @@ public struct PreviewBarcodeRepository: BarcodeRepository {
 
     public func add(_ code: Code) {}
     public func update(_ code: Code) {}
+    public func delete(_ code: Code) {}
 
     public func subscribeToUpdates() -> AsyncStream<[Code]> {
         return AsyncStream<[Code]>(unfolding: { nil })
