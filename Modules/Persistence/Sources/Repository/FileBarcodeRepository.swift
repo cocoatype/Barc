@@ -69,6 +69,14 @@ struct FileBarcodeRepository: BarcodeRepository {
         try watcher.updateSubscribers(with: codes)
     }
 
+    func delete(_ code: Code) throws {
+        let model = try model(for: code)
+        try modelContainer.mainContext.transaction {
+            modelContainer.mainContext.delete(model)
+        }
+        try watcher.updateSubscribers(with: codes)
+    }
+
     func subscribeToUpdates() -> AsyncStream<[Code]> {
         return watcher.newSubscriber()
     }

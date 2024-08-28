@@ -8,7 +8,10 @@ import SwiftUIIntrospect
 
 public struct BarcodeEdit: View {
     public typealias ResultAction = (Code?) -> Void
-    private let action: ResultAction
+    private let resultAction: ResultAction
+
+    public typealias DeleteAction = (Code) -> Void
+    private let deleteAction: DeleteAction?
 
     @State private var code: Code
     @State private var isLocationEditorShowing = false
@@ -18,18 +21,28 @@ public struct BarcodeEdit: View {
         name: String,
         value: CodeValue,
         location: Location?,
-        action: @escaping ResultAction
+        resultAction: @escaping ResultAction,
+        deleteAction: DeleteAction? = nil
     ) {
         self.code = Code(name: name, value: value, location: location)
-        self.action = action
+        self.resultAction = resultAction
+        self.deleteAction = deleteAction
     }
 
-    public init(value: CodeValue, action: @escaping ResultAction) {
-        self.init(name: "", value: value, location: nil, action: action)
+    public init(
+        value: CodeValue,
+        resultAction: @escaping ResultAction,
+        deleteAction: DeleteAction? = nil
+    ) {
+        self.init(name: "", value: value, location: nil, resultAction: resultAction, deleteAction: deleteAction)
     }
 
-    public init(code: Code, action: @escaping ResultAction) {
-        self.init(name: code.name, value: code.value, location: nil, action: action)
+    public init(
+        code: Code,
+        resultAction: @escaping ResultAction,
+        deleteAction: DeleteAction? = nil
+    ) {
+        self.init(name: code.name, value: code.value, location: nil, resultAction: resultAction, deleteAction: deleteAction)
     }
 
     public var body: some View {
@@ -52,14 +65,18 @@ public struct BarcodeEdit: View {
                 isLocationEditorShowing: $isLocationEditorShowing,
                 isDateEditorShowing: $isDateEditorShowing
             )
+
+            if let deleteAction {
+                DeleteButton(code: code, deleteAction: deleteAction)
+            }
         }
         .listStyle(.grouped)
         .scrollContentBackground(.hidden)
         .background(BarcodeEditBackground())
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            DoneButton { action(code) }
-            CancelButton { action(nil) }
+            DoneButton { resultAction(code) }
+            CancelButton { resultAction(nil) }
         }
         .sheet(isPresented: $isLocationEditorShowing) {
             LocationEditor(wheresMyTaco: $code.location)
@@ -69,5 +86,5 @@ public struct BarcodeEdit: View {
 }
 
 #Preview {
-    BarcodeEdit(name: "Code", value: .qr(value: "https://cocoatype.com", correctionLevel: .m), location: nil) { _ in }
+    BarcodeEdit(name: "Code", value: .qr(value: "https://cocoatype.com", correctionLevel: .m), location: nil) { _ in } deleteAction: { _ in }
 }
