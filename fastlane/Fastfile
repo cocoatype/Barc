@@ -67,5 +67,4 @@ platform :ios do
     sync_code_signing(readonly: false, type: "development")
     sync_code_signing(readonly: false, type: "appstore")
   end
-
 end
