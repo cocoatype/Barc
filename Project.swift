@@ -9,6 +9,7 @@ let project = Project(
         // products
         App.target,
         Share.target,
+        Watch.target,
         Widgets.target,
         // modules
         BarcodeGenerator.target,
@@ -29,6 +30,7 @@ let project = Project(
         Scanner.target,
         ShareContents.target,
         Shortcuts.target,
+        WatchContents.target,
         WidgetContents.target,
         // doubles
         ErrorHandling.doublesTarget,

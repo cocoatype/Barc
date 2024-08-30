@@ -13,7 +13,7 @@ public struct CodeRenderer: View {
     public var body: some View {
         switch value {
         case .qr(let value):
-            QRCodeRenderer(value: value, symbolVersion: 1)
+            QRCodeRenderer(value: value)
         case .ean(let value):
             EANCodeRenderer(value: value)
         }

@@ -22,5 +22,7 @@ let package = Package(
     dependencies: [
         .package(url: "git@github.com:TelemetryDeck/SwiftClient.git", from: "1.0.0"),
         .package(url: "git@github.com:siteline/swiftui-introspect.git", from: "1.3.0"),
+        .package(url: "git@github.com:fwcd/swift-qrcode-generator.git", from: "2.0.2"),
+        // .package(url: "git@github.com:dagronf/QRCode.git", from: "21.0.0"),
     ]
 )

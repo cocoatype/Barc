@@ -12,6 +12,7 @@ public enum Shared {
         "ENABLE_USER_SCRIPT_SANDBOXING": true,
         "IPHONEOS_DEPLOYMENT_TARGET": "17.0",
         "MACOSX_DEPLOYMENT_TARGET": "12.0",
+        "WATCHOS_DEPLOYMENT_TARGET": "10.0",
         "MARKETING_VERSION": "999",
         "SWIFT_VERSION": "5.0",
         "SWIFT_MAX_VERSION_1500": "5.0",

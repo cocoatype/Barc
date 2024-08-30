@@ -5,7 +5,6 @@ public enum Navigation {
         name: "Navigation",
         dependencies: [
             .target(Barcodes.target),
-            .target(LocationEditor.target),
         ]
     )
 

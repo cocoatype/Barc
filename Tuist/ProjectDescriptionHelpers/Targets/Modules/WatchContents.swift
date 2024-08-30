@@ -1,18 +1,21 @@
 import ProjectDescription
 
-public enum BarcodeGenerator {
+public enum WatchContents {
     public static let target = Target.moduleTarget(
-        name: "BarcodeGenerator",
+        name: "WatchContents",
+        destinations: [.appleWatch],
+        hasResources: true,
         dependencies: [
             .target(Barcodes.target),
-            .target(DesignSystem.target),
+            .target(BarcodeGenerator.target),
             .target(ErrorHandling.target),
-            .external(name: "QRCodeGenerator"),
+            .target(Navigation.target),
+            .target(Persistence.target),
         ]
     )
 
     public static let testTarget = Target.moduleTestTarget(
-        name: "BarcodeGenerator",
+        name: "WatchContents",
         dependencies: [
         ]
     )
