@@ -9,6 +9,7 @@ public enum WatchContents {
             .target(Barcodes.target),
             .target(BarcodeGenerator.target),
             .target(ErrorHandling.target),
+            .target(Navigation.target),
             .target(Persistence.target),
         ]
     )

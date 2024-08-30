@@ -8,7 +8,7 @@ import SwiftUI
 struct BarcWatchApp: App {
     var body: some Scene {
         WindowGroup {
-            WatchLibraryView(value:.qr(value: "https://cocoatype.com", correctionLevel: .m))
+            WatchRootView()
         }
     }
 }

@@ -2,7 +2,6 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import Barcodes
-import LocationEditor
 import SwiftUI
 
 public enum Route: Hashable {
