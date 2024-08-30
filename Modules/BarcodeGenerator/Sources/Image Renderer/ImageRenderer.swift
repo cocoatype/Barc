@@ -2,6 +2,7 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import Barcodes
+import ImageIO
 import SwiftUI
 import UniformTypeIdentifiers
 
