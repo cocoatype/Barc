@@ -6,15 +6,15 @@ import BarcodeGenerator
 import SwiftUI
 
 struct WatchBarcodeView: View {
-    private let value: CodeValue
-    public init(value: CodeValue) {
-        self.value = value
+    private let code: Code
+    public init(code: Code) {
+        self.code = code
     }
 
     var body: some View {
         GeometryReader { geometry in
             let spacing = geometry.size.height - geometry.size.width
-            CodeRenderer(value: value)
+            CodeRenderer(value: code.value)
                 .padding(14)
                 .background { Color.white }
                 .clipShape(RoundedRectangle(cornerRadius: 14))
@@ -22,22 +22,20 @@ struct WatchBarcodeView: View {
                 .frame(width: geometry.size.width, height: geometry.size.width)
                 .offset(y: spacing / 2)
         }
-        .ignoresSafeArea()
+        .navigationTitle(code.name)
+        .navigationBarTitleDisplayMode(.inline)
+        .ignoresSafeArea(edges: .bottom)
     }
+}
 
-    private var ignoredEdges: Edge.Set {
-        switch value {
-        case .qr: []
-        case .ean: .bottom
-        }
+import Persistence
+#Preview {
+    NavigationStack {
+        WatchBarcodeView(code: PreviewBarcodeRepository().codes[0])
     }
 }
 
 #Preview {
-    WatchBarcodeView(value: .qr(value: "https://cocoatype.com", correctionLevel: .m))
-}
-
-#Preview {
-    try! WatchBarcodeView(value: .ean(value: "4444444444444"))
+    WatchBarcodeView(code: PreviewBarcodeRepository().codes[1])
 }
 
