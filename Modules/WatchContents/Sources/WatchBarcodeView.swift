@@ -23,7 +23,6 @@ struct WatchBarcodeView: View {
                 .offset(y: spacing / 2)
         }
         .navigationTitle(code.name)
-        .navigationBarTitleDisplayMode(.inline)
         .ignoresSafeArea(edges: .bottom)
     }
 }

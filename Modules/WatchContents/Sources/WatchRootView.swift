@@ -18,25 +18,26 @@ public struct WatchRootView: View {
         switch viewState {
         case .loading:
             ProgressView()
-                .onAppear {
-                    do {
-                        let codes = try repository.codes
-                        if codes.count > 0 {
-                            viewState = .success(codes)
-                        } else {
-                            viewState = .empty
-                        }
-                    } catch {
-                        viewState = .error(error)
-//                        errorHandler.log(error, module: "com.cocoatype.Barc.Library", type: "LibraryGrid")
-                    }
-                }
+                .onAppear { beginLoading() }
         case .success(let codes):
             WatchSplitView(codes: codes)
         case .empty:
-            Text("No codes… :(")
+            LibraryEmptyView()
         case .error(let error):
-            Text(String(describing: error))
+            ErrorView(error: error)
+        }
+    }
+
+    private func beginLoading() {
+        do {
+            let codes = try repository.codes
+            if codes.count > 0 {
+                viewState = .success(codes)
+            } else {
+                viewState = .empty
+            }
+        } catch {
+            viewState = .error(error)
         }
     }
 
