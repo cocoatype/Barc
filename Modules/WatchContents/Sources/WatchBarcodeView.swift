@@ -12,11 +12,17 @@ struct WatchBarcodeView: View {
     }
 
     var body: some View {
-        CodeRenderer(value: value)
-            .ignoresSafeArea(edges: ignoredEdges)
-            .padding(.horizontal, 20)
-            .background(.white)
-            .overlay(WatchTimeScrim())
+        GeometryReader { geometry in
+            let spacing = geometry.size.height - geometry.size.width
+            CodeRenderer(value: value)
+                .padding(14)
+                .background { Color.white }
+                .clipShape(RoundedRectangle(cornerRadius: 14))
+                .padding(6)
+                .frame(width: geometry.size.width, height: geometry.size.width)
+                .offset(y: spacing / 2)
+        }
+        .ignoresSafeArea()
     }
 
     private var ignoredEdges: Edge.Set {
