@@ -4,6 +4,7 @@
 import SwiftUI
 import UIKit
 
+#if os(iOS)
 public extension Color {
     static let barcodeViewHeader = Color.white
     static let cellBackground = Color.white
@@ -29,3 +30,4 @@ public extension Color {
                   opacity: 1.0)
     }
 }
+#endif

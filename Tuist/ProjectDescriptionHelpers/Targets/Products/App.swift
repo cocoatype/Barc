@@ -18,6 +18,7 @@ public enum App {
             .target(Root.target),
             .target(Share.target),
             .target(Shortcuts.target),
+            .target(Watch.target),
             .target(Widgets.target),
         ],
         settings: .settings(

@@ -3,13 +3,14 @@ import ProjectDescription
 extension Target {
     static func moduleTarget(
         name: String,
+        destinations: Destinations = [.iPhone, .appleWatch],
         hasResources: Bool = false,
         usesMaxSwiftVersion: Bool = true,
         dependencies: [TargetDependency] = []
     ) -> Target {
         Target.target(
             name: name,
-            destinations: [.iPhone],
+            destinations: destinations,
             product: .framework,
             bundleId: "com.cocoatype.Barc.\(name)",
             sources: ["Modules/\(name)/Sources/**"],
