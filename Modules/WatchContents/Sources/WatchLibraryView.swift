@@ -7,29 +7,23 @@ import Persistence
 import SwiftUI
 
 struct WatchLibraryView: View {
-    @Environment(\.guardLetNotIsScrollingDoesNotEqual) private var repository
-    @State private var codes = [Code]()
-
+    @Binding private var selection: Code?
+    private let codes: [Code]
     private let errorHandler: any ErrorHandler
-    init(errorHandler: any ErrorHandler = ErrorHandling.defaultHandler) {
+    init(codes: [Code], selection: Binding<Code?>, errorHandler: any ErrorHandler = ErrorHandling.defaultHandler) {
+        self.codes = codes
         self.errorHandler = errorHandler
+        _selection = selection
     }
 
     var body: some View {
-        List(codes) { code in
+        List(codes, selection: $selection) { code in
             WatchLibraryCell(code: code)
-        }
-        .onAppear {
-            do {
-                codes = try repository.codes
-            } catch {
-                errorHandler.log(error, module: "com.cocoatype.Barc.Library", type: "LibraryGrid")
-            }
+                .tag(code)
         }
     }
 }
 
 #Preview {
-    WatchLibraryView()
-        .environment(\.guardLetNotIsScrollingDoesNotEqual, PreviewBarcodeRepository())
+    WatchLibraryView(codes: PreviewBarcodeRepository().codes, selection: .constant(PreviewBarcodeRepository().codes[0]))
 }

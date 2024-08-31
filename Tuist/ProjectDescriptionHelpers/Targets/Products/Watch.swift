@@ -10,6 +10,9 @@ public enum Watch {
         sources: [
             "Products/Watch/Sources/**",
         ],
+        resources: .resources([
+            "Products/Watch/Resources/**",
+        ]),
         entitlements: "Products/Watch/Watch.entitlements",
         dependencies: [
            .target(WatchContents.target),

@@ -1,1 +1,11 @@
-"CodeMissingView.text" = "No code selected.";
+// Title displayed on Apple Watch when an error occurs
+"ErrorView.title" = "Unexpected Error";
+
+// Message displayed on Apple Watch when an error occurs
+"ErrorView.message" = "If this continues, please contact support.";
+
+// Title displayed on Apple Watch when the library is empty
+"LibraryEmptyView.title" = "No Barcodes";
+
+// Message displayed on Apple Watch when the library is empty
+"LibraryEmptyView.message" = "You can add barcodes on iPhone.";
