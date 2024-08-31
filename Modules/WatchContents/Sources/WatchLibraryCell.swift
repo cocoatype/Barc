@@ -15,8 +15,6 @@ struct WatchLibraryCell: View {
     }
 
     var body: some View {
-        NavigationLink(value: Route.barcodeDetails(code)) {
-            Text(code.name)
-        }
+        Text(code.name)
     }
 }
