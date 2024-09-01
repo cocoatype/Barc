@@ -22,5 +22,4 @@ class ShareViewController: UIHostingController<AnyView> {
             .environment(\.extensionContext, extensionContext)
         rootView = AnyView(newRoot)
     }
-    //self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
 }

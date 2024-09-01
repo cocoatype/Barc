@@ -5,6 +5,7 @@ public enum Scanner {
         name: "Scanner",
         hasResources: true,
         dependencies: [
+            .target(BarcodeEdit.target),
             .target(ErrorHandling.target),
             .target(ImageReader.target),
             .target(Persistence.target),

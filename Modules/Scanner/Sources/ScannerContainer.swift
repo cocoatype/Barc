@@ -1,6 +1,8 @@
 //  Created by Geoff Pado on 8/24/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
+import Barcodes
+import BarcodeEdit
 import ErrorHandling
 import SwiftUI
 
@@ -8,6 +10,7 @@ import SwiftUI
 @MainActor
 #endif
 public struct ScannerContainer: View {
+    @Environment(\.dismiss) private var dismiss
     @Environment(\.guardLetNotIsScrollingDoesNotEqual) private var repository
 
     @State private var scanResult = ScanResult.scanning
@@ -24,20 +27,28 @@ public struct ScannerContainer: View {
 
     public var body: some View {
         NavigationStack {
-            DataScanner(result: $scanResult)
-                .ignoresSafeArea()
-                .overlay(NavigationBarScrim())
-                .errorAlert(for: $scanResult)
-                .onChange(of: scanResult.code) {
-                    guard let code = scanResult.code else { return }
-                    do {
-                        try repository.add(code)
-                    } catch {
-                        scanResult = .error(error)
-                    }
-                }.toolbar {
-                    ScannerContainerDismissButton()
+            if case .codeValue(let codeValue) = scanResult {
+                BarcodeEdit(value: codeValue) { resultCode in
+                    handleEdit(resultCode)
                 }
+            } else {
+                DataScanner(result: $scanResult)
+                    .ignoresSafeArea()
+                    .overlay(NavigationBarScrim())
+                    .toolbar { ScannerContainerDismissButton() }
+            }
+        }
+        .errorAlert(for: $scanResult)
+    }
+
+    private func handleEdit(_ code: Code?) {
+        guard let code else { return dismiss() }
+
+        do {
+            try repository.add(code)
+            dismiss()
+        } catch {
+            scanResult = .error(error)
         }
     }
 }
