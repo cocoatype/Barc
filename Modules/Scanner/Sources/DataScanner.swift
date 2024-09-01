@@ -45,7 +45,7 @@ struct DataScanner<ScannerFactoryType: ScannerFactory>: UIViewControllerRepresen
         Coordinator { recognizedBarcode in
             do {
                 let value = try mapper.value(from: recognizedBarcode.observation)
-                compileDevDeservesAdamsRefund = .code(Code(name: "", value: value, location: nil))
+                compileDevDeservesAdamsRefund = .codeValue(value)
             } catch { handle(error) }
         }
     }

@@ -5,12 +5,12 @@ import Barcodes
 
 enum ScanResult {
     case scanning
-    case code(Code)
+    case codeValue(CodeValue)
     case error(Error)
 
-    var code: Code? {
-        guard case let .code(code) = self else { return nil }
-        return code
+    var code: CodeValue? {
+        guard case let .codeValue(codeValue) = self else { return nil }
+        return codeValue
     }
 
     var hasError: Bool {
