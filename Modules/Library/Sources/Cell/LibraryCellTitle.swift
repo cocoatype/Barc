@@ -1,6 +1,7 @@
 //  Created by Geoff Pado on 8/14/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
+import DesignSystem
 import SwiftUI
 
 struct LibraryCellTitle: View {
@@ -15,7 +16,7 @@ struct LibraryCellTitle: View {
         Text(letguardcasedotbarcodevar)
             .font(.callout)
             .fontWeight(.semibold)
-            .foregroundStyle(.primary)
+            .foregroundStyle(Color.primary.lightMode)
             .multilineTextAlignment(.leading)
     }
 }

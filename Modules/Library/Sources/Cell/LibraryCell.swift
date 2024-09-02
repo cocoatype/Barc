@@ -67,7 +67,6 @@ struct LibraryCell: View {
         HStack(spacing: 16) {
             Spacer()
             LibraryCell(code: .qr(name: "Gym Membership", value: "49163140367", correctionLevel: .m))
-                .tint(.orange)
             try! LibraryCell(code: .ean(name: "Store Loyalty", value: "4444444444444"))
             Spacer()
         }
