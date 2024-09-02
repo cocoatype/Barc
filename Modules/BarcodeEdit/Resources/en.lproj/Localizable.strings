@@ -7,6 +7,9 @@
 // The title for the done button when editing barcode details
 "DoneButton.title" = "Done";
 
+// The label for the date picker
+"BarcodeDatePicker.label" = "Date";
+
 // The placeholder label for the name field when editing barcode details
 "BarcodeEdit.nameFieldPlaceholder" = "Name";
 

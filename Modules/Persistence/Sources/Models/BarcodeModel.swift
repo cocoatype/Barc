@@ -2,6 +2,7 @@
 //  Copyright © 2023 Cocoatype, LLC. All rights reserved.
 
 import Barcodes
+import Foundation
 import SwiftData
 
 @Model
@@ -9,14 +10,17 @@ final class BarcodeModel {
     var name: String?
     var type: BarcodeModelType?
     var location: BarcodeLocation?
+    var date: Date?
 
     init(
         name: String,
         type: BarcodeModelType,
-        location: BarcodeLocation?
+        location: BarcodeLocation?,
+        date: Date?
     ) {
         self.name = name
         self.type = type
         self.location = location
+        self.date = date
     }
 }

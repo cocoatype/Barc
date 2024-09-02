@@ -41,6 +41,7 @@ class BarcodeEntityTests: XCTestCase {
             value: "https://cocoatype.com",
             correctionLevel: .m
         ),
-        location: nil
+        location: nil,
+        date: nil
     )
 }

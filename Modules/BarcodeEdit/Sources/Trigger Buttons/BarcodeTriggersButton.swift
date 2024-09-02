@@ -19,12 +19,12 @@ struct BarcodeTriggersButton: View {
             isEditorShowing = true
         } label: {
             HStack {
-                HStack(alignment: .firstTextBaseline) {
-                    BarcodeTriggersButtonPrimaryText(title)
-                    Spacer()
-                    BarcodeTriggersButtonSecondaryText(subtitle)
+                Toggle(isOn: $isEditorShowing) {
+                    VStack(alignment: .leading) {
+                        BarcodeTriggersButtonPrimaryText(title)
+                        BarcodeTriggersButtonSecondaryText(subtitle)
+                    }
                 }
-                BarcodeTriggersButtonChevron()
             }
         }
     }

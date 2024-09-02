@@ -7,24 +7,28 @@ public struct Code: Hashable, Identifiable, Sendable {
     public var name: String
     public let value: CodeValue
     public var location: Location?
+    public var date: Date?
 
     public var id: String { value.id }
 
     public init(
         name: String,
         value: CodeValue,
-        location: Location?
+        location: Location?,
+        date: Date?
     ) {
         self.name = name
         self.value = value
         self.location = location
+        self.date = date
     }
 
     public static func qr(name: String, value: String, correctionLevel: QRCodeValue.CorrectionLevel) -> Code {
         Code(
             name: name,
             value: .qr(value: value, correctionLevel: correctionLevel),
-            location: nil
+            location: nil,
+            date: nil
         )
     }
 
@@ -32,7 +36,8 @@ public struct Code: Hashable, Identifiable, Sendable {
         return try Code(
             name: name,
             value: .ean(value: value),
-            location: nil
+            location: nil,
+            date: nil
         )
     }
 }

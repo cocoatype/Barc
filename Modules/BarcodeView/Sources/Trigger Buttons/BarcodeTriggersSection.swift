@@ -5,8 +5,10 @@ struct BarcodeTriggersSection: View {
     private typealias Strings = BarcodeViewStrings.BarcodeTriggersSection
 
     private let selectedLocation: Location?
-    init(selectedLocation: Location?) {
+    private let selectedDate: Date?
+    init(selectedLocation: Location?, selectedDate: Date?) {
         self.selectedLocation = selectedLocation
+        self.selectedDate = selectedDate
     }
 
     var body: some View {
@@ -17,7 +19,7 @@ struct BarcodeTriggersSection: View {
             )
             BarcodeTriggersItem(
                 title: Strings.dateButtonTitle,
-                subtitle: Strings.notSetSubtitle
+                subtitle: formattedDate
             )
         }
     }
@@ -29,8 +31,18 @@ struct BarcodeTriggersSection: View {
             return Strings.notSetSubtitle
         }
     }
+
+    private var formattedDate: String {
+        if let selectedDate {
+            return selectedDate.formatted(
+                .dateTime.day(.defaultDigits).month(.defaultDigits).year(.twoDigits).hour().minute()
+            )
+        } else {
+            return Strings.notSetSubtitle
+        }
+    }
 }
 
 #Preview {
-    BarcodeTriggersSection(selectedLocation: nil)
+    BarcodeTriggersSection(selectedLocation: nil, selectedDate: Date())
 }

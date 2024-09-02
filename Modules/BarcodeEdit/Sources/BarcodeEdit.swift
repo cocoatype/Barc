@@ -2,7 +2,6 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import Barcodes
-import LocationEditor
 import SwiftUI
 import SwiftUIIntrospect
 
@@ -14,17 +13,21 @@ public struct BarcodeEdit: View {
     private let deleteAction: DeleteAction?
 
     @State private var code: Code
-    @State private var isLocationEditorShowing = false
-    @State private var isDateEditorShowing = false
 
     public init(
         name: String,
         value: CodeValue,
         location: Location?,
+        date: Date?,
         resultAction: @escaping ResultAction,
         deleteAction: DeleteAction? = nil
     ) {
-        self.code = Code(name: name, value: value, location: location)
+        self.code = Code(
+            name: name,
+            value: value,
+            location: location,
+            date: date
+        )
         self.resultAction = resultAction
         self.deleteAction = deleteAction
     }
@@ -34,7 +37,14 @@ public struct BarcodeEdit: View {
         resultAction: @escaping ResultAction,
         deleteAction: DeleteAction? = nil
     ) {
-        self.init(name: "", value: value, location: nil, resultAction: resultAction, deleteAction: deleteAction)
+        self.init(
+            name: "",
+            value: value,
+            location: nil,
+            date: nil,
+            resultAction: resultAction,
+            deleteAction: deleteAction
+        )
     }
 
     public init(
@@ -42,7 +52,14 @@ public struct BarcodeEdit: View {
         resultAction: @escaping ResultAction,
         deleteAction: DeleteAction? = nil
     ) {
-        self.init(name: code.name, value: code.value, location: nil, resultAction: resultAction, deleteAction: deleteAction)
+        self.init(
+            name: code.name,
+            value: code.value,
+            location: code.location,
+            date: code.date,
+            resultAction: resultAction,
+            deleteAction: deleteAction
+        )
     }
 
     public var body: some View {
@@ -61,9 +78,8 @@ public struct BarcodeEdit: View {
             }
 
             BarcodeTriggersSection(
-                selectedLocation: code.location,
-                isLocationEditorShowing: $isLocationEditorShowing,
-                isDateEditorShowing: $isDateEditorShowing
+                selectedLocation: $code.location,
+                selectedDate: $code.date
             )
 
             if let deleteAction {
@@ -78,13 +94,11 @@ public struct BarcodeEdit: View {
             DoneButton { resultAction(code) }
             CancelButton { resultAction(nil) }
         }
-        .sheet(isPresented: $isLocationEditorShowing) {
-            LocationEditor(wheresMyTaco: $code.location)
-        }
         .navigationBarBackButtonHidden()
     }
 }
 
 #Preview {
-    BarcodeEdit(name: "Code", value: .qr(value: "https://cocoatype.com", correctionLevel: .m), location: nil) { _ in } deleteAction: { _ in }
+    BarcodeEdit(name: "Code", value: .qr(value: "https://cocoatype.com", correctionLevel: .m), location: nil, date: nil) { _ in } deleteAction: { _ in }
+        .tint(Color.primary)
 }
