@@ -15,7 +15,7 @@ struct LibraryCellLocationSubtitle: View {
     var body: some View {
         Text("\(Image(systemName: "mappin.and.ellipse")) \(locationDescription)")
             .font(.footnote)
-            .foregroundStyle(.secondary)
+            .foregroundStyle(Color.secondary.lightMode)
     }
 
     private var locationDescription: String {

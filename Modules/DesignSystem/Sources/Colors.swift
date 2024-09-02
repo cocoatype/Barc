@@ -5,11 +5,12 @@ import SwiftUI
 import UIKit
 
 public extension Color {
-    static let barcodeViewHeader = Color.white
-    static let cellBackground = Color.white
-    static let cellBorder = Color(hexLiteral: 0xE8E9E9)
-    static let separator = Color(hexLiteral: 0xf6f6f6)
+    static let barcodeViewHeader = DesignSystemAsset.barcodeViewHeader.swiftUIColor
+    static let cellBackground = DesignSystemAsset.cellBackground.swiftUIColor
+    static let cellBorder = DesignSystemAsset.cellBorder.swiftUIColor
+    static let cellShadow = DesignSystemAsset.cellShadow.swiftUIColor
 #if os(iOS)
+    static let separator = Color(uiColor: .separator)
     static let systemGroupedBackground = Color(uiColor: .systemGroupedBackground)
     static let systemLabelPrimary = Color(uiColor: .label)
     static let systemLabelSecondary = Color(uiColor: .secondaryLabel)
@@ -17,6 +18,10 @@ public extension Color {
     static let systemTertiaryLabel = Color(uiColor: .tertiaryLabel)
     static let systemTertiarySystemFill = Color(uiColor: .tertiarySystemFill)
 #endif
+
+    // MARK: - Light Mode
+
+    var lightMode: Color { Color(resolve(in: .lightMode)) }
 
     // MARK: - Hex
 

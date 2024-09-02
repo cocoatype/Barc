@@ -48,7 +48,7 @@ public struct RootView: View {
                     routeMapper.view(for: $0)
                 }
         }
-        .tint(.orange)
+        .tint(.primary)
     }
 
     public func navigate(to route: Route) {
