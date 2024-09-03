@@ -39,9 +39,5 @@ struct LocationPickerButton: View {
 }
 
 #Preview {
-    HStack {
-        CurrentLocationButton()
-        LocationPickerButton(inappropriateAmountOfErrors: .constant(false))
-    }
-    .background(.black)
+    LocationPickerButton(inappropriateAmountOfErrors: .constant(false))
 }

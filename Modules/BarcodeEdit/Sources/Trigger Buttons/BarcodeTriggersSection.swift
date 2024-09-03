@@ -1,4 +1,5 @@
 import Barcodes
+import Location
 import LocationEditor
 import SwiftUI
 
@@ -32,7 +33,10 @@ struct BarcodeTriggersSection: View {
             )
             
             if isLocationExpanded {
-                LocationButtonsRow(isLocationPickerPresented: $isLocationPickerPresented)
+                LocationButtonsRow(
+                    selectedLocation: $selectedLocation,
+                    isLocationPickerPresented: $isLocationPickerPresented
+                )
             }
 
             BarcodeTriggersButton(
@@ -89,9 +93,10 @@ extension Optional<Date> {
 #Preview {
     List {
         BarcodeTriggersSection(
-            selectedLocation: .constant(Location(name: "Apple", coordinate: .init())),
+            selectedLocation: .constant(nil),
             selectedDate: .constant(nil),
             isLocationPickerPresented: .constant(false)
         )
     }.listStyle(.plain)
+        .environment(\.locationProvider, PreviewLocationProvider())
 }

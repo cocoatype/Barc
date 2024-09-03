@@ -9,6 +9,7 @@ public enum BarcodeEdit {
             .target(Barcodes.target),
             .target(BarcodeGenerator.target),
             .target(DesignSystem.target),
+            .target(Location.target),
             .target(LocationEditor.target),
             .target(Navigation.target),
             .external(name: "SwiftUIIntrospect-Dynamic"),
