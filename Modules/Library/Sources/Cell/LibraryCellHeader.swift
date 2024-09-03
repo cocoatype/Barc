@@ -17,6 +17,9 @@ struct LibraryCellHeader: View {
                 if let location = code.location {
                     LibraryCellLocationSubtitle(location)
                 }
+                if let date = code.date {
+                    LibraryCellDateSubtitle(date)
+                }
             }
             Spacer()
         }
@@ -31,7 +34,8 @@ struct LibraryCellHeader: View {
                 value: "https://cocoatype.com",
                 correctionLevel: .m
             ),
-            location: Location(name: "The Internet", coordinate: .init())
+            location: Location(name: "The Internet", coordinate: .init()),
+            date: nil
         )
     )
 }

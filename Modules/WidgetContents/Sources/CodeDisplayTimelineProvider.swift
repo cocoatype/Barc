@@ -7,13 +7,14 @@ import WidgetKit
 
 struct CodeDisplayTimelineProvider: AppIntentTimelineProvider {
     typealias Intent = CodeDisplayConfigurationIntent
-    private static let sampleCode = Code(name: "Cocoatype", value: CodeDisplayTimelineEntry.qrCodeValue, location: nil)
+    private static let sampleCode = Code(name: "Cocoatype", value: CodeDisplayTimelineEntry.qrCodeValue, location: nil, date: nil)
 
     func placeholder(in context: Context) -> CodeDisplayTimelineEntry {
         let placeholderCode = Code(
             name: "Cocoatype",
             value: .qr(value: "https://cocoatype.com", correctionLevel: .m),
-            location: nil
+            location: nil,
+            date: nil
         )
         return CodeDisplayTimelineEntry(code: placeholderCode)
     }

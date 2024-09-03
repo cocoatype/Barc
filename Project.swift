@@ -21,6 +21,7 @@ let project = Project(
         ErrorHandling.target,
         ImageReader.target,
         Library.target,
+        Location.target,
         LocationEditor.target,
         Logging.target,
         ManualEntry.target,

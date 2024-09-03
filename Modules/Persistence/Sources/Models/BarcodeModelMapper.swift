@@ -15,7 +15,8 @@ struct BarcodeModelMapper {
         return BarcodeModel(
             name: code.name,
             type: type,
-            location: code.location.map(locationMapper.barcodeLocation(from:))
+            location: code.location.map(locationMapper.barcodeLocation(from:)),
+            date: code.date
         )
     }
 
@@ -34,7 +35,8 @@ struct BarcodeModelMapper {
         return Code(
             name: name,
             value: value,
-            location: model.location.map(locationMapper.location(from:))
+            location: model.location.map(locationMapper.location(from:)),
+            date: model.date
         )
     }
 
@@ -45,6 +47,7 @@ struct BarcodeModelMapper {
         model.name = newModel.name
         model.type = newModel.type
         model.location = newModel.location
+        model.date = newModel.date
     }
 
     // MARK: Sub-mappers

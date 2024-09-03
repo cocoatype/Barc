@@ -35,7 +35,8 @@ public struct CodeDisplayWidget: Widget {
         code: Code(
             name: "Website",
             value: CodeDisplayTimelineEntry.qrCodeValue,
-            location: nil
+            location: nil,
+            date: nil
         )
     ),
     widget: {
