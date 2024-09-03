@@ -7,17 +7,20 @@ struct BarcodeTriggersSection: View {
 
     @Binding private var selectedLocation: Location?
     @Binding private var selectedDate: Date?
-    @State private var isLocationEditorShowing: Bool
-    @State private var isDateEditorShowing: Bool
+    @Binding private var isLocationPickerPresented: Bool
+    @State private var isLocationExpanded: Bool
+    @State private var isDateExpanded: Bool
 
     init(
         selectedLocation: Binding<Location?>,
-        selectedDate: Binding<Date?>
+        selectedDate: Binding<Date?>,
+        isLocationPickerPresented: Binding<Bool>
     ) {
         _selectedLocation = selectedLocation
         _selectedDate = selectedDate
-        _isLocationEditorShowing = State(initialValue: selectedLocation.wrappedValue != nil)
-        _isDateEditorShowing = State(initialValue: selectedDate.wrappedValue != nil)
+        _isLocationPickerPresented = isLocationPickerPresented
+        _isLocationExpanded = State(initialValue: selectedLocation.wrappedValue != nil)
+        _isDateExpanded = State(initialValue: selectedDate.wrappedValue != nil)
     }
 
     var body: some View {
@@ -25,23 +28,28 @@ struct BarcodeTriggersSection: View {
             BarcodeTriggersButton(
                 title: Strings.locationButtonTitle,
                 subtitle: formattedAddress,
-                isEditorShowing: $isLocationEditorShowing
+                isEditorShowing: $isLocationExpanded
             )
+            
+            if isLocationExpanded {
+                LocationButtonsRow(isLocationPickerPresented: $isLocationPickerPresented)
+            }
+
             BarcodeTriggersButton(
                 title: Strings.dateButtonTitle,
                 subtitle: formattedDate,
-                isEditorShowing: $isDateEditorShowing
+                isEditorShowing: $isDateExpanded
             )
 
-            if isDateEditorShowing {
+            if isDateExpanded {
                 BarcodeDatePicker(date: $selectedDate.orNow)
             }
         }
-        .sheet(isPresented: $isLocationEditorShowing) {
-            LocationEditor(wheresMyTaco: $selectedLocation)
+        .onChange(of: isDateExpanded) {
+            selectedDate = isDateExpanded ? Date() : nil
         }
-        .onChange(of: isDateEditorShowing) {
-            selectedDate = isDateEditorShowing ? Date() : nil
+        .onChange(of: isLocationExpanded) {
+            if isLocationExpanded == false { selectedLocation = nil }
         }
     }
 
@@ -79,8 +87,11 @@ extension Optional<Date> {
 }
 
 #Preview {
-    BarcodeTriggersSection(
-        selectedLocation: .constant(nil),
-        selectedDate: .constant(nil)
-    )
+    List {
+        BarcodeTriggersSection(
+            selectedLocation: .constant(Location(name: "Apple", coordinate: .init())),
+            selectedDate: .constant(nil),
+            isLocationPickerPresented: .constant(false)
+        )
+    }.listStyle(.plain)
 }

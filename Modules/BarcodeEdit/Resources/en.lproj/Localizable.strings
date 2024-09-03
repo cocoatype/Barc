@@ -21,3 +21,6 @@
 
 // The text to display when a given trigger is not set
 "BarcodeTriggersSection.notSetSubtitle" = "None";
+
+// The title for the button to select a specific location
+"LocationPickerButton.title" = "Pick Location…";

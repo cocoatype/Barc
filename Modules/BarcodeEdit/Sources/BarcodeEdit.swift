@@ -2,6 +2,7 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import Barcodes
+import LocationEditor
 import SwiftUI
 import SwiftUIIntrospect
 
@@ -13,12 +14,13 @@ public struct BarcodeEdit: View {
     private let deleteAction: DeleteAction?
 
     @State private var code: Code
+    @State private var isLocationPickerPresented = false
 
     public init(
-        name: String,
+        name: String = "",
         value: CodeValue,
-        location: Location?,
-        date: Date?,
+        location: Location? = nil,
+        date: Date? = nil,
         resultAction: @escaping ResultAction,
         deleteAction: DeleteAction? = nil
     ) {
@@ -30,21 +32,6 @@ public struct BarcodeEdit: View {
         )
         self.resultAction = resultAction
         self.deleteAction = deleteAction
-    }
-
-    public init(
-        value: CodeValue,
-        resultAction: @escaping ResultAction,
-        deleteAction: DeleteAction? = nil
-    ) {
-        self.init(
-            name: "",
-            value: value,
-            location: nil,
-            date: nil,
-            resultAction: resultAction,
-            deleteAction: deleteAction
-        )
     }
 
     public init(
@@ -79,7 +66,8 @@ public struct BarcodeEdit: View {
 
             BarcodeTriggersSection(
                 selectedLocation: $code.location,
-                selectedDate: $code.date
+                selectedDate: $code.date,
+                isLocationPickerPresented: $isLocationPickerPresented
             )
 
             if let deleteAction {
@@ -90,6 +78,9 @@ public struct BarcodeEdit: View {
         .scrollContentBackground(.hidden)
         .background(BarcodeEditBackground())
         .navigationBarTitleDisplayMode(.inline)
+        .sheet(isPresented: $isLocationPickerPresented) {
+            LocationEditor(wheresMyTaco: $code.location)
+        }
         .toolbar {
             DoneButton { resultAction(code) }
             CancelButton { resultAction(nil) }
