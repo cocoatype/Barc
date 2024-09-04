@@ -8,6 +8,7 @@ public enum Root {
             .target(Library.target),
             .target(ManualEntry.target),
             .target(Navigation.target),
+            .target(Onboarding.target),
             .target(Scanner.target),
         ]
     )

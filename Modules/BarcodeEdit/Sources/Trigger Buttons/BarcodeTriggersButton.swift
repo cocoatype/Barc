@@ -1,6 +1,7 @@
 //  Created by Geoff Pado on 8/15/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
+import DesignSystem
 import Navigation
 import SwiftUI
 
@@ -24,7 +25,7 @@ struct BarcodeTriggersButton: View {
                         BarcodeTriggersButtonPrimaryText(title)
                         BarcodeTriggersButtonSecondaryText(subtitle)
                     }
-                }
+                }.tint(.toggle)
             }
         }
     }
