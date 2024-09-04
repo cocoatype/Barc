@@ -10,6 +10,13 @@ public extension Color {
     static let cellBorder = DesignSystemAsset.cellBorder.swiftUIColor
     static let cellShadow = DesignSystemAsset.cellShadow.swiftUIColor
     static let toggle = DesignSystemAsset.toggle.swiftUIColor
+
+    // Onboarding
+    static let primaryButtonBackground = DesignSystemAsset.primaryButtonBackground.swiftUIColor
+    static let primaryButtonLabel = DesignSystemAsset.primaryButtonLabel.swiftUIColor
+    static let secondaryButtonBackground = DesignSystemAsset.secondaryButtonBackground.swiftUIColor
+    static let secondaryButtonLabel = DesignSystemAsset.secondaryButtonLabel.swiftUIColor
+
 #if os(iOS)
     static let separator = Color(uiColor: .separator)
     static let systemGroupedBackground = Color(uiColor: .systemGroupedBackground)

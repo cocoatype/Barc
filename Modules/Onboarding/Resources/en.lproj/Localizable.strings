@@ -1,0 +1,17 @@
+// Headline for the intro page
+"IntroPage.headline" = "Welcome to Barc.";
+
+// Body for the intro page
+"IntroPage.body" = "Thanks for downloading Barc!
+
+To help you get started using Barc to store your important barcodes, I’ve put together a short tour. If you’ve used Barc before, or would rather just get started, feel free to skip it and jump right into saving.
+
+Either way, I hope you have a great time using Barc! If you have any questions or concerns, you can contact me from the settings menu at any time.
+
+—Geoff, Barc Developer";
+
+// Title for the button on the intro page that skips onboarding.
+"IntroPage.skipButtonTitle" = "Skip Tour";
+
+// Title for the button on the intro page that starts onboarding.
+"IntroPage.startButtonTitle" = "Get Started";

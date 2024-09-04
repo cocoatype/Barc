@@ -26,6 +26,7 @@ let project = Project(
         Logging.target,
         ManualEntry.target,
         Navigation.target,
+        Onboarding.target,
         Persistence.target,
         Root.target,
         Scanner.target,
