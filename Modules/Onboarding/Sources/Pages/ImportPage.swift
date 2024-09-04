@@ -7,7 +7,8 @@ struct ImportPage: View {
     @Environment(\.advance) private var advance
     var body: some View {
         StandardPage(
-            image: OnboardingAsset.importOnboarding.swiftUIImage,
+            imageLight: OnboardingAsset.importOnboarding.swiftUIImage,
+            imageDark: OnboardingAsset.importOnboardingDark.swiftUIImage,
             headline: OnboardingStrings.ImportPage.headline,
             message: OnboardingStrings.ImportPage.body,
             pageIndex: 2

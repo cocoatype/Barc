@@ -5,31 +5,38 @@ import SwiftUI
 
 struct StandardPage: View {
     @Environment(\.advance) private var advance
+    @Environment(\.colorScheme) private var colorScheme
 
-    private let image: Image
+    private let imageLight: Image
+    private let imageDark: Image
     private let headline: String
     private let message: StringRepresentation
     private let pageIndex: Int
-    init(image: Image, headline: String, message: StringRepresentation, pageIndex: Int) {
-        self.image = image
+    init(imageLight: Image, imageDark: Image, headline: String, message: StringRepresentation, pageIndex: Int) {
+        self.imageLight = imageLight
+        self.imageDark = imageDark
         self.headline = headline
         self.message = message
         self.pageIndex = pageIndex
     }
 
-    init(image: Image, headline: String, message: String, pageIndex: Int) {
-        self.init(image: image, headline: headline, message: .string(message), pageIndex: pageIndex)
+    init(imageLight: Image, imageDark: Image, headline: String, message: String, pageIndex: Int) {
+        self.init(imageLight: imageLight, imageDark: imageDark, headline: headline, message: .string(message), pageIndex: pageIndex)
     }
 
-    init(image: Image, headline: String, message: LocalizedStringKey, pageIndex: Int) {
-        self.init(image: image, headline: headline, message: .key(message), pageIndex: pageIndex)
+    init(imageLight: Image, imageDark: Image, headline: String, message: LocalizedStringKey, pageIndex: Int) {
+        self.init(imageLight: imageLight, imageDark: imageDark, headline: headline, message: .key(message), pageIndex: pageIndex)
     }
 
     var body: some View {
         VStack {
             ScrollIfNecessary {
                 VStack {
-                    image
+                    switch colorScheme {
+                    case .dark: imageDark
+                    case .light: imageLight
+                    @unknown default: imageLight
+                    }
                     TextStack(
                         headline: headline,
                         message: message

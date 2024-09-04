@@ -7,7 +7,8 @@ struct TagPage: View {
     @Environment(\.advance) private var advance
     var body: some View {
         StandardPage(
-            image: OnboardingAsset.tagOnboarding.swiftUIImage,
+            imageLight: OnboardingAsset.tagOnboarding.swiftUIImage,
+            imageDark: OnboardingAsset.tagOnboardingDark.swiftUIImage,
             headline: OnboardingStrings.TagPage.headline,
             message: OnboardingStrings.TagPage.body,
             pageIndex: 1
