@@ -5,18 +5,29 @@ import SwiftUI
 
 struct TextStack: View {
     private let headline: String
-    private let message: String
-    init(headline: String, message: String) {
+    private let message: StringRepresentation
+    init(headline: String, message: StringRepresentation) {
         self.headline = headline
         self.message = message
     }
 
+    init(headline: String, message: LocalizedStringKey) {
+        self.init(headline: headline, message: .key(message))
+    }
+
+    init(headline: String, message: String) {
+        self.init(headline: headline, message: .string(message))
+    }
+
     private static let spacing = 32.0
     var body: some View {
-        VStack(alignment: .leading, spacing: Self.spacing) {
-            HeadlineText(headline)
-            MessageText(message)
-        }.padding(Self.spacing)
+        HStack {
+            VStack(alignment: .leading, spacing: Self.spacing) {
+                HeadlineText(headline)
+                MessageText(message)
+            }.padding(Self.spacing)
+            Spacer()
+        }
     }
 }
 

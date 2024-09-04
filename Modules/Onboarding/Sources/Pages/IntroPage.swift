@@ -4,6 +4,9 @@
 import SwiftUI
 
 struct IntroPage: View {
+    @Environment(\.dismiss) private var dismiss
+    @Environment(\.advance) private var advance
+
     var body: some View {
         VStack {
             Spacer()
@@ -13,10 +16,11 @@ struct IntroPage: View {
             )
             Spacer()
             HStack(spacing: 16) {
-                SecondaryButton(title: Strings.skipButtonTitle) {}
-                PrimaryButton(title: Strings.startButtonTitle) {}
+                SecondaryButton(title: Strings.skipButtonTitle) { dismiss() }
+                PrimaryButton(title: Strings.startButtonTitle) { advance() }
             }
             .padding(.horizontal, 32)
+            .padding(.bottom, 16)
         }
     }
 

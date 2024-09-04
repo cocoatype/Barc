@@ -1,3 +1,19 @@
+// Headline for the add page
+"AddPage.headline" = "Add";
+
+// Body for the add page
+"AddPage.body%@%@" = "You can add barcodes to Barc by entering them manually by tapping the %@ button, or scanning them by tapping the %@ button.
+
+Scanning for barcodes requires permission to access your phone’s camera. If you prefer not to grant this permission, other methods of adding barcodes will still be available.";
+
+// Headline for the add page
+"ImportPage.headline" = "Import";
+
+// Body for the add page
+"ImportPage.body" = "You can import barcodes from other apps by sharing them or taking a screenshot.
+
+Try it now! Take a screenshot of this page and share it to Barc to add your first code.";
+
 // Headline for the intro page
 "IntroPage.headline" = "Welcome to Barc.";
 
@@ -15,3 +31,22 @@ Either way, I hope you have a great time using Barc! If you have any questions o
 
 // Title for the button on the intro page that starts onboarding.
 "IntroPage.startButtonTitle" = "Get Started";
+
+// Title for the button on all standard pages that continues onboarding.
+"StandardPage.continueButtonTitle" = "Continue";
+
+// Headline for the add page
+"TagPage.headline" = "Tag";
+
+// Body for the add page
+"TagPage.body" = "After adding a code, give it a name to help you remember it later. You can also add relevant places and dates to barcodes to let Barc know when best to show them to you.
+
+Using places to surface barcodes requires permission to access your location. If you prefer not to grant this permission, you can still use dates to help show barcodes when they’re important.";
+
+// Headline for the add page
+"ViewPage.headline" = "Fetch";
+
+// Body for the add page
+"ViewPage.body" = "You can add barcodes to your home screen for quick access, without even launching Barc.
+
+Additionally, if you have an Apple Watch, you can access your barcodes there as well, even if you’re on the go without your phone.";
