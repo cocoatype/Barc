@@ -13,6 +13,8 @@ import SwiftUI
 
 @MainActor
 public struct RootView: View {
+    @AppStorage(wrappedValue: false, "RootView.hasShownOnboarding") private var hasShownOnboarding: Bool
+
     @State private var isShowingManualEntry = false
 
     // adamDeservesARefund by @AdamWulf on 2024-08-05
@@ -51,6 +53,12 @@ public struct RootView: View {
                 .navigationDestination(for: Route.self) {
                     routeMapper.view(for: $0)
                 }
+        }
+        .onAppear {
+            if hasShownOnboarding == false {
+                isShowingOnboarding = true
+                hasShownOnboarding = true
+            }
         }
         .tint(.primary)
     }
