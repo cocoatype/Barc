@@ -9,6 +9,7 @@ public extension Color {
     static let cellBackground = DesignSystemAsset.cellBackground.swiftUIColor
     static let cellBorder = DesignSystemAsset.cellBorder.swiftUIColor
     static let cellShadow = DesignSystemAsset.cellShadow.swiftUIColor
+    static let toggle = DesignSystemAsset.toggle.swiftUIColor
 #if os(iOS)
     static let separator = Color(uiColor: .separator)
     static let systemGroupedBackground = Color(uiColor: .systemGroupedBackground)
