@@ -32,11 +32,13 @@ struct StandardPage: View {
         VStack {
             ScrollIfNecessary {
                 VStack {
-                    switch colorScheme {
-                    case .dark: imageDark
-                    case .light: imageLight
-                    @unknown default: imageLight
-                    }
+                    Group {
+                        switch colorScheme {
+                        case .dark: imageDark
+                        case .light: imageLight
+                        @unknown default: imageLight
+                        }
+                    }.padding(.top, 16)
                     TextStack(
                         headline: headline,
                         message: message
