@@ -6,19 +6,20 @@ import SwiftUI
 public struct ManualEntry: View {
     public init() {}
 
-    @Environment(\.dismiss) private var dismiss
+    @State private var partialCode = PartialCode()
     public var body: some View {
         NavigationStack {
-            ManualEntryForm()
+            ManualEntryForm(partialCode: $partialCode)
                 .toolbar {
-                    ToolbarItem {
-                        Button {
-                            dismiss()
-                        } label: {
-                            Image(systemName: "xmark")
-                        }
+                    ToolbarItem(placement: .cancellationAction) {
+                        CancelButton()
+                    }
+                    ToolbarItem(placement: .confirmationAction) {
+                        SaveButton(partialCode: partialCode)
                     }
                 }
+                .navigationTitle(ManualEntryStrings.ManualEntry.navigationTitle)
+                .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

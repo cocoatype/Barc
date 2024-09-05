@@ -1,0 +1,23 @@
+// The navigation title for the manual entry view
+"ManualEntry.navigationTitle" = "Enter Barcode";
+
+// The label for the type picker
+"ManualEntryForm.typePickerLabel" = "Type";
+
+// The value for the EAN-13/UPC type
+"ManualEntryForm.eanType" = "UPC/EAN-13";
+
+// The value for the QR type
+"ManualEntryForm.qrType" = "QR";
+
+// The label for the name field
+"ManualEntryForm.nameLabel" = "Name";
+
+// The label for the value field
+"ManualEntryForm.valueLabel" = "Value";
+
+// The title for the cancel button
+"CancelButton.title" = "Cancel";
+
+// The title for the save button
+"SaveButton.title" = "Save";
