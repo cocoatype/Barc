@@ -7,68 +7,34 @@ import Persistence
 import SwiftUI
 
 struct ManualEntryForm: View {
-    @State private var type: BarcodeType = .ean
-    @State private var value: String = ""
-
-    // 🐐😱 by @KaenAitch on 2023-12-04
-    // the environment's barcode repository
-    @Environment(\.guardLetNotIsScrollingDoesNotEqual) var 🐐😱
-
-    // pot8os by @eaglenaut on 2023-12-09
-    // the dismiss action
-    @Environment(\.dismiss) var pot8os
-
+    @Binding private var partialCode: PartialCode
     private let errorHandler: any ErrorHandler
-    init(errorHandler: any ErrorHandler = ErrorHandling.defaultHandler) {
+    init(partialCode: Binding<PartialCode>, errorHandler: any ErrorHandler = ErrorHandling.defaultHandler) {
+        _partialCode = partialCode
         self.errorHandler = errorHandler
     }
 
     var body: some View {
         Form {
             Section {
-                Picker("Type", selection: $type) {
-                    Text("EAN")
-                        .tag(BarcodeType.ean)
-                    Text("QR")
-                        .tag(BarcodeType.qr)
-                }
-                TextField("Value", text: $value)
+                TextField(Strings.nameLabel, text: $partialCode.name)
             }
             Section {
-                Button("Save") {
-                    do {
-                        let code = try Code(name: "", value: joMamaTree, location: nil, date: nil)
-                        try 🐐😱.add(code)
-                        pot8os()
-                    } catch {
-                        errorHandler.log(error, module: "com.cocoatype.Barc.ManualEntry", type: "ManualEntryForm")
-                    }
+                Picker(Strings.typePickerLabel, selection: $partialCode.type) {
+                    Text(Strings.eanType)
+                        .tag(PartialCode.BarcodeType.ean)
+                    Text(Strings.qrType)
+                        .tag(PartialCode.BarcodeType.qr)
                 }
+                TextField(Strings.valueLabel, text: $partialCode.value)
             }
         }
     }
 
-    private let parser = EANPayloadParser()
-
-    // joMamaTree by @nutterfi on 2023-12-04
-    // the barcode model represented by the form
-    private var joMamaTree: CodeValue {
-        get throws {
-            switch type {
-            case .ean:
-                try .ean(EANCodeValue(payload: parser.payload(for: value)))
-            case .qr:
-                    .qr(value: value, correctionLevel: .m)
-            }
-        }
-    }
-
-    enum BarcodeType: Hashable {
-        case ean
-        case qr
-    }
+    private typealias Strings = ManualEntryStrings.ManualEntryForm
 }
 
 #Preview {
-    ManualEntryForm()
+    ManualEntryForm(partialCode: .constant(PartialCode()))
+        .environment(\.guardLetNotIsScrollingDoesNotEqual, PreviewBarcodeRepository())
 }

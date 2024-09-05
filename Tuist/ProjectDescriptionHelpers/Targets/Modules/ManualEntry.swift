@@ -3,6 +3,7 @@ import ProjectDescription
 public enum ManualEntry {
     public static let target = Target.moduleTarget(
         name: "ManualEntry",
+        hasResources: true,
         dependencies: [
             .target(Barcodes.target),
             .target(ErrorHandling.target),
