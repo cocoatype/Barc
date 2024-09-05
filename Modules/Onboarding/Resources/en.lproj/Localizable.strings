@@ -10,9 +10,9 @@ Scanning for barcodes requires permission to access your phone’s camera. If yo
 "ImportPage.headline" = "Import";
 
 // Body for the add page
-"ImportPage.body" = "You can import barcodes from other apps by sharing them or taking a screenshot.
+"ImportPage.body%@" = "You can import barcodes from other apps by sharing them or taking a screenshot.
 
-Try it now! Take a screenshot of this page and share it to Barc to add your first code.";
+Try it now! Take a screenshot of this page. Next, tap the screenshot preview in the lower-left. On the page that appears, tap the %@ button. Then, find Barc in the menu it brings up (it may be in the “More” menu at the end of the list). Tapping the Barc icon will add this code to Barc.";
 
 // Headline for the intro page
 "IntroPage.headline" = "Welcome to Barc.";

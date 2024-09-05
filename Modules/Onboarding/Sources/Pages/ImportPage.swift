@@ -10,7 +10,7 @@ struct ImportPage: View {
             imageLight: OnboardingAsset.importOnboarding.swiftUIImage,
             imageDark: OnboardingAsset.importOnboardingDark.swiftUIImage,
             headline: OnboardingStrings.ImportPage.headline,
-            message: OnboardingStrings.ImportPage.body,
+            message: LocalizedStringKey("ImportPage.body\(Image(systemName: "square.and.arrow.up"))"),
             pageIndex: 2
         )
     }
