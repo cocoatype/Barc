@@ -6,7 +6,7 @@ import TelemetryClient
 public struct TelemetryLogger: Logger {
     public static func initializeTelemetry() {
         guard TelemetryManager.isInitialized == false else { return }
-        let configuration = TelemetryManagerConfiguration(appID: "2B12B0C1-2C32-414A-BAB4-B20E866EC277")
+        let configuration = TelemetryManagerConfiguration(appID: "7885E54D-8730-4C58-A3FA-390D008CCBAF")
         TelemetryManager.initialize(with: configuration)
     }
 
