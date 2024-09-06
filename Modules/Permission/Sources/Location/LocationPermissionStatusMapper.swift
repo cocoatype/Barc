@@ -3,8 +3,8 @@
 
 import CoreLocation
 
-struct LocationAuthorizationStatusMapper {
-    func status(from coreLocationStatus: CLAuthorizationStatus) -> LocationAuthorizationStatus {
+struct LocationPermissionStatusMapper {
+    func status(from coreLocationStatus: CLAuthorizationStatus) -> PermissionStatus {
         switch coreLocationStatus {
         case .notDetermined: .notDetermined
         case .restricted: .restricted

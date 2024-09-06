@@ -11,8 +11,8 @@ class CoreLocationPermissionRequester: NSObject, LocationPermissionRequester, CL
         manager.delegate = self
     }
 
-    private var continuation: CheckedContinuation<LocationAuthorizationStatus, Never>?
-    func requestPermission() async -> LocationAuthorizationStatus {
+    private var continuation: CheckedContinuation<PermissionStatus, Never>?
+    func requestPermission() async -> PermissionStatus {
         return await withCheckedContinuation { continuation in
             self.continuation = continuation
             manager.requestWhenInUseAuthorization()
@@ -21,7 +21,7 @@ class CoreLocationPermissionRequester: NSObject, LocationPermissionRequester, CL
 
     // MARK: CLLocationManagerDelegate
 
-    private let mapper = LocationAuthorizationStatusMapper()
+    private let mapper = LocationPermissionStatusMapper()
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         continuation?.resume(returning: mapper.status(from: manager.authorizationStatus))
     }

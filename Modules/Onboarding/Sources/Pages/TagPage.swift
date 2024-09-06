@@ -6,7 +6,7 @@ import SwiftUI
 
 struct TagPage: View {
     @Environment(\.advance) private var advance
-    private let locationPermissionRequester = Permission.locationPermissionRequester
+    private let requester = Permission.locationPermissionRequester
 
     var body: some View {
         StandardPage(
@@ -16,7 +16,7 @@ struct TagPage: View {
             message: OnboardingStrings.TagPage.body,
             pageIndex: 1
         ) {
-            _ = await locationPermissionRequester.requestPermission()
+            _ = await requester.requestPermission()
         }
     }
 }
