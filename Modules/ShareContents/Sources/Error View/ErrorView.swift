@@ -34,7 +34,7 @@ struct ErrorView: View {
         switch shareError {
         case .noCodeInImage:
             return Strings.noCodeTitle
-        case .cannotCreateImageFromData, .cannotLoadData, .noExtensionContext, .noImageProviders, .noInputProviders:
+        case .cannotCreateImageFromData, .cannotLoadData, .noExtensionContext, .noImageProviders, .noInputProviders, .notImplementedOnPlatform:
             return Strings.genericErrorTitle
         }
     }
@@ -45,7 +45,7 @@ struct ErrorView: View {
         switch shareError {
         case .noCodeInImage:
             return Strings.noCodeMessage
-        case .cannotCreateImageFromData, .cannotLoadData, .noExtensionContext, .noImageProviders, .noInputProviders:
+        case .cannotCreateImageFromData, .cannotLoadData, .noExtensionContext, .noImageProviders, .noInputProviders, .notImplementedOnPlatform:
             return Strings.genericErrorMessage
         }
     }

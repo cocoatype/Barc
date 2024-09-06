@@ -1,6 +1,7 @@
 //  Created by Geoff Pado on 5/5/23.
 //  Copyright © 2023 Cocoatype, LLC. All rights reserved.
 
+import OSLog
 import TelemetryClient
 
 public struct TelemetryLogger: Logger {
@@ -21,6 +22,7 @@ public struct TelemetryLogger: Logger {
     }
 
     public func log(_ event: Event) {
+        os_log("TelemetryLogger logged: %{public}@ (%{public}@)", event.value, event.info)
         manager.send(event.value, for: nil, floatValue: nil, with: event.info)
     }
 }
