@@ -3,6 +3,7 @@ import ProjectDescription
 public enum BarcodeGenerator {
     public static let target = Target.moduleTarget(
         name: "BarcodeGenerator",
+        destinations: [.iPhone, .appleWatch],
         dependencies: [
             .target(Barcodes.target),
             .target(DesignSystem.target),

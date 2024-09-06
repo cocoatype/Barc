@@ -6,6 +6,7 @@ public enum Onboarding {
         hasResources: true,
         dependencies: [
             .target(DesignSystem.target),
+            .target(Permission.target),
         ]
     )
 

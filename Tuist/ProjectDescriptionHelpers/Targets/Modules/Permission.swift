@@ -1,18 +1,19 @@
 import ProjectDescription
 
-public enum Persistence {
+public enum Permission {
     public static let target = Target.moduleTarget(
-        name: "Persistence",
-        destinations: [.iPhone, .appleWatch],
-        usesMaxSwiftVersion: false,
+        name: "Permission",
         dependencies: [
-            .target(Barcodes.target),
             .target(ErrorHandling.target),
         ]
     )
 
+    public static let doublesTarget = Target.moduleDoublesTarget(
+        name: "Permission"
+    )
+
     public static let testTarget = Target.moduleTestTarget(
-        name: "Persistence",
+        name: "Permission",
         dependencies: [
         ]
     )
