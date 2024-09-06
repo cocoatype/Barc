@@ -4,13 +4,23 @@
 import CoreGraphics
 import Foundation
 import ImageIO
+import UIKit
 
+#if os(iOS)
 extension CGImage {
-    static func image(from data: Data) -> CGImage? {
-        guard let dataProvider = CGDataProvider(data: data as CFData),
-              let imageSource = CGImageSourceCreateWithDataProvider(dataProvider, nil)
-        else { return nil }
+    static func image(from data: Data) throws -> CGImage {
+        if let dataProvider = CGDataProvider(data: data as CFData),
+           let imageSource = CGImageSourceCreateWithDataProvider(dataProvider, nil),
+           let cgImage = CGImageSourceCreateImageAtIndex(imageSource, 0, nil) {
+            return cgImage
+        } else if let cgImage = try image(fromArchive: data) {
+            return cgImage
+        } else { throw ShareError.cannotCreateImageFromData }
+    }
 
-        return CGImageSourceCreateImageAtIndex(imageSource, 0, nil)
+    private static func image(fromArchive data: Data) throws -> CGImage? {
+        let result = try NSKeyedUnarchiver.unarchivedObject(ofClass: UIImage.self, from: data)
+        return result?.cgImage
     }
 }
+#endif

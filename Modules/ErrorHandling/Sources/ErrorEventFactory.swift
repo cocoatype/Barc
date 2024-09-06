@@ -20,6 +20,7 @@ struct EventFactory {
                 Self.telemetryErrorIDKey: errorID,
                 Self.errorModuleKey: String(module),
                 Self.errorTypeKey: String(type),
+                Self.errorDescriptionKey: error.localizedDescription
             ]
         )
     }
@@ -40,4 +41,5 @@ struct EventFactory {
     private static let telemetryErrorIDKey = "TelemetryDeck.Error.id"
     private static let errorModuleKey = "Barc.Error.module"
     private static let errorTypeKey = "Barc.Error.type"
+    private static let errorDescriptionKey = "Barc.Error.description"
 }

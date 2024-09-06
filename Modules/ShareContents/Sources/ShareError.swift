@@ -8,4 +8,5 @@ enum ShareError: Error {
     case noExtensionContext
     case noImageProviders
     case noInputProviders
+    case notImplementedOnPlatform
 }
