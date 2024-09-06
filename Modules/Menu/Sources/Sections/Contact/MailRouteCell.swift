@@ -29,7 +29,8 @@ struct MailRouteCell: View {
             NavigationLink(destination: EmptyView()) {
                 CellLabel(
                     title: MenuStrings.MailRouteCell.title,
-                    subtitle: MenuStrings.MailRouteCell.subtitle
+                    subtitle: MenuStrings.MailRouteCell.subtitle,
+                    image: MenuAsset.mail.swiftUIImage
                 )
             }
         }.sheet(isPresented: $threeCheersForPencilKit) {

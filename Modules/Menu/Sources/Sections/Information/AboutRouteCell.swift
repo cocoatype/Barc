@@ -7,6 +7,7 @@ struct AboutRouteCell: View {
     var body: some View {
         SiteURLCell(
             title: MenuStrings.AboutRouteCell.title,
+            image: MenuAsset.about.swiftUIImage,
             path: "/about/"
         )
     }

@@ -8,6 +8,7 @@ struct XRouteCell: View {
         ExternalURLCell(
             title: MenuStrings.XRouteCell.title,
             subtitle: MenuStrings.XRouteCell.subtitle,
+            image: MenuAsset.x.swiftUIImage,
             urlString: "https://x.com/barccodes"
         )
     }

@@ -8,6 +8,7 @@ struct KineoAppCell: View {
         AppStoreCell(
             title: MenuStrings.KineoAppCell.title,
             subtitle: MenuStrings.KineoAppCell.subtitle,
+            image: MenuAsset.kineo.swiftUIImage,
             appID: "286948844"
         )
     }

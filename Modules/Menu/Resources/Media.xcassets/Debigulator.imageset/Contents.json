@@ -1,23 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "Debigulator.png",
-      "idiom" : "universal",
-      "scale" : "1x"
-    },
-    {
-      "filename" : "Debigulator@2x.png",
-      "idiom" : "universal",
-      "scale" : "2x"
-    },
-    {
-      "filename" : "Debigulator@3x.png",
-      "idiom" : "universal",
-      "scale" : "3x"
+      "filename" : "Debigulator.pdf",
+      "idiom" : "universal"
     }
   ],
   "info" : {
     "author" : "xcode",
     "version" : 1
+  },
+  "properties" : {
+    "preserves-vector-representation" : true
   }
 }

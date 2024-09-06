@@ -8,6 +8,7 @@ struct DebigulatorAppCell: View {
         AppStoreCell(
             title: MenuStrings.DebigulatorAppCell.title,
             subtitle: MenuStrings.DebigulatorAppCell.subtitle,
+            image: MenuAsset.debigulator.swiftUIImage,
             appID: "1510076117"
         )
     }
