@@ -3,7 +3,7 @@ import ProjectDescription
 extension Target {
     static func moduleTarget(
         name: String,
-        destinations: Destinations = [.iPhone, .appleWatch],
+        destinations: Destinations = [.iPhone],
         hasResources: Bool = false,
         usesMaxSwiftVersion: Bool = true,
         dependencies: [TargetDependency] = []

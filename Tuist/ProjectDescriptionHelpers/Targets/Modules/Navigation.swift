@@ -3,6 +3,7 @@ import ProjectDescription
 public enum Navigation {
     public static let target = Target.moduleTarget(
         name: "Navigation",
+        destinations: [.iPhone, .appleWatch],
         dependencies: [
             .target(Barcodes.target),
         ]
