@@ -12,20 +12,43 @@ struct StandardPage: View {
     private let headline: String
     private let message: StringRepresentation
     private let pageIndex: Int
-    init(imageLight: Image, imageDark: Image, headline: String, message: StringRepresentation, pageIndex: Int) {
+    private let continueAction: () async -> Void
+    init(
+        imageLight: Image,
+        imageDark: Image,
+        headline: String,
+        message: StringRepresentation,
+        pageIndex: Int,
+        continueAction: @escaping () async -> Void = {}
+    ) {
         self.imageLight = imageLight
         self.imageDark = imageDark
         self.headline = headline
         self.message = message
         self.pageIndex = pageIndex
+        self.continueAction = continueAction
     }
 
-    init(imageLight: Image, imageDark: Image, headline: String, message: String, pageIndex: Int) {
-        self.init(imageLight: imageLight, imageDark: imageDark, headline: headline, message: .string(message), pageIndex: pageIndex)
+    init(
+        imageLight: Image,
+        imageDark: Image,
+        headline: String,
+        message: String,
+        pageIndex: Int,
+        continueAction: @escaping () async -> Void = {}
+    ) {
+        self.init(imageLight: imageLight, imageDark: imageDark, headline: headline, message: .string(message), pageIndex: pageIndex, continueAction: continueAction)
     }
 
-    init(imageLight: Image, imageDark: Image, headline: String, message: LocalizedStringKey, pageIndex: Int) {
-        self.init(imageLight: imageLight, imageDark: imageDark, headline: headline, message: .key(message), pageIndex: pageIndex)
+    init(
+        imageLight: Image,
+        imageDark: Image,
+        headline: String,
+        message: LocalizedStringKey,
+        pageIndex: Int,
+        continueAction: @escaping () async -> Void = {}
+    ) {
+        self.init(imageLight: imageLight, imageDark: imageDark, headline: headline, message: .key(message), pageIndex: pageIndex, continueAction: continueAction)
     }
 
     var body: some View {
@@ -48,7 +71,12 @@ struct StandardPage: View {
             Spacer()
             VStack {
                 HStack(spacing: 16) {
-                    PrimaryButton(title: OnboardingStrings.StandardPage.continueButtonTitle) { advance() }
+                    PrimaryButton(title: OnboardingStrings.StandardPage.continueButtonTitle) {
+                        Task {
+                            await continueAction()
+                            advance()
+                        }
+                    }
                 }
                 .padding(.horizontal, 32)
                 .padding(.bottom, 16)

@@ -27,6 +27,7 @@ let project = Project(
         ManualEntry.target,
         Navigation.target,
         Onboarding.target,
+        Permission.target,
         Persistence.target,
         Root.target,
         Scanner.target,
@@ -37,6 +38,7 @@ let project = Project(
         // doubles
         ErrorHandling.doublesTarget,
         Logging.doublesTarget,
+        Permission.doublesTarget,
         // test helpers
         TestHelpers.target,
         TestHelpers.interfaceTarget,
@@ -48,6 +50,7 @@ let project = Project(
         Library.testTarget,
         Logging.testTarget,
         Navigation.testTarget,
+        Permission.testTarget,
         Root.testTarget,
         Scanner.testTarget,
         Shortcuts.testTarget,
