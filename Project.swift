@@ -25,6 +25,7 @@ let project = Project(
         LocationEditor.target,
         Logging.target,
         ManualEntry.target,
+        Menu.target,
         Navigation.target,
         Onboarding.target,
         Permission.target,
