@@ -3,15 +3,18 @@
 
 import SwiftUI
 
-struct Menu: View {
-    var body: some View {
+public struct MenuView: View {
+    public init() {}
+    
+    public var body: some View {
         NavigationStack {
             MenuList()
+                .navigationDestination(for: Route.self) { $0 }
         }
     }
 }
 
 #Preview {
-    Menu()
+    MenuView()
         .tint(.primary)
 }

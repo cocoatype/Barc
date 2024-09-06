@@ -5,10 +5,10 @@ import SwiftUI
 
 struct XRouteCell: View {
     var body: some View {
-        RouteCell(
+        ExternalURLCell(
             title: MenuStrings.XRouteCell.title,
             subtitle: MenuStrings.XRouteCell.subtitle,
-            route: .privacy
+            urlString: "https://x.com/barccodes"
         )
     }
 }

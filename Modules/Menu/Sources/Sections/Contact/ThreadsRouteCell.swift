@@ -5,10 +5,10 @@ import SwiftUI
 
 struct ThreadsRouteCell: View {
     var body: some View {
-        RouteCell(
+        ExternalURLCell(
             title: MenuStrings.ThreadsRouteCell.title,
             subtitle: MenuStrings.ThreadsRouteCell.subtitle,
-            route: .privacy
+            urlString: "https://www.threads.net/@barc.app"
         )
     }
 }

@@ -5,9 +5,9 @@ import SwiftUI
 
 struct AcknowledgementsRouteCell: View {
     var body: some View {
-        RouteCell(
+        SiteURLCell(
             title: MenuStrings.AcknowledgementsRouteCell.title,
-            route: .acknowledgements
+            path: "/acknowledgements/"
         )
     }
 }

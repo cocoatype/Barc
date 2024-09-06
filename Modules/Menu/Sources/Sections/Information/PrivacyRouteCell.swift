@@ -5,9 +5,9 @@ import SwiftUI
 
 struct PrivacyRouteCell: View {
     var body: some View {
-        RouteCell(
+        SiteURLCell(
             title: MenuStrings.PrivacyRouteCell.title,
-            route: .privacy
+            path: "/privacy/"
         )
     }
 }

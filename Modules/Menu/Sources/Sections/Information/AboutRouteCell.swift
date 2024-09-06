@@ -5,9 +5,9 @@ import SwiftUI
 
 struct AboutRouteCell: View {
     var body: some View {
-        RouteCell(
+        SiteURLCell(
             title: MenuStrings.AboutRouteCell.title,
-            route: .about
+            path: "/about/"
         )
     }
 }

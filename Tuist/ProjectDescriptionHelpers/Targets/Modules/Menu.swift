@@ -5,6 +5,8 @@ public enum Menu {
         name: "Menu",
         hasResources: true,
         dependencies: [
+            .target(ErrorHandling.target),
+            .target(Onboarding.target),
         ]
     )
 

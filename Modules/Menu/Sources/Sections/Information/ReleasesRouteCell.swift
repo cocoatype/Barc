@@ -10,10 +10,10 @@ struct ReleasesRouteCell: View {
     }
 
     var body: some View {
-        RouteCell(
+        SiteURLCell(
             title: MenuStrings.ReleasesRouteCell.title,
             subtitle: subtitle,
-            route: .releaseNotes
+            path: "/releases/"
         )
     }
 

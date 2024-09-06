@@ -5,10 +5,10 @@ import SwiftUI
 
 struct DebigulatorAppCell: View {
     var body: some View {
-        RouteCell(
+        AppStoreCell(
             title: MenuStrings.DebigulatorAppCell.title,
             subtitle: MenuStrings.DebigulatorAppCell.subtitle,
-            route: .privacy
+            appID: "1510076117"
         )
     }
 }

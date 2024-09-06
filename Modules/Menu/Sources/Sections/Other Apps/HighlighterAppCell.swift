@@ -5,10 +5,10 @@ import SwiftUI
 
 struct HighlighterAppCell: View {
     var body: some View {
-        RouteCell(
+        AppStoreCell(
             title: MenuStrings.HighlighterAppCell.title,
             subtitle: MenuStrings.HighlighterAppCell.subtitle,
-            route: .privacy
+            appID: "1215283742"
         )
     }
 }

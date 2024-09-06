@@ -5,10 +5,10 @@ import SwiftUI
 
 struct KineoAppCell: View {
     var body: some View {
-        RouteCell(
+        AppStoreCell(
             title: MenuStrings.KineoAppCell.title,
             subtitle: MenuStrings.KineoAppCell.subtitle,
-            route: .privacy
+            appID: "286948844"
         )
     }
 }

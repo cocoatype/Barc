@@ -22,5 +22,5 @@ struct RouteCell: View {
 }
 
 #Preview {
-    RouteCell(title: "Hello", subtitle: "World", route: .about)
+    RouteCell(title: "Hello", subtitle: "World", route: .onboarding)
 }

@@ -5,10 +5,10 @@ import SwiftUI
 
 struct ReviewRouteCell: View {
     var body: some View {
-        RouteCell(
+        ExternalURLCell(
             title: MenuStrings.ReviewRouteCell.title,
             subtitle: MenuStrings.ReviewRouteCell.subtitle,
-            route: .privacy
+            urlString: "https://itunes.apple.com/us/app/barc/id6642707689?mt=8&action=write-review"
         )
     }
 }
