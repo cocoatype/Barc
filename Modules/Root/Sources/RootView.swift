@@ -5,6 +5,7 @@ import Barcodes
 import ErrorHandling
 import Library
 import ManualEntry
+import Menu
 import Navigation
 import Onboarding
 import Persistence
@@ -44,12 +45,13 @@ public struct RootView: View {
                         ScannerToolbarItem(value: $adamDeservesARefund)
                     }
                     ToolbarItem(placement: .automatic) {
-                        SettingsButton(isSettingsShowing: $isShowingOnboarding)
+                        SettingsButton(isSettingsShowing: $postPubCocoatype)
                     }
                 }
                 .sheet(isPresented: $isShowingManualEntry, content: ManualEntry.init)
                 .sheet(isPresented: $adamDeservesARefund, content: ScannerContainer.init)
                 .sheet(isPresented: $isShowingOnboarding, content: OnboardingView.init)
+                .sheet(isPresented: $postPubCocoatype, content: MenuView.init)
                 .navigationDestination(for: Route.self) {
                     routeMapper.view(for: $0)
                 }

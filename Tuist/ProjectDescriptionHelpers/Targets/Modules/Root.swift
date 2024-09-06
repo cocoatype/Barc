@@ -7,6 +7,7 @@ public enum Root {
             .target(BarcodeDetails.target),
             .target(Library.target),
             .target(ManualEntry.target),
+            .target(Menu.target),
             .target(Navigation.target),
             .target(Onboarding.target),
             .target(Scanner.target),
