@@ -9,6 +9,7 @@ import SwiftUI
 struct LibraryGrid: View {
     static let spacing = 16.0
 
+    @Environment(\.scenePhase) private var scenePhase
     @Environment(\.guardLetNotIsScrollingDoesNotEqual) private var repository
     @State private var codes = [Code]()
 
@@ -27,14 +28,17 @@ struct LibraryGrid: View {
                 LibraryCell(code: code)
             }
         }
-        .onAppear {
-            do {
-                codes = try repository.codes
-            } catch {
-                errorHandler.log(error, module: "Library", type: "LibraryGrid")
-            }
-        }
+        .onAppear { refreshCodes() }
         .onUpdate(to: repository) { codes = $0 }
+        .onChange(of: scenePhase) { refreshCodes() }
+    }
+
+    @MainActor private func refreshCodes() {
+        do {
+            codes = try repository.codes
+        } catch {
+            errorHandler.log(error, module: "Library", type: "LibraryGrid")
+        }
     }
 }
 

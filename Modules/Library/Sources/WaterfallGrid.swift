@@ -18,9 +18,7 @@ struct WaterfallGrid: Layout {
         let size = proposal.replacingUnspecifiedDimensions()
         let bounds = CGRect(origin: .zero, size: size)
         let heights = calculateHeights(in: bounds, proposal: proposal, subviews: subviews, shouldPlaceSubviews: false)
-        let fittingSize = CGSize(width: size.width, height: heights.max() ?? size.height)
-        print(fittingSize)
-        return fittingSize
+        return CGSize(width: size.width, height: heights.max() ?? size.height)
     }
 
     func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {

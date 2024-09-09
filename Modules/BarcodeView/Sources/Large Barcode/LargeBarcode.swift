@@ -13,6 +13,7 @@ struct LargeBarcode: View {
 
     var body: some View {
         CodeRenderer(value: value)
+            .clipShape(RoundedRectangle(cornerRadius: 7))
             .frame(width: 280, height: 280)
             .padding(14)
             .background(CodeBackground())
