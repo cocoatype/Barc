@@ -85,11 +85,17 @@ struct FileBarcodeRepository: BarcodeRepository {
         return try ModelContainer(
             for: BarcodeModel.self,
             configurations: ModelConfiguration(
-                groupContainer: .identifier("group.com.cocoatype.Barc"),
+                groupContainer: Self.groupContainer,
                 cloudKitDatabase: .private("iCloud.com.cocoatype.Barc")
             )
         )
     }
+
+    #if os(watchOS)
+    nonisolated private static let groupContainer = ModelConfiguration.GroupContainer.automatic
+    #else
+    nonisolated private static let groupContainer = ModelConfiguration.GroupContainer.identifier("group.com.cocoatype.Barc")
+    #endif
 
     private let modelContainer: ModelContainer
     private let mapper = BarcodeModelMapper()
