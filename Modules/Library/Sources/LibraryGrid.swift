@@ -31,7 +31,7 @@ struct LibraryGrid: View {
             do {
                 codes = try repository.codes
             } catch {
-                errorHandler.log(error, module: "com.cocoatype.Barc.Library", type: "LibraryGrid")
+                errorHandler.log(error, module: "Library", type: "LibraryGrid")
             }
         }
         .onUpdate(to: repository) { codes = $0 }

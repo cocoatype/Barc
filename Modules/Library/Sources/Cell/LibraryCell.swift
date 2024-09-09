@@ -44,7 +44,7 @@ struct LibraryCell: View {
             do {
                 try repository.delete(deleteCode)
             } catch {
-                errorHandler.log(error, module: "com.cocoatype.Barc.BarcodeDetails", type: "BarcodeDetails")
+                errorHandler.log(error, module: "BarcodeDetails", type: "BarcodeDetails")
             }
         }
     }

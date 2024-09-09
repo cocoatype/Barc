@@ -39,13 +39,13 @@ public struct BarcodeDetails: View {
                 do {
                     try repository.update(resultCode)
                 } catch {
-                    errorHandler.log(error, module: "com.cocoatype.Barc.BarcodeDetails", type: "BarcodeDetails")
+                    errorHandler.log(error, module: "BarcodeDetails", type: "BarcodeDetails")
                 }
             } deleteAction: { deleteCode in
                 do {
                     try repository.delete(deleteCode)
                 } catch {
-                    errorHandler.log(error, module: "com.cocoatype.Barc.BarcodeDetails", type: "BarcodeDetails")
+                    errorHandler.log(error, module: "BarcodeDetails", type: "BarcodeDetails")
                 }
                 dismiss()
             }

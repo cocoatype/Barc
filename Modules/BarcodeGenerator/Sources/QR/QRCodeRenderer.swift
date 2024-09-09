@@ -13,7 +13,7 @@ public struct QRCodeRenderer: View {
             self.encodedValue = try
             QRCodeEncoder().encodedValue(for: value)
         } catch {
-            errorHandler.log(error, module: "com.cocoatype.Barc.BarcodeGenerator", type: "QRCodeRenderer")
+            errorHandler.log(error, module: "BarcodeGenerator", type: "QRCodeRenderer")
             self.encodedValue = nil
         }
     }
