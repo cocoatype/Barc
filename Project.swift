@@ -30,6 +30,7 @@ let project = Project(
         Onboarding.target,
         Permission.target,
         Persistence.target,
+        Purchasing.target,
         Root.target,
         Scanner.target,
         ShareContents.target,
@@ -52,6 +53,7 @@ let project = Project(
         Logging.testTarget,
         Navigation.testTarget,
         Permission.testTarget,
+        Purchasing.testTarget,
         Root.testTarget,
         Scanner.testTarget,
         Shortcuts.testTarget,
@@ -73,6 +75,9 @@ let project = Project(
                     ],
                     launchArguments: [
                     ]
+                ),
+                options: .options(
+                    storeKitConfigurationPath: "App/Mobile/StoreKit.storekit"
                 )
             )
         ),

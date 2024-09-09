@@ -1,18 +1,16 @@
 import ProjectDescription
 
-public enum Menu {
+public enum Purchasing {
     public static let target = Target.moduleTarget(
-        name: "Menu",
-        hasResources: true,
+        name: "Purchasing",
         dependencies: [
-            .target(ErrorHandling.target),
-            .target(Onboarding.target),
-            .target(Purchasing.target),
+            .external(name: "RevenueCat"),
+            .external(name: "RevenueCatUI"),
         ]
     )
 
     public static let testTarget = Target.moduleTestTarget(
-        name: "Menu",
+        name: "Purchasing",
         dependencies: [
         ]
     )

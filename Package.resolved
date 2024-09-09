@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "purchases-ios-spm",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:RevenueCat/purchases-ios-spm.git",
+      "state" : {
+        "revision" : "1085af5662b47167c23bfa10ace372342c79452f",
+        "version" : "5.3.2"
+      }
+    },
+    {
       "identity" : "swift-qrcode-generator",
       "kind" : "remoteSourceControl",
       "location" : "git@github.com:fwcd/swift-qrcode-generator.git",

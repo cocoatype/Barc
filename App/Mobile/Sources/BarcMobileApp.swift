@@ -3,6 +3,7 @@
 
 import AppIntents
 import Navigation
+import Purchasing
 import Root
 import SwiftUI
 
@@ -10,10 +11,15 @@ import SwiftUI
 struct BarcMobileApp: App {
     @State private var navigator: Navigator
 
-    init() {
+    @MainActor init(purchaseRepository: any PurchaseRepository) {
         let navigator = Navigator()
         AppDependencyManager.shared.add(dependency: navigator)
         _navigator = State(initialValue: navigator)
+        type(of: purchaseRepository).initialize()
+    }
+
+    init() {
+        self.init(purchaseRepository: Purchasing.defaultRepository)
     }
 
     var body: some Scene {
