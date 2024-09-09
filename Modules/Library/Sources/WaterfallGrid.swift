@@ -15,10 +15,20 @@ struct WaterfallGrid: Layout {
     }
 
     func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
-        return proposal.replacingUnspecifiedDimensions()
+        let size = proposal.replacingUnspecifiedDimensions()
+        let bounds = CGRect(origin: .zero, size: size)
+        let heights = calculateHeights(in: bounds, proposal: proposal, subviews: subviews, shouldPlaceSubviews: false)
+        let fittingSize = CGSize(width: size.width, height: heights.max() ?? size.height)
+        print(fittingSize)
+        return fittingSize
     }
 
     func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {
+        calculateHeights(in: bounds, proposal: proposal, subviews: subviews, shouldPlaceSubviews: true)
+    }
+
+    @discardableResult
+    func calculateHeights(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, shouldPlaceSubviews: Bool) -> [Double] {
         let columnWidth = optimalColumnWidth(in: bounds)
         let columnCount = floor(bounds.width / columnWidth)
         let totalColumnWidth = columnWidth * columnCount
@@ -35,8 +45,12 @@ struct WaterfallGrid: Layout {
             let position = CGPoint(x: bounds.minX + columnSpacing + (Double(columnIndex) * (columnWidth + columnSpacing)), y: columnHeight)
             columnHeights[columnIndex] = columnHeight + dimensions.height + spacing
 
-            subview.place(at: position, anchor: .topLeading, proposal: subProposal)
+            if shouldPlaceSubviews {
+                subview.place(at: position, anchor: .topLeading, proposal: subProposal)
+            }
         }
+
+        return columnHeights
     }
 
     private func optimalColumnWidth(in bounds: CGRect) -> CGFloat {
