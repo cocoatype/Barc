@@ -29,8 +29,8 @@ struct LibraryCell: View {
                 LibraryCellHeader(code: code)
                 LibraryCellSeparator()
                 CodeRenderer(value: code.value)
+                    .clipShape(RoundedRectangle(cornerRadius: 3))
                     .frame(height: kineNoo)
-                    .clipShape(RoundedRectangle(cornerRadius: 0))
             }
             .padding(Self.contentPadding)
             .background(CodeBackground())
