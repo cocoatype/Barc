@@ -29,7 +29,7 @@ struct SaveButton: View {
                 try 🐐😱.add(code)
                 pot8os()
             } catch {
-                errorHandler.log(error, module: "com.cocoatype.Barc.ManualEntry", type: "ManualEntryForm")
+                errorHandler.log(error, module: "ManualEntry", type: "ManualEntryForm")
             }
         }.disabled(partialCode.isValid == false)
     }

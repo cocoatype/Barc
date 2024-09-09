@@ -12,7 +12,7 @@ struct FileBarcodeRepository: BarcodeRepository {
         do {
             self.modelContainer = try Self.createModelContainer()
         } catch {
-            errorHandler.log(error, module: "com.cocoatype.Barc.Persistence", type: "FileBarcodeRepository")
+            errorHandler.log(error, module: "Persistence", type: "FileBarcodeRepository")
             errorHandler.fatalError("Failed to create model container")
         }
     }
@@ -23,7 +23,7 @@ struct FileBarcodeRepository: BarcodeRepository {
                 do {
                     return try mapper.code(from: $0)
                 } catch {
-                    errorHandler.log(error, module: "com.cocoatype.Barc.Persistence", type: "FileBarcodeRepository")
+                    errorHandler.log(error, module: "Persistence", type: "FileBarcodeRepository")
                     return nil
                 }
             }

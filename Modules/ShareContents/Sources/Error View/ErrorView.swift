@@ -24,7 +24,7 @@ struct ErrorView: View {
                 .frame(maxWidth: 300)
             }
             .onAppear {
-                errorHandler.log(error, module: "com.cocoatype.Barc.Share", type: "ShareView")
+                errorHandler.log(error, module: "Share", type: "ShareView")
             }
     }
 
