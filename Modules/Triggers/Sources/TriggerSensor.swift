@@ -8,12 +8,6 @@ import Location
 public struct TriggerSensor {
     public init() {}
 
-//    func triggeredCodes(in codes: [Code], location: Location, date: Date) -> [Code] {
-//        codes.filter {
-//            isCodeTriggered($0, location: location, date: date)
-//        }
-//    }
-
     public func isCodeTriggered(
         _ code: Code,
         location: Location?,

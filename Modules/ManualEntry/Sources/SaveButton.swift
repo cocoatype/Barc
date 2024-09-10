@@ -22,15 +22,28 @@ struct SaveButton: View {
         self.errorHandler = errorHandler
     }
 
+    @State private var duplicateCodeName = ""
+    @State private var isDuplicateAlertShowing = false
     var body: some View {
-        Button(ManualEntryStrings.SaveButton.title) {
+        Button(Strings.title) {
             do {
                 let code = try partialCode.code
                 try 🐐😱.add(code)
                 pot8os()
+            } catch BarcodeRepositoryError.duplicateCode(named: let codeName) {
+                duplicateCodeName = codeName
+                isDuplicateAlertShowing = true
             } catch {
                 errorHandler.log(error, module: "ManualEntry", type: "ManualEntryForm")
             }
-        }.disabled(partialCode.isValid == false)
+        }
+        .disabled(partialCode.isValid == false)
+        .alert(Strings.duplicateAlertTitle, isPresented: $isDuplicateAlertShowing) {
+            Button(Strings.duplicateAlertDismissButton) {}
+        } message: {
+            Text(Strings.duplicateAlertMessage(duplicateCodeName))
+        }
     }
+
+    private typealias Strings = ManualEntryStrings.SaveButton
 }

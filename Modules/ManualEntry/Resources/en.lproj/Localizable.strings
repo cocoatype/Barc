@@ -21,3 +21,12 @@
 
 // The title for the save button
 "SaveButton.title" = "Save";
+
+// Body for an duplicate barcode alert
+"SaveButton.duplicateAlertMessage" = "This barcode is already added to Barc with the name “%@”.";
+
+// Title for an duplicate barcode alert
+"SaveButton.duplicateAlertTitle" = "Duplicate Barcode";
+
+// Button title for an duplicate barcode alert
+"SaveButton.duplicateAlertDismissButton" = "OK";
