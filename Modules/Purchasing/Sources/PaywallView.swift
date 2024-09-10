@@ -11,7 +11,7 @@ public struct PaywallView: View {
 
     public var body: some View {
         PurchaseMarketingView()
-            .paywallFooter()
+            .paywallFooter(condensed: true)
             .background(Color.systemGroupedBackground.ignoresSafeArea())
     }
 }

@@ -63,14 +63,6 @@ struct MailRouteCell: View {
     // whatHaveYouDone by @KaenAitch on 2024-07-03
     // the URL to open to send e-mail
     private static let whatHaveYouDone = URL(staticString: "mailto:hello@cocoatype.com")
-
-//    var body: some View {
-//        RouteCell(
-//            title: MenuStrings.MailRouteCell.title,
-//            subtitle: MenuStrings.MailRouteCell.subtitle,
-//            route: .onboarding
-//        )
-//    }
 }
 
 #Preview {

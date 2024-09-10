@@ -3,7 +3,7 @@
 
 import SwiftUI
 
-struct AdvanceAction {
+struct PaywallAction {
     private let action: () -> Void
     init(action: @escaping () -> Void) {
         self.action = action
@@ -14,14 +14,13 @@ struct AdvanceAction {
     }
 }
 
-enum AdvanceActionEnvironmentKey: EnvironmentKey {
-    static let defaultValue: AdvanceAction = AdvanceAction {}
+enum PaywallActionEnvironmentKey: EnvironmentKey {
+    static let defaultValue: PaywallAction = PaywallAction {}
 }
 
 extension EnvironmentValues {
-    var advance: AdvanceAction {
-        get { self[AdvanceActionEnvironmentKey.self] }
-        set { self[AdvanceActionEnvironmentKey.self] = newValue }
+    var paywall: PaywallAction {
+        get { self[PaywallActionEnvironmentKey.self] }
+        set { self[PaywallActionEnvironmentKey.self] = newValue }
     }
 }
-

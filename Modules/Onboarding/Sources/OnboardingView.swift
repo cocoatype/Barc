@@ -1,6 +1,7 @@
 //  Created by Geoff Pado on 9/3/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
+import Purchasing
 import SwiftUI
 
 public struct OnboardingView: View {
@@ -17,10 +18,13 @@ public struct OnboardingView: View {
             case .tag: TagPage()
             case .import: ImportPage()
             case .view: ViewPage()
+            case .paywall: PaywallView()
             }
         }.environment(\.advance, AdvanceAction {
             guard let nextPage = currentPage.next else { return dismiss() }
             currentPage = nextPage
+        }).environment(\.paywall, PaywallAction {
+            currentPage = .paywall
         })
     }
 }

@@ -7,6 +7,7 @@ enum OnboardingPage {
     case tag
     case `import`
     case view
+    case paywall
 
     var next: OnboardingPage? {
         switch self {
@@ -14,7 +15,8 @@ enum OnboardingPage {
         case .add: .tag
         case .tag: .import
         case .import: .view
-        case .view: .none
+        case .view: .paywall
+        case .paywall: .none
         }
     }
 }

@@ -14,10 +14,6 @@ struct PaywallRouteCell: View {
                     .foregroundStyle(Color.secondary)
             }
         }
-//        RouteCell(
-//            title: MenuStrings.PaywallRouteCell.title,
-//            route: .paywall
-//        )
     }
 }
 
