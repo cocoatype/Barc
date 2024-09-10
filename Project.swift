@@ -36,6 +36,7 @@ let project = Project(
         Scanner.target,
         ShareContents.target,
         Shortcuts.target,
+        Triggers.target,
         WatchContents.target,
         WidgetContents.target,
         // doubles
@@ -59,6 +60,7 @@ let project = Project(
         Root.testTarget,
         Scanner.testTarget,
         Shortcuts.testTarget,
+        Triggers.testTarget,
         WidgetContents.testTarget,
     ],
     schemes: [

@@ -1,6 +1,8 @@
 //  Created by Geoff Pado on 8/19/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
+import CoreLocation
+
 public struct Location: Hashable, Identifiable, Sendable {
     public var id: String {
         "\(name) <\(coordinate.formattedComponents)>"
@@ -50,5 +52,11 @@ public struct Location: Hashable, Identifiable, Sendable {
 
             return "\(format(latitude)), \(format(longitude))"
         }
+    }
+
+    public func distanceInMeters(to other: Location) -> Double {
+        let ourLocation = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        let otherLocation = CLLocation(latitude: other.coordinate.latitude, longitude: other.coordinate.longitude)
+        return ourLocation.distance(from: otherLocation)
     }
 }
