@@ -10,6 +10,7 @@ struct InformationSection: View {
             AboutRouteCell()
             PrivacyRouteCell()
             AcknowledgementsRouteCell()
+            OnboardingRouteCell()
         }
     }
 }

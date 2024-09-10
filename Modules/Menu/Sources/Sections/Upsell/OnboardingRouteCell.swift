@@ -7,6 +7,7 @@ struct OnboardingRouteCell: View {
     var body: some View {
         RouteCell(
             title: MenuStrings.OnboardingRouteCell.title,
+            image: MenuAsset.tour.swiftUIImage,
             route: .onboarding
         )
     }

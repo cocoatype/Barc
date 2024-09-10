@@ -5,10 +5,19 @@ import SwiftUI
 
 struct PaywallRouteCell: View {
     var body: some View {
-        RouteCell(
-            title: MenuStrings.PaywallRouteCell.title,
-            route: .paywall
-        )
+        NavigationLink(value: Route.paywall) {
+            VStack(alignment: .leading) {
+                Text(MenuStrings.PaywallRouteCell.title)
+                    .font(.title3)
+                    .fontWeight(.black)
+                Text(MenuStrings.PaywallRouteCell.subtitle)
+                    .foregroundStyle(Color.secondary)
+            }
+        }
+//        RouteCell(
+//            title: MenuStrings.PaywallRouteCell.title,
+//            route: .paywall
+//        )
     }
 }
 
