@@ -1,17 +1,16 @@
 import ProjectDescription
 
-public enum Purchasing {
+public enum Paywall {
     public static let target = Target.moduleTarget(
-        name: "Purchasing",
+        name: "Paywall",
+        hasResources: true,
         dependencies: [
-            .target(Paywall.target),
-            .external(name: "RevenueCat"),
-            .external(name: "RevenueCatUI"),
+            .target(DesignSystem.target),
         ]
     )
 
     public static let testTarget = Target.moduleTestTarget(
-        name: "Purchasing",
+        name: "Paywall",
         dependencies: [
         ]
     )
