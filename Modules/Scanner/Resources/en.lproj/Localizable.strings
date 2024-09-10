@@ -12,3 +12,9 @@
 
 // Title for an unsupported barcode alert
 "ErrorAlertViewModifier.invalidSymbologyAlertTitle" = "Unsupported Barcode";
+
+// Body for an duplicate barcode alert
+"ErrorAlertViewModifier.duplicateAlertMessage" = "This barcode is already added to Barc with the name “%@”.";
+
+// Title for an duplicate barcode alert
+"ErrorAlertViewModifier.duplicateAlertTitle" = "Duplicate Barcode";

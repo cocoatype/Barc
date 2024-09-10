@@ -61,6 +61,10 @@ struct FileBarcodeRepository: BarcodeRepository {
     }
 
     func add(_ code: Code) throws {
+        if let duplicateModel = try findModel(for: code) {
+            throw BarcodeRepositoryError.duplicateCode(named: duplicateModel.name ?? "")
+        }
+
         try insertModel(for: code)
         try watcher.updateSubscribers(with: codes)
     }

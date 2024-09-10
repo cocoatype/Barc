@@ -2,6 +2,7 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import ImageReader
+import Persistence
 import SwiftUI
 
 struct ErrorAlertViewModifier: ViewModifier {
@@ -28,9 +29,18 @@ struct ErrorAlertViewModifier: ViewModifier {
         } else { return false }
     }
 
+    var isErrorDuplicateError: String? {
+        if let error = scanResult.error,
+           case BarcodeRepositoryError.duplicateCode(let codeName) = error {
+            return codeName
+        } else { return nil }
+    }
+
     var titleKey: String {
         if isErrorSymbologyError {
             return Strings.invalidSymbologyAlertTitle
+        } else if isErrorDuplicateError != nil {
+            return Strings.duplicateAlertTitle
         } else {
             return Strings.defaultAlertTitle
         }
@@ -39,8 +49,10 @@ struct ErrorAlertViewModifier: ViewModifier {
     var message: String {
         if isErrorSymbologyError {
             return Strings.invalidSymbologyAlertMessage
+        } else if let codeName = isErrorDuplicateError {
+            return Strings.duplicateAlertMessage(codeName)
         } else {
-            return Strings.defaultAlertTitle
+            return Strings.defaultAlertMessage
         }
     }
 
