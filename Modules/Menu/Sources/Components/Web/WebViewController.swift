@@ -9,5 +9,6 @@ public class WebViewController: SFSafariViewController {
         super.init(url: url, configuration: configuration)
 
         modalPresentationStyle = .currentContext
+        preferredControlTintColor = .label
     }
 }

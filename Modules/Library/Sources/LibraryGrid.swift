@@ -21,8 +21,7 @@ struct LibraryGrid: View {
     var body: some View {
         WaterfallGrid(
             minWidth: 160,
-            maxWidth: 180,
-            spacing: Self.spacing
+            maxWidth: 180
         ) {
             ForEach(codes) { code in
                 LibraryCell(code: code)
