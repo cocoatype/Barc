@@ -13,6 +13,8 @@ class CoreLocationPermissionRequester: NSObject, LocationPermissionRequester, CL
 
     private var continuation: CheckedContinuation<PermissionStatus, Never>?
     func requestPermission() async -> PermissionStatus {
+        guard manager.authorizationStatus == .notDetermined else { return mapper.status(from: manager.authorizationStatus) }
+
         return await withCheckedContinuation { continuation in
             self.continuation = continuation
             manager.requestWhenInUseAuthorization()

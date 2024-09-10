@@ -4,7 +4,7 @@
 import SwiftUI
 
 struct IntroPage: View {
-    @Environment(\.dismiss) private var dismiss
+    @Environment(\.paywall) private var paywall
     @Environment(\.advance) private var advance
 
     var body: some View {
@@ -16,7 +16,7 @@ struct IntroPage: View {
             )
             Spacer()
             HStack(spacing: 16) {
-                SecondaryButton(title: Strings.skipButtonTitle) { dismiss() }
+                SecondaryButton(title: Strings.skipButtonTitle) { paywall() }
                 PrimaryButton(title: Strings.startButtonTitle) { advance() }
             }
             .padding(.horizontal, 32)

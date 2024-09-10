@@ -1,0 +1,138 @@
+{
+  "identifier" : "7CD6E3A3",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+
+  ],
+  "settings" : {
+    "_applicationInternalID" : "6642707689",
+    "_developerTeamID" : "287EDDET2B",
+    "_failTransactionsEnabled" : false,
+    "_lastSynchronizedDate" : 747537580.37548697,
+    "_locale" : "en_US",
+    "_storefront" : "USA",
+    "_storeKitErrors" : [
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Load Products"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Purchase"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Verification"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "App Store Sync"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Subscription Status"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "App Transaction"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Manage Subscriptions Sheet"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Refund Request Sheet"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Offer Code Redeem Sheet"
+      }
+    ]
+  },
+  "subscriptionGroups" : [
+    {
+      "id" : "21534949",
+      "localizations" : [
+
+      ],
+      "name" : "Unleashed",
+      "subscriptions" : [
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "4.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "6670733003",
+          "introductoryOffer" : {
+            "internalID" : "C8469154",
+            "numberOfPeriods" : 1,
+            "paymentMode" : "free",
+            "subscriptionPeriod" : "P2W"
+          },
+          "localizations" : [
+            {
+              "description" : "Unlock all of the features of Barc.",
+              "displayName" : "Annual",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "barc_499_1y_14d0",
+          "recurringSubscriptionPeriod" : "P1Y",
+          "referenceName" : "Annual $4.99, 14-day free",
+          "subscriptionGroupID" : "21534949",
+          "type" : "RecurringSubscription"
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "0.99",
+          "familyShareable" : false,
+          "groupNumber" : 2,
+          "internalID" : "6670733184",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "Unlock all of the features of Barc.",
+              "displayName" : "Monthly",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "barc_099_1m_0d0",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Monthly $0.99, no day free",
+          "subscriptionGroupID" : "21534949",
+          "type" : "RecurringSubscription"
+        }
+      ]
+    }
+  ],
+  "subscriptionOffersKeyPair" : {
+    "id" : "48EC1CA4",
+    "privateKey" : "MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQgd/ASVNQoffxLBZkiqRYVNRkimkFvpLF4KZKmYJYjqJegCgYIKoZIzj0DAQehRANCAAQisxVVYnmYCR7QzjoeQoncBSTHqYwjOuEqwWl67o0HD26rO2UG+sn4dUIXb9Mha9vEE73kcHbfTKv+nzkuElai"
+  },
+  "version" : {
+    "major" : 3,
+    "minor" : 0
+  }
+}

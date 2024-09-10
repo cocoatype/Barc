@@ -7,7 +7,6 @@ struct UpsellSection: View {
     var body: some View {
         Section {
             PaywallRouteCell()
-            OnboardingRouteCell()
         }
     }
 }

@@ -2,6 +2,7 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import Onboarding
+import Purchasing
 import SwiftUI
 
 enum Route: View, Hashable {
@@ -10,7 +11,7 @@ enum Route: View, Hashable {
 
     var body: some View {
         switch self {
-        case .paywall: ComingSoonView()
+        case .paywall: PaywallView()
         case .onboarding: OnboardingView()
         }
     }

@@ -10,5 +10,11 @@
 // Title for an error when no code is detected
 "ErrorView.noCodeTitle" = "No Barcodes Detected";
 
+// Message for an error when the user has not purchased Barc
+"ErrorView.unpurchasedMessage" = "Adding more barcodes requires Barc Unleashed. You can find more information about purchasing Barc Unleashed in the app.";
+
+// Title for an error when the user has not purchased Barc
+"ErrorView.unpurchasedTitle" = "Requires Barc Unleashed";
+
 // Text displayed to users while waiting for the image detection code
 "LoadingView.label" = "Scanning…";

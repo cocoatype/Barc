@@ -28,8 +28,10 @@ let project = Project(
         Menu.target,
         Navigation.target,
         Onboarding.target,
+        Paywall.target,
         Permission.target,
         Persistence.target,
+        Purchasing.target,
         Root.target,
         Scanner.target,
         ShareContents.target,
@@ -51,7 +53,9 @@ let project = Project(
         Library.testTarget,
         Logging.testTarget,
         Navigation.testTarget,
+        Paywall.testTarget,
         Permission.testTarget,
+        Purchasing.testTarget,
         Root.testTarget,
         Scanner.testTarget,
         Shortcuts.testTarget,
@@ -73,6 +77,9 @@ let project = Project(
                     ],
                     launchArguments: [
                     ]
+                ),
+                options: .options(
+                    storeKitConfigurationPath: "App/Mobile/StoreKit.storekit"
                 )
             )
         ),

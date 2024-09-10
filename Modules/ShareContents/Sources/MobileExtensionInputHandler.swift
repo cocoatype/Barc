@@ -5,12 +5,27 @@
 import Barcodes
 import CoreGraphics
 import ImageReader
+import Persistence
+import Purchasing
 import UIKit
 
 struct MobileExtensionInputHandler {
     private let imageReader = ImageReader()
 
+    private let barcodeRepository: any BarcodeRepository
+    private let purchaseRepository: any PurchaseRepository
+    init(
+        barcodeRepository: any BarcodeRepository = Persistence.defaultRepository,
+        purchaseRepository: any PurchaseRepository = Purchasing.defaultRepository
+    ) {
+        self.barcodeRepository = barcodeRepository
+        self.purchaseRepository = purchaseRepository
+    }
+
     func handleInput(from extensionContext: NSExtensionContext?) async throws -> CodeValue {
+        guard try await purchaseRepository.hasUserBeenUnleashed,
+              try await barcodeRepository.codes.count < Purchasing.maxBarcodesCount
+        else { throw ShareError.userIsNotUnleashed }
         guard let extensionContext else {
             throw ShareError.noExtensionContext
         }
