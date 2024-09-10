@@ -9,4 +9,5 @@ enum ShareError: Error {
     case noImageProviders
     case noInputProviders
     case notImplementedOnPlatform
+    case userIsNotUnleashed
 }

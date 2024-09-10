@@ -2,3 +2,5 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 public let defaultRepository: any PurchaseRepository = RevenueCatPurchaseRepository()
+
+public let maxBarcodesCount = 3

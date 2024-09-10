@@ -11,6 +11,7 @@ public enum ShareContents {
             .target(ErrorHandling.target),
             .target(ImageReader.target),
             .target(Persistence.target),
+            .target(Purchasing.target),
         ]
     )
 

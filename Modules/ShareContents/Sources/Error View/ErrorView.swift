@@ -34,6 +34,8 @@ struct ErrorView: View {
         switch shareError {
         case .noCodeInImage:
             return Strings.noCodeTitle
+        case .userIsNotUnleashed:
+            return Strings.unpurchasedTitle
         case .cannotCreateImageFromData, .cannotLoadData, .noExtensionContext, .noImageProviders, .noInputProviders, .notImplementedOnPlatform:
             return Strings.genericErrorTitle
         }
@@ -45,6 +47,8 @@ struct ErrorView: View {
         switch shareError {
         case .noCodeInImage:
             return Strings.noCodeMessage
+        case .userIsNotUnleashed:
+            return Strings.unpurchasedMessage
         case .cannotCreateImageFromData, .cannotLoadData, .noExtensionContext, .noImageProviders, .noInputProviders, .notImplementedOnPlatform:
             return Strings.genericErrorMessage
         }

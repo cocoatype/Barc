@@ -1,6 +1,7 @@
 //  Created by Geoff Pado on 8/12/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
+import Persistence
 import Purchasing
 import SwiftUI
 
@@ -19,10 +20,12 @@ struct ManualEntryToolbarItem: View {
         }.purchaseAlert(isPresented: $isShowingPurchaseAlert)
     }
 
+    @Environment(\.guardLetNotIsScrollingDoesNotEqual) private var repository
     func handleButtonTap() async {
         do {
             let hasUserBeenUnleashed = try await Purchasing.defaultRepository.hasUserBeenUnleashed
-            if hasUserBeenUnleashed {
+            let codesCount = try await repository.codes.count
+            if hasUserBeenUnleashed || codesCount < Purchasing.maxBarcodesCount {
                 isShowingManualEntry = true
             } else {
                 isShowingPurchaseAlert = true
