@@ -6,12 +6,10 @@ import SwiftUI
 struct WaterfallGrid: Layout {
     private let minWidth: CGFloat
     private let maxWidth: CGFloat
-    private let spacing: CGFloat
 
-    init(minWidth: CGFloat, maxWidth: CGFloat, spacing: CGFloat) {
+    init(minWidth: CGFloat, maxWidth: CGFloat) {
         self.minWidth = minWidth
         self.maxWidth = maxWidth
-        self.spacing = spacing
     }
 
     func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
@@ -41,7 +39,7 @@ struct WaterfallGrid: Layout {
             let subProposal = ProposedViewSize(width: columnWidth, height: dimensions.height)
 
             let position = CGPoint(x: bounds.minX + columnSpacing + (Double(columnIndex) * (columnWidth + columnSpacing)), y: columnHeight)
-            columnHeights[columnIndex] = columnHeight + dimensions.height + spacing
+            columnHeights[columnIndex] = columnHeight + dimensions.height + columnSpacing
 
             if shouldPlaceSubviews {
                 subview.place(at: position, anchor: .topLeading, proposal: subProposal)
