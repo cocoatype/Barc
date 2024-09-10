@@ -7,6 +7,7 @@ public enum Onboarding {
         dependencies: [
             .target(DesignSystem.target),
             .target(Permission.target),
+            .target(Purchasing.target),
         ]
     )
 
