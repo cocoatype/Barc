@@ -3,6 +3,7 @@
 
 import Barcodes
 import ErrorHandling
+import Foundation
 import SwiftData
 
 struct FileBarcodeRepository: BarcodeRepository {
@@ -32,7 +33,9 @@ struct FileBarcodeRepository: BarcodeRepository {
 
     @MainActor private var models: [BarcodeModel] {
         get throws {
-            try modelContainer.mainContext.fetch(FetchDescriptor<BarcodeModel>())
+            let sort = SortDescriptor(\BarcodeModel.createdDate, order: .reverse)
+            let descriptor = FetchDescriptor(sortBy: [sort])
+            return try modelContainer.mainContext.fetch(descriptor)
         }
     }
 

@@ -2,6 +2,7 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import Barcodes
+import Foundation
 
 struct BarcodeModelMapper {
     func barcodeModel(from code: Code) -> BarcodeModel {
@@ -16,7 +17,8 @@ struct BarcodeModelMapper {
             name: code.name,
             type: type,
             location: code.location.map(locationMapper.barcodeLocation(from:)),
-            date: code.date
+            date: code.date,
+            createdDate: Date()
         )
     }
 

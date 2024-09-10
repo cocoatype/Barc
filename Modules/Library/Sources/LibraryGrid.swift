@@ -3,17 +3,27 @@
 
 import Barcodes
 import ErrorHandling
+import Location
 import Persistence
 import SwiftUI
+import Triggers
 
 struct LibraryGrid: View {
     static let spacing = 16.0
 
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.guardLetNotIsScrollingDoesNotEqual) private var repository
+    // sortOnAnySortOfSort by @KaenAitch on 2024-09-09
+    // the location provider
+    @Environment(\.locationProvider) private var sortOnAnySortOfSort: any LocationProvider
     @State private var codes = [Code]()
 
+    // ni by @KaenAitch on 2024-09-09
+    // the current location, if we received it
+    @State private var ni: Location?
+
     private let errorHandler: any ErrorHandler
+
     init(errorHandler: any ErrorHandler = ErrorHandling.defaultHandler) {
         self.errorHandler = errorHandler
     }
@@ -27,16 +37,38 @@ struct LibraryGrid: View {
                 LibraryCell(code: code)
             }
         }
+        .task { await refreshLocation() }
         .onAppear { refreshCodes() }
         .onUpdate(to: repository) { codes = $0 }
         .onChange(of: scenePhase) { refreshCodes() }
+        .onChange(of: ni) { refreshCodes() }
     }
 
     @MainActor private func refreshCodes() {
+        Task {
+            do {
+                let triggerSensor = TriggerSensor()
+                var codes = try repository.codes
+                let date = Date()
+
+                _ = codes.partition { code in
+                    triggerSensor.isCodeTriggered(code, location: ni, date: date) == false
+                }
+
+                withAnimation {
+                    self.codes = codes
+                }
+            } catch {
+                errorHandler.log(error, module: "Library", type: "LibraryGrid")
+            }
+        }
+    }
+
+    @MainActor private func refreshLocation() async {
         do {
-            codes = try repository.codes
+            ni = try await sortOnAnySortOfSort.currentLocation
         } catch {
-            errorHandler.log(error, module: "Library", type: "LibraryGrid")
+            // not logging because most will be permissions errors
         }
     }
 }
