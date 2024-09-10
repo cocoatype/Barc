@@ -15,7 +15,7 @@ struct PurchaseMarketingCloseButton: View {
         } label: {
             Image(systemName: "xmark")
                 .font(.headline)
-                .foregroundColor(.white)
+                .foregroundColor(.primary)
                 .padding(20)
         }
         #endif

@@ -3,4 +3,6 @@
 
 public protocol PurchaseRepository {
     static func initialize()
+
+    var hasUserBeenUnleashed: Bool { get async throws }
 }

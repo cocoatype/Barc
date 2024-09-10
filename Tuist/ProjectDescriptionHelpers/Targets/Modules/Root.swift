@@ -10,6 +10,7 @@ public enum Root {
             .target(Menu.target),
             .target(Navigation.target),
             .target(Onboarding.target),
+            .target(Purchasing.target),
             .target(Scanner.target),
         ]
     )
