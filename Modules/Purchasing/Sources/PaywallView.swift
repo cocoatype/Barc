@@ -9,9 +9,14 @@ import SwiftUI
 public struct PaywallView: View {
     public init() {}
 
+    @Environment(\.dismiss) private var dismiss
     public var body: some View {
         PurchaseMarketingView()
-            .paywallFooter(condensed: true)
+            .paywallFooter(
+                condensed: true,
+                purchaseCompleted: { _ in dismiss() },
+                restoreCompleted: { _ in dismiss() }
+            )
             .background(Color.systemGroupedBackground.ignoresSafeArea())
     }
 }
