@@ -1,20 +1,19 @@
 import ProjectDescription
 
-public enum ManualEntry {
+public enum ReviewRequest {
     public static let target = Target.moduleTarget(
-        name: "ManualEntry",
-        hasResources: true,
+        name: "ReviewRequest",
         dependencies: [
-            .target(Barcodes.target),
             .target(ErrorHandling.target),
             .target(Persistence.target),
-            .target(ReviewRequest.target),
         ]
     )
 
     public static let testTarget = Target.moduleTestTarget(
-        name: "ManualEntry",
+        name: "ReviewRequest",
         dependencies: [
+            .target(Persistence.doublesTarget),
+            .target(TestHelpers.target),
         ]
     )
 }

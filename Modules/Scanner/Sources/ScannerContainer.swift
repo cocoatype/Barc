@@ -4,6 +4,8 @@
 import Barcodes
 import BarcodeEdit
 import ErrorHandling
+import ReviewRequest
+import StoreKit
 import SwiftUI
 
 #if compiler(<6.0)
@@ -12,6 +14,7 @@ import SwiftUI
 public struct ScannerContainer: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.guardLetNotIsScrollingDoesNotEqual) private var repository
+    @Environment(\.requestReview) private var requestReview
 
     @State private var scanResult = ScanResult.scanning
 
@@ -41,12 +44,20 @@ public struct ScannerContainer: View {
         .errorAlert(for: $scanResult)
     }
 
+    private var requester: ReviewRequester {
+        ReviewRequester(
+            action: requestReview,
+            repository: repository
+        )
+    }
+
     private func handleEdit(_ code: Code?) {
         guard let code else { return dismiss() }
 
         do {
             try repository.add(code)
             dismiss()
+            try requester.requestReviewIfNeeded()
         } catch {
             scanResult = .error(error)
         }

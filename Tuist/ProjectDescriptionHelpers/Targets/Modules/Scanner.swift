@@ -9,6 +9,7 @@ public enum Scanner {
             .target(ErrorHandling.target),
             .target(ImageReader.target),
             .target(Persistence.target),
+            .target(ReviewRequest.target),
         ]
     )
 
