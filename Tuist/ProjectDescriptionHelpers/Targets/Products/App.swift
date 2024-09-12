@@ -21,6 +21,7 @@ public enum App {
             .target(Shortcuts.target),
             .target(Watch.target),
             .target(Widgets.target),
+            .external(name: "SwiftUIIntrospect-Dynamic"),
         ],
         settings: .settings(
             base: [
