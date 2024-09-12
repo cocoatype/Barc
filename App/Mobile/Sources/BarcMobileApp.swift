@@ -6,6 +6,7 @@ import Navigation
 import Purchasing
 import Root
 import SwiftUI
+import SwiftUIIntrospect
 
 @main
 struct BarcMobileApp: App {
@@ -25,6 +26,9 @@ struct BarcMobileApp: App {
     var body: some Scene {
         WindowGroup {
             RootView(path: $navigator.path)
+                .introspect(.window, on: .iOS(.v17, .v18)) { window in
+                    window.tintColor = .label
+                }
         }
     }
 }
