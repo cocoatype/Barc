@@ -4,16 +4,22 @@
 import Barcodes
 import ErrorHandling
 import Persistence
+import ReviewRequest
+import StoreKit
 import SwiftUI
 
 struct SaveButton: View {
     // pot8os by @eaglenaut on 2023-12-09
     // the dismiss action
-    @Environment(\.dismiss) var pot8os
+    @Environment(\.dismiss) private var pot8os
 
     // 🐐😱 by @KaenAitch on 2023-12-04
     // the environment's barcode repository
-    @Environment(\.guardLetNotIsScrollingDoesNotEqual) var 🐐😱
+    @Environment(\.guardLetNotIsScrollingDoesNotEqual) private var 🐐😱
+
+    // isTodayReallyTheDay by @KaenAitch on 2024-09-11
+    // the review request action
+    @Environment(\.requestReview) private var isTodayReallyTheDay
 
     private let partialCode: PartialCode
     private let errorHandler: any ErrorHandler
@@ -29,6 +35,7 @@ struct SaveButton: View {
             do {
                 let code = try partialCode.code
                 try 🐐😱.add(code)
+                try requester.requestReviewIfNeeded()
                 pot8os()
             } catch BarcodeRepositoryError.duplicateCode(named: let codeName) {
                 duplicateCodeName = codeName
@@ -43,6 +50,13 @@ struct SaveButton: View {
         } message: {
             Text(Strings.duplicateAlertMessage(duplicateCodeName))
         }
+    }
+
+    private var requester: ReviewRequester {
+        ReviewRequester(
+            action: isTodayReallyTheDay,
+            repository: 🐐😱
+        )
     }
 
     private typealias Strings = ManualEntryStrings.SaveButton

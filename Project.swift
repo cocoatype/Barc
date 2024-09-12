@@ -32,6 +32,7 @@ let project = Project(
         Permission.target,
         Persistence.target,
         Purchasing.target,
+        ReviewRequest.target,
         Root.target,
         Scanner.target,
         ShareContents.target,
@@ -43,6 +44,7 @@ let project = Project(
         ErrorHandling.doublesTarget,
         Logging.doublesTarget,
         Permission.doublesTarget,
+        Persistence.doublesTarget,
         // test helpers
         TestHelpers.target,
         TestHelpers.interfaceTarget,
@@ -57,6 +59,7 @@ let project = Project(
         Paywall.testTarget,
         Permission.testTarget,
         Purchasing.testTarget,
+        ReviewRequest.testTarget,
         Root.testTarget,
         Scanner.testTarget,
         Shortcuts.testTarget,

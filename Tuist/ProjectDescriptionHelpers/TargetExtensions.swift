@@ -45,7 +45,8 @@ extension Target {
     }
 
     static func moduleDoublesTarget(
-        name: String
+        name: String,
+        dependencies: [TargetDependency] = []
     ) -> Target {
         return Target.target(
             name: "\(name)Doubles",
@@ -56,7 +57,7 @@ extension Target {
             dependencies: [
                 .target(name: name),
                 .target(TestHelpers.interfaceTarget),
-            ],
+            ] + dependencies,
             settings: .settings(
                 base: [
                     "DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER": false,

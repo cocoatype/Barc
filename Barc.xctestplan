@@ -9,6 +9,170 @@
     }
   ],
   "defaultOptions" : {
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:Barc.xcodeproj",
+          "identifier" : "811888852FCE7082DED7524C",
+          "name" : "Barc"
+        },
+        {
+          "containerPath" : "container:Barc.xcodeproj",
+          "identifier" : "983BB24509F69FE9A5C1976C",
+          "name" : "Share"
+        },
+        {
+          "containerPath" : "container:Barc.xcodeproj",
+          "identifier" : "AC466BE00BBF02302FC9EBD3",
+          "name" : "BarcWatch"
+        },
+        {
+          "containerPath" : "container:Barc.xcodeproj",
+          "identifier" : "F8BF99AF077FC262D6BE91B5",
+          "name" : "Widgets"
+        },
+        {
+          "containerPath" : "container:Barc.xcodeproj",
+          "identifier" : "D038C39F3A989CD4B30D7EBC",
+          "name" : "BarcodeGenerator"
+        },
+        {
+          "containerPath" : "container:Barc.xcodeproj",
+          "identifier" : "C148802E9F705D43E15EF49D",
+          "name" : "Barcodes"
+        },
+        {
+          "containerPath" : "container:Barc.xcodeproj",
+          "identifier" : "8325A1A4F16EE81BE8A9F338",
+          "name" : "BarcodeDetails"
+        },
+        {
+          "containerPath" : "container:Barc.xcodeproj",
+          "identifier" : "9FDDEA88460216FF5C516DB5",
+          "name" : "BarcodeEdit"
+        },
+        {
+          "containerPath" : "container:Barc.xcodeproj",
+          "identifier" : "5F878C09A04D4127B22C8C61",
+          "name" : "BarcodeView"
+        },
+        {
+          "containerPath" : "container:Barc.xcodeproj",
+          "identifier" : "BACE78413D768B8954551BFF",
+          "name" : "DesignSystem"
+        },
+        {
+          "containerPath" : "container:Barc.xcodeproj",
+          "identifier" : "E17990DD0B265FA8F2B16A38",
+          "name" : "ImageReader"
+        },
+        {
+          "containerPath" : "container:Barc.xcodeproj",
+          "identifier" : "52A9A40E2945E2F7DDC28425",
+          "name" : "ErrorHandling"
+        },
+        {
+          "containerPath" : "container:Barc.xcodeproj",
+          "identifier" : "1C25EA4BC2C127345440E8F4",
+          "name" : "Library"
+        },
+        {
+          "containerPath" : "container:Barc.xcodeproj",
+          "identifier" : "905C54A0CFF3A3D21076CFCE",
+          "name" : "Location"
+        },
+        {
+          "containerPath" : "container:Barc.xcodeproj",
+          "identifier" : "D1B8519FDE72E956757ECDAE",
+          "name" : "LocationEditor"
+        },
+        {
+          "containerPath" : "container:Barc.xcodeproj",
+          "identifier" : "18C5189AFBEEC710D1B9A882",
+          "name" : "Logging"
+        },
+        {
+          "containerPath" : "container:Barc.xcodeproj",
+          "identifier" : "3789F20107D7F0FCF8D2F7A1",
+          "name" : "ManualEntry"
+        },
+        {
+          "containerPath" : "container:Barc.xcodeproj",
+          "identifier" : "8406DA4E5990ECFD04E9691E",
+          "name" : "Menu"
+        },
+        {
+          "containerPath" : "container:Barc.xcodeproj",
+          "identifier" : "2C25D9FB17DBD89D48B84C14",
+          "name" : "Navigation"
+        },
+        {
+          "containerPath" : "container:Barc.xcodeproj",
+          "identifier" : "95AADE051996F6C069BC8FF6",
+          "name" : "Onboarding"
+        },
+        {
+          "containerPath" : "container:Barc.xcodeproj",
+          "identifier" : "A00058102D2E7231D2E4E91D",
+          "name" : "Paywall"
+        },
+        {
+          "containerPath" : "container:Barc.xcodeproj",
+          "identifier" : "D6CD1A1840F7A9BD571750CC",
+          "name" : "Permission"
+        },
+        {
+          "containerPath" : "container:Barc.xcodeproj",
+          "identifier" : "5A95723DC2126C4D984E8ACE",
+          "name" : "Persistence"
+        },
+        {
+          "containerPath" : "container:Barc.xcodeproj",
+          "identifier" : "79B2234C13326DA9386ADEA2",
+          "name" : "Purchasing"
+        },
+        {
+          "containerPath" : "container:Barc.xcodeproj",
+          "identifier" : "1C7A5B35E8BDDECD6F26FC2F",
+          "name" : "ReviewRequest"
+        },
+        {
+          "containerPath" : "container:Barc.xcodeproj",
+          "identifier" : "E1E507F4C4BB3ACEA80C849B",
+          "name" : "Root"
+        },
+        {
+          "containerPath" : "container:Barc.xcodeproj",
+          "identifier" : "CA2F6B357958857417F599B6",
+          "name" : "Scanner"
+        },
+        {
+          "containerPath" : "container:Barc.xcodeproj",
+          "identifier" : "92315DB69B109C70B8E26401",
+          "name" : "ShareContents"
+        },
+        {
+          "containerPath" : "container:Barc.xcodeproj",
+          "identifier" : "6E4D08087686CCA3EDA4B905",
+          "name" : "Shortcuts"
+        },
+        {
+          "containerPath" : "container:Barc.xcodeproj",
+          "identifier" : "EAC69BC31DDDC0DE10034D26",
+          "name" : "Triggers"
+        },
+        {
+          "containerPath" : "container:Barc.xcodeproj",
+          "identifier" : "556CCAF50F521AC34DEDB6B5",
+          "name" : "WatchContents"
+        },
+        {
+          "containerPath" : "container:Barc.xcodeproj",
+          "identifier" : "07103248297EA5DD70A2603D",
+          "name" : "WidgetContents"
+        }
+      ]
+    },
     "testTimeoutsEnabled" : true
   },
   "testTargets" : [
@@ -73,6 +237,55 @@
         "containerPath" : "container:Barc.xcodeproj",
         "identifier" : "4AE089AF9F5FBD1A9DDAAD19",
         "name" : "BarcodeGeneratorTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Barc.xcodeproj",
+        "identifier" : "B7801BD51E4383FE13838986",
+        "name" : "LoggingTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Barc.xcodeproj",
+        "identifier" : "DB52DCD5F0C469D41EF74B49",
+        "name" : "PaywallTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Barc.xcodeproj",
+        "identifier" : "645C93D97EAAFC4220C464DC",
+        "name" : "PermissionTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Barc.xcodeproj",
+        "identifier" : "E403E187A570C80A0EC519A8",
+        "name" : "PurchasingTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Barc.xcodeproj",
+        "identifier" : "A7D60DFC0C398C33DC1A4B84",
+        "name" : "ReviewRequestTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Barc.xcodeproj",
+        "identifier" : "239401D13100FBF059BB54E9",
+        "name" : "TriggersTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Barc.xcodeproj",
+        "identifier" : "F0FB100227DE1CCAA30DC238",
+        "name" : "WidgetContentsTests"
       }
     }
   ],
