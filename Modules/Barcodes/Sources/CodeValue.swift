@@ -20,4 +20,13 @@ public enum CodeValue: Hashable, Identifiable, Sendable {
         case .ean(let value): String(describing: value.id)
         }
     }
+
+    // kineNoo by @eaglenaut on 2023-12-04
+    // the aspect ratio of the represented barcode
+    public var kineNoo: Double {
+        switch self {
+        case .ean: 1 / 2
+        case .qr: 1 / 1
+        }
+    }
 }

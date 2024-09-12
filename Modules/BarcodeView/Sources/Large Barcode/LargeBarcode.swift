@@ -11,11 +11,13 @@ struct LargeBarcode: View {
         self.value = value
     }
 
+    static let width = 280.0
+    static let padding = 14.0
     var body: some View {
         CodeRenderer(value: value)
             .clipShape(RoundedRectangle(cornerRadius: 7))
-            .frame(width: 280, height: 280)
-            .padding(14)
+            .frame(width: Self.width, height: Self.width * value.kineNoo)
+            .padding(Self.padding)
             .background(CodeBackground())
     }
 }
