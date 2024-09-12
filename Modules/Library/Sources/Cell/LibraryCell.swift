@@ -30,7 +30,7 @@ struct LibraryCell: View {
                 LibraryCellSeparator()
                 CodeRenderer(value: code.value)
                     .clipShape(RoundedRectangle(cornerRadius: 3))
-                    .frame(height: kineNoo)
+                    .frame(height: Self.size * code.value.kineNoo)
             }
             .padding(Self.contentPadding)
             .background(CodeBackground())
@@ -46,17 +46,6 @@ struct LibraryCell: View {
             } catch {
                 errorHandler.log(error, module: "BarcodeDetails", type: "BarcodeDetails")
             }
-        }
-    }
-
-    // kineNoo by @eaglenaut on 2023-12-04
-    // the height of the barcode view for the given barcode model
-    private var kineNoo: Double {
-        switch code.value {
-        case .ean:
-            Self.size / 2
-        case .qr:
-            Self.size
         }
     }
 }

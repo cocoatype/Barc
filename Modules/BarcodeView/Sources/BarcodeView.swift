@@ -11,10 +11,13 @@ public struct BarcodeView: View {
         self.code = code
     }
 
+    @State private var offset = 0.0
+    private let coordinateSpace = NamedCoordinateSpace.named("frameLayer")
     public var body: some View {
         List {
             LargeBarcode(value: code.value)
                 .listRowBackground(EmptyView())
+                .background(PreferenceReader(key: OffsetPreferenceKey.self, calculator: { $0.frame(in: coordinateSpace).minY }))
                 .introspect(.listCell, on: .iOS(.v17, .v18)) { cell in
                     cell.clipsToBounds = false
                 }
@@ -24,23 +27,34 @@ public struct BarcodeView: View {
                 selectedDate: code.date
             )
         }
+        .coordinateSpace(coordinateSpace)
+        .contentMargins(.top, 0)
         .listStyle(.insetGrouped)
         .scrollContentBackground(.hidden)
-        .background(BarcodeViewBackground())
+        .background(BarcodeViewBackground(offset: offset, value: code.value))
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle(code.name)
+        .onPreferenceChange(BarcodeView.OffsetPreferenceKey.self) { offset = $0 }
+    }
+
+    struct OffsetPreferenceKey: PreferenceKey {
+        static var defaultValue = Double.zero
+        static func reduce(value: inout Double, nextValue: () -> Double) {
+            value += nextValue()
+        }
     }
 }
 
 #Preview {
     NavigationStack {
-        BarcodeView(
+        try! BarcodeView(
             code: Code(
                 name: "Cocoatype Website",
-                value: .qr(
-                    value: "https://cocoatype.com",
-                    correctionLevel: .m
-                ),
+//                value: .qr(
+//                    value: "https://cocoatype.com",
+//                    correctionLevel: .m
+//                ),
+                value: .ean(value: "444444444444"),
                 location: nil,
                 date: nil
             )
