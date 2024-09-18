@@ -19,8 +19,5 @@ public enum Persistence {
 
     public static let doublesTarget = Target.moduleDoublesTarget(
         name: "Persistence"
-        // dependencies: [
-        //     .target(Barcodes.target),
-        // ]
     )
 }

@@ -20,12 +20,24 @@ struct MobileExtensionInputHandler {
     ) {
         self.barcodeRepository = barcodeRepository
         self.purchaseRepository = purchaseRepository
+
+        type(of: purchaseRepository).initialize()
+    }
+
+    private var userCanAddBarcode: Bool {
+        get async throws {
+            if try await purchaseRepository.hasUserBeenUnleashed {
+                return true
+            } else if try await barcodeRepository.codes.count < Purchasing.maxBarcodesCount {
+                return true
+            } else { return false }
+        }
     }
 
     func handleInput(from extensionContext: NSExtensionContext?) async throws -> CodeValue {
-        guard try await purchaseRepository.hasUserBeenUnleashed,
-              try await barcodeRepository.codes.count < Purchasing.maxBarcodesCount
-        else { throw ShareError.userIsNotUnleashed }
+        guard try await userCanAddBarcode else {
+            throw ShareError.userIsNotUnleashed
+        }
         guard let extensionContext else {
             throw ShareError.noExtensionContext
         }

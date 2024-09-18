@@ -5,13 +5,13 @@ import Barcodes
 import Foundation
 
 struct ExtensionInputHandler {
+    #if os(iOS)
+    private let underlyingHandler = MobileExtensionInputHandler()
+    #elseif os(watchOS)
+    private let underlyingHandler = WatchExtensionInputHandler()
+    #endif
+
     func handleInput(from extensionContext: NSExtensionContext?) async throws -> CodeValue {
-        #if os(iOS)
-        return try await MobileExtensionInputHandler().handleInput(from: extensionContext)
-        #elseif os(watchOS)
-        return try WatchExtensionInputHandler().handleInput(from: extensionContext)
-        #else
-        throw ShareError.notImplementedOnPlatform
-        #endif
+        return try await underlyingHandler.handleInput(from: extensionContext)
     }
 }

@@ -16,4 +16,8 @@ public enum Purchasing {
         dependencies: [
         ]
     )
+
+    public static let doublesTarget = Target.moduleDoublesTarget(
+        name: "Purchasing"
+    )
 }

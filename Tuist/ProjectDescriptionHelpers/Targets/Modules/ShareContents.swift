@@ -18,6 +18,9 @@ public enum ShareContents {
     public static let testTarget = Target.moduleTestTarget(
         name: "ShareContents",
         dependencies: [
+            .target(Persistence.doublesTarget),
+            .target(Purchasing.doublesTarget),
+            .target(TestHelpers.target),
         ]
     )
 }
