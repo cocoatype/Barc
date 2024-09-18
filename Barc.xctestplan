@@ -287,6 +287,13 @@
         "identifier" : "F0FB100227DE1CCAA30DC238",
         "name" : "WidgetContentsTests"
       }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Barc.xcodeproj",
+        "identifier" : "5C19261E96ACB9937FB80EA6",
+        "name" : "ShareContentsTests"
+      }
     }
   ],
   "version" : 1
