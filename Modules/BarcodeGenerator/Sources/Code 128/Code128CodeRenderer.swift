@@ -1,21 +1,19 @@
-//  Created by Geoff Pado on 12/4/23.
-//  Copyright © 2023 Cocoatype, LLC. All rights reserved.
+//  Created by Geoff Pado on 9/23/24.
+//  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import Barcodes
-import ErrorHandling
 import SwiftUI
 
-public struct EANCodeRenderer: View {
+public struct Code128CodeRenderer: View {
     private let encodedValue: [Bool]
-    private let encoder = EANEncoder()
-    public init(value: EANCodeValue) {
+    private let encoder = Code128Encoder()
+    public init(value: Code128CodeValue) {
         self.encodedValue = encoder.encodedValue(from: value.payload)
     }
 
     public var body: some View {
         GeometryReader { proxy in
             let barcodeWidth = proxy.size.width / Double(encodedValue.count)
-            let padding = 0
             Path { path in
                 for i in 0..<encodedValue.count {
                     guard encodedValue[i] else { continue }
@@ -23,16 +21,15 @@ public struct EANCodeRenderer: View {
                 }
             }
             .fill(Color.black)
-            .offset(x: floor(Double(padding) / 2.0))
         }
     }
 }
 
-#Preview(traits: .sizeThatFitsLayout) {
-    EANCodeRenderer(
-        value: EANCodeValue(
-            payload: try! EANPayloadParser().payload(
-                for: "444444444444"
+#Preview {
+    Code128CodeRenderer(
+        value: Code128CodeValue(
+            payload: try! Code128PayloadParser().payload(
+                for: "Cocoatype"
             )
         )
     )

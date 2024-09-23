@@ -16,6 +16,8 @@ public struct CodeRenderer: View {
             QRCodeRenderer(value: value)
         case .ean(let value):
             EANCodeRenderer(value: value)
+        case .code128(let value):
+            Code128CodeRenderer(value: value)
         }
     }
 }
