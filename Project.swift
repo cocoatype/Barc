@@ -8,6 +8,7 @@ let project = Project(
     targets: [
         // products
         App.target,
+        CodeScanner.target,
         Share.target,
         Watch.target,
         Widgets.target,

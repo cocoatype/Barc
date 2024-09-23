@@ -3,7 +3,7 @@ import ProjectDescription
 public enum Barcodes {
     public static let target = Target.moduleTarget(
         name: "Barcodes",
-        destinations: [.iPhone, .appleWatch],
+        destinations: [.iPhone, .appleWatch, .mac],
         usesMaxSwiftVersion: true,
         dependencies: [
         ]

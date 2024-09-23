@@ -3,7 +3,7 @@ import ProjectDescription
 public enum Logging {
     public static let target = Target.moduleTarget(
         name: "Logging",
-        destinations: [.iPhone, .appleWatch],
+        destinations: [.iPhone, .appleWatch, .mac],
         usesMaxSwiftVersion: false,
         dependencies: [
             .external(name: "TelemetryClient"),
