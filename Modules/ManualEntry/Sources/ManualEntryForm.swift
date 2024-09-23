@@ -20,12 +20,7 @@ struct ManualEntryForm: View {
                 TextField(Strings.nameLabel, text: $partialCode.name)
             }
             Section {
-                Picker(Strings.typePickerLabel, selection: $partialCode.type) {
-                    Text(Strings.eanType)
-                        .tag(PartialCode.BarcodeType.ean)
-                    Text(Strings.qrType)
-                        .tag(PartialCode.BarcodeType.qr)
-                }
+                ManualEntryFormPicker(codeType: $partialCode.type)
                 TextField(Strings.valueLabel, text: $partialCode.value)
             }
         }
