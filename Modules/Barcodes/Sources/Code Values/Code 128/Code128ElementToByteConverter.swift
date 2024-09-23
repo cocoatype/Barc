@@ -2,7 +2,9 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 public struct Code128ElementToByteConverter {
-    func byte(for element: Code128Element) -> UInt8 {
+    public init() {}
+
+    public func byte(for element: Code128Element) -> UInt8 {
         return switch element {
         case .e00: 0x00
         case .e01: 0x01
