@@ -3,6 +3,7 @@
 
 import DesignSystem
 import ErrorHandling
+import ImageReader
 import SwiftUI
 
 struct ErrorView: View {
@@ -29,27 +30,27 @@ struct ErrorView: View {
     }
 
     private var title: String {
-        guard let shareError = error as? ShareError else { return Strings.genericErrorTitle }
-
-        switch shareError {
-        case .noCodeInImage:
+        switch error {
+        case ShareError.noCodeInImage:
             return Strings.noCodeTitle
-        case .userIsNotUnleashed:
+        case ShareError.userIsNotUnleashed:
             return Strings.unpurchasedTitle
-        case .cannotCreateImageFromData, .cannotLoadData, .noExtensionContext, .noImageProviders, .noInputProviders, .notImplementedOnPlatform:
+        case BarcodeResultMapperError.invalidSymbology:
+            return Strings.invalidSymbologyTitle
+        default:
             return Strings.genericErrorTitle
         }
     }
 
     private var message: String {
-        guard let shareError = error as? ShareError else { return Strings.genericErrorMessage }
-
-        switch shareError {
-        case .noCodeInImage:
+        switch error {
+        case ShareError.noCodeInImage:
             return Strings.noCodeMessage
-        case .userIsNotUnleashed:
+        case ShareError.userIsNotUnleashed:
             return Strings.unpurchasedMessage
-        case .cannotCreateImageFromData, .cannotLoadData, .noExtensionContext, .noImageProviders, .noInputProviders, .notImplementedOnPlatform:
+        case BarcodeResultMapperError.invalidSymbology:
+            return Strings.invalidSymbologyMessage
+        default:
             return Strings.genericErrorMessage
         }
     }

@@ -16,5 +16,11 @@
 // Title for an error when the user has not purchased Barc
 "ErrorView.unpurchasedTitle" = "Requires Barc Unleashed";
 
+// Message for an error when the barcode is unsupported
+"ErrorView.invalidSymbologyMessage" = "Sorry, Barc does not support this type of barcode (yet). If you would like to help make this work, please contact support at [hello@cocoatype.com](mailto:hello@cocoatype.com)";
+
+// Title for an error when the barcode is unsupported
+"ErrorView.invalidSymbologyTitle" = "Unsupported Barcode";
+
 // Text displayed to users while waiting for the image detection code
 "LoadingView.label" = "Scanning…";
