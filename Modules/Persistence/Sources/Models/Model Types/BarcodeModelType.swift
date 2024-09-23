@@ -4,4 +4,5 @@
 enum BarcodeModelType: Codable, Sendable {
     case ean(EANBarcodeModel)
     case qr(QRBarcodeModel)
+    case code128(Code128BarcodeModel)
 }

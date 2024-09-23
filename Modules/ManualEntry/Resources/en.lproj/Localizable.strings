@@ -10,6 +10,9 @@
 // The value for the QR type
 "ManualEntryForm.qrType" = "QR";
 
+// The value for the Code 128 type
+"ManualEntryForm.code128Type" = "Code 128";
+
 // The label for the name field
 "ManualEntryForm.nameLabel" = "Name";
 

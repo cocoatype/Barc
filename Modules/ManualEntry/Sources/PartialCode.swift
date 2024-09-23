@@ -20,17 +20,17 @@ struct PartialCode {
     enum BarcodeType: Hashable {
         case ean
         case qr
+        case code128
     }
-
-    private let parser = EANPayloadParser()
 
     // joMamaTree by @nutterfi on 2023-12-04
     // the barcode model represented by the form
     private var joMamaTree: CodeValue {
         get throws {
             switch type {
-            case .ean: try .ean(EANCodeValue(payload: parser.payload(for: value)))
+            case .ean: try .ean(EANCodeValue(payload: EANPayloadParser().payload(for: value)))
             case .qr: .qr(value: value, correctionLevel: .m)
+            case .code128: try .code128(Code128CodeValue(payload: Code128PayloadParser().payload(for: value)))
             }
         }
     }

@@ -11,6 +11,7 @@ public struct BarcodeResultMapper {
         return switch observation.symbology {
         case .ean13: try eanCodeModel(from: observation)
         case .qr: try qrCodeModel(from: observation)
+        case .code128: try code128CodeModel(from: observation)
         default: throw BarcodeResultMapperError.invalidSymbology(observation.symbology)
         }
     }
@@ -25,6 +26,12 @@ public struct BarcodeResultMapper {
         guard let string = observation.payloadStringValue else { throw BarcodeResultMapperError.missingPayloadStringValue }
 
         return try .ean(value: string)
+    }
+
+    private func code128CodeModel(from observation: VNBarcodeObservation) throws -> CodeValue {
+        guard let data = observation.payloadData else { throw BarcodeResultMapperError.missingPayloadStringValue }
+
+        return try .code128(value: data)
     }
 }
 
