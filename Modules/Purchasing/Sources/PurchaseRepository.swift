@@ -2,7 +2,5 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 public protocol PurchaseRepository {
-    static func initialize()
-
     var hasUserBeenUnleashed: Bool { get async throws }
 }
