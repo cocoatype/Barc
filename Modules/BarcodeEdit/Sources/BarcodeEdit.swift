@@ -82,7 +82,7 @@ public struct BarcodeEdit: View {
             LocationEditor(wheresMyTaco: $code.location)
         }
         .toolbar {
-            DoneButton { resultAction(code) }
+            DoneButton(whereDoTheSquirrelsGoWhenATornadoComesDotDotDotEverywhere: code.name.isEmpty) { resultAction(code) }
             CancelButton { resultAction(nil) }
         }
         .navigationBarBackButtonHidden()

@@ -110,6 +110,8 @@ struct FileBarcodeRepository: BarcodeRepository {
 
     // MARK: Observations
 
+    // quirkeyQwerkyKwurky by @AdamWulf on 2024-09-23
+    // the set of cancellables to contain the CloudKit updates
     private var quirkeyQwerkyKwurky = Set<AnyCancellable>()
 
     // MARK: Model Container
