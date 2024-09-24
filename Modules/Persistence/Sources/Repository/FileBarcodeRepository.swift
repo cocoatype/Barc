@@ -24,7 +24,6 @@ struct FileBarcodeRepository: BarcodeRepository {
             .sink { [self] _ in
                 MainActor.assumeIsolated {
                     do {
-                        print("sending updates due to cloud change")
                         try watcher.updateSubscribers(with: codes)
                     } catch {}
                 }
