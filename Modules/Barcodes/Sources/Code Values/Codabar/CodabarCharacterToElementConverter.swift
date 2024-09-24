@@ -2,7 +2,7 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 public struct CodabarCharacterToElementConverter {
-    func element(for character: Character) throws -> CodabarElement {
+    public func element(for character: Character) throws -> CodabarElement {
         return switch character {
         case "0": .e0
         case "1": .e1
