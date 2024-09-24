@@ -9,16 +9,6 @@ import XCTest
 @testable import ShareContents
 
 class MobileExtensionInputHandlerTests: XCTestCase {
-    func testInitCausesPurchaseRepositoryInitialize() {
-        StubPurchaseRepository.initializeExpectation = expectation(description: "initialize called")
-        let _ = MobileExtensionInputHandler(
-            barcodeRepository: StubBarcodeRepository(),
-            purchaseRepository: StubPurchaseRepository()
-        )
-
-        waitForExpectations(timeout: 1)
-    }
-
     @MainActor
     func testHandleInputWithNoExtensionContextThrows() async throws {
         var barcodeRepository = StubBarcodeRepository()

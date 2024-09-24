@@ -16,7 +16,6 @@ struct BarcMobileApp: App {
         let navigator = Navigator()
         AppDependencyManager.shared.add(dependency: navigator)
         _navigator = State(initialValue: navigator)
-        type(of: purchaseRepository).initialize()
     }
 
     init() {

@@ -20,8 +20,6 @@ struct MobileExtensionInputHandler {
     ) {
         self.barcodeRepository = barcodeRepository
         self.purchaseRepository = purchaseRepository
-
-        type(of: purchaseRepository).initialize()
     }
 
     private var userCanAddBarcode: Bool {
@@ -30,7 +28,9 @@ struct MobileExtensionInputHandler {
                 return true
             } else if try await barcodeRepository.codes.count < Purchasing.maxBarcodesCount {
                 return true
-            } else { return false }
+            } else {
+                return false
+            }
         }
     }
 
