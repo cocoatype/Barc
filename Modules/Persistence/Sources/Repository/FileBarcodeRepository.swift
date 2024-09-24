@@ -41,8 +41,10 @@ struct FileBarcodeRepository: BarcodeRepository {
 
     @MainActor private func findModel(for code: Code) throws -> BarcodeModel? {
         return try models.first(where: { model in
-            let modelCode = try mapper.code(from: model)
-            return modelCode.value == code.value
+            do {
+                let modelCode = try mapper.code(from: model)
+                return modelCode.value == code.value
+            } catch { return false }
         })
     }
 
