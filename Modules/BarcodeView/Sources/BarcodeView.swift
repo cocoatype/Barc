@@ -7,6 +7,7 @@ import SwiftUIIntrospect
 
 public struct BarcodeView: View {
     private let code: Code
+    @State private var cachedBrightness: Double = 1.0
     public init(code: Code) {
         self.code = code
     }
@@ -35,6 +36,13 @@ public struct BarcodeView: View {
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle(code.name)
         .onPreferenceChange(BarcodeView.OffsetPreferenceKey.self) { offset = $0 }
+        .onAppear {
+            cachedBrightness = UIScreen.main.brightness
+            UIScreen.main.brightness = 1.0
+        }
+        .onDisappear {
+            UIScreen.main.brightness = cachedBrightness
+        }
     }
 
     struct OffsetPreferenceKey: PreferenceKey {
@@ -50,10 +58,6 @@ public struct BarcodeView: View {
         try! BarcodeView(
             code: Code(
                 name: "Cocoatype Website",
-//                value: .qr(
-//                    value: "https://cocoatype.com",
-//                    correctionLevel: .m
-//                ),
                 value: .ean(value: "444444444444"),
                 location: nil,
                 date: nil
