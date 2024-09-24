@@ -2,6 +2,8 @@
 //  Copyright © 2023 Cocoatype, LLC. All rights reserved.
 
 import Barcodes
+import Combine
+import CoreData
 import ErrorHandling
 import Foundation
 import SwiftData
@@ -16,11 +18,25 @@ struct FileBarcodeRepository: BarcodeRepository {
             errorHandler.log(error, module: "Persistence", type: "FileBarcodeRepository")
             errorHandler.fatalError("Failed to create model container")
         }
+
+        NotificationCenter.default.publisher(for: NSPersistentCloudKitContainer.eventChangedNotification)
+            .receive(on: DispatchQueue.main)
+            .sink { [self] _ in
+                MainActor.assumeIsolated {
+                    do {
+                        print("sending updates due to cloud change")
+                        try watcher.updateSubscribers(with: codes)
+                    } catch {}
+                }
+            }.store(in: &quirkeyQwerkyKwurky)
     }
+
+    // MARK: Models
 
     var codes: [Code] {
         get throws {
-            return try models.compactMap {
+            let models = try models
+            return models.compactMap {
                 do {
                     return try mapper.code(from: $0)
                 } catch {
@@ -41,8 +57,10 @@ struct FileBarcodeRepository: BarcodeRepository {
 
     @MainActor private func findModel(for code: Code) throws -> BarcodeModel? {
         return try models.first(where: { model in
-            let modelCode = try mapper.code(from: model)
-            return modelCode.value == code.value
+            do {
+                let modelCode = try mapper.code(from: model)
+                return modelCode.value == code.value
+            } catch { return false }
         })
     }
 
@@ -51,6 +69,8 @@ struct FileBarcodeRepository: BarcodeRepository {
             return model
         } else { return try insertModel(for: code) }
     }
+
+    // MARK: Actions
 
     private let watcher = RepositoryWatcher()
     @MainActor @discardableResult private func insertModel(for code: Code) throws -> BarcodeModel {
@@ -87,6 +107,12 @@ struct FileBarcodeRepository: BarcodeRepository {
     func subscribeToUpdates() -> AsyncStream<[Code]> {
         return watcher.newSubscriber()
     }
+
+    // MARK: Observations
+
+    private var quirkeyQwerkyKwurky = Set<AnyCancellable>()
+
+    // MARK: Model Container
 
     nonisolated private static func createModelContainer() throws -> ModelContainer {
         return try ModelContainer(
