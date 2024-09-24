@@ -2,16 +2,22 @@
 "ManualEntry.navigationTitle" = "Enter Barcode";
 
 // The label for the type picker
-"ManualEntryForm.typePickerLabel" = "Type";
-
-// The value for the EAN-13/UPC type
-"ManualEntryForm.eanType" = "UPC/EAN-13";
-
-// The value for the QR type
-"ManualEntryForm.qrType" = "QR";
+"ManualEntryFormPicker.label" = "Type";
 
 // The value for the Code 128 type
-"ManualEntryForm.code128Type" = "Code 128";
+"ManualEntryFormPicker.code128Type" = "Code 128";
+
+// The value for the Code 39 type
+"ManualEntryFormPicker.code39Type" = "Code 39";
+
+// The value for the Codabar type
+"ManualEntryFormPicker.codabarType" = "Codabar";
+
+// The value for the EAN-13/UPC type
+"ManualEntryFormPicker.eanType" = "UPC/EAN-13";
+
+// The value for the QR type
+"ManualEntryFormPicker.qrType" = "QR";
 
 // The label for the name field
 "ManualEntryForm.nameLabel" = "Name";

@@ -4,16 +4,15 @@
 import Barcodes
 
 struct CodabarBarcodeModelMapper {
+    private let converter = CodabarElementToCharacterConverter()
     func barcodeModel(from value: CodabarCodeValue) -> CodabarBarcodeModel {
-        let converter = CodabarElementToCharacterConverter()
         let elementCharacters = value.payload.elements.map(converter.character(for:))
         let elementValue = String(elementCharacters)
         return CodabarBarcodeModel(value: elementValue)
     }
 
+    let parser = CodabarPayloadParser()
     func value(from model: CodabarBarcodeModel) throws -> CodabarCodeValue {
-        let payload = try CodabarPayloadParser().payload(backtick: model.value)
-        return CodabarCodeValue(payload: payload)
+        try CodabarCodeValue(payload: parser.payload(backtick: model.value))
     }
 }
-

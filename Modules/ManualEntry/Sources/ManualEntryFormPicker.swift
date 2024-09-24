@@ -10,15 +10,17 @@ struct ManualEntryFormPicker: View {
     }
 
     var body: some View {
-        Picker(Strings.typePickerLabel, selection: $codeType) {
+        Picker(Strings.label, selection: $codeType) {
+            Text(Strings.code39Type)
+                .tag(PartialCode.BarcodeType.code39)
+            Text(Strings.code128Type)
+                .tag(PartialCode.BarcodeType.code128)
             Text(Strings.eanType)
                 .tag(PartialCode.BarcodeType.ean)
             Text(Strings.qrType)
                 .tag(PartialCode.BarcodeType.qr)
-            Text(Strings.code128Type)
-                .tag(PartialCode.BarcodeType.code128)
         }
     }
 
-    private typealias Strings = ManualEntryStrings.ManualEntryForm
+    private typealias Strings = ManualEntryStrings.ManualEntryFormPicker
 }
