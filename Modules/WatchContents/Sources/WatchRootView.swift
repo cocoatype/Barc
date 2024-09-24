@@ -15,17 +15,19 @@ public struct WatchRootView: View {
     public init() {}
 
     public var body: some View {
-        switch viewState {
-        case .loading:
-            ProgressView()
-                .onAppear { beginLoading() }
-        case .success(let codes):
-            WatchSplitView(codes: codes)
-        case .empty:
-            LibraryEmptyView()
-        case .error(let error):
-            ErrorView(error: error)
-        }
+        Group {
+            switch viewState {
+            case .loading:
+                ProgressView()
+                    .onAppear { beginLoading() }
+            case .success(let codes):
+                WatchSplitView(codes: codes)
+            case .empty:
+                LibraryEmptyView()
+            case .error(let error):
+                ErrorView(error: error)
+            }
+        }.onUpdate(to: repository) { viewState = .success($0) }
     }
 
     private func beginLoading() {
