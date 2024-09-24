@@ -36,7 +36,8 @@ struct BarcodeModelMapper {
             throw BarcodeModelMapperError.noValueSet
         }
 
-        guard let name = model.name else { throw BarcodeModelMapperError.noNameSet }
+        guard let modelName = model.name else { throw BarcodeModelMapperError.noNameSet }
+        let name = if modelName.isEmpty { PersistenceStrings.BarcodeModelMapper.untitledCodeName } else { modelName }
 
         return Code(
             name: name,

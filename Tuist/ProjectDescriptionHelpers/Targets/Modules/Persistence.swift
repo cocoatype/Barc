@@ -4,6 +4,7 @@ public enum Persistence {
     public static let target = Target.moduleTarget(
         name: "Persistence",
         destinations: [.iPhone, .appleWatch],
+        hasResources: true,
         usesMaxSwiftVersion: false,
         dependencies: [
             .target(Barcodes.target),

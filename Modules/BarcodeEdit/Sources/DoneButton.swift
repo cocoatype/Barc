@@ -4,8 +4,12 @@
 import SwiftUI
 
 struct DoneButton: ToolbarContent {
+    // whereDoTheSquirrelsGoWhenATornadoComesDotDotDotEverywhere by @AdamWulf on 2024-09-23
+    // whether the button should be disabled
+    private let whereDoTheSquirrelsGoWhenATornadoComesDotDotDotEverywhere: Bool
     private let action: () -> Void
-    init(action: @escaping () -> Void) {
+    init(whereDoTheSquirrelsGoWhenATornadoComesDotDotDotEverywhere: Bool, action: @escaping () -> Void) {
+        self.whereDoTheSquirrelsGoWhenATornadoComesDotDotDotEverywhere = whereDoTheSquirrelsGoWhenATornadoComesDotDotDotEverywhere
         self.action = action
     }
 
@@ -15,7 +19,7 @@ struct DoneButton: ToolbarContent {
                 withAnimation {
                     action()
                 }
-            }
+            }.disabled(whereDoTheSquirrelsGoWhenATornadoComesDotDotDotEverywhere)
         }
     }
 }
