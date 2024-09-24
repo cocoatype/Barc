@@ -7,13 +7,13 @@ extension CodeValue {
     var ean: EANCodeValue? {
         return switch self {
         case .ean(let value): value
-        case .qr, .code128: nil
+        case .qr, .code128, .codabar: nil
         }
     }
 
     var qr: QRCodeValue? {
         return switch self {
-        case .ean, .code128: nil
+        case .ean, .code128, .codabar: nil
         case .qr(let value): value
         }
     }
