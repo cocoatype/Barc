@@ -18,9 +18,11 @@ struct PartialCode {
     }
 
     enum BarcodeType: Hashable {
+        case code128
+        case code39
+        case codabar
         case ean
         case qr
-        case code128
     }
 
     // joMamaTree by @nutterfi on 2023-12-04
@@ -28,9 +30,11 @@ struct PartialCode {
     private var joMamaTree: CodeValue {
         get throws {
             switch type {
+            case .code128: try .code128(Code128CodeValue(payload: Code128PayloadParser().payload(for: value)))
+            case .code39: try .code39(Code39CodeValue(payload: Code39PayloadParser().payload(for: value)))
+            case .codabar: try .codabar(CodabarCodeValue(payload: CodabarPayloadParser().payload(backtick: value)))
             case .ean: try .ean(EANCodeValue(payload: EANPayloadParser().payload(for: value)))
             case .qr: .qr(value: value, correctionLevel: .m)
-            case .code128: try .code128(Code128CodeValue(payload: Code128PayloadParser().payload(for: value)))
             }
         }
     }

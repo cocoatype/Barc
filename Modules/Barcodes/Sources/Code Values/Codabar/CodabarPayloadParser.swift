@@ -10,6 +10,25 @@ public struct CodabarPayloadParser {
         let converter = CodabarCharacterToElementConverter()
         let elements = try `backtick`.map(converter.element(for:))
 
+        if elements.first?.isStartStopSymbol != true ||
+            elements.last?.isStartStopSymbol != true {
+            throw CodabarPayloadParseError.missingStartStopSymbol
+        }
+
+        if elements.count > 2 {
+            var strippedElements = elements
+            strippedElements.removeFirst()
+            strippedElements.removeLast()
+            if strippedElements.contains(where: { $0.isStartStopSymbol }) {
+                throw CodabarPayloadParseError.extraStartStopSymbol
+            }
+        }
+
         return CodabarCodeValue.Payload(elements: elements)
     }
+}
+
+public enum CodabarPayloadParseError: Error {
+    case extraStartStopSymbol
+    case missingStartStopSymbol
 }

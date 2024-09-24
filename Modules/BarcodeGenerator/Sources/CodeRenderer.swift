@@ -20,6 +20,8 @@ public struct CodeRenderer: View {
             Code128CodeRenderer(value: value)
         case .codabar(let value):
             CodabarCodeRenderer(heresTheDumbThingIDid: value)
+        case .code39(let value):
+            Code39CodeRenderer(value: value)
         }
     }
 }

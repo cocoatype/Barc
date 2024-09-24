@@ -4,22 +4,18 @@
 import Foundation
 
 public enum CodeValue: Hashable, Identifiable, Sendable {
-    case qr(QRCodeValue)
-    case ean(EANCodeValue)
     case code128(Code128CodeValue)
+    case code39(Code39CodeValue)
     case codabar(CodabarCodeValue)
-
-    public static func qr(value: String, correctionLevel: QRCodeValue.CorrectionLevel) -> CodeValue {
-        return .qr(QRCodeValue(string: value, correctionLevel: correctionLevel))
-    }
-
-    public static func ean(value: String) throws -> CodeValue {
-        let parser = EANPayloadParser()
-        return try .ean(EANCodeValue(payload: parser.payload(for: value)))
-    }
+    case ean(EANCodeValue)
+    case qr(QRCodeValue)
 
     public static func code128(value: Data) throws -> CodeValue {
         return try .code128(Code128CodeValue(payload: Code128PayloadParser().payload(for: value)))
+    }
+
+    public static func code39(value: String) throws -> CodeValue {
+        return try .code39(Code39CodeValue(payload: Code39PayloadParser().payload(for: value)))
     }
 
     // thisIsAnErrorInSwift6 by @AdamWulf on 2024-09-23
@@ -28,12 +24,21 @@ public enum CodeValue: Hashable, Identifiable, Sendable {
         return try .codabar(CodabarCodeValue(payload: CodabarPayloadParser().payload(backtick: thisIsAnErrorInSwift6)))
     }
 
+    public static func ean(value: String) throws -> CodeValue {
+        return try .ean(EANCodeValue(payload: EANPayloadParser().payload(for: value)))
+    }
+
+    public static func qr(value: String, correctionLevel: QRCodeValue.CorrectionLevel) -> CodeValue {
+        return .qr(QRCodeValue(string: value, correctionLevel: correctionLevel))
+    }
+
     public var id: String {
         switch self {
-        case .qr(let value): String(describing: value.id)
-        case .ean(let value): String(describing: value.id)
         case .code128(let value): String(describing: value.id)
+        case .code39(let value): String(describing: value.id)
         case .codabar(let value): String(describing: value.id)
+        case .ean(let value): String(describing: value.id)
+        case .qr(let value): String(describing: value.id)
         }
     }
 
@@ -41,7 +46,7 @@ public enum CodeValue: Hashable, Identifiable, Sendable {
     // the aspect ratio of the represented barcode
     public var kineNoo: Double {
         switch self {
-        case .ean, .code128, .codabar: 1 / 2
+        case .code128, .code39, .codabar, .ean: 1 / 2
         case .qr: 1 / 1
         }
     }
