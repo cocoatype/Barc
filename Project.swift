@@ -84,6 +84,11 @@ let project = Project(
                         :
                     ],
                     launchArguments: [
+                        .launchArgument(name: "-com.apple.CoreData.SQLDebug 0", isEnabled: true),
+                        .launchArgument(name: "-com.apple.CoreData.CloudKitDebug 0", isEnabled: true),
+                        .launchArgument(name: "-com.apple.CoreData.Logging.stderr 0", isEnabled: true),
+                        .launchArgument(name: "-com.apple.CoreData.ConcurrencyDebug 0", isEnabled: true),
+                        .launchArgument(name: "-com.apple.CoreData.MigrationDebug 0", isEnabled: true),
                     ]
                 ),
                 options: .options(
