@@ -27,19 +27,22 @@ public struct WatchRootView: View {
             case .error(let error):
                 ErrorView(error: error)
             }
-        }.onUpdate(to: repository) { viewState = .success($0) }
+        }.onUpdate(to: repository) { updateViewState(with: $0) }
     }
 
     private func beginLoading() {
         do {
-            let codes = try repository.codes
-            if codes.count > 0 {
-                viewState = .success(codes)
-            } else {
-                viewState = .empty
-            }
+            try updateViewState(with: repository.codes)
         } catch {
             viewState = .error(error)
+        }
+    }
+
+    private func updateViewState(with codes: [Code]) {
+        if codes.count > 0 {
+            viewState = .success(codes)
+        } else {
+            viewState = .empty
         }
     }
 

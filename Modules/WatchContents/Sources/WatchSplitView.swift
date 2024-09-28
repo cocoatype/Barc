@@ -10,7 +10,7 @@ struct WatchSplitView: View {
 
     init(codes: [Code]) {
         self.codes = codes
-        self.selectedCode = codes[0]
+        self.selectedCode = codes.first
     }
 
     var body: some View {
