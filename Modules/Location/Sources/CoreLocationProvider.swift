@@ -16,8 +16,19 @@ class CoreLocationProvider: NSObject, LocationProvider, CLLocationManagerDelegat
     }
 
     private var continuation: CheckedContinuation<Location, any Error>?
+    private func resume(with result: Result<Location, any Error>) {
+        guard let continuation else { return }
+        self.continuation = nil
+        continuation.resume(with: result)
+    }
+
     var currentLocation: Location {
         get async throws {
+            if let continuation {
+                self.continuation = nil
+                continuation.resume(throwing: CancellationError())
+            }
+
             return try await withCheckedThrowingContinuation { continuation in
                 self.continuation = continuation
                 locationManager.requestLocation()
@@ -29,23 +40,22 @@ class CoreLocationProvider: NSObject, LocationProvider, CLLocationManagerDelegat
 
     private let mapper = PlacemarkMapper()
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let continuation else { return }
         guard let location = locations.min(by: { lhs, rhs in
             lhs.horizontalAccuracy < rhs.horizontalAccuracy
         }) else {
-            return continuation.resume(throwing: LocationProviderError.noLocationReturned)
+            return resume(with: .failure(LocationProviderError.noLocationReturned))
         }
 
-        geocoder.reverseGeocodeLocation(location) { [mapper] placemarks, error in
-            guard let placemark = placemarks?.first else { return continuation.resume(throwing: error ?? LocationProviderError.noPlacemarkReturned) }
+        geocoder.reverseGeocodeLocation(location) { [weak self] placemarks, error in
+            guard let self else { return }
+            guard let placemark = placemarks?.first else { return resume(with: .failure(error ?? LocationProviderError.noPlacemarkReturned)) }
 
-            let result = Result { try mapper.location(from: placemark) }
-            continuation.resume(with: result)
+            let result = Result { [mapper] in try mapper.location(from: placemark) }
+            resume(with: result)
         }
     }
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: any Error) {
-        guard let continuation else { return }
-        continuation.resume(throwing: error)
+        resume(with: .failure(error))
     }
 }
