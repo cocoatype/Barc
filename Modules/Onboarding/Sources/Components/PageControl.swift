@@ -15,8 +15,8 @@ struct PageControl: UIViewRepresentable {
 
     func makeUIView(context: Context) -> UIPageControl {
         let pageControl = UIPageControl()
-        pageControl.pageIndicatorTintColor = DesignSystemAsset.primaryButtonBackground.color.withAlphaComponent(0.3)
-        pageControl.currentPageIndicatorTintColor = DesignSystemAsset.primaryButtonBackground.color
+        pageControl.pageIndicatorTintColor = .primaryButtonBackground.withAlphaComponent(0.3)
+        pageControl.currentPageIndicatorTintColor = .primaryButtonBackground
         pageControl.currentPage = currentPage
         pageControl.numberOfPages = pageCount
         return pageControl
