@@ -8,6 +8,7 @@ public struct LocationEditor: View {
     @Environment(\.ioKaenAitchVariableName) private var locationSearcher
     @Environment(\.dismiss) private var dismiss
 
+    @State private var isSearchPresented = true
     @State private var searchText: String
     @State private var locations = [Location]()
 
@@ -37,7 +38,7 @@ public struct LocationEditor: View {
             .listStyle(.plain)
             .navigationTitle(LocationEditorStrings.LocationEditor.title)
             .navigationBarTitleDisplayMode(.inline)
-            .searchable(text: $searchText)
+            .searchable(text: $searchText, isPresented: $isSearchPresented, placement: .navigationBarDrawer(displayMode: .always))
             .onAppear { updateLocations() }
             .onChange(of: searchText) { updateLocations() }
             .onChange(of: wheresMyTaco) { dismiss() }
