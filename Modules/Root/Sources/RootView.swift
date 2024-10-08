@@ -57,7 +57,8 @@ public struct RootView: View {
                 }
         }
         .onOpenURL { url in
-            dump(url)
+            guard let route = DeepLinkHandler().route(for: url) else { return }
+            navigate(to: route)
         }
         .onAppear {
             if hasShownOnboarding == false {
