@@ -38,6 +38,7 @@ import UniformTypeIdentifiers
                     CodeBackground()
                 }
             }
+            .padding(withBackground ? CodeBackground.shadowSpacing : 0)
             .frame(width: size.width, height: size.height)
     }
 }

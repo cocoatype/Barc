@@ -6,6 +6,7 @@ import SwiftUI
 
 public struct CodeBackground: View {
     public static let padding = 14.0
+    public static let shadowSpacing = 10.0
 
     public init() {}
 
@@ -13,7 +14,7 @@ public struct CodeBackground: View {
         RoundedRectangle(cornerRadius: 14)
             .fill(Color.cellBackground)
             .strokeBorder(Color.cellBorder)
-            .shadow(color: Color.cellShadow, radius: 16, x: 0, y: 2)
+            .shadow(color: Color.cellShadow, radius: 4, x: 0, y: 2)
     }
 }
 
