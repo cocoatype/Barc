@@ -52,10 +52,10 @@ struct Code39Encoder {
         case .e36: [.narrowBar, .wideSpace, .narrowBar, .narrowSpace, .narrowBar, .narrowSpace, .wideBar, .narrowSpace, .wideBar]
         case .e37: [.wideBar, .wideSpace, .narrowBar, .narrowSpace, .narrowBar, .narrowSpace, .wideBar, .narrowSpace, .narrowBar]
         case .e38: [.narrowBar, .wideSpace, .wideBar, .narrowSpace, .narrowBar, .narrowSpace, .wideBar, .narrowSpace, .narrowBar]
-        case .e39: [.narrowBar, .narrowSpace, .narrowBar, .wideSpace, .narrowBar, .narrowSpace, .narrowBar, .narrowSpace, .narrowBar]
-        case .e40: [.narrowBar, .narrowSpace, .narrowBar, .narrowSpace, .narrowBar, .wideSpace, .narrowBar, .narrowSpace, .narrowBar]
-        case .e41: [.narrowBar, .narrowSpace, .narrowBar, .narrowSpace, .narrowBar, .narrowSpace, .narrowBar, .wideSpace, .narrowBar]
-        case .e42: [.narrowBar, .wideSpace, .narrowBar, .narrowSpace, .narrowBar, .narrowSpace, .narrowBar, .narrowSpace, .narrowBar]
+        case .e39: [.narrowBar, .wideSpace, .narrowBar, .wideSpace, .narrowBar, .wideSpace, .narrowBar, .narrowSpace, .narrowBar]
+        case .e40: [.narrowBar, .wideSpace, .narrowBar, .wideSpace, .narrowBar, .narrowSpace, .narrowBar, .wideSpace, .narrowBar]
+        case .e41: [.narrowBar, .wideSpace, .narrowBar, .narrowSpace, .narrowBar, .wideSpace, .narrowBar, .wideSpace, .narrowBar]
+        case .e42: [.narrowBar, .narrowSpace, .narrowBar, .wideSpace, .narrowBar, .wideSpace, .narrowBar, .wideSpace, .narrowBar]
         case .startStop: [.narrowBar, .wideSpace, .narrowBar, .narrowSpace, .wideBar, .narrowSpace, .wideBar, .narrowSpace, .narrowBar]
         }
     }
