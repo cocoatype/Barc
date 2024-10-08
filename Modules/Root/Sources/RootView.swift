@@ -56,6 +56,10 @@ public struct RootView: View {
                     routeMapper.view(for: $0)
                 }
         }
+        .onOpenURL { url in
+            guard let route = DeepLinkHandler().route(for: url) else { return }
+            navigate(to: route)
+        }
         .onAppear {
             if hasShownOnboarding == false {
                 isShowingOnboarding = true

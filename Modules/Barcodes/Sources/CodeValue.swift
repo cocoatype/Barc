@@ -34,11 +34,11 @@ public enum CodeValue: Hashable, Identifiable, Sendable {
 
     public var id: String {
         switch self {
-        case .code128(let value): String(describing: value.id)
-        case .code39(let value): String(describing: value.id)
-        case .codabar(let value): String(describing: value.id)
-        case .ean(let value): String(describing: value.id)
-        case .qr(let value): String(describing: value.id)
+        case .code128(let value): value.id
+        case .code39(let value): value.id
+        case .codabar(let value): value.id
+        case .ean(let value): value.id
+        case .qr(let value): value.id
         }
     }
 

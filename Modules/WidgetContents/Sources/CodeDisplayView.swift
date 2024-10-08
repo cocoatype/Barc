@@ -16,5 +16,6 @@ struct CodeDisplayView: View {
         CodeRenderer(value: code.value)
             .padding(14)
             .clipShape(ContainerRelativeShape().inset(by: 14))
+            .codeURL(code)
     }
 }
