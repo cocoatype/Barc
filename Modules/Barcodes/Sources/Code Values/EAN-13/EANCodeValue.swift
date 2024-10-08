@@ -10,21 +10,21 @@ public struct EANCodeValue: Hashable, Identifiable, Sendable {
     }
 
     public struct Payload: Hashable, Identifiable, Sendable {
-        private let digit1: Digit
-        private let digit2: Digit
-        private let digit3: Digit
-        private let digit4: Digit
-        private let digit5: Digit
-        private let digit6: Digit
-        private let digit7: Digit
-        private let digit8: Digit
-        private let digit9: Digit
-        private let digit10: Digit
-        private let digit11: Digit
-        private let digit12: Digit
-        private let digit13: Digit
+        private let digit1: EANDigit
+        private let digit2: EANDigit
+        private let digit3: EANDigit
+        private let digit4: EANDigit
+        private let digit5: EANDigit
+        private let digit6: EANDigit
+        private let digit7: EANDigit
+        private let digit8: EANDigit
+        private let digit9: EANDigit
+        private let digit10: EANDigit
+        private let digit11: EANDigit
+        private let digit12: EANDigit
+        private let digit13: EANDigit
 
-        init(digit1: Digit, digit2: Digit, digit3: Digit, digit4: Digit, digit5: Digit, digit6: Digit, digit7: Digit, digit8: Digit, digit9: Digit, digit10: Digit, digit11: Digit, digit12: Digit, digit13: Digit) {
+        init(digit1: EANDigit, digit2: EANDigit, digit3: EANDigit, digit4: EANDigit, digit5: EANDigit, digit6: EANDigit, digit7: EANDigit, digit8: EANDigit, digit9: EANDigit, digit10: EANDigit, digit11: EANDigit, digit12: EANDigit, digit13: EANDigit) {
             self.digit1 = digit1
             self.digit2 = digit2
             self.digit3 = digit3
@@ -40,7 +40,7 @@ public struct EANCodeValue: Hashable, Identifiable, Sendable {
             self.digit13 = digit13
         }
 
-        public var digits: [Digit] {
+        public var digits: [EANDigit] {
             return [
                 digit1,
                 digit2,
@@ -58,25 +58,6 @@ public struct EANCodeValue: Hashable, Identifiable, Sendable {
             ]
         }
 
-        public var id: [Digit] { digits }
-
-        public enum Digit: Identifiable, Sendable {
-            case d0, d1, d2, d3, d4, d5, d6, d7, d8, d9
-
-            public var id: Int {
-                switch self {
-                case .d0: 0
-                case .d1: 1
-                case .d2: 2
-                case .d3: 3
-                case .d4: 4
-                case .d5: 5
-                case .d6: 6
-                case .d7: 7
-                case .d8: 8
-                case .d9: 9
-                }
-            }
-        }
+        public var id: String { String(digits.map(\.id)) }
     }
 }

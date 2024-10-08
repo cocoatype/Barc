@@ -3,7 +3,11 @@
 
 public struct CodabarCodeValue: Hashable, Identifiable, Sendable {
     public let payload: Payload
-    public var id: Payload.ID { payload.id }
+    public var id: String {
+        let converter = CodabarElementToCharacterConverter()
+        let characters = payload.id.map(converter.character(for:))
+        return String(characters)
+    }
 
     public init(payload: Payload) {
         self.payload = payload

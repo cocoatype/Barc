@@ -17,7 +17,7 @@ struct EANEncoder {
         return [true, false, true] + encodedLeft + [false, true, false, true, false] + encodedRight + [true, false, true]
     }
 
-    private func encoding(for digit: EANCodeValue.Payload.Digit, section: Section) -> [Bool] {
+    private func encoding(for digit: EANDigit, section: Section) -> [Bool] {
         let intRepresentation = switch (digit, section) {
         case (.d0, .l): 0b0001101
         case (.d0, .g): 0b0100111
@@ -53,7 +53,7 @@ struct EANEncoder {
         return intRepresentation.binaryBoolValues(count: 7)
     }
 
-    private func sectionMap(forFirstDigit digit: EANCodeValue.Payload.Digit) -> [Section] {
+    private func sectionMap(forFirstDigit digit: EANDigit) -> [Section] {
         let intRepresentation = switch digit {
         case .d0: 0b000000
         case .d1: 0b001011

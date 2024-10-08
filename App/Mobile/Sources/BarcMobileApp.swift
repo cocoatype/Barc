@@ -29,5 +29,6 @@ struct BarcMobileApp: App {
                     window.tintColor = .label
                 }
         }
+        .handlesExternalEvents(matching: ["codeValue="])
     }
 }

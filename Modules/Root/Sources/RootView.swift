@@ -56,6 +56,9 @@ public struct RootView: View {
                     routeMapper.view(for: $0)
                 }
         }
+        .onOpenURL { url in
+            dump(url)
+        }
         .onAppear {
             if hasShownOnboarding == false {
                 isShowingOnboarding = true

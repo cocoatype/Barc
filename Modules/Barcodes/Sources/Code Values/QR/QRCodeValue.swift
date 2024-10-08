@@ -24,7 +24,7 @@ public struct QRCodeValue: Hashable, Identifiable, Sendable {
 
     public struct Payload: ExpressibleByStringLiteral, Hashable, Identifiable, Sendable {
         public let data: Data
-        public var id: Data { data }
+        public var id: String { data.base64EncodedString() }
 
         public init(data: Data) {
             self.data = data
