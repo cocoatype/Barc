@@ -17,6 +17,8 @@ public extension Color {
     static let secondaryButtonBackground = Color(lightHex: 0x787880, lightAlpha: 0.16, darkHex: 0x787880, darkAlpha: 0.32)
     static let secondaryButtonLabel = Color(lightHex: 0x3c3c43, lightAlpha: 0.6, darkHex: 0xebebf5, darkAlpha: 0.6)
 
+    static let walletExportBackground = Color(hexLiteral: 0x1d1e1e)
+
 #if os(iOS)
     static let separator = Color(uiColor: .separator)
     static let systemGroupedBackground = Color(uiColor: .systemGroupedBackground)
