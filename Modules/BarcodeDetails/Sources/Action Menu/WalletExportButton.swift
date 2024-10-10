@@ -6,6 +6,7 @@ import CoreTransferable
 import PassKit
 import SwiftUI
 import UniformTypeIdentifiers
+import WalletExport
 
 struct WalletExportButton: View {
     private let code: Code
@@ -13,30 +14,15 @@ struct WalletExportButton: View {
         self.code = code
     }
 
+    private let exporter = Exporter()
     var body: some View {
-        Button("Add to Apple Wallet…", systemImage: "wallet.pass") {
+        Button(
+            BarcodeDetailsStrings.WalletExportButton.title,
+            systemImage: "wallet.pass"
+        ) {
             Task {
-                let (data, _) = try await URLSession.shared.data(from: URL(string: "https://pass.getbarc.app/generate")!)
-                let pass = try PKPass(data: data)
-                let status = await PKPassLibrary().addPasses([pass])
-                switch status {
-                case .didAddPasses:
-                    print("did add passes")
-                case .shouldReviewPasses:
-                    print("should review passes")
-                case .didCancelAddPasses:
-                    print("did cancel")
-                }
+                try await exporter.requestExport(for: code)
             }
         }
     }
 }
-
-//struct WalletPass: Transferable {
-//    static var transferRepresentation: some TransferRepresentation {
-//        DataRepresentation(exportedContentType: UTType("com.apple.pkpass-data")!) { pass in
-//            let (data, _) = try await URLSession.shared.data(from: URL(string: "https://pass.getbarc.app/generate")!)
-//            return data
-//        }
-//    }
-//}

@@ -3,3 +3,6 @@
 
 // The title for the edit button when viewing barcode details
 "EditButton.title" = "Edit";
+
+// The title for the button to export a pass to Apple Wallet
+"WalletExportButton.title" = "Add to Apple Wallet…";

@@ -8,6 +8,10 @@ public struct Exporter {
     private let passLibrary: any PassLibrary
     private let service: any Service
 
+    public init() {
+        self.init(passLibrary: PKPassLibrary(), service: ProductionService())
+    }
+
     init(
         passLibrary: any PassLibrary = PKPassLibrary(),
         service: any Service = ProductionService()
