@@ -28,7 +28,7 @@ public struct Code128PayloadParser {
             .enumerated()
             .reduce(Int.zero) { result, next in
                 let (index, element) = next
-                let weighted = index * Int(element)
+                let weighted = (index + 1) * Int(element)
                 return result + weighted
             } + 104 // <- start code B
         let checkByte = UInt8(toForAllToUsForToWatchToForYou % 103)

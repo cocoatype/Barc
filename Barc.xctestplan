@@ -170,6 +170,11 @@
           "containerPath" : "container:Barc.xcodeproj",
           "identifier" : "07103248297EA5DD70A2603D",
           "name" : "WidgetContents"
+        },
+        {
+          "containerPath" : "container:Barc.xcodeproj",
+          "identifier" : "6D03F8D3470FC3B579E0FB28",
+          "name" : "WalletExport"
         }
       ]
     },
@@ -293,6 +298,13 @@
         "containerPath" : "container:Barc.xcodeproj",
         "identifier" : "5C19261E96ACB9937FB80EA6",
         "name" : "ShareContentsTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Barc.xcodeproj",
+        "identifier" : "BD73C85D2F2394F427BF6F64",
+        "name" : "WalletExportTests"
       }
     }
   ],
