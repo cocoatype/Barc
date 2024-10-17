@@ -3,7 +3,7 @@
 
 import SwiftUI
 
-struct PurchaseMarketingTopBarHeadline: View {
+struct PaywallTopBarHeadline: View {
     var body: some View {
         Text(PaywallStrings.PurchaseMarketingTopBarHeadlineLabel.text)
             .foregroundColor(.primary)

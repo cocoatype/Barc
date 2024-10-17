@@ -4,7 +4,7 @@
 import DesignSystem
 import SwiftUI
 
-struct PurchaseMarketingTopBarSubheadline: View {
+struct PaywallTopBarSubheadline: View {
     var body: some View {
         Text(PaywallStrings.PurchaseMarketingTopBarSubheadlineLabel.text)
             .foregroundColor(.secondary)

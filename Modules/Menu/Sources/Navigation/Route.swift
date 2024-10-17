@@ -2,7 +2,7 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import Onboarding
-import Purchasing
+import Paywall
 import SwiftUI
 
 enum Route: View, Hashable {

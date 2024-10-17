@@ -8,4 +8,8 @@ public struct StubPurchaseRepository: PurchaseRepository {
     public init() {}
 
     public var hasUserBeenUnleashed = false
+
+    public var purchaseOptions = [PurchaseOption]()
+
+    public func purchase(_ option: PurchaseOption) async throws {}
 }

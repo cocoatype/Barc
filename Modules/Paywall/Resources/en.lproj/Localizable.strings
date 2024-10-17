@@ -1,8 +1,50 @@
+"PaywallFooterPurchaseButton.errorTitle" = "Purchase Error Occurred";
+
+"PaywallFooterPurchaseButton.errorMessage" = "An error occurred while trying to purchase Barc Unleashed. Please try again later.";
+
+"PaywallFooterPurchaseButton.dismissButton" = "OK";
+
+"PaywallFooterPrivacyLink.shortTitle" = "Privacy";
+"PaywallFooterPrivacyLink.title" = "Privacy Policy";
+
+"PaywallFooterRestoreLink.shortTitle" = "Restore";
+"PaywallFooterRestoreLink.title" = "Restore Purchases";
+
+"PaywallFooterTermsLink.shortTitle" = "Terms";
+"PaywallFooterTermsLink.title" = "Terms & Conditions";
+
+// The title of the alert shown when the user has not purchased Barc.
+"PurchaseAlertViewModifier.title" = "Requires Barc Unleashed";
+
+// The message body of the alert shown when the user has not purchased Barc.
+"PurchaseAlertViewModifier.message" = "Adding more barcodes requires Barc Unleashed.";
+
+// The title of the cancel button for the alert shown when the user has not purchased Barc.
+"PurchaseAlertViewModifier.cancelButton" = "OK";
+
+// The title of the paywall button for the alert shown when the user has not purchased Barc.
+"PurchaseAlertViewModifier.paywallButton" = "Learn More…";
+
 "PurchaseMarketingTopBarHeadlineLabel.text" = "Barc Unleashed";
 "PurchaseMarketingTopBarSubheadlineLabel.text" = "Unlock the full potential of Barc.";
 
 "PurchaseMarketingView.multipleItemsHeader" = "Save to your heart’s content.";
 "PurchaseMarketingView.multipleItemsText" = "Add as many items to Barc as you'd like.";
 
-"PurchaseMarketingView.supportDevelopmentHeader" = "Expand the Barc roadmap.";
-"PurchaseMarketingView.supportDevelopmentText" = "Your support helps keep updates to Barc coming!";
+"PurchaseMarketingView.supportDevelopmentHeader" = "Support indie app development.";
+"PurchaseMarketingView.supportDevelopmentText" = "Help keep updates to Barc coming!";
+
+"PurchaseMarketingView.walletExportHeader" = "Add to Apple Wallet";
+"PurchaseMarketingView.walletExportText" = "Add your barcodes to Apple Wallet for quick access.";
+
+"PurchaseOption.yearly.shortName" = "Annual";
+"PurchaseOption.yearly.message" = "Unlock all these features for just %@/year (%@/month).";
+"PurchaseOption.yearly.buttonTitle" = "Continue";
+
+"PurchaseOption.yearlyWithTrial.shortName" = "Annual";
+"PurchaseOption.yearlyWithTrial.message" = "First two weeks free, then just %@/year (%@/month).";
+"PurchaseOption.yearlyWithTrial.buttonTitle" = "Redeem Two Weeks Free";
+
+"PurchaseOption.monthly.shortName" = "Monthly";
+"PurchaseOption.monthly.message" = "Unlock all these features for just %@/month. Cancel at any time.";
+"PurchaseOption.monthly.buttonTitle" = "Continue";
