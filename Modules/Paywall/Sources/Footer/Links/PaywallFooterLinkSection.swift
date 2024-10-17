@@ -6,6 +6,7 @@ import SwiftUI
 struct PaywallFooterLinkSection: View {
     var body: some View {
         ViewThatFits(in: .horizontal) {
+            // Restore Purchases — Terms & Conditions — Privacy Policy
             HStack {
                 PaywallFooterRestoreLink(usesShortTitle: false)
                 PaywallFooterLinkSeparator()
@@ -14,6 +15,7 @@ struct PaywallFooterLinkSection: View {
                 PaywallFooterPrivacyLink(usesShortTitle: false)
             }
 
+            // Restore — Terms & Conditions — Privacy Policy
             HStack {
                 PaywallFooterRestoreLink(usesShortTitle: true)
                 PaywallFooterLinkSeparator()
@@ -22,6 +24,7 @@ struct PaywallFooterLinkSection: View {
                 PaywallFooterPrivacyLink(usesShortTitle: false)
             }
 
+            // Restore — Terms & Conditions — Privacy
             HStack {
                 PaywallFooterRestoreLink(usesShortTitle: true)
                 PaywallFooterLinkSeparator()
@@ -30,6 +33,7 @@ struct PaywallFooterLinkSection: View {
                 PaywallFooterPrivacyLink(usesShortTitle: true)
             }
 
+            // Restore — Terms — Privacy
             HStack {
                 PaywallFooterRestoreLink(usesShortTitle: true)
                 PaywallFooterLinkSeparator()
@@ -38,6 +42,7 @@ struct PaywallFooterLinkSection: View {
                 PaywallFooterPrivacyLink(usesShortTitle: true)
             }
 
+            // Restore Purchases — Terms & Conditions — Privacy Policy
             VStack {
                 PaywallFooterRestoreLink(usesShortTitle: false)
                 PaywallFooterLinkSeparator()
@@ -47,6 +52,7 @@ struct PaywallFooterLinkSection: View {
             }
             .frame(maxWidth: .infinity)
 
+            // Restore — Terms & Conditions — Privacy Policy
             VStack {
                 PaywallFooterRestoreLink(usesShortTitle: true)
                 PaywallFooterLinkSeparator()
@@ -56,6 +62,7 @@ struct PaywallFooterLinkSection: View {
             }
             .frame(maxWidth: .infinity)
 
+            // Restore — Terms & Conditions — Privacy
             VStack {
                 PaywallFooterRestoreLink(usesShortTitle: true)
                 PaywallFooterLinkSeparator()
@@ -65,6 +72,7 @@ struct PaywallFooterLinkSection: View {
             }
             .frame(maxWidth: .infinity)
 
+            // Restore — Terms — Privacy
             VStack {
                 PaywallFooterRestoreLink(usesShortTitle: true)
                 PaywallFooterLinkSeparator()

@@ -19,13 +19,18 @@ struct PaywallItem: View {
                 PaywallHeader(header)
                 PaywallText(text)
             }.padding(EdgeInsets(top: 16, leading: 20, bottom: 0, trailing: 20))
-            image.resizable().aspectRatio(290.0/166.0, contentMode: .fit)
+
+            image
+                .resizable()
+                .aspectRatio(290.0/166.0, contentMode: .fit)
+                .accessibilityHidden(true)
         }
         .background {
             Color.cellBackground
                 .cornerRadius(14)
                 .shadow(color: .cellShadow, radius: 16, y: 2)
         }
+        .accessibilityElement(children: .combine)
     }
 }
 

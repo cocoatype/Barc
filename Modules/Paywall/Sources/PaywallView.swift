@@ -19,6 +19,8 @@ public struct PaywallView: View {
                 VStack(spacing: 0) {
                     ZStack(alignment: .topTrailing) {
                         topBar(forWidth: proxy.size.width)
+                            .accessibilityElement(children: .combine)
+                            .accessibilityAddTraits(.isHeader)
                         PaywallCloseButton()
                     }
                     LazyVGrid(columns: columns(forWidth: proxy.size.width), spacing: 20) {

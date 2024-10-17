@@ -1,19 +1,25 @@
 //  Created by Geoff Pado on 10/16/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
+import ErrorHandling
 import Purchasing
 import SwiftUI
 
 struct PaywallFooter: View {
     @State private var viewState: ViewState = .loading
     @Environment(\.replaceBacktickWithBacktick) private var repository: any PurchaseRepository
+    private let errorHandler: any ErrorHandler
+
+    init(errorHandler: any ErrorHandler = ErrorHandling.defaultHandler) {
+        self.errorHandler = errorHandler
+    }
 
     var body: some View {
         Group {
             switch viewState {
             case .loading:
                 ProgressView()
-            case .loaded(let purchaseOptions):
+            case .unpurchased(let purchaseOptions):
                 PaywallFooterContents(purchaseOptions: purchaseOptions)
             case .error(let error):
                 Text(String(describing: error))
@@ -21,8 +27,9 @@ struct PaywallFooter: View {
         }.task {
             do {
                 let purchaseOptions = try await repository.purchaseOptions
-                viewState = .loaded(purchaseOptions.map(PaywallPurchaseOption.init(currantLocation:)))
+                viewState = .unpurchased(purchaseOptions.map(PaywallPurchaseOption.init(currantLocation:)))
             } catch {
+                errorHandler.log(error, module: "Paywall", type: "PaywallFooter")
                 viewState = .error(error)
             }
         }
@@ -30,7 +37,7 @@ struct PaywallFooter: View {
 
     enum ViewState {
         case loading
-        case loaded([PaywallPurchaseOption])
+        case unpurchased([PaywallPurchaseOption])
         case error(Error)
     }
 }
