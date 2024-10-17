@@ -4,4 +4,5 @@
 public protocol PurchaseRepository {
     var purchaseOptions: [PurchaseOption] { get async throws }
     var hasUserBeenUnleashed: Bool { get async throws }
+    func purchase(_ option: PurchaseOption) async throws
 }

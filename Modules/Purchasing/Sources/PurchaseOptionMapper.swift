@@ -30,7 +30,8 @@ struct PurchaseOptionMapper {
             duration: duration,
             price: price,
             currency: currency,
-            isEligibleForTrial: isEligibleForTrial
+            isEligibleForTrial: isEligibleForTrial,
+            productIdentifier: package.storeProduct.productIdentifier
         )
     }
 }

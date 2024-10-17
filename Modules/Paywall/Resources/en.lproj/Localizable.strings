@@ -1,3 +1,9 @@
+"PaywallFooterPurchaseButton.errorTitle" = "Purchase Error Occurred";
+
+"PaywallFooterPurchaseButton.errorMessage" = "An error occurred while trying to purchase Barc Unleashed. Please try again later.";
+
+"PaywallFooterPurchaseButton.dismissButton" = "OK";
+
 // The title of the alert shown when the user has not purchased Barc.
 "PurchaseAlertViewModifier.title" = "Requires Barc Unleashed";
 

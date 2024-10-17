@@ -8,8 +8,17 @@ public struct PurchaseOption: Hashable {
     public let price: Decimal
     public let currency: String
     public let isEligibleForTrial: Bool
+    public let productIdentifier: String
 
     public enum Duration: Hashable {
         case monthly, annual
+    }
+
+    public init(duration: PurchaseOption.Duration, price: Decimal, currency: String, isEligibleForTrial: Bool, productIdentifier: String) {
+        self.duration = duration
+        self.price = price
+        self.currency = currency
+        self.isEligibleForTrial = isEligibleForTrial
+        self.productIdentifier = productIdentifier
     }
 }

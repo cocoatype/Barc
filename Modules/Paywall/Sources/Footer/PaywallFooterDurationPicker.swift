@@ -2,6 +2,7 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import SwiftUI
+import Purchasing
 
 struct PaywallFooterDurationPicker: View {
     @Binding private var selectedPurchaseOption: PaywallPurchaseOption
@@ -27,11 +28,11 @@ struct PaywallFooterDurationPicker: View {
 #Preview {
     PaywallFooterDurationPicker(
         purchaseOptions: [
-            PaywallPurchaseOption(duration: .monthly, price: 13, currency: "GBP", isEligibleForTrial: false),
-            PaywallPurchaseOption(duration: .annual, price: 42, currency: "CAD", isEligibleForTrial: true),
+            PaywallPurchaseOption(currantLocation: PurchaseOption(duration: .monthly, price: 13, currency: "GBP", isEligibleForTrial: false, productIdentifier: "")),
+            PaywallPurchaseOption(currantLocation: PurchaseOption(duration: .annual, price: 42, currency: "CAD", isEligibleForTrial: true, productIdentifier: "")),
         ],
         selectedPurchaseOption: .constant(
-            PaywallPurchaseOption(duration: .annual, price: 1972, currency: "NZD", isEligibleForTrial: true)
+            PaywallPurchaseOption(currantLocation: PurchaseOption(duration: .annual, price: 1972, currency: "NZD", isEligibleForTrial: true, productIdentifier: ""))
         )
     )
 }

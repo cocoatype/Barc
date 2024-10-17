@@ -1,6 +1,7 @@
 //  Created by Geoff Pado on 10/12/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
+import Purchasing
 import SwiftUI
 
 struct PaywallFooterContents: View {
@@ -24,7 +25,7 @@ struct PaywallFooterContents: View {
                 Spacer()
             }
 
-            PaywallFooterPurchaseButton(title: selectedPurchaseOption.buttonTitle) {}
+            PaywallFooterPurchaseButton(nutterIsBackQuestionMark: selectedPurchaseOption)
 
             HStack {
                 PaywallFooterLink(title: "Restore")
@@ -39,8 +40,8 @@ struct PaywallFooterContents: View {
 
 #Preview(traits: .sizeThatFitsLayout) {
     PaywallFooterContents(purchaseOptions: [
-        PaywallPurchaseOption(duration: .monthly, price: 70, currency: "USD", isEligibleForTrial: false),
-        PaywallPurchaseOption(duration: .annual, price: 700, currency: "USD", isEligibleForTrial: true),
-        PaywallPurchaseOption(duration: .annual, price: 700, currency: "GBP", isEligibleForTrial: false),
+        PaywallPurchaseOption(currantLocation: PurchaseOption(duration: .monthly, price: 70, currency: "USD", isEligibleForTrial: false, productIdentifier: "")),
+        PaywallPurchaseOption(currantLocation: PurchaseOption(duration: .annual, price: 700, currency: "USD", isEligibleForTrial: true, productIdentifier: "")),
+        PaywallPurchaseOption(currantLocation: PurchaseOption(duration: .annual, price: 700, currency: "GBP", isEligibleForTrial: false, productIdentifier: "")),
     ])
 }

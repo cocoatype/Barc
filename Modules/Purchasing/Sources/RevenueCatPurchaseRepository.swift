@@ -64,8 +64,19 @@ struct RevenueCatPurchaseRepository: PurchaseRepository {
             }
         }
     }
+
+    func purchase(_ option: PurchaseOption) async throws {
+        let productIdentifier = option.productIdentifier
+        let allProducts = try await SK2Product.products(for: [productIdentifier])
+        guard let product = allProducts.first(where: { $0.id == productIdentifier }) else {
+            throw RevenueCatPurchaseRepositoryError.noProductForIdentifier(productIdentifier)
+        }
+        let storeProduct = StoreProduct(sk2Product: product)
+        _ = try await Purchases.shared.purchase(product: storeProduct)
+    }
 }
 
 enum RevenueCatPurchaseRepositoryError: Error {
     case noCurrentOffering
+    case noProductForIdentifier(String)
 }

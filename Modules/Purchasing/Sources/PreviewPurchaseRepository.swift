@@ -3,9 +3,11 @@
 
 struct PreviewPurchaseRepository: PurchaseRepository {
     var purchaseOptions: [PurchaseOption] = [
-        PurchaseOption(duration: .monthly, price: 4.99, currency: "USD", isEligibleForTrial: false),
-        PurchaseOption(duration: .annual, price: 41.99, currency: "USD", isEligibleForTrial: true),
+        PurchaseOption(duration: .monthly, price: 4.99, currency: "USD", isEligibleForTrial: false, productIdentifier: ""),
+        PurchaseOption(duration: .annual, price: 41.99, currency: "USD", isEligibleForTrial: true, productIdentifier: ""),
     ]
 
     var hasUserBeenUnleashed: Bool = false
+
+    func purchase(_ option: PurchaseOption) async throws {}
 }

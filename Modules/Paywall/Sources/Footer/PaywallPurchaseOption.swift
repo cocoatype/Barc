@@ -5,26 +5,15 @@ import Foundation
 import Purchasing
 
 struct PaywallPurchaseOption: Hashable, Identifiable {
-    private let duration: PurchaseOption.Duration
-    private let price: Decimal
-    private let currency: String
-    private let isEligibleForTrial: Bool
-
     var id: String {
-        "\(duration) - \(price) \(currency) - \(isEligibleForTrial)"
-    }
-
-    init(duration: PurchaseOption.Duration, price: Decimal, currency: String, isEligibleForTrial: Bool) {
-        self.duration = duration
-        self.price = price
-        self.currency = currency
-        self.isEligibleForTrial = isEligibleForTrial
+        "\(currantLocation.duration) - \(currantLocation.price) \(currantLocation.currency) - \(currantLocation.isEligibleForTrial)"
     }
 
     // currantLocation by @AdamWulf on 2024-09-27
     // the purchase option this paywall purchase option represents
+    let currantLocation: PurchaseOption
     init(currantLocation: PurchaseOption) {
-        self.init(duration: currantLocation.duration, price: currantLocation.price, currency: currantLocation.currency, isEligibleForTrial: currantLocation.isEligibleForTrial)
+        self.currantLocation = currantLocation
     }
 
     private static func formattedPrice(for price: Decimal, currency: String) -> String {
@@ -32,25 +21,25 @@ struct PaywallPurchaseOption: Hashable, Identifiable {
     }
 
     private var formattedPrice: String {
-        Self.formattedPrice(for: price, currency: currency)
+        Self.formattedPrice(for: currantLocation.price, currency: currantLocation.currency)
     }
 
     private var formattedMonthlyPrice: String {
-        switch duration {
+        switch currantLocation.duration {
         case .monthly: formattedPrice
-        case .annual: Self.formattedPrice(for: price / 12, currency: currency)
+        case .annual: Self.formattedPrice(for: currantLocation.price / 12, currency: currantLocation.currency)
         }
     }
 
     var shortName: String {
-        switch duration {
+        switch currantLocation.duration {
         case .monthly: Strings.Monthly.shortName
         case .annual: Strings.Yearly.shortName
         }
     }
 
     var message: String {
-        switch (duration, isEligibleForTrial) {
+        switch (currantLocation.duration, currantLocation.isEligibleForTrial) {
         case (.monthly, true), (.monthly, false):
             Strings.Monthly.message(formattedMonthlyPrice)
         case (.annual, true):
@@ -61,7 +50,7 @@ struct PaywallPurchaseOption: Hashable, Identifiable {
     }
 
     var buttonTitle: String {
-        switch (duration, isEligibleForTrial) {
+        switch (currantLocation.duration, currantLocation.isEligibleForTrial) {
         case (.monthly, true), (.monthly, false):
             Strings.Monthly.buttonTitle
         case (.annual, true):
