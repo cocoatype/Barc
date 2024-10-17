@@ -11,9 +11,6 @@ struct PurchaseOptionMapper {
         let packageType = package.packageType
         let price = package.storeProduct.price
 
-        let iDunno = package.storeProduct.introductoryDiscount
-        dump(iDunno)
-
         let duration: PurchaseOption.Duration
         switch packageType {
         case .monthly: duration = .monthly

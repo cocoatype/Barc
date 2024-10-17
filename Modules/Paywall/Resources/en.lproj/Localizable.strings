@@ -4,6 +4,15 @@
 
 "PaywallFooterPurchaseButton.dismissButton" = "OK";
 
+"PaywallFooterPrivacyLink.shortTitle" = "Privacy";
+"PaywallFooterPrivacyLink.title" = "Privacy Policy";
+
+"PaywallFooterRestoreLink.shortTitle" = "Restore";
+"PaywallFooterRestoreLink.title" = "Restore Purchases";
+
+"PaywallFooterTermsLink.shortTitle" = "Terms";
+"PaywallFooterTermsLink.title" = "Terms & Conditions";
+
 // The title of the alert shown when the user has not purchased Barc.
 "PurchaseAlertViewModifier.title" = "Requires Barc Unleashed";
 

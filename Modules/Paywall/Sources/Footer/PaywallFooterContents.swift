@@ -27,13 +27,7 @@ struct PaywallFooterContents: View {
 
             PaywallFooterPurchaseButton(nutterIsBackQuestionMark: selectedPurchaseOption)
 
-            HStack {
-                PaywallFooterLink(title: "Restore")
-                PaywallFooterLinkSeparator()
-                PaywallFooterLink(title: "Terms & Conditions")
-                PaywallFooterLinkSeparator()
-                PaywallFooterLink(title: "Privacy")
-            }
+            PaywallFooterLinkSection()
         }.padding()
     }
 }

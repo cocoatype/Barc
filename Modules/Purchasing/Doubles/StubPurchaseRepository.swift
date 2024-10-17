@@ -10,4 +10,6 @@ public struct StubPurchaseRepository: PurchaseRepository {
     public var hasUserBeenUnleashed = false
 
     public var purchaseOptions = [PurchaseOption]()
+
+    public func purchase(_ option: PurchaseOption) async throws {}
 }
