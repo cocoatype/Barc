@@ -25,7 +25,7 @@ struct PurchaseAlertViewModifier: ViewModifier {
             }
     }
 
-    private typealias Strings = PurchasingStrings.PurchaseAlertViewModifier
+    private typealias Strings = PaywallStrings.PurchaseAlertViewModifier
 }
 
 public extension View {
