@@ -4,7 +4,7 @@
 import DesignSystem
 import SwiftUI
 
-public struct PurchaseMarketingView: View {
+public struct PaywallView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
 
     public init() {}
@@ -19,14 +19,18 @@ public struct PurchaseMarketingView: View {
                 VStack(spacing: 0) {
                     ZStack(alignment: .topTrailing) {
                         topBar(forWidth: proxy.size.width)
-                        PurchaseMarketingCloseButton()
+                        PaywallCloseButton()
                     }
                     LazyVGrid(columns: columns(forWidth: proxy.size.width), spacing: 20) {
-                        PurchaseMarketingItem(
+                        PaywallItem(
                             header: Strings.multipleItemsHeader,
                             text: Strings.multipleItemsText,
                             image: PaywallAsset.multipleItems.swiftUIImage)
-                        PurchaseMarketingItem(
+                        PaywallItem(
+                            header: Strings.walletExportHeader,
+                            text: Strings.walletExportText,
+                            image: PaywallAsset.walletExport.swiftUIImage)
+                        PaywallItem(
                             header: Strings.supportDevelopmentHeader,
                             text: Strings.supportDevelopmentText,
                             image: PaywallAsset.support.swiftUIImage)
@@ -36,6 +40,9 @@ public struct PurchaseMarketingView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .navigationBarHidden(true)
+        }.safeAreaInset(edge: .bottom) {
+            PaywallFooter()
+                .background(ignoresSafeAreaEdges: .bottom)
         }
     }
 
@@ -44,9 +51,9 @@ public struct PurchaseMarketingView: View {
     @ViewBuilder
     private func topBar(forWidth width: Double) -> some View {
         if width < Self.breakWidth {
-            PurchaseMarketingTopBarCompact()
+            PaywallTopBarCompact()
         } else {
-            PurchaseMarketingTopBarRegular()
+            PaywallTopBarRegular()
         }
     }
 
@@ -62,5 +69,5 @@ public struct PurchaseMarketingView: View {
 }
 
 #Preview {
-    PurchaseMarketingView()
+    PaywallView()
 }

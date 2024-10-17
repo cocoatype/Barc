@@ -3,7 +3,7 @@
 
 import SwiftUI
 
-struct PurchaseMarketingHeader: View {
+struct PaywallHeader: View {
     private let title: String
     init(_ title: String) {
         self.title = title

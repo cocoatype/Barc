@@ -3,7 +3,7 @@
 
 import SwiftUI
 
-struct PurchaseMarketingItem: View {
+struct PaywallItem: View {
     private let header: String
     private let text: String
     private let image: Image
@@ -16,8 +16,8 @@ struct PurchaseMarketingItem: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             VStack(alignment: .leading, spacing: 4) {
-                PurchaseMarketingHeader(header)
-                PurchaseMarketingText(text)
+                PaywallHeader(header)
+                PaywallText(text)
             }.padding(EdgeInsets(top: 16, leading: 20, bottom: 0, trailing: 20))
             image.resizable().aspectRatio(290.0/166.0, contentMode: .fit)
         }
@@ -32,7 +32,7 @@ struct PurchaseMarketingItem: View {
 enum PurchaseMarketingItemPreviews: PreviewProvider {
     static var previews: some View {
         Group {
-            PurchaseMarketingItem(header: "PurchaseMarketingView.supportDevelopmentHeader", text: "PurchaseMarketingView.supportDevelopmentText", image: PaywallAsset.support.swiftUIImage)
+            PaywallItem(header: "PaywallView.supportDevelopmentHeader", text: "PaywallView.supportDevelopmentText", image: PaywallAsset.support.swiftUIImage)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.systemGroupedBackground)

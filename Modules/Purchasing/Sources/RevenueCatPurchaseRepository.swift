@@ -47,4 +47,25 @@ struct RevenueCatPurchaseRepository: PurchaseRepository {
             return false
         }
     }
+
+    private let mapper = PurchaseOptionMapper()
+    var purchaseOptions: [PurchaseOption] {
+        get async throws {
+            guard let currentOffering = try await Purchases.shared.offerings().current
+            else { throw RevenueCatPurchaseRepositoryError.noCurrentOffering }
+            let packages = currentOffering.availablePackages
+            let packageTrialEligibilities = await Purchases.shared.checkTrialOrIntroDiscountEligibility(packages: packages)
+
+            return packages.compactMap { package in
+                try? mapper.purchaseOption(
+                    for: package,
+                    introEligibility: packageTrialEligibilities[package]
+                )
+            }
+        }
+    }
+}
+
+enum RevenueCatPurchaseRepositoryError: Error {
+    case noCurrentOffering
 }

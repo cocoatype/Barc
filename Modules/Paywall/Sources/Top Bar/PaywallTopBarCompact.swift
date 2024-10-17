@@ -3,11 +3,11 @@
 
 import SwiftUI
 
-struct PurchaseMarketingTopBarCompact: View {
+struct PaywallTopBarCompact: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            PurchaseMarketingTopBarHeadline()
-            PurchaseMarketingTopBarSubheadline()
+            PaywallTopBarHeadline()
+            PaywallTopBarSubheadline()
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(EdgeInsets(top: 40, leading: 20, bottom: 20, trailing: 20))
@@ -18,7 +18,7 @@ struct PurchaseMarketingTopBarCompact: View {
 enum PurchaseMarketingTopBarCompactPreviews: PreviewProvider {
     static var previews: some View {
         ScrollView {
-            PurchaseMarketingTopBarCompact()
+            PaywallTopBarCompact()
         }.ignoresSafeArea()
     }
 }

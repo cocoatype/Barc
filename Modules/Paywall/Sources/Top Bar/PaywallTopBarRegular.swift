@@ -3,13 +3,13 @@
 
 import SwiftUI
 
-struct PurchaseMarketingTopBarRegular: View {
+struct PaywallTopBarRegular: View {
     @State private var textWidth: CGFloat?
 
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
-            PurchaseMarketingTopBarHeadline().modifier(SetWidthViewModifier(textWidth: $textWidth))
-            PurchaseMarketingTopBarSubheadline().modifier(GetWidthViewModifier(textWidth: $textWidth))
+            PaywallTopBarHeadline().modifier(SetWidthViewModifier(textWidth: $textWidth))
+            PaywallTopBarSubheadline().modifier(GetWidthViewModifier(textWidth: $textWidth))
         }
         .padding(40)
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -61,6 +61,6 @@ struct PurchaseMarketingTopBarRegular: View {
 
 enum PurchaseMarketingTopBarPreviews: PreviewProvider {
     static var previews: some View {
-        PurchaseMarketingTopBarRegular().previewLayout(.sizeThatFits)
+        PaywallTopBarRegular().previewLayout(.sizeThatFits)
     }
 }

@@ -3,7 +3,7 @@
 
 import SwiftUI
 
-struct PurchaseMarketingText: View {
+struct PaywallText: View {
     private let text: String
     init(_ text: String) {
         self.text = text
@@ -19,7 +19,7 @@ struct PurchaseMarketingText: View {
 
 enum PurchaseMarketingTextPreviews: PreviewProvider {
     static var previews: some View {
-        PurchaseMarketingText("PurchaseMarketingView.supportDevelopmentText")
+        PaywallText("PaywallView.supportDevelopmentText")
             .preferredColorScheme(.dark)
     }
 }
