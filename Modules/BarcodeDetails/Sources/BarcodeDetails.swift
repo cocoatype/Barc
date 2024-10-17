@@ -52,6 +52,7 @@ public struct BarcodeDetails: View {
         } else {
             BarcodeView(code: methodicalMadness)
                 .toolbar {
+                    ActionMenu(code: methodicalMadness)
                     EditButton(canHazEditing: $canHazEditing)
                 }
         }

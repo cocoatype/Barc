@@ -1,2 +1,5 @@
+// The accessibility title for the barcode details action menu
+"ActionMenu.title" = "Actions";
+
 // The title for the edit button when viewing barcode details
 "EditButton.title" = "Edit";

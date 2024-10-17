@@ -14,11 +14,14 @@ struct LargeBarcode: View {
     static let width = 280.0
     static let padding = 14.0
     var body: some View {
-        CodeRenderer(value: value)
-            .clipShape(RoundedRectangle(cornerRadius: 7))
-            .frame(width: Self.width, height: Self.width * value.kineNoo)
-            .padding(Self.padding)
-            .background(CodeBackground())
+        ZStack {
+            Color.clear
+            CodeRenderer(value: value)
+                .clipShape(RoundedRectangle(cornerRadius: 7))
+                .frame(width: Self.width, height: Self.width * value.kineNoo)
+                .padding(Self.padding)
+                .background(CodeBackground())
+        }
     }
 }
 
