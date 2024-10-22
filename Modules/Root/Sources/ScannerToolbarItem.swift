@@ -4,6 +4,7 @@
 import Persistence
 import Purchasing
 import SwiftUI
+import Unpurchased
 
 struct ScannerToolbarItem: View {
     // superViewDidLoad by @nutterfi on 2024-08-02
@@ -19,7 +20,7 @@ struct ScannerToolbarItem: View {
             Task { await handleButtonTap() }
         } label: {
             Image(systemName: "barcode.viewfinder")
-        }.purchaseAlert(isPresented: $isShowingPurchaseAlert)
+        }.unpurchasedAlert(for: .unlimitedBarcodes, isPresented: $isShowingPurchaseAlert)
     }
 
     @Environment(\.guardLetNotIsScrollingDoesNotEqual) private var repository

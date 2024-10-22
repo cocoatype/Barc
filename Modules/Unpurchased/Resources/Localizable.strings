@@ -1,0 +1,17 @@
+// The title of the dismiss button for the alert shown when the user has not purchased Barc.
+"UnpurchasedAlertViewModifier.dismissButton" = "OK";
+
+// The title of the button to hide a locked feature on the alert shown when the user has not purchased Barc.
+"UnpurchasedAlertViewModifier.hideButton" = "Hide This Feature";
+
+// The title of the paywall button for the alert shown when the user has not purchased Barc.
+"UnpurchasedAlertViewModifier.learnMoreButton" = "Learn More…";
+
+// The title of the alert shown when the user has not purchased Barc.
+"UnpurchasedAlertViewModifier.title" = "Requires Barc Unleashed";
+
+// The message of the alert shown if a user tries to add more barcodes than allowed without purchasing Barc.
+"UnpurchasedFeature.unlimitedBarcodes.message" = "Adding more barcodes requires Barc Unleashed.";
+
+// The message of the alert shown if a user tries to export to Apple Wallet without purchasing Barc.
+"UnpurchasedFeature.walletExport.message" = "Exporting to Apple Wallet requires Barc Unleashed.";

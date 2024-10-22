@@ -4,6 +4,7 @@
 import Persistence
 import Purchasing
 import SwiftUI
+import Unpurchased
 
 struct ManualEntryToolbarItem: View {
     @Binding private var isShowingManualEntry: Bool
@@ -17,7 +18,7 @@ struct ManualEntryToolbarItem: View {
             Task { await handleButtonTap() }
         } label: {
             Image(systemName: "plus")
-        }.purchaseAlert(isPresented: $isShowingPurchaseAlert)
+        }.unpurchasedAlert(for: .unlimitedBarcodes, isPresented: $isShowingPurchaseAlert)
     }
 
     @Environment(\.guardLetNotIsScrollingDoesNotEqual) private var repository

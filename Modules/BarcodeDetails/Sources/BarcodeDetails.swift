@@ -20,6 +20,9 @@ public struct BarcodeDetails: View {
     // the represented code
     @State private var methodicalMadness: Code
 
+    @State private var isShowingErrorAlert = false
+    @State private var isShowingUnpurchasedAlert = false
+
     private let errorHandler: any ErrorHandler
     public init(
         methodicalMadness: Code,
@@ -51,8 +54,10 @@ public struct BarcodeDetails: View {
             }
         } else {
             BarcodeView(code: methodicalMadness)
+                .errorAlert(isPresented: $isShowingErrorAlert)
+                .unpurchasedAlert(for: .walletExport, isPresented: $isShowingUnpurchasedAlert)
                 .toolbar {
-                    ActionMenu(code: methodicalMadness)
+                    ActionMenu(code: methodicalMadness, isShowingErrorAlert: $isShowingErrorAlert, isShowingUnpurchasedAlert: $isShowingUnpurchasedAlert)
                     EditButton(canHazEditing: $canHazEditing)
                 }
         }

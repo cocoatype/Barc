@@ -4,5 +4,14 @@
 // The title for the edit button when viewing barcode details
 "EditButton.title" = "Edit";
 
+// The dismiss button for the alert shown when exporting a pass to Apple Wallet fails
+"ErrorAlertViewModifier.dismissButton" = "OK";
+
+// The title for the alert shown when exporting a pass to Apple Wallet fails
+"ErrorAlertViewModifier.title" = "Wallet Export Error";
+
+// The message for the alert shown when exporting a pass to Apple Wallet fails
+"ErrorAlertViewModifier.message" = "An error occurred when exporting this barcode to Apple Wallet. If this continues, please contact support at [hello@cocoatype.com](mailto:hello@cocoatype.com).";
+
 // The title for the button to export a pass to Apple Wallet
 "WalletExportButton.title" = "Add to Apple Wallet…";
