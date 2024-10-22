@@ -39,6 +39,8 @@ let project = Project(
         ShareContents.target,
         Shortcuts.target,
         Triggers.target,
+        Unpurchased.target,
+        WalletExport.target,
         WatchContents.target,
         WidgetContents.target,
         // doubles
@@ -67,6 +69,8 @@ let project = Project(
         ShareContents.testTarget,
         Shortcuts.testTarget,
         Triggers.testTarget,
+        Unpurchased.testTarget,
+        WalletExport.testTarget,
         WidgetContents.testTarget,
     ],
     schemes: [

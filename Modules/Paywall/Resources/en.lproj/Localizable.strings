@@ -13,18 +13,6 @@
 "PaywallFooterTermsLink.shortTitle" = "Terms";
 "PaywallFooterTermsLink.title" = "Terms & Conditions";
 
-// The title of the alert shown when the user has not purchased Barc.
-"PurchaseAlertViewModifier.title" = "Requires Barc Unleashed";
-
-// The message body of the alert shown when the user has not purchased Barc.
-"PurchaseAlertViewModifier.message" = "Adding more barcodes requires Barc Unleashed.";
-
-// The title of the cancel button for the alert shown when the user has not purchased Barc.
-"PurchaseAlertViewModifier.cancelButton" = "OK";
-
-// The title of the paywall button for the alert shown when the user has not purchased Barc.
-"PurchaseAlertViewModifier.paywallButton" = "Learn More…";
-
 "PurchaseMarketingTopBarHeadlineLabel.text" = "Barc Unleashed";
 "PurchaseMarketingTopBarSubheadlineLabel.text" = "Unlock the full potential of Barc.";
 

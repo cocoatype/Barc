@@ -1,23 +1,21 @@
 import ProjectDescription
 
-public enum BarcodeDetails {
+public enum WalletExport {
     public static let target = Target.moduleTarget(
-        name: "BarcodeDetails",
+        name: "WalletExport",
         hasResources: true,
-        usesMaxSwiftVersion: false,
         dependencies: [
             .target(Barcodes.target),
-            .target(BarcodeEdit.target),
-            .target(BarcodeView.target),
             .target(ErrorHandling.target),
-            .target(Persistence.target),
-            .target(WalletExport.target),
+            .target(Purchasing.target),
+            .target(Unpurchased.target),
         ]
     )
 
     public static let testTarget = Target.moduleTestTarget(
-        name: "BarcodeDetails",
+        name: "WalletExport",
         dependencies: [
+            .target(Purchasing.doublesTarget),
         ]
     )
 }
