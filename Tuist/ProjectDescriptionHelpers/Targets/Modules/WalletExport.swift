@@ -15,6 +15,7 @@ public enum WalletExport {
     public static let testTarget = Target.moduleTestTarget(
         name: "WalletExport",
         dependencies: [
+            .target(Purchasing.doublesTarget),
         ]
     )
 }

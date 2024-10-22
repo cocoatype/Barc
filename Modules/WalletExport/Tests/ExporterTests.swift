@@ -2,6 +2,7 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import Barcodes
+import PurchasingDoubles
 import XCTest
 
 @testable import WalletExport
@@ -9,9 +10,12 @@ import XCTest
 class ExporterTests: XCTestCase {
     func testRequestExportCallsAddPasses() async throws {
         let passLibrary = SpyPassLibrary()
+        var purchaseRepository = StubPurchaseRepository()
+        purchaseRepository.hasUserBeenUnleashed = true
         let exporter = Exporter(
             passLibrary: passLibrary,
-            service: StubService()
+            service: StubService(),
+            purchaseRepository: purchaseRepository
         )
         let code = Code(
             name: "Sample Code",
@@ -20,7 +24,7 @@ class ExporterTests: XCTestCase {
             date: nil
         )
 
-        try await exporter.requestExport(for: code)
+        _ = await exporter.requestExport(for: code)
 
         await fulfillment(
             of: [passLibrary.addPassesExpectation],

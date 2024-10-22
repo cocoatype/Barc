@@ -27,11 +27,10 @@ struct RevenueCatPurchaseRepository: PurchaseRepository {
     private static let entitlementID = "unleashed"
     var hasUserBeenUnleashed: Bool {
         get async throws {
-            return false
-//            let customerInfo = try await Purchases.shared.customerInfo(fetchPolicy: .fetchCurrent)
-//            let isUnleashedByRevenueCat = customerInfo.entitlements[Self.entitlementID]?.isActive == true
-//            guard isUnleashedByRevenueCat == false else { return true }
-//            return try await fallbackHasUserBeenUnleashed
+            let customerInfo = try await Purchases.shared.customerInfo(fetchPolicy: .fetchCurrent)
+            let isUnleashedByRevenueCat = customerInfo.entitlements[Self.entitlementID]?.isActive == true
+            guard isUnleashedByRevenueCat == false else { return true }
+            return try await fallbackHasUserBeenUnleashed
         }
     }
 
