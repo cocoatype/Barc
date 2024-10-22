@@ -4,7 +4,6 @@
 import PassKit
 
 protocol PassLibrary {
-    @discardableResult
     func addPasses(_ passes: [PKPass]) async -> PKPassLibraryAddPassesStatus
 }
 

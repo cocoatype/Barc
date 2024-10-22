@@ -3,26 +3,24 @@
 
 import Barcodes
 import SwiftUI
+import WalletExport
 
 struct ActionMenu: ToolbarContent {
-    @Binding private var isShowingErrorAlert: Bool
-    @Binding private var isShowingUnpurchasedAlert: Bool
+    @Binding private var exportResult: ExportResult?
     private let code: Code
     init(
         code: Code,
-        isShowingErrorAlert: Binding<Bool>,
-        isShowingUnpurchasedAlert: Binding<Bool>
+        exportResult: Binding<ExportResult?>
     ) {
         self.code = code
 
-        _isShowingErrorAlert = isShowingErrorAlert
-        _isShowingUnpurchasedAlert = isShowingUnpurchasedAlert
+        _exportResult = exportResult
     }
 
     var body: some ToolbarContent {
         ToolbarItem(placement: .primaryAction) {
             Menu(BarcodeDetailsStrings.ActionMenu.title, systemImage: "ellipsis.circle") {
-                WalletExportButton(code: code, isShowingErrorAlert: $isShowingErrorAlert, isShowingUnpurchasedAlert: $isShowingUnpurchasedAlert)
+                WalletExportButton(code: code, exportResult: $exportResult)
             }
         }
     }

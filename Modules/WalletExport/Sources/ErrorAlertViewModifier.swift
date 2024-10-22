@@ -4,20 +4,29 @@
 import SwiftUI
 
 struct ErrorAlertViewModifier: ViewModifier {
-    @Binding private var isPresented: Bool
-    init(isPresented: Binding<Bool>) {
-        _isPresented = isPresented
+    @Binding private var error: (any Error)?
+    private let isPresented: Binding<Bool>
+    init(error: Binding<(any Error)?>) {
+        _error = error
+
+        isPresented = Binding {
+            error.wrappedValue != nil
+        } set: { newValue in
+            if newValue == false {
+                error.wrappedValue = nil
+            }
+        }
     }
 
     func body(content: Content) -> some View {
-        content.alert(Strings.title, isPresented: $isPresented) {
+        content.alert(Strings.title, isPresented: isPresented) {
             Button(Strings.dismissButton) {}
         } message: {
             ErrorMessageText(Strings.message)
         }
     }
 
-    private typealias Strings = BarcodeDetailsStrings.ErrorAlertViewModifier
+    private typealias Strings = WalletExportStrings.ErrorAlertViewModifier
 }
 
 struct ErrorMessageText: View {
@@ -47,7 +56,7 @@ struct ErrorMessageText: View {
 }
 
 extension View {
-    func errorAlert(isPresented: Binding<Bool>) -> ModifiedContent<Self, ErrorAlertViewModifier> {
-        modifier(ErrorAlertViewModifier(isPresented: isPresented))
+    func errorAlert(error: Binding<(any Error)?>) -> ModifiedContent<Self, ErrorAlertViewModifier> {
+        modifier(ErrorAlertViewModifier(error: error))
     }
 }

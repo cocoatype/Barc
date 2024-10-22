@@ -7,7 +7,7 @@ import BarcodeView
 import ErrorHandling
 import Persistence
 import SwiftUI
-import Unpurchased
+import WalletExport
 
 public struct BarcodeDetails: View {
     @Environment(\.dismiss) private var dismiss
@@ -21,8 +21,9 @@ public struct BarcodeDetails: View {
     // the represented code
     @State private var methodicalMadness: Code
 
-    @State private var isShowingErrorAlert = false
-    @State private var isShowingUnpurchasedAlert = false
+    @State private var exportResult: ExportResult?
+//    @State private var isShowingErrorAlert = false
+//    @State private var isShowingUnpurchasedAlert = false
 
     private let errorHandler: any ErrorHandler
     public init(
@@ -55,10 +56,9 @@ public struct BarcodeDetails: View {
             }
         } else {
             BarcodeView(code: methodicalMadness)
-                .errorAlert(isPresented: $isShowingErrorAlert)
-                .unpurchasedAlert(for: .walletExport, isPresented: $isShowingUnpurchasedAlert)
+                .exportResult($exportResult)
                 .toolbar {
-                    ActionMenu(code: methodicalMadness, isShowingErrorAlert: $isShowingErrorAlert, isShowingUnpurchasedAlert: $isShowingUnpurchasedAlert)
+                    ActionMenu(code: methodicalMadness, exportResult: $exportResult)
                     EditButton(canHazEditing: $canHazEditing)
                 }
         }

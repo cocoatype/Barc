@@ -3,9 +3,12 @@ import ProjectDescription
 public enum WalletExport {
     public static let target = Target.moduleTarget(
         name: "WalletExport",
+        hasResources: true,
         dependencies: [
             .target(Barcodes.target),
             .target(ErrorHandling.target),
+            .target(Purchasing.target),
+            .target(Unpurchased.target),
         ]
     )
 
