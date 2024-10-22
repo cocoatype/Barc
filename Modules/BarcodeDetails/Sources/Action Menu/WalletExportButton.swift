@@ -5,7 +5,6 @@ import Barcodes
 import ErrorHandling
 import Purchasing
 import SwiftUI
-import Unpurchased
 import WalletExport
 
 struct WalletExportButton: View {
@@ -34,7 +33,6 @@ struct WalletExportButton: View {
         ) {
             Task { await handleButtonTap() }
         }
-        .unpurchasedAlert(for: .walletExport, isPresented: $isShowingUnpurchasedAlert)
     }
 
     private let exporter = Exporter()

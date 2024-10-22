@@ -7,6 +7,7 @@ import BarcodeView
 import ErrorHandling
 import Persistence
 import SwiftUI
+import Unpurchased
 
 public struct BarcodeDetails: View {
     @Environment(\.dismiss) private var dismiss
