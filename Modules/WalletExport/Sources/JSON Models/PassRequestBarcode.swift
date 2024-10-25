@@ -18,8 +18,21 @@ struct PassRequestBarcode: Encodable {
             format = "code128"
             let converter = Code128ValueToStringConverter()
             self.message = try converter.string(from: value)
-        case .code39, .codabar, .ean:
-            throw PassRequestError.unsupportedFormat
+        case .code39(let value):
+            format = "code39"
+            let converter = Code39ElementToCharacterConverter()
+            let characters = value.payload.elements.map(converter.character(for:))
+            self.message = String(characters)
+        case .codabar(let value):
+            format = "codabar"
+            let converter = CodabarElementToCharacterConverter()
+            let characters = value.payload.elements.map(converter.character(for:))
+            self.message = String(characters)
+        case .ean(let value):
+            format = "ean13"
+            let converter = EANDigitToCharacterConverter()
+            let characters = value.payload.digits.map(converter.character(for:))
+            self.message = String(characters)
         }
     }
 }

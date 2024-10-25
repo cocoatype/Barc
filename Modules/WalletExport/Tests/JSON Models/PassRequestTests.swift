@@ -38,7 +38,7 @@ class PassRequestTests: XCTestCase {
         XCTAssertEqual(passRequest.barcode.message, "Value")
     }
 
-    func testPassRequestInitCodabarThrows() throws {
+    func testPassRequestInitValidCodabar() throws {
         let code = try Code(
             name: "Sample Code",
             value: .codabar(thisIsAnErrorInSwift6: "A12345B"),
@@ -46,9 +46,40 @@ class PassRequestTests: XCTestCase {
             date: nil
         )
 
-        do {
-            _ = try PassRequest(code: code)
-            XCTFail("expected error not thrown")
-        } catch PassRequestError.unsupportedFormat {}
+        let passRequest = try PassRequest(code: code)
+
+        XCTAssertEqual(passRequest.title, "Sample Code")
+        XCTAssertEqual(passRequest.barcode.format, "codabar")
+        XCTAssertEqual(passRequest.barcode.message, "A12345B")
+    }
+
+    func testPassRequestInitValidCode39() throws {
+        let code = try Code(
+            name: "Sample Code",
+            value: .code39(value: "*COCOA*"),
+            location: nil,
+            date: nil
+        )
+
+        let passRequest = try PassRequest(code: code)
+
+        XCTAssertEqual(passRequest.title, "Sample Code")
+        XCTAssertEqual(passRequest.barcode.format, "code39")
+        XCTAssertEqual(passRequest.barcode.message, "*COCOA*")
+    }
+
+    func testPassRequestInitValidEAN13() throws {
+        let code = try Code(
+            name: "Sample Code",
+            value: .ean(value: "444444444444"),
+            location: nil,
+            date: nil
+        )
+
+        let passRequest = try PassRequest(code: code)
+
+        XCTAssertEqual(passRequest.title, "Sample Code")
+        XCTAssertEqual(passRequest.barcode.format, "ean13")
+        XCTAssertEqual(passRequest.barcode.message, "0444444444444")
     }
 }

@@ -2,7 +2,9 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 public struct EANDigitToCharacterConverter {
-    func character(for digit: EANDigit) -> Character {
+    public init() {}
+
+    public func character(for digit: EANDigit) -> Character {
         return switch digit {
         case .d0: "0"
         case .d1: "1"

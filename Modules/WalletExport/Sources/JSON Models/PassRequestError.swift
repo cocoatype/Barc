@@ -3,5 +3,4 @@
 
 enum PassRequestError: Error {
     case unrepresentableMessage
-    case unsupportedFormat
 }
