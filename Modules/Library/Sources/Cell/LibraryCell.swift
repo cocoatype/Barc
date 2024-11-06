@@ -47,6 +47,7 @@ struct LibraryCell: View {
                 errorHandler.log(error, module: "BarcodeDetails", type: "BarcodeDetails")
             }
         }
+        .drawingGroup()
     }
 }
 
