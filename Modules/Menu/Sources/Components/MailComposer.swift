@@ -24,6 +24,7 @@ struct MailComposer: UIViewControllerRepresentable {
         Coordinator(dismissAction: dismiss)
     }
 
+    @MainActor
     class Coordinator: NSObject, MFMailComposeViewControllerDelegate {
         fileprivate var dismissAction: DismissAction
 
@@ -31,8 +32,10 @@ struct MailComposer: UIViewControllerRepresentable {
             self.dismissAction = dismissAction
         }
 
-        func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: (any Error)?) {
-            dismissAction()
+        nonisolated func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: (any Error)?) {
+            Task { @MainActor in
+                dismissAction()
+            }
         }
     }
 }

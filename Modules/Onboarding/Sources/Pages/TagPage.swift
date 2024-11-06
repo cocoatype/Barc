@@ -10,8 +10,8 @@ struct TagPage: View {
 
     var body: some View {
         StandardPage(
-            imageLight: OnboardingAsset.tagOnboarding.swiftUIImage,
-            imageDark: OnboardingAsset.tagOnboardingDark.swiftUIImage,
+            imageLight: Asset.tagOnboarding.swiftUIImage,
+            imageDark: Asset.tagOnboardingDark.swiftUIImage,
             headline: OnboardingStrings.TagPage.headline,
             message: OnboardingStrings.TagPage.body,
             pageIndex: 1

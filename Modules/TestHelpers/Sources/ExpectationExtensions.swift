@@ -1,4 +1,4 @@
 import TestHelpersInterface
 import XCTest
 
-extension XCTestExpectation: Expectation {}
+extension XCTestExpectation: TestHelpersInterface.Expectation {}

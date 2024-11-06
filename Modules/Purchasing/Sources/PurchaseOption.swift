@@ -3,14 +3,14 @@
 
 import Foundation
 
-public struct PurchaseOption: Hashable {
+public struct PurchaseOption: Hashable, Sendable {
     public let duration: Duration
     public let price: Decimal
     public let currency: String
     public let isEligibleForTrial: Bool
     public let productIdentifier: String
 
-    public enum Duration: Hashable {
+    public enum Duration: Hashable, Sendable {
         case monthly, annual
     }
 

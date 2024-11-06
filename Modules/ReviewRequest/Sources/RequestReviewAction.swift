@@ -4,6 +4,7 @@
 import StoreKit
 import SwiftUI
 
+@MainActor
 public protocol RequestReviewAction {
     func callAsFunction()
 }

@@ -37,7 +37,7 @@ struct PaywallItem: View {
 enum PurchaseMarketingItemPreviews: PreviewProvider {
     static var previews: some View {
         Group {
-            PaywallItem(header: "PaywallView.supportDevelopmentHeader", text: "PaywallView.supportDevelopmentText", image: PaywallAsset.support.swiftUIImage)
+            PaywallItem(header: "PaywallView.supportDevelopmentHeader", text: "PaywallView.supportDevelopmentText", image: Asset.support.swiftUIImage)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.systemGroupedBackground)

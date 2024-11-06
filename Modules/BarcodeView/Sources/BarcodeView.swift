@@ -47,7 +47,7 @@ public struct BarcodeView: View {
     }
 
     struct OffsetPreferenceKey: PreferenceKey {
-        static var defaultValue = Double.zero
+        static let defaultValue = Double.zero
         static func reduce(value: inout Double, nextValue: () -> Double) {
             value += nextValue()
         }

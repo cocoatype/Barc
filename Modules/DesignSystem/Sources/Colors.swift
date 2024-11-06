@@ -31,7 +31,7 @@ public extension Color {
 
     // MARK: - Light Mode
 
-    var lightMode: Color { Color(resolve(in: .lightMode)) }
+    @MainActor var lightMode: Color { Color(resolve(in: .lightMode)) }
 
     // MARK: - Hex
 

@@ -6,7 +6,7 @@ import SwiftUI
 struct CodeMissingView: View {
     var body: some View {
         VStack {
-            WidgetContentsAsset.customBarcodeBadgeQuestionmark.swiftUIImage
+            Asset.customBarcodeBadgeQuestionmark.swiftUIImage
                 .font(.largeTitle)
                 .foregroundStyle(.black)
             Text(WidgetContentsStrings.CodeMissingView.text)

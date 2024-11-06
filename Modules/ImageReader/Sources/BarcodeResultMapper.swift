@@ -4,7 +4,7 @@
 import Barcodes
 import Vision
 
-public struct BarcodeResultMapper {
+public struct BarcodeResultMapper: Sendable {
     public init() {}
     
     public func value(from observation: VNBarcodeObservation) throws -> CodeValue {

@@ -15,7 +15,7 @@ struct PaywallAction {
 }
 
 enum PaywallActionEnvironmentKey: EnvironmentKey {
-    static let defaultValue: PaywallAction = PaywallAction {}
+    static var defaultValue: PaywallAction { PaywallAction {} }
 }
 
 extension EnvironmentValues {

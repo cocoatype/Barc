@@ -4,7 +4,7 @@
 import SwiftUI
 
 public enum ExtensionContextEnvironmentKey: EnvironmentKey {
-    public static let defaultValue: NSExtensionContext? = nil
+    public static var defaultValue: NSExtensionContext? { nil }
 }
 
 public extension EnvironmentValues {

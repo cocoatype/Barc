@@ -4,7 +4,7 @@
 import Barcodes
 import Foundation
 
-struct ExtensionInputHandler {
+@MainActor struct ExtensionInputHandler {
     #if os(iOS)
     private let underlyingHandler = MobileExtensionInputHandler()
     #elseif os(watchOS)

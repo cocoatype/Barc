@@ -27,15 +27,15 @@ public struct PaywallView: View {
                         PaywallItem(
                             header: Strings.multipleItemsHeader,
                             text: Strings.multipleItemsText,
-                            image: PaywallAsset.multipleItems.swiftUIImage)
+                            image: Asset.multipleItems.swiftUIImage)
                         PaywallItem(
                             header: Strings.walletExportHeader,
                             text: Strings.walletExportText,
-                            image: PaywallAsset.walletExport.swiftUIImage)
+                            image: Asset.walletExport.swiftUIImage)
                         PaywallItem(
                             header: Strings.supportDevelopmentHeader,
                             text: Strings.supportDevelopmentText,
-                            image: PaywallAsset.support.swiftUIImage)
+                            image: Asset.support.swiftUIImage)
                     }.padding(EdgeInsets(top: 24, leading: 20, bottom: 24, trailing: 20))
                         .background(Color.systemGroupedBackground.ignoresSafeArea())
                 }

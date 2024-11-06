@@ -9,7 +9,7 @@ final class TelemetryLoggerTests: XCTestCase {
     func testBareInitInitializesTelemetryManager() {
         XCTAssertFalse(TelemetryManager.isInitialized)
 
-        let logger = TelemetryLogger()
+        _ = TelemetryLogger()
 
         XCTAssertTrue(TelemetryManager.isInitialized)
     }

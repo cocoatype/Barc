@@ -30,5 +30,5 @@ struct AppStoreCell: View {
 }
 
 #Preview {
-    AppStoreCell(title: "Hello!", image: MenuAsset.appStore.swiftUIImage, appID: "6642707689")
+    AppStoreCell(title: "Hello!", image: Asset.appStore.swiftUIImage, appID: "6642707689")
 }

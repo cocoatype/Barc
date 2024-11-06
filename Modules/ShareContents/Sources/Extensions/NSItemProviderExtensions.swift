@@ -5,7 +5,7 @@ import Foundation
 import UniformTypeIdentifiers
 
 extension NSItemProvider {
-    func loadData(for uniformType: UTType) async throws -> Data {
+    @MainActor func loadData(for uniformType: UTType) async throws -> Data {
         return try await withCheckedThrowingContinuation { continuation in
             _ = loadDataRepresentation(for: uniformType) { data, error in
                 if let data {

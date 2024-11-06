@@ -8,8 +8,8 @@ struct AddPage: View {
     private let requester = Permission.cameraPermissionRequester
     var body: some View {
         StandardPage(
-            imageLight: OnboardingAsset.addOnboarding.swiftUIImage,
-            imageDark: OnboardingAsset.addOnboardingDark.swiftUIImage,
+            imageLight: Asset.addOnboarding.swiftUIImage,
+            imageDark: Asset.addOnboardingDark.swiftUIImage,
             headline: OnboardingStrings.AddPage.headline,
             message: LocalizedStringKey("AddPage.body\(Image(systemName: "plus"))\(Image(systemName: "barcode.viewfinder"))"),
             pageIndex: 0

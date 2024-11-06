@@ -22,7 +22,7 @@ class CoreLocationProvider: NSObject, LocationProvider, CLLocationManagerDelegat
         continuation.resume(with: result)
     }
 
-    var currentLocation: Location {
+    @MainActor var currentLocation: Location {
         get async throws {
             if let continuation {
                 self.continuation = nil

@@ -4,7 +4,7 @@
 import SwiftUI
 
 public enum LocationProviderEnvironmentKey: EnvironmentKey {
-    public static let defaultValue: any LocationProvider = CoreLocationProvider()
+    public static var defaultValue: any LocationProvider { CoreLocationProvider() }
 }
 
 public extension EnvironmentValues {

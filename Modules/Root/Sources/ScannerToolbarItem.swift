@@ -27,7 +27,7 @@ struct ScannerToolbarItem: View {
     private func handleButtonTap() async {
         do {
             let hasUserBeenUnleashed = try await Purchasing.defaultRepository.hasUserBeenUnleashed
-            let codesCount = try await repository.codes.count
+            let codesCount = try repository.codes.count
             if hasUserBeenUnleashed || codesCount < Purchasing.maxBarcodesCount {
                 superViewDidLoad = true
             } else {
