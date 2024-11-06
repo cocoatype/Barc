@@ -33,5 +33,5 @@ struct SiteURLCell: View {
 }
 
 #Preview {
-    SiteURLCell(title: "Hello!", image: MenuAsset.appStore.swiftUIImage, path: "/")
+    SiteURLCell(title: "Hello!", image: Asset.appStore.swiftUIImage, path: "/")
 }

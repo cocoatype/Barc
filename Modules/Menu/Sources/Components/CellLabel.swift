@@ -36,5 +36,5 @@ struct CellLabel: View {
 }
 
 #Preview {
-    CellLabel(title: "Hello", subtitle: "World", image: MenuAsset.appStore.swiftUIImage)
+    CellLabel(title: "Hello", subtitle: "World", image: Asset.appStore.swiftUIImage)
 }

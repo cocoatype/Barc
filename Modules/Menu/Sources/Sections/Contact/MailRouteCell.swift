@@ -30,7 +30,7 @@ struct MailRouteCell: View {
                 CellLabel(
                     title: MenuStrings.MailRouteCell.title,
                     subtitle: MenuStrings.MailRouteCell.subtitle,
-                    image: MenuAsset.mail.swiftUIImage
+                    image: Asset.mail.swiftUIImage
                 )
             }
         }.sheet(isPresented: $threeCheersForPencilKit) {

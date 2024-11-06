@@ -7,7 +7,7 @@ import RevenueCat
 import StoreKit
 
 struct RevenueCatPurchaseRepository: PurchaseRepository {
-    static let initialize: () -> Void = {
+    static let initialize: @Sendable () -> Void = {
         guard let userDefaults = UserDefaults(suiteName: "group.com.cocoatype.Barc") else {
             ErrorHandling.defaultHandler.fatalError("Unable to create shared user defaults")
         }

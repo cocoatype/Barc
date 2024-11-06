@@ -15,7 +15,7 @@ struct OnboardingRouteCell: View {
             NavigationLink(destination: EmptyView()) {
                 CellLabel(
                     title: MenuStrings.OnboardingRouteCell.title,
-                    image: MenuAsset.tour.swiftUIImage
+                    image: Asset.tour.swiftUIImage
                 )
             }
         }.sheet(isPresented: $isOnboardingPresented) {

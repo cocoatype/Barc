@@ -3,7 +3,7 @@
 
 import Foundation
 
-public struct UnpurchasedFeature {
+public struct UnpurchasedFeature: Sendable {
     public static let unlimitedBarcodes = UnpurchasedFeature(
         message: Strings.UnlimitedBarcodes.message
     )

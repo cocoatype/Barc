@@ -27,7 +27,7 @@ struct SuccessView: View {
     private func handle(_ code: Code?) async {
         if let code {
             do {
-                try await Persistence.defaultRepository.add(code)
+                try Persistence.defaultRepository.add(code)
                 extensionContext?.completeRequest(returningItems: [])
             } catch {
                 extensionContext?.cancelRequest(withError: error)

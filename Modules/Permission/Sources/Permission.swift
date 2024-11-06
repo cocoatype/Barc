@@ -2,4 +2,4 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 public let cameraPermissionRequester: any CameraPermissionRequester = DeviceCameraPermissionRequester()
-public let locationPermissionRequester: any LocationPermissionRequester = CoreLocationPermissionRequester()
+@MainActor public let locationPermissionRequester: any LocationPermissionRequester = CoreLocationPermissionRequester()

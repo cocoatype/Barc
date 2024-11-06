@@ -4,5 +4,5 @@
 import Barcodes
 
 public protocol LocationProvider {
-    var currentLocation: Location { get async throws }
+    @MainActor var currentLocation: Location { get async throws }
 }

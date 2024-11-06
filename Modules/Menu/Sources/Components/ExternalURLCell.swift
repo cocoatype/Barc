@@ -30,5 +30,5 @@ struct ExternalURLCell: View {
 }
 
 #Preview {
-    ExternalURLCell(title: "Hello!", image: MenuAsset.appStore.swiftUIImage, urlString: "https://getbarc.app")
+    ExternalURLCell(title: "Hello!", image: Asset.appStore.swiftUIImage, urlString: "https://getbarc.app")
 }

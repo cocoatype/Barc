@@ -1,7 +1,7 @@
 //  Created by Geoff Pado on 9/24/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-public struct Code39ElementToCharacterConverter {
+public struct Code39ElementToCharacterConverter: Sendable {
     public init() {}
 
     public func character(for element: Code39Element) -> Character {

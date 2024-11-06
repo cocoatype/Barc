@@ -15,7 +15,7 @@ struct AdvanceAction {
 }
 
 enum AdvanceActionEnvironmentKey: EnvironmentKey {
-    static let defaultValue: AdvanceAction = AdvanceAction {}
+    static var defaultValue: AdvanceAction { AdvanceAction {} }
 }
 
 extension EnvironmentValues {

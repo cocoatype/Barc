@@ -4,7 +4,7 @@
 import SwiftUI
 
 extension EnvironmentValues {
-    static let lightMode = {
+    @MainActor static let lightMode = {
         var values = EnvironmentValues()
         values.colorScheme = .light
         return values

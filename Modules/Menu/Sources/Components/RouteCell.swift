@@ -27,7 +27,7 @@ struct RouteCell: View {
     RouteCell(
         title: "Hello",
         subtitle: "World",
-        image: MenuAsset.tour.swiftUIImage,
+        image: Asset.tour.swiftUIImage,
         route: .onboarding
     )
 }

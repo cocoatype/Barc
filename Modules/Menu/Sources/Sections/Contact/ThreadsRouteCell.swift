@@ -8,7 +8,7 @@ struct ThreadsRouteCell: View {
         ExternalURLCell(
             title: MenuStrings.ThreadsRouteCell.title,
             subtitle: MenuStrings.ThreadsRouteCell.subtitle,
-            image: MenuAsset.threads.swiftUIImage,
+            image: Asset.threads.swiftUIImage,
             urlString: "https://www.threads.net/@barc.app"
         )
     }

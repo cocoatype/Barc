@@ -7,8 +7,8 @@ struct ImportPage: View {
     @Environment(\.advance) private var advance
     var body: some View {
         StandardPage(
-            imageLight: OnboardingAsset.importOnboarding.swiftUIImage,
-            imageDark: OnboardingAsset.importOnboardingDark.swiftUIImage,
+            imageLight: Asset.importOnboarding.swiftUIImage,
+            imageDark: Asset.importOnboardingDark.swiftUIImage,
             headline: OnboardingStrings.ImportPage.headline,
             message: LocalizedStringKey("ImportPage.body\(Image(systemName: "square.and.arrow.up"))"),
             pageIndex: 2

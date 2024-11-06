@@ -13,7 +13,7 @@ struct ReleasesRouteCell: View {
         SiteURLCell(
             title: MenuStrings.ReleasesRouteCell.title,
             subtitle: subtitle,
-            image: MenuAsset.releases.swiftUIImage,
+            image: Asset.releases.swiftUIImage,
             path: "/releases/"
         )
     }

@@ -9,7 +9,7 @@ import Persistence
 import Purchasing
 import UIKit
 
-struct MobileExtensionInputHandler {
+@MainActor struct MobileExtensionInputHandler {
     private let imageReader = ImageReader()
 
     private let barcodeRepository: any BarcodeRepository
@@ -26,7 +26,7 @@ struct MobileExtensionInputHandler {
         get async throws {
             if try await purchaseRepository.hasUserBeenUnleashed {
                 return true
-            } else if try await barcodeRepository.codes.count < Purchasing.maxBarcodesCount {
+            } else if try barcodeRepository.codes.count < Purchasing.maxBarcodesCount {
                 return true
             } else {
                 return false

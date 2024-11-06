@@ -5,7 +5,7 @@ import Barcodes
 import CoreGraphics
 import Vision
 
-public struct ImageReader {
+public struct ImageReader: Sendable {
     public init() {}
 
     public func codeValue(in image: CGImage, orientation: CGImagePropertyOrientation = .up) async throws -> CodeValue? {

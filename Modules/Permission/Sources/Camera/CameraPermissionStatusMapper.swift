@@ -10,6 +10,7 @@ struct CameraPermissionStatusMapper {
         case .restricted: .restricted
         case .denied: .denied
         case .authorized: .authorized
+        @unknown default: .notDetermined
         }
     }
 }

@@ -2,5 +2,5 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 public protocol LocationPermissionRequester {
-    func requestPermission() async -> PermissionStatus
+    @MainActor func requestPermission() async -> PermissionStatus
 }

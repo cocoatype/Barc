@@ -18,7 +18,7 @@ struct PassReviewViewModifier: ViewModifier {
     }
 }
 
-extension PKPass: Identifiable {}
+extension PKPass: Swift.Identifiable {}
 
 extension View {
     func passReviewSheet(pass: Binding<PKPass?>) -> some View {

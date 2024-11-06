@@ -7,7 +7,7 @@ struct PrivacyRouteCell: View {
     var body: some View {
         SiteURLCell(
             title: MenuStrings.PrivacyRouteCell.title,
-            image: MenuAsset.privacy.swiftUIImage,
+            image: Asset.privacy.swiftUIImage,
             path: "/privacy/"
         )
     }
