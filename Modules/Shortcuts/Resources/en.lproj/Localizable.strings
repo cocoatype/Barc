@@ -42,3 +42,12 @@
 
 // The title for the "open code" intent
 "OpenCodeIntent.title" = "Open Code";
+
+// Description for the "scan image" intent
+"ScanImageIntent.description" = "Scans an image looking for a barcode.";
+
+// Parameter summary for the "scan image" intent
+"ScanImageIntent.parameterSummary${image}" = "Scan ${image}";
+
+// Title for the "scan image" intent
+"ScanImageIntent.title" = "Scan Image";
