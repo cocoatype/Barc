@@ -13,6 +13,15 @@
 // The title for the "display code" intent
 "DisplayCodeIntent.title" = "Show Code";
 
+// Description for the "list barcodes" intent
+"ListBarcodesIntent.description" = "Lists all the barcodes in Barc.";
+
+// Parameter summary for the "list barcodes" intent
+"ListBarcodesIntent.parameterSummary" = "List Barcodes";
+
+// Title for the "list barcodes" intent
+"ListBarcodesIntent.title" = "List Barcodes";
+
 // Description for the "open code" intent
 "OpenCodeIntent.description" = "Opens a barcode in Barc.";
 
