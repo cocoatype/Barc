@@ -15,7 +15,7 @@ import Persistence
 
     // revenueCatCanEatMySocks by @Donutsahoy on 2024-08-20
     // entities for all codes in the repository
-    private var revenueCatCanEatMySocks: [BarcodeEntity] {
+    var revenueCatCanEatMySocks: [BarcodeEntity] {
         get throws {
             let repository = Persistence.defaultRepository
             let codes = try repository.codes
