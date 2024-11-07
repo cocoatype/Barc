@@ -5,7 +5,7 @@ import AppIntents
 
 struct ListBarcodesIntent: AppIntent {
     static let title: LocalizedStringResource = "ListBarcodesIntent.title"
-    static let description: IntentDescription = "DisplayCodeIntent.description"
+    static let description: IntentDescription = "ListBarcodesIntent.description"
 
     static var parameterSummary: some ParameterSummary {
         Summary("ListBarcodesIntent.parameterSummary")
