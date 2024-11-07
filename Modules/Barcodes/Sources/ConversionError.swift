@@ -4,4 +4,5 @@
 public enum ConversionError: Error {
     case invalidByte(UInt8)
     case unrepresentableCharacter(Character)
+    case unrepresentableData
 }

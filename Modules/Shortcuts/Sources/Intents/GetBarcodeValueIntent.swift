@@ -18,7 +18,7 @@ struct GetBarcodeValueIntent: AppIntent {
     var code: BarcodeEntity
 
     func perform() async throws -> some IntentResult & ReturnsValue<String> {
-        let result = code.code.value.id
+        let result = try code.code.value.stringRepresentation
 
         return .result(value: result)
     }

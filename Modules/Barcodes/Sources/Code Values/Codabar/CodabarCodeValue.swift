@@ -1,13 +1,9 @@
 //  Created by Geoff Pado on 9/23/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-public struct CodabarCodeValue: Hashable, Identifiable, Sendable {
+public struct CodabarCodeValue: FormatCodeValue {
     public let payload: Payload
-    public var id: String {
-        let converter = CodabarElementToCharacterConverter()
-        let characters = payload.id.map(converter.character(for:))
-        return String(characters)
-    }
+    public var id: String { stringRepresentation }
 
     public init(payload: Payload) {
         self.payload = payload
@@ -20,5 +16,11 @@ public struct CodabarCodeValue: Hashable, Identifiable, Sendable {
         init(elements: [CodabarElement]) {
             self.elements = elements
         }
+    }
+
+    public var stringRepresentation: String {
+        let converter = CodabarElementToCharacterConverter()
+        let characters = payload.id.map(converter.character(for:))
+        return String(characters)
     }
 }

@@ -32,13 +32,18 @@ public enum CodeValue: Hashable, Identifiable, Sendable {
         return .qr(QRCodeValue(string: value, correctionLevel: correctionLevel))
     }
 
-    public var id: String {
+    public var id: String { underlyingValue.id }
+    public var stringRepresentation: String {
+        get throws { try underlyingValue.stringRepresentation }
+    }
+
+    var underlyingValue: any FormatCodeValue {
         switch self {
-        case .code128(let value): value.id
-        case .code39(let value): value.id
-        case .codabar(let value): value.id
-        case .ean(let value): value.id
-        case .qr(let value): value.id
+        case .code128(let value): value
+        case .code39(let value): value
+        case .codabar(let value): value
+        case .ean(let value): value
+        case .qr(let value): value
         }
     }
 

@@ -1,9 +1,11 @@
 //  Created by Geoff Pado on 9/24/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-public struct Code39CodeValue: Hashable, Identifiable, Sendable {
+public struct Code39CodeValue: FormatCodeValue {
     public let payload: Payload
-    public var id: String {
+    public var id: String { stringRepresentation }
+
+    public var stringRepresentation: String {
         let converter = Code39ElementToCharacterConverter()
         let characters = payload.id.map(converter.character(for:))
         return String(characters)
