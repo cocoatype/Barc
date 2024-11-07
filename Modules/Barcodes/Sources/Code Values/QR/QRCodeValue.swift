@@ -3,11 +3,20 @@
 
 import Foundation
 
-public struct QRCodeValue: Hashable, Identifiable, Sendable {
+public struct QRCodeValue: FormatCodeValue {
     public let payload: Payload
     public let correctionLevel: CorrectionLevel
 
     public var id: Payload.ID { payload.id }
+    public var stringRepresentation: String {
+        get throws {
+            guard let stringValue = String(data: payload.data, encoding: .utf8) else {
+                throw ConversionError.unrepresentableData
+            }
+
+            return stringValue
+        }
+    }
 
     public init(payload: Payload, correctionLevel: CorrectionLevel) {
         self.payload = payload

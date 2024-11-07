@@ -1,9 +1,15 @@
 //  Created by Geoff Pado on 8/15/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-public struct EANCodeValue: Hashable, Identifiable, Sendable {
+public struct EANCodeValue: FormatCodeValue {
     public let payload: Payload
     public var id: Payload.ID { payload.id }
+
+    public var stringRepresentation: String {
+        let converter = EANDigitToCharacterConverter()
+        let digits = payload.digits.map(converter.character(for:))
+        return String(digits)
+    }
 
     public init(payload: Payload) {
         self.payload = payload

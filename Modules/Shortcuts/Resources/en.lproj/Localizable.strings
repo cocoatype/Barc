@@ -13,11 +13,20 @@
 // The title for the "display code" intent
 "DisplayCodeIntent.title" = "Show Code";
 
+// Description for the "get barcode value" intent
+"GetBarcodeValueIntent.description" = "Gets the value of a barcode.";
+
+// Parameter summary for the "get barcode value" intent
+"GetBarcodeValueIntent.parameterSummary${code}" = "Get value of ${code}";
+
+// Title for the "get barcode value" intent
+"GetBarcodeValueIntent.title" = "Get Barcode Value";
+
 // Description for the "list barcodes" intent
 "ListBarcodesIntent.description" = "Lists all the barcodes in Barc.";
 
 // Parameter summary for the "list barcodes" intent
-"ListBarcodesIntent.parameterSummary" = "List Barcodes";
+"ListBarcodesIntent.parameterSummary" = "List all barcodes";
 
 // Title for the "list barcodes" intent
 "ListBarcodesIntent.title" = "List Barcodes";

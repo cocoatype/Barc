@@ -3,13 +3,19 @@
 
 import Foundation
 
-public struct Code128CodeValue: Hashable, Identifiable, Sendable {
+public struct Code128CodeValue: FormatCodeValue {
     public let payload: Payload
     public var id: String {
         let converter = Code128ElementToByteConverter()
         let bytes = payload.elements.map(converter.byte(for:))
         let data = Data(bytes)
         return data.base64EncodedString()
+    }
+
+    public var stringRepresentation: String {
+        get throws {
+            try Code128ValueToStringConverter().string(from: self)
+        }
     }
 
     public init(payload: Payload) {
