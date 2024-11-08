@@ -1,3 +1,39 @@
+// Name of the Codabar format
+"BarcodeFormatEntity.codabar" = "Codabar";
+
+// Name of the Code 39 format
+"BarcodeFormatEntity.code39" = "Code 39";
+
+// Name of the Code 128 format
+"BarcodeFormatEntity.code128" = "Code 128";
+
+// Name of the EAN-13 format
+"BarcodeFormatEntity.ean13" = "UPC/EAN-13";
+
+// Name of the QR format
+"BarcodeFormatEntity.qr" = "QR";
+
+// Description for the "create code" intent
+"CreateBarcodeIntent.description" = "Creates a barcode with a given value.";
+
+// Default value for the name parameter in the "create code" intent
+"CreateBarcodeIntent.defaultName" = "New Code";
+
+// Title for the format parameter in the "create code" intent
+"CreateBarcodeIntent.format" = "Format";
+
+// Title for the name parameter in the "create code" intent
+"CreateBarcodeIntent.name" = "Name";
+
+// Title for the value parameter in the "create code" intent
+"CreateBarcodeIntent.value" = "Value";
+
+// Parameter summary for the "create code" intent
+"CreateBarcodeIntent.parameterSummary${format}${value}" = "Create a ${format} code with value ${value}";
+
+// Title for the "create code" intent
+"CreateBarcodeIntent.title" = "Create Barcode";
+
 // Description for the "display code" intent
 "DisplayCodeIntent.description" = "Displays an image of a code.";
 
