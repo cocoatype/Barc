@@ -22,6 +22,8 @@ struct LibraryGrid: View {
     // the current location, if we received it
     @State private var ni: Location?
 
+    @State private var searchText = ""
+
     private let errorHandler: any ErrorHandler
 
     init(errorHandler: any ErrorHandler = ErrorHandling.defaultHandler) {
@@ -33,10 +35,11 @@ struct LibraryGrid: View {
             minWidth: 160,
             maxWidth: 180
         ) {
-            ForEach(codes) { code in
+            ForEach(filteredCodes) { code in
                 LibraryCell(code: code)
             }
         }
+        .searchable(text: $searchText)
         .task { await refreshLocation() }
         .onAppear { refreshCodes() }
         .onUpdate(to: repository) { codes = $0 }
@@ -69,6 +72,14 @@ struct LibraryGrid: View {
             ni = try await sortOnAnySortOfSort.currentLocation
         } catch {
             // not logging because most will be permissions errors
+        }
+    }
+
+    private var filteredCodes: [Code] {
+        guard searchText.isEmpty == false else { return codes }
+
+        return codes.filter { code in
+            code.name.localizedCaseInsensitiveContains(searchText)
         }
     }
 }

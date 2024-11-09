@@ -9,9 +9,7 @@ public struct Library: View {
 
     public var body: some View {
         ScrollView {
-            VStack {
-                LibraryGrid()
-            }
+            LibraryGrid()
         }
         .background(Color(uiColor: .systemGroupedBackground))
         .navigationTitle(Text(LibraryStrings.Library.navigationTitle))
