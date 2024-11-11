@@ -31,9 +31,15 @@ struct CreateBarcodeIntent: AppIntent {
     )
     var name: String?
 
+    private var codeName: String {
+        guard let name else { return ShortcutsStrings.CreateBarcodeIntent.defaultName }
+
+        if name.isEmpty { return ShortcutsStrings.CreateBarcodeIntent.defaultName }
+        else { return name }
+    }
+
     func perform() async throws -> some IntentResult & ReturnsValue<BarcodeEntity> {
-        let name = name ?? ShortcutsStrings.CreateBarcodeIntent.defaultName
-        let storedCode = try Code(name: name, value: codeValue, location: nil, date: nil)
+        let storedCode = try Code(name: codeName, value: codeValue, location: nil, date: nil)
 
         let repository = Persistence.defaultRepository
         try await repository.add(storedCode)

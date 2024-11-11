@@ -88,11 +88,17 @@
 // The title for the "open code" intent
 "OpenCodeIntent.title" = "Open Barcode";
 
+// Default value for the name parameter in the "create code" intent
+"ScanImageIntent.defaultName" = "Scanned Code";
+
 // Description for the "scan image" intent
 "ScanImageIntent.description" = "Scans an image looking for a barcode.";
 
 // The title for the image parameter in the "scan image" intent
 "ScanImageIntent.image" = "Image";
+
+// The title for the name parameter in the "scan image" intent
+"ScanImageIntent.name" = "Name";
 
 // Parameter summary for the "scan image" intent
 "ScanImageIntent.parameterSummary${image}" = "Scan ${image}";

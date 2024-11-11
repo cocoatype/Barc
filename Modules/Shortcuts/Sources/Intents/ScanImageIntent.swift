@@ -13,7 +13,9 @@ struct ScanImageIntent: AppIntent {
     static let description: IntentDescription = "ScanImageIntent.description"
 
     static var parameterSummary: some ParameterSummary {
-        Summary("ScanImageIntent.parameterSummary\(\.$image)")
+        Summary("ScanImageIntent.parameterSummary\(\.$image)") {
+            \.$name
+        }
     }
 
     @Parameter(
@@ -21,13 +23,25 @@ struct ScanImageIntent: AppIntent {
     )
     var image: IntentFile
 
+    @Parameter(
+        title: "ScanImageIntent.name"
+    )
+    var name: String?
+
+    private var codeName: String {
+        guard let name else { return ShortcutsStrings.ScanImageIntent.defaultName }
+
+        if name.isEmpty { return ShortcutsStrings.ScanImageIntent.defaultName }
+        else { return name }
+    }
+
     func perform() async throws -> some IntentResult & ReturnsValue<BarcodeEntity?> {
         let image = try CGImage.image(from: image.data)
         let imageReader = ImageReader()
         let codeValue = try await imageReader.codeValue(in: image)
 
         let storedCode = codeValue.map {
-            Code(name: "Scanned Code", value: $0, location: nil, date: nil)
+            Code(name: codeName, value: $0, location: nil, date: nil)
         }
 
         if let storedCode {
