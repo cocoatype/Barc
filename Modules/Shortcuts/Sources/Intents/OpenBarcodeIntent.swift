@@ -4,7 +4,7 @@
 import AppIntents
 import Navigation
 
-struct OpenCodeIntent: AppIntent {
+struct OpenCodeIntent: OpenIntent {
     static let title: LocalizedStringResource = "OpenCodeIntent.title"
 
     static let description: IntentDescription = "OpenCodeIntent.description"
@@ -12,20 +12,19 @@ struct OpenCodeIntent: AppIntent {
     static let openAppWhenRun = true
 
     static var parameterSummary: some ParameterSummary {
-        Summary("OpenCodeIntent.parameterSummary\(\.$code)")
+        Summary("OpenCodeIntent.parameterSummary\(\.$target)")
     }
 
     @AppDependency private var navigator: Navigator
 
     @Parameter(
-        title: "OpenCodeIntent.code.title",
-        inputConnectionBehavior: .default
+        title: "OpenCodeIntent.code.title"
     )
-    var code: BarcodeEntity
+    public var target: BarcodeEntity
 
-    func perform() async throws -> some IntentResult {
+    public func perform() async throws -> some IntentResult {
         await MainActor.run {
-            navigator.navigate(to: .barcodeDetails(code.code))
+            navigator.navigate(to: .barcodeDetails(target.code))
         }
 
         return .result()

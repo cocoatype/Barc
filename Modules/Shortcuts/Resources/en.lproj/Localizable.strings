@@ -135,3 +135,6 @@
 
 // Title for the "set location" intent
 "SetLocationIntent.title" = "Set Location";
+
+"ShortcutsProvider.OpenCodeIntent.phrase${code}" = "${code}";
+"ShortcutsProvider.OpenCodeIntent.shortTitle" = "Open Barcode";
