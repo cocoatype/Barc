@@ -16,7 +16,7 @@ struct ScanImageIntent: AppIntent {
     }
 
     @Parameter(
-        title: "ScanImageIntent.image.title"
+        title: "ScanImageIntent.image"
     )
     var image: IntentFile
 

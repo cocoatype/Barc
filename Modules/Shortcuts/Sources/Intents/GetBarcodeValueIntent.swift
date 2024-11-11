@@ -6,14 +6,14 @@ import AppIntents
 struct GetBarcodeValueIntent: AppIntent {
     static let title: LocalizedStringResource = "GetBarcodeValueIntent.title"
 
-    static let description: IntentDescription = "GetBarcodeValueIntent.title"
+    static let description: IntentDescription = "GetBarcodeValueIntent.description"
 
     static var parameterSummary: some ParameterSummary {
         Summary("GetBarcodeValueIntent.parameterSummary\(\.$code)")
     }
 
     @Parameter(
-        title: "GetBarcodeValueIntent.code.title"
+        title: "GetBarcodeValueIntent.code"
     )
     var code: BarcodeEntity
 
