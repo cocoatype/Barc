@@ -3,6 +3,7 @@
 
 import AppIntents
 import Barcodes
+import Persistence
 
 struct CreateBarcodeIntent: AppIntent {
     static let title: LocalizedStringResource = "CreateBarcodeIntent.title"
@@ -32,8 +33,12 @@ struct CreateBarcodeIntent: AppIntent {
 
     func perform() async throws -> some IntentResult & ReturnsValue<BarcodeEntity> {
         let name = name ?? ShortcutsStrings.CreateBarcodeIntent.defaultName
-        let code = try Code(name: name, value: codeValue, location: nil, date: nil)
-        return .result(value: BarcodeEntity(code: code))
+        let storedCode = try Code(name: name, value: codeValue, location: nil, date: nil)
+
+        let repository = Persistence.defaultRepository
+        try await repository.add(storedCode)
+
+        return .result(value: BarcodeEntity(code: storedCode))
     }
 
     private var codeValue: CodeValue {
