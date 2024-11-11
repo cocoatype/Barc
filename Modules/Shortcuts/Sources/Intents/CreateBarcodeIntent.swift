@@ -7,7 +7,7 @@ import Barcodes
 struct CreateBarcodeIntent: AppIntent {
     static let title: LocalizedStringResource = "CreateBarcodeIntent.title"
 
-    static let description: IntentDescription = "ScanImageIntent.description"
+    static let description: IntentDescription = "CreateBarcodeIntent.description"
 
     static var parameterSummary: some ParameterSummary {
         Summary("CreateBarcodeIntent.parameterSummary\(\.$format)\(\.$value)") {

@@ -1,3 +1,9 @@
+// Display name of the barcode entity type
+"BarcodeEntity.typeDisplayRepresentation" = "Barcode";
+
+// Display name of the barcode format entity type
+"BarcodeFormatEntity.typeDisplayRepresentation" = "Barcode Format";
+
 // Name of the Codabar format
 "BarcodeFormatEntity.codabar" = "Codabar";
 
@@ -35,10 +41,10 @@
 "CreateBarcodeIntent.title" = "Create Barcode";
 
 // Description for the "display code" intent
-"DisplayCodeIntent.description" = "Displays an image of a code.";
+"DisplayCodeIntent.description" = "Displays an image of a barcode.";
 
 // The title for the code parameter in the "display code" intent
-"DisplayCodeIntent.code.title" = "Code";
+"DisplayCodeIntent.code.title" = "Barcode";
 
 // The title for the "has background" parameter in the "display code" intent
 "DisplayCodeIntent.hasBackground.title" = "With Background";
@@ -47,7 +53,10 @@
 "DisplayCodeIntent.parameterSummary${code}" = "Show ${code}";
 
 // The title for the "display code" intent
-"DisplayCodeIntent.title" = "Show Code";
+"DisplayCodeIntent.title" = "Show Barcode";
+
+// The title for the code parameter in the "get barcode value" intent
+"GetBarcodeValueIntent.code" = "Barcode";
 
 // Description for the "get barcode value" intent
 "GetBarcodeValueIntent.description" = "Gets the value of a barcode.";
@@ -71,16 +80,19 @@
 "OpenCodeIntent.description" = "Opens a barcode in Barc.";
 
 // The title for the code parameter in the "open code" intent
-"OpenCodeIntent.code.title" = "Code";
+"OpenCodeIntent.code.title" = "Barcode";
 
 // The parameter summary for the "open code" intent
 "OpenCodeIntent.parameterSummary${code}" = "Open ${code}";
 
 // The title for the "open code" intent
-"OpenCodeIntent.title" = "Open Code";
+"OpenCodeIntent.title" = "Open Barcode";
 
 // Description for the "scan image" intent
 "ScanImageIntent.description" = "Scans an image looking for a barcode.";
+
+// The title for the image parameter in the "scan image" intent
+"ScanImageIntent.image" = "Barcode";
 
 // Parameter summary for the "scan image" intent
 "ScanImageIntent.parameterSummary${image}" = "Scan ${image}";
