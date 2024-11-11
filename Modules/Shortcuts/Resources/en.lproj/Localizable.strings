@@ -105,3 +105,18 @@
 
 // Title for the "scan image" intent
 "ScanImageIntent.title" = "Scan Image";
+
+// Description for the "set location" intent
+"SetLocationIntent.description" = "Sets the relevant location for a barcode.";
+
+// The title for the placemark parameter in the "set location" intent
+"SetLocationIntent.placemark" = "Location";
+
+// The title for the code parameter in the "set location" intent
+"SetLocationIntent.code" = "Barcode";
+
+// Parameter summary for the "set location" intent
+"SetLocationIntent.parameterSummary${code}${placemark}" = "Set location of ${code} to ${placemark}";
+
+// Title for the "set location" intent
+"SetLocationIntent.title" = "Set Location";
