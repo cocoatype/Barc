@@ -14,7 +14,7 @@ struct BarcodePreview: View {
     var body: some View {
         HStack {
             Spacer()
-            CodeRenderer(value: value)
+            RenderedCodeView(value: value)
                 .frame(width: 140, height: 140)
                 .padding(14)
                 .background(CodeBackground())

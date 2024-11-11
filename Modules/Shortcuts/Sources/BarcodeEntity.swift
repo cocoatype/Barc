@@ -3,6 +3,7 @@
 
 import AppIntents
 import Barcodes
+import BarcodeGenerator
 
 public struct BarcodeEntity: AppEntity, Identifiable {
     public static let typeDisplayRepresentation: TypeDisplayRepresentation = "BarcodeEntity.typeDisplayRepresentation"
@@ -19,7 +20,10 @@ public struct BarcodeEntity: AppEntity, Identifiable {
     var date: Date? { code.date }
 
     public var displayRepresentation: DisplayRepresentation {
-        DisplayRepresentation(title: "\(name)")
+        let renderer = CodeImageRenderer()
+        let imageData = try? renderer.pngData(from: code.value, withBackground: true)
+        let image = imageData.map(DisplayRepresentation.Image.init)
+        return DisplayRepresentation(title: "\(name)", image: image)
     }
 
     #if compiler(<6.0)

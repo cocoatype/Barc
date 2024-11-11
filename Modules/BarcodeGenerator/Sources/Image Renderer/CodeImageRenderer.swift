@@ -31,7 +31,7 @@ import UniformTypeIdentifiers
         withBackground: Bool,
         size: CGSize
     ) -> some View {
-        CodeRenderer(value: value)
+        RenderedCodeView(value: value)
             .padding(withBackground ? CodeBackground.padding : 0)
             .background {
                 if withBackground {
