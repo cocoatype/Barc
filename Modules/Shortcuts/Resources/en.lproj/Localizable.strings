@@ -106,6 +106,21 @@
 // Title for the "scan image" intent
 "ScanImageIntent.title" = "Scan Image";
 
+// Description for the "set date" intent
+"SetDateIntent.description" = "Sets the relevant date for a barcode.";
+
+// The title for the date parameter in the "set date" intent
+"SetDateIntent.date" = "Date";
+
+// The title for the code parameter in the "set date" intent
+"SetDateIntent.code" = "Barcode";
+
+// Parameter summary for the "set date" intent
+"SetDateIntent.parameterSummary${code}${date}" = "Set date of ${code} to ${date}";
+
+// Title for the "set date" intent
+"SetDateIntent.title" = "Set Date";
+
 // Description for the "set location" intent
 "SetLocationIntent.description" = "Sets the relevant location for a barcode.";
 
