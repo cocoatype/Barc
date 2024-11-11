@@ -92,7 +92,7 @@
 "ScanImageIntent.description" = "Scans an image looking for a barcode.";
 
 // The title for the image parameter in the "scan image" intent
-"ScanImageIntent.image" = "Barcode";
+"ScanImageIntent.image" = "Image";
 
 // Parameter summary for the "scan image" intent
 "ScanImageIntent.parameterSummary${image}" = "Scan ${image}";

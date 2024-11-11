@@ -3,8 +3,9 @@
 
 import AppIntents
 import Barcodes
-import ImageReader
 import CoreGraphics
+import ImageReader
+import Persistence
 
 struct ScanImageIntent: AppIntent {
     static let title: LocalizedStringResource = "ScanImageIntent.title"
@@ -25,10 +26,15 @@ struct ScanImageIntent: AppIntent {
         let imageReader = ImageReader()
         let codeValue = try await imageReader.codeValue(in: image)
 
-        let code = codeValue.map {
+        let storedCode = codeValue.map {
             Code(name: "Scanned Code", value: $0, location: nil, date: nil)
-        }.map(BarcodeEntity.init(code:))
+        }
 
-        return .result(value: code)
+        if let storedCode {
+            let repository = Persistence.defaultRepository
+            try await repository.add(storedCode)
+        }
+
+        return .result(value: storedCode.map(BarcodeEntity.init(code:)))
     }
 }
