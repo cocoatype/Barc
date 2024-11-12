@@ -43,6 +43,7 @@ struct CreateBarcodeIntent: AppIntent {
 
         let repository = Persistence.defaultRepository
         try await repository.add(storedCode)
+        ShortcutsProvider.updateAppShortcutParameters()
 
         return .result(value: BarcodeEntity(code: storedCode))
     }

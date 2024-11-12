@@ -10,6 +10,7 @@ public enum Scanner {
             .target(ImageReader.target),
             .target(Persistence.target),
             .target(ReviewRequest.target),
+            .target(Shortcuts.target),
         ]
     )
 

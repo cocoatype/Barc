@@ -9,6 +9,7 @@ public enum ManualEntry {
             .target(ErrorHandling.target),
             .target(Persistence.target),
             .target(ReviewRequest.target),
+            .target(Shortcuts.target),
         ]
     )
 

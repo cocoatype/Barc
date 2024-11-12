@@ -12,6 +12,7 @@ public enum ShareContents {
             .target(ImageReader.target),
             .target(Persistence.target),
             .target(Purchasing.target),
+            .target(Shortcuts.target),
         ]
     )
 

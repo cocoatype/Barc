@@ -42,6 +42,7 @@ struct SetLocationIntent: AppIntent {
 
         let repository = Persistence.defaultRepository
         try await repository.update(newCode)
+        ShortcutsProvider.updateAppShortcutParameters()
 
         return .result(value: BarcodeEntity(code: newCode))
     }

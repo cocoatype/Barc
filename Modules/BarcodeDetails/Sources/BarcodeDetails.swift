@@ -6,6 +6,7 @@ import BarcodeEdit
 import BarcodeView
 import ErrorHandling
 import Persistence
+import Shortcuts
 import SwiftUI
 import WalletExport
 
@@ -43,6 +44,7 @@ public struct BarcodeDetails: View {
 
                 do {
                     try repository.update(resultCode)
+                    ShortcutsProvider.updateAppShortcutParameters()
                 } catch {
                     errorHandler.log(error, module: "BarcodeDetails", type: "BarcodeDetails")
                 }

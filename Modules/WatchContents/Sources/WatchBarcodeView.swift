@@ -14,7 +14,7 @@ struct WatchBarcodeView: View {
     var body: some View {
         GeometryReader { geometry in
             let spacing = geometry.size.height - geometry.size.width
-            CodeRenderer(value: code.value)
+            RenderedCodeView(value: code.value)
                 .padding(14)
                 .background { Color.white }
                 .clipShape(RoundedRectangle(cornerRadius: 14))

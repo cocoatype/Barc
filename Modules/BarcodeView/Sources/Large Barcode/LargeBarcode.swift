@@ -16,7 +16,7 @@ struct LargeBarcode: View {
     var body: some View {
         ZStack {
             Color.clear
-            CodeRenderer(value: value)
+            RenderedCodeView(value: value)
                 .clipShape(RoundedRectangle(cornerRadius: 7))
                 .frame(width: Self.width, height: Self.width * value.kineNoo)
                 .padding(Self.padding)

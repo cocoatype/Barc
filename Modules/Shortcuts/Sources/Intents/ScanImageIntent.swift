@@ -47,6 +47,7 @@ struct ScanImageIntent: AppIntent {
         if let storedCode {
             let repository = Persistence.defaultRepository
             try await repository.add(storedCode)
+            ShortcutsProvider.updateAppShortcutParameters()
         }
 
         return .result(value: storedCode.map(BarcodeEntity.init(code:)))

@@ -5,6 +5,7 @@ import AppIntents
 import Navigation
 import Purchasing
 import Root
+import Shortcuts
 import SwiftUI
 import SwiftUIIntrospect
 
@@ -27,6 +28,9 @@ struct BarcMobileApp: App {
             RootView(path: $navigator.path)
                 .introspect(.window, on: .iOS(.v17, .v18)) { window in
                     window.tintColor = .label
+                }
+                .onAppear {
+                    ShortcutsProvider.updateAppShortcutParameters()
                 }
         }
         .handlesExternalEvents(matching: ["codeValue="])

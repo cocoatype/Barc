@@ -28,7 +28,7 @@ struct LibraryCell: View {
             VStack(alignment: .center) {
                 LibraryCellHeader(code: code)
                 LibraryCellSeparator()
-                CodeRenderer(value: code.value)
+                RenderedCodeView(value: code.value)
                     .clipShape(RoundedRectangle(cornerRadius: 3))
                     .frame(height: Self.size * code.value.kineNoo)
             }

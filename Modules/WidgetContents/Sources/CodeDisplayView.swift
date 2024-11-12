@@ -13,7 +13,7 @@ struct CodeDisplayView: View {
     }
 
     var body: some View {
-        CodeRenderer(value: code.value)
+        RenderedCodeView(value: code.value)
             .padding(14)
             .clipShape(ContainerRelativeShape().inset(by: 14))
             .codeURL(code)
