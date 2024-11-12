@@ -17,15 +17,17 @@ struct RenderedCode {
         rects.append(rect)
     }
 
-    func scaled(to finalSize: CGSize) -> RenderedCode {
+    func scaled(to finalSize: CGSize, inset: CGFloat = 0) -> RenderedCode {
         let currentSize = size
         let scale = CGSize(
             width: finalSize.width / currentSize.width,
             height: finalSize.height / currentSize.height
         )
 
+        let transform = CGAffineTransform(scaleX: scale.width, y: scale.height).concatenating(CGAffineTransform(translationX: inset, y: inset))
+
         let scaledRects = rects.map {
-            $0.applying(CGAffineTransform(scaleX: scale.width, y: scale.height))
+            $0.applying(transform)
         }
 
         return RenderedCode(rects: scaledRects)

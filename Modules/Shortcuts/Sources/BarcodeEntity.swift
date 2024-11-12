@@ -22,7 +22,9 @@ public struct BarcodeEntity: AppEntity, Identifiable {
     public var displayRepresentation: DisplayRepresentation {
         let renderer = CodeImageRenderer()
         let imageData = try? renderer.pngData(from: code.value, withBackground: true)
-        let image = imageData.map(DisplayRepresentation.Image.init)
+        let image = imageData.map {
+            DisplayRepresentation.Image(data: $0)
+        }
         return DisplayRepresentation(title: "\(name)", image: image)
     }
 

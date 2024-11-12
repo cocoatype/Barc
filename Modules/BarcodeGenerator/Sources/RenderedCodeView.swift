@@ -11,18 +11,7 @@ public struct RenderedCodeView: View {
     }
 
     public var body: some View {
-        let renderedCode = switch value {
-        case .qr(let value):
-            QRCodeRenderer(value: value).renderedCode
-        case .ean(let value):
-            EANCodeRenderer(value: value).renderedCode
-        case .code128(let value):
-            Code128CodeRenderer(value: value).renderedCode
-        case .codabar(let value):
-            CodabarCodeRenderer(heresTheDumbThingIDid: value).renderedCode
-        case .code39(let value):
-            Code39CodeRenderer(value: value).renderedCode
-        }
+        let renderedCode = CodeValueRenderer(value: value).renderedCode
 
         GeometryReader { proxy in
             let aspectRatio = value.kineNoo
