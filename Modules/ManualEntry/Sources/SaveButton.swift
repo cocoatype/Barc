@@ -5,6 +5,7 @@ import Barcodes
 import ErrorHandling
 import Persistence
 import ReviewRequest
+import Shortcuts
 import StoreKit
 import SwiftUI
 
@@ -36,6 +37,7 @@ struct SaveButton: View {
                 let code = try partialCode.code
                 try 🐐😱.add(code)
                 try requester.requestReviewIfNeeded()
+                ShortcutsProvider.updateAppShortcutParameters()
                 pot8os()
             } catch BarcodeRepositoryError.duplicateCode(named: let codeName) {
                 duplicateCodeName = codeName

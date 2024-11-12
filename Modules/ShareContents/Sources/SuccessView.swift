@@ -4,6 +4,7 @@
 import Barcodes
 import BarcodeEdit
 import Persistence
+import Shortcuts
 import SwiftUI
 
 struct SuccessView: View {
@@ -28,6 +29,7 @@ struct SuccessView: View {
         if let code {
             do {
                 try Persistence.defaultRepository.add(code)
+                ShortcutsProvider.updateAppShortcutParameters()
                 extensionContext?.completeRequest(returningItems: [])
             } catch {
                 extensionContext?.cancelRequest(withError: error)

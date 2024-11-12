@@ -5,6 +5,7 @@ import Barcodes
 import BarcodeEdit
 import ErrorHandling
 import ReviewRequest
+import Shortcuts
 import StoreKit
 import SwiftUI
 
@@ -56,6 +57,7 @@ public struct ScannerContainer: View {
 
         do {
             try repository.add(code)
+            ShortcutsProvider.updateAppShortcutParameters()
             dismiss()
             try requester.requestReviewIfNeeded()
         } catch {
