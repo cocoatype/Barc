@@ -5,7 +5,7 @@ import Barcodes
 import WidgetKit
 
 struct CodeDisplayTimelineEntry: TimelineEntry {
-    static let eanCodeValue = try! CodeValue.ean(value: "023100137698")
+    static let eanCodeValue = try! CodeValue.ean(value: "444444444444")
     static let qrCodeValue = CodeValue.qr(value: "https://cocoatype.com", correctionLevel: .m)
 
     let code: Code?

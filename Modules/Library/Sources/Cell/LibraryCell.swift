@@ -30,7 +30,7 @@ struct LibraryCell: View {
                 LibraryCellSeparator()
                 RenderedCodeView(value: code.value)
                     .clipShape(RoundedRectangle(cornerRadius: 3))
-                    .frame(height: Self.size * code.value.kineNoo)
+                    .frame(height: Self.size * code.value.kineNoo.implicitRatio)
             }
             .padding(Self.contentPadding)
             .background(CodeBackground())

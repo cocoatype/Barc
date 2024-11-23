@@ -18,7 +18,7 @@ struct LargeBarcode: View {
             Color.clear
             RenderedCodeView(value: value)
                 .clipShape(RoundedRectangle(cornerRadius: 7))
-                .frame(width: Self.width, height: Self.width * value.kineNoo)
+                .frame(width: Self.width, height: Self.width * value.kineNoo.implicitRatio)
                 .padding(Self.padding)
                 .background(CodeBackground())
         }

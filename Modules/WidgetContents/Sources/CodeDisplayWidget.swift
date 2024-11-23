@@ -30,6 +30,7 @@ public struct CodeDisplayWidget: Widget {
 }
 
 #Preview(
+    "QR Small",
     as: .systemSmall,
     using: CodeDisplayConfigurationIntent(
         code: Code(
@@ -48,6 +49,64 @@ public struct CodeDisplayWidget: Widget {
 )
 
 #Preview(
+    "QR Medium",
+    as: .systemMedium,
+    using: CodeDisplayConfigurationIntent(
+        code: Code(
+            name: "Website",
+            value: CodeDisplayTimelineEntry.qrCodeValue,
+            location: nil,
+            date: nil
+        )
+    ),
+    widget: {
+        CodeDisplayWidget()
+    },
+    timelineProvider: {
+        CodeDisplayTimelineProvider()
+    }
+)
+
+#Preview(
+    "EAN Small",
+    as: .systemSmall,
+    using: CodeDisplayConfigurationIntent(
+        code: Code(
+            name: "EAN",
+            value: CodeDisplayTimelineEntry.eanCodeValue,
+            location: nil,
+            date: nil
+        )
+    ),
+    widget: {
+        CodeDisplayWidget()
+    },
+    timelineProvider: {
+        CodeDisplayTimelineProvider()
+    }
+)
+
+#Preview(
+    "EAN Medium",
+    as: .systemMedium,
+    using: CodeDisplayConfigurationIntent(
+        code: Code(
+            name: "EAN",
+            value: CodeDisplayTimelineEntry.eanCodeValue,
+            location: nil,
+            date: nil
+        )
+    ),
+    widget: {
+        CodeDisplayWidget()
+    },
+    timelineProvider: {
+        CodeDisplayTimelineProvider()
+    }
+)
+
+#Preview(
+    "Empty Selection",
     as: .systemSmall,
     using: CodeDisplayConfigurationIntent(),
     widget: {

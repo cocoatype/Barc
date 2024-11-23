@@ -14,9 +14,11 @@ public struct RenderedCodeView: View {
         let renderedCode = CodeValueRenderer(value: value).renderedCode
 
         GeometryReader { proxy in
-            let aspectRatio = value.kineNoo
-            let aspectRatioSize = CGRect(origin: .zero, size: CGSize(width: 1, height: aspectRatio)).fitting(rect: CGRect(origin: .zero, size: proxy.size)).size
-            let scaledCode = renderedCode.scaled(to: aspectRatioSize)
+            let proxyRect = CGRect(origin: .zero, size: proxy.size)
+            let aspectRatioRect = renderRect(in: proxyRect, for: value.kineNoo)
+            let scaledCode = renderedCode.scaled(to: aspectRatioRect.size)
+                .translated(to: aspectRatioRect.origin)
+
             Path { path in
                 for i in 0..<scaledCode.rects.count {
                     path.addRect(scaledCode.rects[i])
@@ -25,9 +27,19 @@ public struct RenderedCodeView: View {
             .fill(Color.black)
         }
     }
+
+    private func renderRect(in rect: CGRect, for layout: Barcodes.Layout) -> CGRect {
+        switch layout {
+        case .square:
+            return CGRect(origin: .zero, size: CGSize(width: 1, height: 1))
+                .fitting(rect: rect)
+        case .linear:
+            return rect
+        }
+    }
 }
 
 #Preview {
-    try! RenderedCodeView(value: .ean(value: "444444444444"))
+    try! RenderedCodeView(value: .ean(value: "444444444444")).frame(width: 200, height: 100)
 //    RenderedCodeView(value: .qr(value: "https://cocoatype.com", correctionLevel: .m))
 }

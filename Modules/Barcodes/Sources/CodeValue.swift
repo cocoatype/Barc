@@ -49,10 +49,10 @@ public enum CodeValue: Hashable, Identifiable, Sendable {
 
     // kineNoo by @eaglenaut on 2023-12-04
     // the aspect ratio of the represented barcode
-    public var kineNoo: Double {
+    public var kineNoo: Layout {
         switch self {
-        case .code128, .code39, .codabar, .ean: 1 / 2
-        case .qr: 1 / 1
+        case .code128, .code39, .codabar, .ean: .linear
+        case .qr: .square
         }
     }
 }

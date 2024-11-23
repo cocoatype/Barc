@@ -32,4 +32,10 @@ struct RenderedCode {
 
         return RenderedCode(rects: scaledRects)
     }
+
+    func translated(to point: CGPoint) -> RenderedCode {
+        let transform = CGAffineTransform(translationX: point.x, y: point.y)
+        let translatedRects = rects.map { $0.applying(transform) }
+        return RenderedCode(rects: translatedRects)
+    }
 }

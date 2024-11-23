@@ -17,7 +17,7 @@ struct BarcodeViewBackground: View {
         GeometryReader { geometry in
             VStack(spacing: 0) {
                 Color.barcodeViewHeader
-                    .frame(height: offset + (LargeBarcode.width * value.kineNoo * 0.7))
+                    .frame(height: offset + (LargeBarcode.width * value.kineNoo.implicitRatio * 0.7))
                 Color.systemGroupedBackground
             }.ignoresSafeArea()
         }
