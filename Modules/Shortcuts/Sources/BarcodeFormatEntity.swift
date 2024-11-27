@@ -32,17 +32,16 @@ public enum BarcodeFormatEntity: AppEntity, CaseIterable, Identifiable {
         }
     }
 
+    private typealias StringResources = ShortcutsStringResources.BarcodeFormatEntity
     public var displayRepresentation: DisplayRepresentation {
-        let key: StaticString = switch self {
-        case .codabar: "BarcodeFormatEntity.codabar"
-        case .code39: "BarcodeFormatEntity.code39"
-        case .code128: "BarcodeFormatEntity.code128"
-        case .ean13: "BarcodeFormatEntity.ean13"
-        case .qr: "BarcodeFormatEntity.qr"
+        let resource: LocalizedStringResource = switch self {
+        case .codabar: StringResources.codabar
+        case .code39: StringResources.code39
+        case .code128: StringResources.code128
+        case .ean13: StringResources.ean13
+        case .qr: StringResources.qr
         }
 
-        let localizedString = LocalizedStringResource(key, defaultValue: "", bundle: .atURL(Bundle.module.bundleURL))
-
-        return DisplayRepresentation(title: localizedString)
+        return DisplayRepresentation(title: resource)
     }
 }
