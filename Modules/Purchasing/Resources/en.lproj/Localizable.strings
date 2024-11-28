@@ -1,0 +1,9 @@
+// The error description when a purchase option has no currency code.
+"PurchaseOptionMapperError.missingCurrencyCode" = "A given purchase option is missing a currency code.";
+
+// The error description when a purchase option has an unrecognized package type.
+"PurchaseOptionMapperError.unknownPackageType" = "A given purchase option has an unrecognized package type.";
+
+"RevenueCatPurchaseRepositoryError.noCurrentOffering" = "RevenueCatPurchaseRepositoryError.noCurrentOffering";
+
+"RevenueCatPurchaseRepositoryError.noProductForIdentifier%@" = "RevenueCatPurchaseRepositoryError.noProductForIdentifier (%@)";

@@ -46,8 +46,3 @@ public struct BarcodeResultMapper: Sendable {
         return .qr(value: string, correctionLevel: .m)
     }
 }
-
-public enum BarcodeResultMapperError: Error {
-    case missingPayloadStringValue
-    case invalidSymbology(VNBarcodeSymbology)
-}

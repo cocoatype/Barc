@@ -4,6 +4,7 @@ public enum Barcodes {
     public static let target = Target.moduleTarget(
         name: "Barcodes",
         destinations: [.iPhone, .appleWatch, .mac],
+        hasResources: true,
         usesMaxSwiftVersion: true,
         dependencies: [
         ]

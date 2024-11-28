@@ -75,8 +75,3 @@ struct RevenueCatPurchaseRepository: PurchaseRepository {
         _ = try await Purchases.shared.purchase(product: storeProduct)
     }
 }
-
-enum RevenueCatPurchaseRepositoryError: Error {
-    case noCurrentOffering
-    case noProductForIdentifier(String)
-}

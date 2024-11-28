@@ -9,3 +9,6 @@
 
 // Message displayed on Apple Watch when the library is empty
 "LibraryEmptyView.message" = "You can add barcodes on iPhone.";
+
+// Error description when no codes are present in the split view
+"WatchSplitViewError.noSelectedCode" = "No barcodes are available.";

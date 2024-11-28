@@ -35,7 +35,3 @@ struct SetDateIntent: AppIntent {
         return .result(value: BarcodeEntity(code: newCode))
     }
 }
-
-enum SetDateIntentError: Error {
-    case missingCoordinate
-}

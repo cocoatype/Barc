@@ -4,6 +4,7 @@ public enum ImageReader {
     public static let target = Target.moduleTarget(
         name: "ImageReader",
         destinations: [.iPhone, .mac],
+        hasResources: true,
         usesMaxSwiftVersion: true,
         dependencies: [
             .target(Barcodes.target),

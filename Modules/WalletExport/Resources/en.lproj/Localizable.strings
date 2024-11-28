@@ -6,3 +6,6 @@
 
 // The message for the alert shown when exporting a pass to Apple Wallet fails
 "ErrorAlertViewModifier.message" = "An error occurred when exporting this barcode to Apple Wallet. If this continues, please contact support at [hello@cocoatype.com](mailto:hello@cocoatype.com).";
+
+// The error description when a value cannot be represented in a pass
+"PassRequestError.unrepresentableMessage" = "The barcode’s value isn't usable in a pass.";

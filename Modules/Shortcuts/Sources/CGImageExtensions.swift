@@ -24,7 +24,3 @@ extension CGImage {
     }
 }
 #endif
-
-enum ImageError: Error {
-    case cannotCreateImageFromData
-}

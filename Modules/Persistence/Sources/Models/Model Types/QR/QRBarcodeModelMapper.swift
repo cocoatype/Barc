@@ -32,7 +32,3 @@ struct QRBarcodeModelMapper {
         return QRCodeValue(payload: payload, correctionLevel: correctionLevel)
     }
 }
-
-enum QRBarcodeModelMapperError: Error {
-    case invalidCorrectionLevel(String)
-}

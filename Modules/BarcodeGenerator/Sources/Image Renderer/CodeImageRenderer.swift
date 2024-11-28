@@ -56,9 +56,3 @@ public struct CodeImageRenderer {
         return data as Data
     }
 }
-
-enum CodeImageRenderError: Error {
-    case cannotCreateImageDestination
-    case cannotCreateImageContext
-    case cannotGenerateImage
-}

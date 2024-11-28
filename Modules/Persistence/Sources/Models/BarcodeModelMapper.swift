@@ -75,8 +75,3 @@ struct BarcodeModelMapper {
 
     private let locationMapper = BarcodeLocationMapper()
 }
-
-enum BarcodeModelMapperError: Error {
-    case noNameSet
-    case noValueSet
-}

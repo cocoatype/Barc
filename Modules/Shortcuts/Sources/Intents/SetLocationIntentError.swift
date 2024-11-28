@@ -1,12 +1,12 @@
-//  Created by Geoff Pado on 9/2/24.
+//  Created by Geoff Pado on 11/27/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import Foundation
 
-enum PlacemarkMapperError: Error, CustomLocalizedStringResourceConvertible {
+enum SetLocationIntentError: Error, CustomLocalizedStringResourceConvertible {
     case missingCoordinate
 
-    typealias StringResources = LocationStringResources.PlacemarkMapperError
+    typealias StringResources = ShortcutsStringResources.SetLocationIntentError
     var localizedStringResource: LocalizedStringResource {
         switch self {
         case .missingCoordinate: StringResources.missingCoordinate

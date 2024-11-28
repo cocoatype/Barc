@@ -27,8 +27,3 @@ public struct CodabarPayloadParser {
         return CodabarCodeValue.Payload(elements: elements)
     }
 }
-
-public enum CodabarPayloadParseError: Error {
-    case extraStartStopSymbol
-    case missingStartStopSymbol
-}

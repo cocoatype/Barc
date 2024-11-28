@@ -30,7 +30,3 @@ struct WatchSplitView: View {
         }
     }
 }
-
-enum WatchSplitViewError: Error {
-    case noSelectedCode
-}

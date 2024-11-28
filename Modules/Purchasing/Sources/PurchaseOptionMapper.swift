@@ -32,8 +32,3 @@ struct PurchaseOptionMapper {
         )
     }
 }
-
-enum PurchaseOptionMapperError: Error {
-    case missingCurrencyCode
-    case unknownPackageType
-}
