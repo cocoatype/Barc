@@ -1,0 +1,29 @@
+// The error description when a Code 128 code cannot represent a given character
+"Code128ConversionError.noEquivalentCharacter" = "A Code 128 barcode cannot contain one of the provided characters.";
+
+// The error description when a Code 128 code is missing its start symbol
+"Code128ConversionError.missingStartSymbol" = "This barcode is missing its start symbol.";
+
+// The error description when a Code 128 code is missing its stop symbol
+"Code128ConversionError.missingStopSymbol" = "This barcode is missing its stop symbol.";
+
+// The error description when a Code 128 code is missing its check digit
+"Code128ConversionError.missingCheckDigit" = "This barcode is missing its check digit.";
+
+// The error description when a Codabar code has too many start/stop symbols.
+"CodabarPayloadParseError.extraStartStopSymbol" = "The provided Codabar barcode has too many start/stop symbols.";
+
+// The error description when a Codabar code is missing one or more start/stop symbols.
+"CodabarPayloadParseError.missingStartStopSymbol" = "The provided Codabar barcode is missing one or more start/stop symbols.";
+
+// The error description when a barcode conversion cannot represent a given byte value.
+"ConversionError.invalidByte%d" = "The value “%d” is invalid for this barcode format.";
+
+// The error description when a barcode conversion cannot represent a given character.
+"ConversionError.unrepresentableCharacter%@" = "The character “%@” is invalid for this barcode format.";
+
+// The error description when a barcode conversion cannot represent given data.
+"ConversionError.unrepresentableData" = "This barcode format cannot represent the given data.";
+
+// The error description when an EAN-13/UPC-A barcode has an invalid value.
+"EANPayloadParseError.invalidBarcodeValue%@" = "The value “%@” is not a valid EAN-13/UPC-A barcode value.";

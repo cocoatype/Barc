@@ -67,6 +67,9 @@
 // Title for the "get barcode value" intent
 "GetBarcodeValueIntent.title" = "Get Barcode Value";
 
+// Error description for when we are unable to create a CGImage from the given image data
+"ImageError.cannotCreateImageFromData" = "Barc was unable to create an image from the given data.";
+
 // Description for the "list barcodes" intent
 "ListBarcodesIntent.description" = "Lists all the barcodes in Barc.";
 
@@ -136,5 +139,11 @@
 // Title for the "set location" intent
 "SetLocationIntent.title" = "Set Location";
 
+// Error description when a location has no associated coordinate.
+"SetLocationIntentError.missingCoordinate" = "The given location has no associated coordinate.";
+
+// The default phrase for the “open code” App Shortcut
 "ShortcutsProvider.OpenCodeIntent.phrase${code}" = "${code}";
+
+// The short title for the “open code” App Shortcut
 "ShortcutsProvider.OpenCodeIntent.shortTitle" = "Open Barcode";

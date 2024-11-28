@@ -47,7 +47,3 @@ struct SetLocationIntent: AppIntent {
         return .result(value: BarcodeEntity(code: newCode))
     }
 }
-
-enum SetLocationIntentError: Error {
-    case missingCoordinate
-}

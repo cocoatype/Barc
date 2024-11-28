@@ -1,1 +1,14 @@
+// Fallback name when a barcode model has no name
 "BarcodeModelMapper.untitledCodeName" = "Untitled";
+
+// Error description when a barcode model has a null name
+"BarcodeModelMapperError.noNameSet" = "A barcode model has a missing name.";
+
+// Error description when a barcode model has a null value
+"BarcodeModelMapperError.noValueSet" = "A barcode model has a missing value.";
+
+// Error description when trying to save a barcode that already exists
+"BarcodeRepositoryError.duplicateCode%@" = "This barcode is already added to Barc with the name “%@”.";
+
+// Error description when a QR code's correction level is not valid
+"QRBarcodeModelMapperError.invalidCorrectionLevel%@" = "“%@” is not a supported correction level for QR codes.";

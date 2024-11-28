@@ -41,7 +41,3 @@ private extension String {
         return self[index]
     }
 }
-
-public enum EANPayloadParseError: Error {
-    case invalidBarcodeValue(String)
-}

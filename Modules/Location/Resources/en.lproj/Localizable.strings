@@ -1,0 +1,8 @@
+// The error description when no location is returned for a location update.
+"LocationProviderError.noLocationReturned" = "No location was returned for the location request.";
+
+// The error description when no placemark is returned for a location update.
+"LocationProviderError.noPlacemarkReturned" = "No placemark was returned for the location request.";
+
+// The error description when a placemark has no associated coordinates.
+"PlacemarkMapperError.missingCoordinate" = "The given placemark had no coordinates included.";

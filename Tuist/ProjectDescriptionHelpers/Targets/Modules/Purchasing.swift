@@ -3,6 +3,7 @@ import ProjectDescription
 public enum Purchasing {
     public static let target = Target.moduleTarget(
         name: "Purchasing",
+        hasResources: true,
         dependencies: [
             .target(ErrorHandling.target),
             .external(name: "RevenueCat"),

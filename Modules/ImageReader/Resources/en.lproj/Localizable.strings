@@ -1,0 +1,8 @@
+// The error description when a recognized barcode has no payload string
+"BarcodeResultMapperError.missingPayloadStringValue" = "The scanner received a barcode with no value.";
+
+// The error description when a recognized barcode has an unsupported symbology.
+"BarcodeResultMapperError.invalidSymbology%@" = "Barc doesn't support this barcode format (%@) yet.";
+
+// The error description when an incorrect Vision request type is received
+"ImageReaderError.incorrectRequestType" = "The scanner received an invalid request.";

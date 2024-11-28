@@ -1,3 +1,6 @@
+// The title for the cancel button
+"CancelButton.title" = "Cancel";
+
 // The navigation title for the manual entry view
 "ManualEntry.navigationTitle" = "Enter Barcode";
 
@@ -25,8 +28,8 @@
 // The label for the value field
 "ManualEntryForm.valueLabel" = "Value";
 
-// The title for the cancel button
-"CancelButton.title" = "Cancel";
+// Error description for the empty name validation error
+"PartialCodeValidationError.emptyName" = "Barcode names cannot be empty.";
 
 // The title for the save button
 "SaveButton.title" = "Save";

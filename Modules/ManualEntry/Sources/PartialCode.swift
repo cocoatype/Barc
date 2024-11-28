@@ -39,7 +39,3 @@ struct PartialCode {
         }
     }
 }
-
-enum PartialCodeValidationError: Error {
-    case emptyName
-}
