@@ -57,6 +57,19 @@ Regenerate all signing certs
 
 ----
 
+
+## Mac
+
+### mac dev
+
+```sh
+[bundle exec] fastlane mac dev
+```
+
+Set up developer environment
+
+----
+
 This README.md is auto-generated and will be re-generated every time [_fastlane_](https://fastlane.tools) is run.
 
 More information about _fastlane_ can be found on [fastlane.tools](https://fastlane.tools).

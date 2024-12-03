@@ -20,10 +20,10 @@ public enum CodeScanner {
                 "TARGETED_DEVICE_FAMILY": "1",
             ],
             debug: [
-                "PROVISIONING_PROFILE_SPECIFIER": "match Development com.cocoatype.Barc.CodeScanner",
+                "PROVISIONING_PROFILE_SPECIFIER": "match Development com.cocoatype.Barc.CodeScanner macos",
                 "ENABLE_DEBUG_DYLIB": true,
             ], release: [
-                "PROVISIONING_PROFILE_SPECIFIER": "match AppStore com.cocoatype.Barc.CodeScanner",
+                "PROVISIONING_PROFILE_SPECIFIER": "match AppStore com.cocoatype.Barc.CodeScanner macos",
             ],
             defaultSettings: .recommended(excluding: [
                 "CODE_SIGN_IDENTITY",
