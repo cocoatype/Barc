@@ -16,3 +16,7 @@ for_platform :ios do
                    "com.cocoatype.Barc.Widgets",
                  ])
 end
+
+for_platform :mac do
+  app_identifier "com.cocoatype.Barc.CodeScanner"
+end

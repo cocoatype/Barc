@@ -68,3 +68,10 @@ platform :ios do
     sync_code_signing(readonly: false, type: "appstore")
   end
 end
+
+platform :mac do
+  desc "Set up developer environment"
+  lane :dev do
+    sync_code_signing
+  end
+end
