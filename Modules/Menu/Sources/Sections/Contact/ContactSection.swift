@@ -8,6 +8,8 @@ struct ContactSection: View {
         Section(MenuStrings.ContactSection.title) {
             MailRouteCell()
             ReviewRouteCell()
+            BlueskyRouteCell()
+            FacebookRouteCell()
             ThreadsRouteCell()
             XRouteCell()
         }
@@ -15,5 +17,7 @@ struct ContactSection: View {
 }
 
 #Preview {
-    ContactSection()
+    List {
+        ContactSection()
+    }
 }

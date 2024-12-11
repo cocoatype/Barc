@@ -9,7 +9,7 @@ struct XRouteCell: View {
             title: MenuStrings.XRouteCell.title,
             subtitle: MenuStrings.XRouteCell.subtitle,
             image: Asset.x.swiftUIImage,
-            urlString: "https://x.com/barccodes"
+            urlString: "https://getbarc.app/contact/x/"
         )
     }
 }
