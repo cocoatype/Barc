@@ -9,7 +9,7 @@ struct ThreadsRouteCell: View {
             title: MenuStrings.ThreadsRouteCell.title,
             subtitle: MenuStrings.ThreadsRouteCell.subtitle,
             image: Asset.threads.swiftUIImage,
-            urlString: "https://www.threads.net/@barc.app"
+            urlString: "https://getbarc.app/contact/threads/"
         )
     }
 }
