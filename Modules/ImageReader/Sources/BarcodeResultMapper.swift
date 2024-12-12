@@ -2,6 +2,7 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import Barcodes
+import CoreImage
 import Vision
 
 public struct BarcodeResultMapper: Sendable {
@@ -13,6 +14,7 @@ public struct BarcodeResultMapper: Sendable {
         case .code39: try code39CodeModel(from: observation)
         case .codabar: try codabarCodeModel(from: observation)
         case .ean13: try eanCodeModel(from: observation)
+        case .pdf417: try pdf417CodeModel(from: observation)
         case .qr: try qrCodeModel(from: observation)
         default: throw BarcodeResultMapperError.invalidSymbology(observation.symbology)
         }
@@ -38,6 +40,15 @@ public struct BarcodeResultMapper: Sendable {
         guard let string = observation.payloadStringValue else { throw BarcodeResultMapperError.missingPayloadStringValue }
 
         return try .ean(value: string)
+    }
+
+    private func pdf417CodeModel(from observation: VNBarcodeObservation) throws -> CodeValue {
+        guard let payloadData = (observation.barcodeDescriptor as? CIPDF417CodeDescriptor)?.errorCorrectedPayload else { throw BarcodeResultMapperError.missingPayloadStringValue }
+        let integers = payloadData.withUnsafeBytes { Array($0.bindMemory(to: UInt16.self)) }
+        guard let size = integers.first else { throw BarcodeResultMapperError.missingLengthValue }
+
+        let actualData = Array(integers.prefix(Int(size)))
+        return try .pdf417(value: actualData)
     }
 
     private func qrCodeModel(from observation: VNBarcodeObservation) throws -> CodeValue {

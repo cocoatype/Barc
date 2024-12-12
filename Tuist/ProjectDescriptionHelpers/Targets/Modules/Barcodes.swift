@@ -7,6 +7,7 @@ public enum Barcodes {
         hasResources: true,
         usesMaxSwiftVersion: true,
         dependencies: [
+            .external(name: "PDF417"),
         ]
     )
 

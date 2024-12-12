@@ -1,6 +1,24 @@
 {
   "pins" : [
     {
+      "identity" : "bigint",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/attaswift/BigInt.git",
+      "state" : {
+        "revision" : "114343a705df4725dfe7ab8a2a326b8883cfd79c",
+        "version" : "5.5.1"
+      }
+    },
+    {
+      "identity" : "pdf417",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:cocoatype/PDF417.git",
+      "state" : {
+        "branch" : "trunk",
+        "revision" : "7377a5d95470acc3c409c8e76112c43e0163ff57"
+      }
+    },
+    {
       "identity" : "purchases-ios-spm",
       "kind" : "remoteSourceControl",
       "location" : "git@github.com:RevenueCat/purchases-ios-spm.git",
