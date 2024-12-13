@@ -48,6 +48,7 @@ struct CreateBarcodeIntent: AppIntent {
         return .result(value: BarcodeEntity(code: storedCode))
     }
 
+    #warning("FIX ME!!!")
     private var codeValue: CodeValue {
         get throws {
             switch format {
@@ -59,6 +60,8 @@ struct CreateBarcodeIntent: AppIntent {
                 try .code128(Code128CodeValue(payload: Code128PayloadParser().payload(for: value)))
             case .ean13:
                 try .ean(EANCodeValue(payload: EANPayloadParser().payload(for: value)))
+            case .pdf417:
+                fatalError()
             case .qr:
                     .qr(value: value, correctionLevel: .m)
             }

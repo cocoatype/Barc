@@ -8,16 +8,18 @@ struct CodeValueRenderer: CodeRenderer {
 
     var renderedCode: RenderedCode {
         switch value {
-        case .qr(let value):
-            QRCodeRenderer(value: value).renderedCode
-        case .ean(let value):
-            EANCodeRenderer(value: value).renderedCode
-        case .code128(let value):
-            Code128CodeRenderer(value: value).renderedCode
         case .codabar(let value):
             CodabarCodeRenderer(heresTheDumbThingIDid: value).renderedCode
         case .code39(let value):
             Code39CodeRenderer(value: value).renderedCode
+        case .code128(let value):
+            Code128CodeRenderer(value: value).renderedCode
+        case .ean(let value):
+            EANCodeRenderer(value: value).renderedCode
+        case .pdf417(let value):
+            PDF417CodeRenderer(value: value).renderedCode
+        case .qr(let value):
+            QRCodeRenderer(value: value).renderedCode
         }
     }
 }

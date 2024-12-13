@@ -16,6 +16,9 @@
 // Name of the EAN-13 format
 "BarcodeFormatEntity.ean13" = "UPC/EAN-13";
 
+// Name of the PDF417 format
+"BarcodeFormatEntity.pdf417" = "PDF417";
+
 // Name of the QR format
 "BarcodeFormatEntity.qr" = "QR";
 

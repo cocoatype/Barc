@@ -1,4 +1,7 @@
 // The error description when a recognized barcode has no payload string
+"BarcodeResultMapperError.missingLengthValue" = "The scanner received a barcode with no length value.";
+
+// The error description when a recognized barcode has no payload string
 "BarcodeResultMapperError.missingPayloadStringValue" = "The scanner received a barcode with no value.";
 
 // The error description when a recognized barcode has an unsupported symbology.

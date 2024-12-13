@@ -2,12 +2,14 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import Foundation
+import PDF417
 
 public enum CodeValue: Hashable, Identifiable, Sendable {
     case code128(Code128CodeValue)
     case code39(Code39CodeValue)
     case codabar(CodabarCodeValue)
     case ean(EANCodeValue)
+    case pdf417(PDF417CodeValue)
     case qr(QRCodeValue)
 
     public static func code128(value: Data) throws -> CodeValue {
@@ -28,6 +30,14 @@ public enum CodeValue: Hashable, Identifiable, Sendable {
         return try .ean(EANCodeValue(payload: EANPayloadParser().payload(for: value)))
     }
 
+    public static func pdf417(value: [UInt16]) throws -> CodeValue {
+        let intConverter = IntToCodewordConverter()
+        let codewords = try value
+            .map(Int.init)
+            .map(intConverter.codeword(for:))
+        return .pdf417(PDF417CodeValue(dataCodewords: codewords))
+    }
+
     public static func qr(value: String, correctionLevel: QRCodeValue.CorrectionLevel) -> CodeValue {
         return .qr(QRCodeValue(string: value, correctionLevel: correctionLevel))
     }
@@ -43,6 +53,7 @@ public enum CodeValue: Hashable, Identifiable, Sendable {
         case .code39(let value): value
         case .codabar(let value): value
         case .ean(let value): value
+        case .pdf417(let value): value
         case .qr(let value): value
         }
     }
@@ -52,6 +63,7 @@ public enum CodeValue: Hashable, Identifiable, Sendable {
     public var kineNoo: Layout {
         switch self {
         case .code128, .code39, .codabar, .ean: .linear
+        case .pdf417: .linear
         case .qr: .square
         }
     }
