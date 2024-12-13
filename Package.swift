@@ -5,6 +5,8 @@ import PackageDescription
 import ProjectDescription
 import ProjectDescriptionHelpers
 
+let watchCompatibility: SettingsDictionary = ["TARGETED_DEVICE_FAMILY": "1,4"]
+
 let packageSettings = PackageSettings(
     productTypes: [
         "TelemetryClient": .framework,
@@ -12,7 +14,10 @@ let packageSettings = PackageSettings(
     ],
     baseSettings: Shared.settings,
     targetSettings: [
-        :
+        "BigInt": watchCompatibility,
+        "PDF417": watchCompatibility,
+        "QRCodeGenerator": watchCompatibility,
+        "TelemetryClient": watchCompatibility,
     ]
 )
 #endif
