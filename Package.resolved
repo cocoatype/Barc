@@ -15,7 +15,7 @@
       "location" : "git@github.com:cocoatype/PDF417.git",
       "state" : {
         "branch" : "trunk",
-        "revision" : "d484e4d9f2e1e1c73e16ce3332068ee8dc8c2abf"
+        "revision" : "3e1532665322a3a1c227b0f142d54c8b53b61718"
       }
     },
     {
@@ -23,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "git@github.com:RevenueCat/purchases-ios-spm.git",
       "state" : {
-        "revision" : "430ebbf47810b26e7cfbf219196d16f054612a35",
-        "version" : "5.13.0"
+        "revision" : "27eae63e68557b7866d29c53d8159aa9f2887c2f",
+        "version" : "5.14.0"
       }
     },
     {
