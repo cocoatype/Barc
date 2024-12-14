@@ -7,17 +7,20 @@
 // The label for the type picker
 "ManualEntryFormPicker.label" = "Type";
 
-// The value for the Code 128 type
-"ManualEntryFormPicker.code128Type" = "Code 128";
+// The value for the Codabar type
+"ManualEntryFormPicker.codabarType" = "Codabar";
 
 // The value for the Code 39 type
 "ManualEntryFormPicker.code39Type" = "Code 39";
 
-// The value for the Codabar type
-"ManualEntryFormPicker.codabarType" = "Codabar";
+// The value for the Code 128 type
+"ManualEntryFormPicker.code128Type" = "Code 128";
 
 // The value for the EAN-13/UPC type
 "ManualEntryFormPicker.eanType" = "UPC/EAN-13";
+
+// The value for the PDF417 type
+"ManualEntryFormPicker.pdf417Type" = "PDF417";
 
 // The value for the QR type
 "ManualEntryFormPicker.qrType" = "QR";
