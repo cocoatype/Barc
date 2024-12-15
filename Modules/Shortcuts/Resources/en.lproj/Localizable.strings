@@ -89,7 +89,7 @@
 "OpenCodeIntent.code.title" = "Barcode";
 
 // The parameter summary for the "open code" intent
-"OpenCodeIntent.parameterSummary${code}" = "Open ${code}";
+"OpenCodeIntent.parameterSummary${target}" = "Open ${target}";
 
 // The title for the "open code" intent
 "OpenCodeIntent.title" = "Open Barcode";

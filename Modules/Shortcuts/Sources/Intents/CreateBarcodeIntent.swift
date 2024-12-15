@@ -3,6 +3,7 @@
 
 import AppIntents
 import Barcodes
+import PDF417
 import Persistence
 
 struct CreateBarcodeIntent: AppIntent {
@@ -48,7 +49,6 @@ struct CreateBarcodeIntent: AppIntent {
         return .result(value: BarcodeEntity(code: storedCode))
     }
 
-    #warning("FIX ME!!!")
     private var codeValue: CodeValue {
         get throws {
             switch format {
@@ -61,7 +61,7 @@ struct CreateBarcodeIntent: AppIntent {
             case .ean13:
                 try .ean(EANCodeValue(payload: EANPayloadParser().payload(for: value)))
             case .pdf417:
-                fatalError()
+                try .pdf417(PDF417CodeValue(dataCodewords: CodewordsEncoder().dataCodewords(for: value)))
             case .qr:
                     .qr(value: value, correctionLevel: .m)
             }

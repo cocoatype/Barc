@@ -5,11 +5,17 @@ import PDF417
 
 public struct PDF417CodeValue: FormatCodeValue {
     public let dataCodewords: [Codeword]
-    public var id: String { stringRepresentation }
+    public var id: String {
+        dataCodewords
+            .map(CodewordToIntConverter().value(for:))
+            .map(String.init)
+            .joined()
+    }
 
     public var stringRepresentation: String {
-        #warning("FIX ME!!!")
-        return String(describing: dataCodewords)
+        get throws {
+            try HumanReadableDecoder().string(for: dataCodewords)
+        }
     }
 
     public init(dataCodewords: [Codeword]) {
