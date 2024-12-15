@@ -36,7 +36,7 @@ struct PartialCode {
             case .code39: try .code39(Code39CodeValue(payload: Code39PayloadParser().payload(for: value)))
             case .codabar: try .codabar(CodabarCodeValue(payload: CodabarPayloadParser().payload(backtick: value)))
             case .ean: try .ean(EANCodeValue(payload: EANPayloadParser().payload(for: value)))
-            case .pdf417: try .pdf417(PDF417CodeValue(dataCodewords: PDF417CodewordsGenerator().dataCodewords(for: value)))
+            case .pdf417: try .pdf417(PDF417CodeValue(dataCodewords: CodewordsEncoder().dataCodewords(for: value)))
             case .qr: .qr(value: value, correctionLevel: .m)
             }
         }
