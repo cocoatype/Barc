@@ -19,7 +19,7 @@ struct PDF417CodeEncoder {
         let padAmount = totalAmount - subtotalAmount
 
         let paddedCodewords = value.dataCodewords + Array(repeating: .w900, count: padAmount)
-        let correctionCodewords = try codewordsGenerator.correctionCodewords(for: paddedCodewords, correctionLevel: correctionLevel)
+        let correctionCodewords = try codewordsEncoder.correctionCodewords(for: paddedCodewords, correctionLevel: correctionLevel)
         let allCodewords = paddedCodewords + correctionCodewords
 
         // break into rows
@@ -46,6 +46,6 @@ struct PDF417CodeEncoder {
     }
 
     private let barSpaceConverter = CodewordToBarSpaceConverter()
-    private let codewordsGenerator = PDF417CodewordsGenerator()
+    private let codewordsEncoder = CodewordsEncoder()
     private let rowCalculator = RowCalculator()
 }
