@@ -2,6 +2,7 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import SwiftUI
+import Web
 
 struct MailRouteCell: View {
     // threeCheersForPencilKit by @KaenAitch on 2024-07-03

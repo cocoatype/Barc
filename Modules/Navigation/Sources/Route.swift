@@ -6,4 +6,5 @@ import SwiftUI
 
 public enum Route: Hashable {
     case barcodeDetails(Code)
+    case website(URL)
 }

@@ -33,6 +33,6 @@ struct BarcMobileApp: App {
                     ShortcutsProvider.updateAppShortcutParameters()
                 }
         }
-        .handlesExternalEvents(matching: ["codeValue="])
+        .handlesExternalEvents(matching: ["barc:///"])
     }
 }

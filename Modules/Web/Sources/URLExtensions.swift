@@ -4,7 +4,7 @@
 import ErrorHandling
 import Foundation
 
-extension URL {
+public extension URL {
     init(websitePath: StaticString) {
         self = URL.websiteBaseURL.appendingPathComponent(String(websitePath))
     }
@@ -21,8 +21,10 @@ extension URL {
 
     private static let websiteBaseURL = URL(staticString: "https://getbarc.app/")
 
-    static func url(forPath path: String) -> URL {
-        URL.websiteBaseURL.appendingPathComponent(path)
+    init(websitePathComponents: any Sequence<String>) {
+        self = websitePathComponents.reduce(URL.websiteBaseURL) { base, component in
+            base.appending(path: component)
+        }
     }
 }
 
