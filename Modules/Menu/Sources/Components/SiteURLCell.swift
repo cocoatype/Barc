@@ -2,6 +2,7 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import SwiftUI
+import Web
 
 struct SiteURLCell: View {
     private let title: String

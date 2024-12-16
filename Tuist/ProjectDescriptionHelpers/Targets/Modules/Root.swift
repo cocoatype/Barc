@@ -13,12 +13,14 @@ public enum Root {
             .target(Purchasing.target),
             .target(Scanner.target),
             .target(Unpurchased.target),
+            .target(Web.target),
         ]
     )
 
     public static let testTarget = Target.moduleTestTarget(
         name: "Root",
         dependencies: [
+            .target(Persistence.doublesTarget),
         ]
     )
 }

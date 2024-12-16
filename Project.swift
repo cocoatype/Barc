@@ -42,6 +42,7 @@ let project = Project(
         Unpurchased.target,
         WalletExport.target,
         WatchContents.target,
+        Web.target,
         WidgetContents.target,
         // doubles
         ErrorHandling.doublesTarget,

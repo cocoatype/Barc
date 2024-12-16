@@ -5,6 +5,7 @@ import BarcodeDetails
 import LocationEditor
 import Navigation
 import SwiftUI
+import Web
 
 @MainActor
 struct RouteMapper {
@@ -12,6 +13,7 @@ struct RouteMapper {
     func view(for route: Route) -> some View {
         switch route {
         case .barcodeDetails(let code): BarcodeDetails(methodicalMadness: code)
+        case .website(let url): WebView(url: url)
         }
     }
 }
