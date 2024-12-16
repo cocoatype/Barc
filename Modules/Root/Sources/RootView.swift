@@ -28,6 +28,8 @@ public struct RootView: View {
 
     @State private var isShowingOnboarding = false
 
+    @State private var sheetRoute: Route?
+
     @Binding private var path: NavigationPath
 
     private let routeMapper = RouteMapper()
@@ -55,6 +57,9 @@ public struct RootView: View {
                 .navigationDestination(for: Route.self) {
                     routeMapper.view(for: $0)
                 }
+                .sheet(item: $sheetRoute) {
+                    routeMapper.view(for: $0)
+                }
         }
         .onOpenURL { url in
             guard let route = DeepLinkHandler().route(for: url) else { return }
@@ -70,7 +75,11 @@ public struct RootView: View {
     }
 
     public func navigate(to route: Route) {
-        path = NavigationPath([route])
+        if route.usesSheetPresentation {
+            sheetRoute = route
+        } else {
+            path = NavigationPath([route])
+        }
     }
 }
 
