@@ -6,8 +6,8 @@ import XCTest
 
 @testable import Root
 
-class DeepLinkHandlerTests: XCTestCase {
-    @MainActor func testDetailsURL() throws {
+@MainActor class DeepLinkHandlerTests: XCTestCase {
+    func testDetailsURL() throws {
         let repository = StubBarcodeRepository()
         let id = try XCTUnwrap(repository.codes.first?.id as? String)
         let base64 = try XCTUnwrap(id.data(using: .utf8)?.base64EncodedString())
@@ -23,7 +23,14 @@ class DeepLinkHandlerTests: XCTestCase {
         XCTAssertEqual(code, repository.codes.first)
     }
 
-    @MainActor
+    func testPaywallURL() throws {
+        let url = try XCTUnwrap(URL(string: "barc:///purchase"))
+        let handler = DeepLinkHandler()
+
+        let route = try XCTUnwrap(handler.route(for: url))
+        XCTAssertEqual(route, .paywall)
+    }
+
     func testWebsiteURL() throws {
         let repository = StubBarcodeRepository()
         let url = try XCTUnwrap(URL(string: "barc:///event/releases"))

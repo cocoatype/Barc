@@ -21,10 +21,10 @@ struct DeepLinkHandler {
 
     func route(for url: URL) -> Route? {
         do {
-            guard url.pathComponents.count > 1 else { return nil }
-            switch url.pathComponents[1] {
+            switch firstPathComponent(from: url) {
             case "details": return try code(for: url).map { .barcodeDetails($0) }
             case "event": return websiteURL(for: url).map { .website($0) }
+            case "purchase": return .paywall
             default: return nil
             }
         } catch {
@@ -33,7 +33,12 @@ struct DeepLinkHandler {
         }
     }
 
-    func code(for url: URL) throws -> Code? {
+    private func firstPathComponent(from url: URL) -> String? {
+        guard url.pathComponents.count > 1 else { return nil }
+        return url.pathComponents[1]
+    }
+
+    private func code(for url: URL) throws -> Code? {
         guard let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true),
               let queryItems = urlComponents.queryItems,
               let codeValueItem = queryItems.first(where: { $0.name == "codeValue" }),
@@ -49,7 +54,7 @@ struct DeepLinkHandler {
         return matchingCode
     }
 
-    func websiteURL(for url: URL) -> URL? {
+    private func websiteURL(for url: URL) -> URL? {
         guard url.pathComponents.count > 2 else { return nil }
         return URL(websitePathComponents: url.pathComponents[2...])
     }

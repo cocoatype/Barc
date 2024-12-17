@@ -9,6 +9,7 @@ public enum Route: Hashable, Identifiable {
     case manualEntry
     case menu
     case onboarding
+    case paywall
     case scanner
     case website(URL)
 
@@ -18,6 +19,7 @@ public enum Route: Hashable, Identifiable {
         case .manualEntry: "manualEntry"
         case .menu: "menu"
         case .onboarding: "onboarding"
+        case .paywall: "paywall"
         case .scanner: "scanner"
         case .website(let url): "website=\(url.absoluteString)"
         }
@@ -26,7 +28,7 @@ public enum Route: Hashable, Identifiable {
     public var usesSheetPresentation: Bool {
         switch self {
         case .barcodeDetails: false
-        case .manualEntry, .menu, .onboarding, .scanner, .website: true
+        case .manualEntry, .menu, .onboarding, .paywall, .scanner, .website: true
         }
     }
 }
