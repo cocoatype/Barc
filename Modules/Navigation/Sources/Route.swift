@@ -6,11 +6,21 @@ import SwiftUI
 
 public enum Route: Hashable, Identifiable {
     case barcodeDetails(Code)
+    case manualEntry
+    case menu
+    case onboarding
+    case paywall
+    case scanner
     case website(URL)
 
     public var id: String {
         switch self {
         case .barcodeDetails(let code): "barcodeDetails=\(code.id)"
+        case .manualEntry: "manualEntry"
+        case .menu: "menu"
+        case .onboarding: "onboarding"
+        case .paywall: "paywall"
+        case .scanner: "scanner"
         case .website(let url): "website=\(url.absoluteString)"
         }
     }
@@ -18,7 +28,7 @@ public enum Route: Hashable, Identifiable {
     public var usesSheetPresentation: Bool {
         switch self {
         case .barcodeDetails: false
-        case .website: true
+        case .manualEntry, .menu, .onboarding, .paywall, .scanner, .website: true
         }
     }
 }

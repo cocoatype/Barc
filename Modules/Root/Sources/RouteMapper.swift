@@ -3,7 +3,12 @@
 
 import BarcodeDetails
 import LocationEditor
+import ManualEntry
+import Menu
 import Navigation
+import Onboarding
+import Paywall
+import Scanner
 import SwiftUI
 import Web
 
@@ -13,6 +18,11 @@ struct RouteMapper {
     func view(for route: Route) -> some View {
         switch route {
         case .barcodeDetails(let code): BarcodeDetails(methodicalMadness: code)
+        case .manualEntry: ManualEntry()
+        case .menu: MenuView()
+        case .onboarding: OnboardingView()
+        case .paywall: PaywallView()
+        case .scanner: ScannerContainer()
         case .website(let url): WebView(url: url)
         }
     }
