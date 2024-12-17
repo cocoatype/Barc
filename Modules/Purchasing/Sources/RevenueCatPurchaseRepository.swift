@@ -36,15 +36,12 @@ struct RevenueCatPurchaseRepository: PurchaseRepository {
 
     var fallbackHasUserBeenUnleashed: Bool {
         get async throws {
-            let products = try await Product.products(for: ["barc_099_1m_0d0", "barc_499_1y_14d0"])
-            for product in products {
-                switch await product.currentEntitlement {
+            return await Transaction.currentEntitlements.contains { result in
+                switch result {
                 case .verified: return true
-                case .unverified, .none: break
+                case .unverified: return false
                 }
             }
-
-            return false
         }
     }
 
