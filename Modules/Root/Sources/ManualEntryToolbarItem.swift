@@ -1,15 +1,22 @@
 //  Created by Geoff Pado on 8/12/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
+import ErrorHandling
+import Navigation
 import Persistence
 import Purchasing
 import SwiftUI
 import Unpurchased
 
 struct ManualEntryToolbarItem: View {
-    @Binding private var isShowingManualEntry: Bool
-    init(value: Binding<Bool>) {
-        _isShowingManualEntry = value
+    @Binding private var sheetRoute: Route?
+    private let errorHandler: any ErrorHandler
+    init(
+        value: Binding<Route?>,
+        errorHandler: any ErrorHandler = ErrorHandling.defaultHandler
+    ) {
+        _sheetRoute = value
+        self.errorHandler = errorHandler
     }
 
     @State private var isShowingPurchaseAlert = false
@@ -27,17 +34,17 @@ struct ManualEntryToolbarItem: View {
             let hasUserBeenUnleashed = try await Purchasing.defaultRepository.hasUserBeenUnleashed
             let codesCount = try repository.codes.count
             if hasUserBeenUnleashed || codesCount < Purchasing.maxBarcodesCount {
-                isShowingManualEntry = true
+                sheetRoute = .manualEntry
             } else {
                 isShowingPurchaseAlert = true
             }
         } catch {
-            // log error
-            isShowingManualEntry = true
+            errorHandler.log(error, module: "Root", type: "ManualEntryToolbarItem")
+            sheetRoute = .manualEntry
         }
     }
 }
 
 #Preview {
-    ManualEntryToolbarItem(value: .constant(false))
+    ManualEntryToolbarItem(value: .constant(nil))
 }

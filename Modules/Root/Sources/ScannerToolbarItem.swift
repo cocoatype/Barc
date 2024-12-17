@@ -1,6 +1,7 @@
 //  Created by Geoff Pado on 8/12/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
+import Navigation
 import Persistence
 import Purchasing
 import SwiftUI
@@ -9,8 +10,8 @@ import Unpurchased
 struct ScannerToolbarItem: View {
     // superViewDidLoad by @nutterfi on 2024-08-02
     // whether to show the scanner
-    @Binding private var superViewDidLoad: Bool
-    init(value: Binding<Bool>) {
+    @Binding private var superViewDidLoad: Route?
+    init(value: Binding<Route?>) {
         _superViewDidLoad = value
     }
 
@@ -29,17 +30,17 @@ struct ScannerToolbarItem: View {
             let hasUserBeenUnleashed = try await Purchasing.defaultRepository.hasUserBeenUnleashed
             let codesCount = try repository.codes.count
             if hasUserBeenUnleashed || codesCount < Purchasing.maxBarcodesCount {
-                superViewDidLoad = true
+                superViewDidLoad = .scanner
             } else {
                 isShowingPurchaseAlert = true
             }
         } catch {
             // log error
-            superViewDidLoad = true
+            superViewDidLoad = .scanner
         }
     }
 }
 
 #Preview {
-    ScannerToolbarItem(value: .constant(false))
+    ScannerToolbarItem(value: .constant(nil))
 }
