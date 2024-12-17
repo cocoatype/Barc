@@ -28,8 +28,8 @@ struct PaywallTopBarRegular: View {
                     Color.clear.preference(key: TextWidthPreferenceKey.self, value: proxy.size.width)
                 })
                 .frame(width: textWidth, alignment: .leading)
-                .onPreferenceChange(TextWidthPreferenceKey.self) {
-                    textWidth = $0
+                .onPreferenceChange(TextWidthPreferenceKey.self) { [$textWidth] in
+                    $textWidth.wrappedValue = $0
                 }
         }
     }
@@ -44,8 +44,8 @@ struct PaywallTopBarRegular: View {
             content
                 .frame(width: textWidth, alignment: .leading)
                 .fixedSize(horizontal: false, vertical: true)
-                .onPreferenceChange(TextWidthPreferenceKey.self) {
-                    textWidth = $0
+                .onPreferenceChange(TextWidthPreferenceKey.self) { [$textWidth] in
+                    $textWidth.wrappedValue = $0
                 }
         }
     }

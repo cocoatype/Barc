@@ -36,7 +36,9 @@ public struct BarcodeView: View {
         .background(BarcodeViewBackground(offset: offset, value: code.value))
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle(code.name)
-        .onPreferenceChange(BarcodeView.OffsetPreferenceKey.self) { offset = $0 }
+        .onPreferenceChange(BarcodeView.OffsetPreferenceKey.self) { [$offset] in
+            $offset.wrappedValue = $0
+        }
         .onAppear {
             cachedBrightness = UIScreen.main.brightness
             UIScreen.main.brightness = 1.0
