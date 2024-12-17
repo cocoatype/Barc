@@ -25,10 +25,18 @@ import XCTest
 
     func testPaywallURL() throws {
         let url = try XCTUnwrap(URL(string: "barc:///purchase"))
-        let handler = DeepLinkHandler()
+        let handler = DeepLinkHandler(repository: StubBarcodeRepository())
 
         let route = try XCTUnwrap(handler.route(for: url))
         XCTAssertEqual(route, .paywall)
+    }
+
+    func testScannerURL() throws {
+        let url = try XCTUnwrap(URL(string: "barc:///scanner"))
+        let handler = DeepLinkHandler(repository: StubBarcodeRepository())
+
+        let route = try XCTUnwrap(handler.route(for: url))
+        XCTAssertEqual(route, .scanner)
     }
 
     func testWebsiteURL() throws {
