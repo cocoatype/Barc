@@ -7,6 +7,8 @@ import TestHelpersInterface
 public struct StubPurchaseRepository: PurchaseRepository {
     public init() {}
 
+    public var cachedHasUserBeenUnleashed = false
+
     public var hasUserBeenUnleashed = false
 
     public var purchaseOptions = [PurchaseOption]()

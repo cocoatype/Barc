@@ -8,7 +8,7 @@ import XCTest
 @testable import WalletExport
 
 class ExporterTests: XCTestCase {
-    func testRequestExportCallsAddPasses() async throws {
+    @MainActor func testRequestExportCallsAddPasses() async throws {
         let passLibrary = SpyPassLibrary()
         var purchaseRepository = StubPurchaseRepository()
         purchaseRepository.hasUserBeenUnleashed = true
