@@ -6,7 +6,7 @@ import Foundation
 import RevenueCat
 import StoreKit
 
-struct RevenueCatPurchaseRepository: PurchaseRepository {
+final class RevenueCatPurchaseRepository: PurchaseRepository {
     static let initialize: @Sendable () -> Void = {
         guard let userDefaults = UserDefaults(suiteName: "group.com.cocoatype.Barc") else {
             ErrorHandling.defaultHandler.fatalError("Unable to create shared user defaults")
@@ -22,15 +22,31 @@ struct RevenueCatPurchaseRepository: PurchaseRepository {
 
     init() {
         Self.initialize()
+
+        Task {
+            try await updateCache()
+        }
     }
 
     private static let entitlementID = "unleashed"
-    var hasUserBeenUnleashed: Bool {
+    @MainActor var cachedHasUserBeenUnleashed = false
+
+    @MainActor var hasUserBeenUnleashed: Bool {
         get async throws {
-            let customerInfo = try await Purchases.shared.customerInfo(fetchPolicy: .fetchCurrent)
-            let isUnleashedByRevenueCat = customerInfo.entitlements[Self.entitlementID]?.isActive == true
-            guard isUnleashedByRevenueCat == false else { return true }
-            return try await fallbackHasUserBeenUnleashed
+            try await updateCache()
+            return cachedHasUserBeenUnleashed
+        }
+    }
+
+    @MainActor private func updateCache() async throws {
+        let customerInfo = try await Purchases.shared.customerInfo(fetchPolicy: .fetchCurrent)
+//        if customerInfo.entitlements[Self.entitlementID]?.isActive == true {
+//            cachedHasUserBeenUnleashed = true
+//        } else
+        if try await fallbackHasUserBeenUnleashed {
+            cachedHasUserBeenUnleashed = true
+        } else {
+            cachedHasUserBeenUnleashed = false
         }
     }
 
@@ -70,5 +86,6 @@ struct RevenueCatPurchaseRepository: PurchaseRepository {
         }
         let storeProduct = StoreProduct(sk2Product: product)
         _ = try await Purchases.shared.purchase(product: storeProduct)
+        try await updateCache()
     }
 }

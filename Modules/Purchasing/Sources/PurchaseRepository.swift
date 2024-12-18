@@ -3,6 +3,7 @@
 
 public protocol PurchaseRepository: Sendable {
     var purchaseOptions: [PurchaseOption] { get async throws }
-    var hasUserBeenUnleashed: Bool { get async throws }
+    @MainActor var hasUserBeenUnleashed: Bool { get async throws }
+    @MainActor var cachedHasUserBeenUnleashed: Bool { get }
     func purchase(_ option: PurchaseOption) async throws
 }

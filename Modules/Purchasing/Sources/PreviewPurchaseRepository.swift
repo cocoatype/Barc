@@ -7,7 +7,8 @@ struct PreviewPurchaseRepository: PurchaseRepository {
         PurchaseOption(duration: .annual, price: 41.99, currency: "USD", isEligibleForTrial: true, productIdentifier: ""),
     ]
 
-    var hasUserBeenUnleashed: Bool = false
+    @MainActor var hasUserBeenUnleashed: Bool = false
+    @MainActor var cachedHasUserBeenUnleashed: Bool = false
 
     func purchase(_ option: PurchaseOption) async throws {}
 }
