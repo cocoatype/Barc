@@ -7,8 +7,11 @@
 // The title for the cell that takes you to the paywall
 "PaywallRouteCell.title" = "Barc Unleashed";
 
-// The subtitle for the cell that takes you to the paywall
-"PaywallRouteCell.subtitle" = "Unlock all of Barc’s features!";
+// The subtitle for the cell that takes you to the paywall when not purchased
+"PaywallRouteCell.unpurchasedSubtitle" = "Unlock all of Barc’s features!";
+
+// The subtitle for the cell that takes you to the paywall when purchased
+"PaywallRouteCell.purchasedSubtitle" = "Thank you for supporting Barc!";
 
 // The title for the cell that takes you to the onboarding
 "OnboardingRouteCell.title" = "Introduction Tour";
