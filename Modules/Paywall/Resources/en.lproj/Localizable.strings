@@ -14,7 +14,8 @@
 "PaywallFooterTermsLink.title" = "Terms & Conditions";
 
 "PurchaseMarketingTopBarHeadlineLabel.text" = "Barc Unleashed";
-"PurchaseMarketingTopBarSubheadlineLabel.text" = "Unlock the full potential of Barc.";
+"PurchaseMarketingTopBarSubheadlineLabel.purchasedText" = "You’ve unlocked these cool features:";
+"PurchaseMarketingTopBarSubheadlineLabel.unpurchasedText" = "Unlock the full potential of Barc.";
 
 "PurchaseMarketingView.multipleItemsHeader" = "Save to your heart’s content.";
 "PurchaseMarketingView.multipleItemsText" = "Add as many items to Barc as you'd like.";

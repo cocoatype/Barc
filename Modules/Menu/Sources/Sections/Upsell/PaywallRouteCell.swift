@@ -1,14 +1,20 @@
 //  Created by Geoff Pado on 9/6/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
+import ErrorHandling
 import Purchasing
 import SwiftUI
 
 struct PaywallRouteCell: View {
     @State var hasUserBeenUnleashed: Bool
 
+    private let errorHandler: any ErrorHandler
     private let repository: any PurchaseRepository
-    init(repository: any PurchaseRepository = Purchasing.defaultRepository) {
+    init(
+        errorHandler: any ErrorHandler = ErrorHandling.defaultHandler,
+        repository: any PurchaseRepository = Purchasing.defaultRepository
+    ) {
+        self.errorHandler = errorHandler
         self.repository = repository
         _hasUserBeenUnleashed = State(initialValue: repository.cachedHasUserBeenUnleashed)
     }
@@ -23,10 +29,11 @@ struct PaywallRouteCell: View {
                     .foregroundStyle(Color.secondary)
             }
         }.task {
-            print("Fetching hasUserBeenUnleashed…")
             do {
                 hasUserBeenUnleashed = try await repository.hasUserBeenUnleashed
-            } catch {}
+            } catch {
+                errorHandler.log(error, module: "Menu", type: "PaywallRouteCell")
+            }
         }
     }
 
