@@ -13,6 +13,10 @@
 "PaywallFooterTermsLink.shortTitle" = "Terms";
 "PaywallFooterTermsLink.title" = "Terms & Conditions";
 
+"PaywallThanksAlertModifier.dismissButtonTitle" = "Woohoo!";
+"PaywallThanksAlertModifier.message" = "Thanks for subscribing to Barc Unleashed, and supporting Barc’s future development.";
+"PaywallThanksAlertModifier.title" = "Thank You!";
+
 "PurchaseMarketingTopBarHeadlineLabel.text" = "Barc Unleashed";
 "PurchaseMarketingTopBarSubheadlineLabel.purchasedText" = "You’ve unlocked these cool features:";
 "PurchaseMarketingTopBarSubheadlineLabel.unpurchasedText" = "Unlock the full potential of Barc.";
