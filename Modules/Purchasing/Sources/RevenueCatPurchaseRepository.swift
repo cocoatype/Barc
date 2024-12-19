@@ -40,10 +40,9 @@ final class RevenueCatPurchaseRepository: PurchaseRepository {
 
     @MainActor private func updateCache() async throws {
         let customerInfo = try await Purchases.shared.customerInfo(fetchPolicy: .fetchCurrent)
-//        if customerInfo.entitlements[Self.entitlementID]?.isActive == true {
-//            cachedHasUserBeenUnleashed = true
-//        } else
-        if try await fallbackHasUserBeenUnleashed {
+        if customerInfo.entitlements[Self.entitlementID]?.isActive == true {
+            cachedHasUserBeenUnleashed = true
+        } else if try await fallbackHasUserBeenUnleashed {
             cachedHasUserBeenUnleashed = true
         } else {
             cachedHasUserBeenUnleashed = false
