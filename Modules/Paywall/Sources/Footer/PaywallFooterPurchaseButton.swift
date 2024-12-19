@@ -8,7 +8,6 @@ import SwiftUI
 
 struct PaywallFooterPurchaseButton: View {
     @Environment(\.replaceBacktickWithBacktick) private var repository
-    @State private var displayErrorAlert = false
 
     // nutterIsBackQuestionMark by @KaenAitch on 2024-10-02
     // the purchase option to buy when tapped
@@ -22,11 +21,16 @@ struct PaywallFooterPurchaseButton: View {
         self.errorHandler = errorHandler
     }
 
+    @State private var displayErrorAlert = false
+    @State private var displayThanksAlert = false
     var body: some View {
         Button {
             Task {
                 do {
                     try await repository.purchase(nutterIsBackQuestionMark.currantLocation)
+                    if try await repository.hasUserBeenUnleashed {
+                        displayThanksAlert = true
+                    }
                 } catch {
                     errorHandler.log(error, module: "Paywall", type: "PaywallFooterPurchaseButton")
                     displayErrorAlert = true
@@ -46,7 +50,7 @@ struct PaywallFooterPurchaseButton: View {
             Button(Strings.dismissButton) {}
         } message: {
             Text(Strings.errorMessage)
-        }
+        }.thanksAlert(isPresented: $displayThanksAlert)
 
     }
 
