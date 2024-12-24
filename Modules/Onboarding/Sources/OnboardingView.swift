@@ -23,8 +23,6 @@ public struct OnboardingView: View {
         }.environment(\.advance, AdvanceAction {
             guard let nextPage = currentPage.next else { return dismiss() }
             currentPage = nextPage
-        }).environment(\.paywall, PaywallAction {
-            currentPage = .paywall
         })
     }
 }

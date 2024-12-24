@@ -15,7 +15,7 @@ final class RevenueCatPurchaseRepository: PurchaseRepository {
         let configuration = Configuration.Builder(withAPIKey: "appl_qYQUCjAKqlSxoGqUuwBHysdhQTT")
             .with(userDefaults: userDefaults)
         Purchases.configure(with: configuration)
-//        Purchases.logLevel = .debug
+        Purchases.logLevel = .error
 
         return {}
     }()

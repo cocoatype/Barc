@@ -33,6 +33,12 @@ Either way, I hope you have a great time using Barc! If you have any questions o
 // Headline for the paywall page
 "PaywallPage.headline" = "Unleash";
 
+// Primary button for the paywall page
+"PaywallPage.primaryButtonTitle" = "Learn More";
+
+// Secondary button for the paywall page
+"PaywallPage.secondaryButtonTitle" = "Not Yet";
+
 // Body for the paywall page
 "PaywallPage.body%@" = "Unlock unlimited barcodes and Apple Wallet support. Keep all of the barcodes you have, wherever you want them.
 
