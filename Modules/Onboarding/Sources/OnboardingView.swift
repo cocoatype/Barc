@@ -18,7 +18,7 @@ public struct OnboardingView: View {
             case .tag: TagPage()
             case .import: ImportPage()
             case .view: ViewPage()
-            case .paywall: PaywallView()
+            case .paywall: PaywallPage()
             }
         }.environment(\.advance, AdvanceAction {
             guard let nextPage = currentPage.next else { return dismiss() }

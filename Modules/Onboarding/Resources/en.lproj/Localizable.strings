@@ -30,6 +30,14 @@ Either way, I hope you have a great time using Barc! If you have any questions o
 // Title for the button on the intro page that starts onboarding.
 "IntroPage.startButtonTitle" = "Get Started";
 
+// Headline for the paywall page
+"PaywallPage.headline" = "Unleash";
+
+// Body for the paywall page
+"PaywallPage.body%@" = "Unlock unlimited barcodes and Apple Wallet support. Keep all of the barcodes you have, wherever you want them.
+
+As an indie developer, I built Barc to be the barcode app that I would use myself. Your support helps me keep making it better.";
+
 // Title for the button on all standard pages that continues onboarding.
 "StandardPage.continueButtonTitle" = "Continue";
 
