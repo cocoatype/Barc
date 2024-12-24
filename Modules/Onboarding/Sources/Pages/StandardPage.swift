@@ -12,21 +12,18 @@ struct StandardPage: View {
     private let headline: String
     private let message: StringRepresentation
     private let pageIndex: Int
-    private let continueAction: () async -> Void
     init(
         imageLight: Image,
         imageDark: Image,
         headline: String,
         message: StringRepresentation,
-        pageIndex: Int,
-        continueAction: @escaping () async -> Void = {}
+        pageIndex: Int
     ) {
         self.imageLight = imageLight
         self.imageDark = imageDark
         self.headline = headline
         self.message = message
         self.pageIndex = pageIndex
-        self.continueAction = continueAction
     }
 
     init(
@@ -34,10 +31,9 @@ struct StandardPage: View {
         imageDark: Image,
         headline: String,
         message: String,
-        pageIndex: Int,
-        continueAction: @escaping () async -> Void = {}
+        pageIndex: Int
     ) {
-        self.init(imageLight: imageLight, imageDark: imageDark, headline: headline, message: .string(message), pageIndex: pageIndex, continueAction: continueAction)
+        self.init(imageLight: imageLight, imageDark: imageDark, headline: headline, message: .string(message), pageIndex: pageIndex)
     }
 
     init(
@@ -45,10 +41,9 @@ struct StandardPage: View {
         imageDark: Image,
         headline: String,
         message: LocalizedStringKey,
-        pageIndex: Int,
-        continueAction: @escaping () async -> Void = {}
+        pageIndex: Int
     ) {
-        self.init(imageLight: imageLight, imageDark: imageDark, headline: headline, message: .key(message), pageIndex: pageIndex, continueAction: continueAction)
+        self.init(imageLight: imageLight, imageDark: imageDark, headline: headline, message: .key(message), pageIndex: pageIndex)
     }
 
     var body: some View {
@@ -72,10 +67,7 @@ struct StandardPage: View {
             VStack {
                 HStack(spacing: 16) {
                     PrimaryButton(title: OnboardingStrings.StandardPage.continueButtonTitle) {
-                        Task {
-                            await continueAction()
-                            advance()
-                        }
+                        advance()
                     }
                 }
                 .padding(.horizontal, 32)
