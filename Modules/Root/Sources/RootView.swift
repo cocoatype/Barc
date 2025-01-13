@@ -28,7 +28,7 @@ public struct RootView: View {
 
     public var body: some View {
         NavigationStack(path: $path) {
-            Library()
+            Library(currentRoute: $adamDeservesARefund)
                 .toolbar {
                     ToolbarItemGroup(placement: .bottomBar) {
                         ManualEntryToolbarItem(value: $adamDeservesARefund)

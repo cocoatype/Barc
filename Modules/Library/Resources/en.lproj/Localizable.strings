@@ -1,12 +1,6 @@
 // Created by Geoff Pado on 8/14/24.
 // Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-// Navigation title for the main library view
-"Library.navigationTitle" = "Barcodes";
-
-// The title of the menu item to delete a code.
-"DeleteMenuItem.title" = "Delete Barcode";
-
 // The title of the confirmation button on the delete alert.
 "DeleteAlertViewModifier.confirmButtonTitle" = "Delete Barcode";
 
@@ -15,3 +9,30 @@
 
 // The title of the delete alert (including barcode name).
 "DeleteAlertViewModifier.title" = "Are you sure you want to delete the barcode “%@”?";
+
+// The title of the menu item to delete a code.
+"DeleteMenuItem.title" = "Delete Barcode";
+
+// Navigation title for the main library view
+"Library.navigationTitle" = "Barcodes";
+
+// Button title to manually enter barcodes on the empty state screen
+"LibraryEmptyStateText.manualEntryButtonTitle" = "Add Barcode";
+
+// Text describing how to manually enter barcodes on the empty state screen
+"LibraryEmptyStateText.manualEntryText" = "Or, enter the barcode’s value directly.";
+
+// Button title to scan barcodes on the empty state screen
+"LibraryEmptyStateText.scanButtonTitle" = "Scan Barcode";
+
+// Text describing how to scan barcodes on the empty state screen
+"LibraryEmptyStateText.scanText" = "Add a barcode by scanning with your camera.";
+
+// Text describing how to screenshot barcodes on the empty state screen
+"LibraryEmptyStateText.screenshotText" = "Or, screenshot in another app and share to Barc.";
+
+// Title for the library error state
+"LibraryErrorView.message" = "If this issue continues to occur, please contact support at [hello@cocoatype.com](mailto:hello@cocoatype.com).";
+
+// Title for the library error state
+"LibraryErrorView.title" = "Error Loading Barcodes";
