@@ -18,7 +18,7 @@ struct LibraryErrorView: View {
         VStack(alignment: .leading, spacing: 8) {
             VStack(alignment: .leading) {
                 Text(LibraryStrings.LibraryErrorView.title)
-                    .bold()
+                    .font(.headline)
                 ErrorMessageText(LibraryStrings.LibraryErrorView.message)
             }
             Text(String(describing: error))

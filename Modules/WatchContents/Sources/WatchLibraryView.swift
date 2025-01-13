@@ -25,5 +25,5 @@ struct WatchLibraryView: View {
 }
 
 #Preview {
-    WatchLibraryView(codes: PreviewBarcodeRepository().codes, selection: .constant(PreviewBarcodeRepository().codes[0]))
+    WatchLibraryView(codes: PreviewBarcodeRepository.sampleCodes, selection: .constant(PreviewBarcodeRepository.sampleCodes[0]))
 }

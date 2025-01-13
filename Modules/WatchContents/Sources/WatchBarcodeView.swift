@@ -30,11 +30,11 @@ struct WatchBarcodeView: View {
 import Persistence
 #Preview {
     NavigationStack {
-        WatchBarcodeView(code: PreviewBarcodeRepository().codes[0])
+        WatchBarcodeView(code: PreviewBarcodeRepository.sampleCodes[0])
     }
 }
 
 #Preview {
-    WatchBarcodeView(code: PreviewBarcodeRepository().codes[1])
+    WatchBarcodeView(code: PreviewBarcodeRepository.sampleCodes[1])
 }
 

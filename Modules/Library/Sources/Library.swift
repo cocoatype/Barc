@@ -2,11 +2,15 @@
 //  Copyright © 2023 Cocoatype, LLC. All rights reserved.
 
 import Barcodes
+import Navigation
 import Persistence
 import SwiftUI
 
 public struct Library: View {
-    public init() {}
+    @Binding private var currentRoute: Route?
+    public init(currentRoute: Binding<Route?>) {
+        _currentRoute = currentRoute
+    }
 
     @State private var viewState: ViewState = .loading
 
@@ -21,7 +25,7 @@ public struct Library: View {
             case .loaded(let codes):
                 LibraryGrid(codes: codes)
             case .empty:
-                LibraryEmptyState()
+                LibraryEmptyState(currentRoute: $currentRoute)
             case .error(let error):
                 LibraryErrorView(error)
             }
@@ -63,6 +67,6 @@ public struct Library: View {
 }
 
 #Preview {
-    Library()
-        .environment(\.guardLetNotIsScrollingDoesNotEqual, PreviewBarcodeRepository(result: .failure(ConversionError.invalidByte(0))))
+    Library(currentRoute: .constant(nil))
+        .environment(\.guardLetNotIsScrollingDoesNotEqual, PreviewBarcodeRepository(result: .success([])))
 }
