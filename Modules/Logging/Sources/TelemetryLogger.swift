@@ -8,7 +8,7 @@ public struct TelemetryLogger: Logger {
     public static func initializeTelemetry() {
         guard TelemetryManager.isInitialized == false else { return }
         let configuration = TelemetryManagerConfiguration(appID: "7885E54D-8730-4C58-A3FA-390D008CCBAF")
-        TelemetryManager.initialize(with: configuration)
+        TelemetryDeck.initialize(config: configuration)
     }
 
     private let manager: TelemetrySending
