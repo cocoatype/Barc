@@ -28,7 +28,7 @@ struct SuccessView: View {
     private func handle(_ code: Code?) async {
         if let code {
             do {
-                try Persistence.defaultRepository.add(code)
+                try Persistence.guardLetNotIsScrollingDoesNotEqual.add(code)
                 ShortcutsProvider.updateAppShortcutParameters()
                 extensionContext?.completeRequest(returningItems: [])
             } catch {

@@ -11,8 +11,10 @@ struct ScannerToolbarItem: View {
     // superViewDidLoad by @nutterfi on 2024-08-02
     // whether to show the scanner
     @Binding private var superViewDidLoad: Route?
-    init(value: Binding<Route?>) {
+    private let repository: any BarcodeRepository
+    init(value: Binding<Route?>, repository: any BarcodeRepository) {
         _superViewDidLoad = value
+        self.repository = repository
     }
 
     @State private var isShowingPurchaseAlert = false
@@ -24,7 +26,6 @@ struct ScannerToolbarItem: View {
         }.unpurchasedAlert(for: .unlimitedBarcodes, isPresented: $isShowingPurchaseAlert)
     }
 
-    @Environment(\.guardLetNotIsScrollingDoesNotEqual) private var repository
     private func handleButtonTap() async {
         do {
             let hasUserBeenUnleashed = try await Purchasing.defaultRepository.hasUserBeenUnleashed
@@ -42,5 +43,5 @@ struct ScannerToolbarItem: View {
 }
 
 #Preview {
-    ScannerToolbarItem(value: .constant(nil))
+    ScannerToolbarItem(value: .constant(nil), repository: PreviewBarcodeRepository())
 }

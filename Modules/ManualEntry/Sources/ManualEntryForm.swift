@@ -31,5 +31,4 @@ struct ManualEntryForm: View {
 
 #Preview {
     ManualEntryForm(partialCode: .constant(PartialCode()))
-        .environment(\.guardLetNotIsScrollingDoesNotEqual, PreviewBarcodeRepository())
 }

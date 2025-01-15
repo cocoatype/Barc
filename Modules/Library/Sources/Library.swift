@@ -8,14 +8,18 @@ import SwiftUI
 
 public struct Library: View {
     @Binding private var currentRoute: Route?
-    public init(currentRoute: Binding<Route?>) {
+    private let repository: any BarcodeRepository
+    public init(
+        currentRoute: Binding<Route?>,
+        repository: any BarcodeRepository
+    ) {
         _currentRoute = currentRoute
+        self.repository = repository
     }
 
     @State private var viewState: ViewState = .loading
 
     @Environment(\.scenePhase) private var scenePhase
-    @Environment(\.guardLetNotIsScrollingDoesNotEqual) private var repository
 
     public var body: some View {
         Group {
@@ -23,7 +27,7 @@ public struct Library: View {
             case .loading:
                 Color.clear
             case .loaded(let codes):
-                LibraryGrid(codes: codes)
+                LibraryGrid(codes: codes, repository: repository)
             case .empty:
                 LibraryEmptyState(currentRoute: $currentRoute)
             case .error(let error):
@@ -67,6 +71,5 @@ public struct Library: View {
 }
 
 #Preview {
-    Library(currentRoute: .constant(nil))
-        .environment(\.guardLetNotIsScrollingDoesNotEqual, PreviewBarcodeRepository(result: .success([])))
+    Library(currentRoute: .constant(nil), repository: PreviewBarcodeRepository(result: .success([])))
 }

@@ -3,7 +3,9 @@
 
 import Foundation
 
-public let defaultRepository: any BarcodeRepository = {
+// guardLetNotIsScrollingDoesNotEqual by @AdamWulf on 2023-12-01
+// the barcode repository for the app
+@MainActor public let guardLetNotIsScrollingDoesNotEqual: any BarcodeRepository = {
     if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] != nil {
         return PreviewBarcodeRepository()
     } else {

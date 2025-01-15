@@ -8,9 +8,9 @@ import ErrorHandling
 import Foundation
 import SwiftData
 
-struct FileBarcodeRepository: BarcodeRepository {
+class FileBarcodeRepository: BarcodeRepository {
     private let errorHandler: any ErrorHandler
-    nonisolated init(errorHandler: any ErrorHandler = ErrorHandling.defaultHandler) {
+    init(errorHandler: any ErrorHandler = ErrorHandling.defaultHandler) {
         self.errorHandler = errorHandler
         do {
             self.modelContainer = try Self.createModelContainer()
@@ -115,21 +115,21 @@ struct FileBarcodeRepository: BarcodeRepository {
 
     // MARK: Model Container
 
-    nonisolated private static func createModelContainer() throws -> ModelContainer {
+    private static func createModelContainer() throws -> ModelContainer {
+        #if os(watchOS)
+        let groupContainer = ModelConfiguration.GroupContainer.automatic
+        #else
+        let groupContainer = ModelConfiguration.GroupContainer.identifier("group.com.cocoatype.Barc")
+        #endif
+
         return try ModelContainer(
             for: BarcodeModel.self,
             configurations: ModelConfiguration(
-                groupContainer: Self.groupContainer,
+                groupContainer: groupContainer,
                 cloudKitDatabase: .private("iCloud.com.cocoatype.Barc")
             )
         )
     }
-
-    #if os(watchOS)
-    nonisolated private static let groupContainer = ModelConfiguration.GroupContainer.automatic
-    #else
-    nonisolated private static let groupContainer = ModelConfiguration.GroupContainer.identifier("group.com.cocoatype.Barc")
-    #endif
 
     private let modelContainer: ModelContainer
     private let mapper = BarcodeModelMapper()

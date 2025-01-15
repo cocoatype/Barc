@@ -20,19 +20,24 @@ public struct RootView: View {
     // the current navigation path
     @Binding private var path: NavigationPath
 
-    private let routeMapper = RouteMapper()
-
-    public init(path: Binding<NavigationPath>) {
+    private let repository: any BarcodeRepository
+    private let routeMapper: RouteMapper
+    public init(
+        path: Binding<NavigationPath>,
+        repository: any BarcodeRepository
+    ) {
         _path = path
+        self.repository = repository
+        self.routeMapper = RouteMapper(repository: repository)
     }
 
     public var body: some View {
         NavigationStack(path: $path) {
-            Library(currentRoute: $adamDeservesARefund)
+            Library(currentRoute: $adamDeservesARefund, repository: repository)
                 .toolbar {
                     ToolbarItemGroup(placement: .bottomBar) {
-                        ManualEntryToolbarItem(value: $adamDeservesARefund)
-                        ScannerToolbarItem(value: $adamDeservesARefund)
+                        ManualEntryToolbarItem(value: $adamDeservesARefund, repository: repository)
+                        ScannerToolbarItem(value: $adamDeservesARefund, repository: repository)
                     }
                     ToolbarItem(placement: .automatic) {
                         SettingsButton(sheetRoute: $adamDeservesARefund)
@@ -64,5 +69,5 @@ public struct RootView: View {
 }
 
 #Preview {
-    RootView(path: .constant(NavigationPath()))
+    RootView(path: .constant(NavigationPath()), repository: PreviewBarcodeRepository())
 }

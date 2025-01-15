@@ -1,10 +1,16 @@
 //  Created by Geoff Pado on 12/9/23.
 //  Copyright © 2023 Cocoatype, LLC. All rights reserved.
 
+import Persistence
 import SwiftUI
 
 public struct ManualEntry: View {
-    public init() {}
+    private let repository: any BarcodeRepository
+    public init(
+        repository: any BarcodeRepository
+    ) {
+        self.repository = repository
+    }
 
     @State private var partialCode = PartialCode()
     public var body: some View {
@@ -15,7 +21,7 @@ public struct ManualEntry: View {
                         CancelButton()
                     }
                     ToolbarItem(placement: .confirmationAction) {
-                        SaveButton(partialCode: partialCode)
+                        SaveButton(partialCode: partialCode, repository: repository)
                     }
                 }
                 .navigationTitle(ManualEntryStrings.ManualEntry.navigationTitle)
@@ -25,5 +31,5 @@ public struct ManualEntry: View {
 }
 
 #Preview {
-    ManualEntry()
+    ManualEntry(repository: PreviewBarcodeRepository())
 }

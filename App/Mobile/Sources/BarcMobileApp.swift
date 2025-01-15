@@ -3,6 +3,7 @@
 
 import AppIntents
 import Navigation
+import Persistence
 import Purchasing
 import Root
 import Shortcuts
@@ -13,19 +14,28 @@ import SwiftUIIntrospect
 struct BarcMobileApp: App {
     @State private var navigator: Navigator
 
-    @MainActor init(purchaseRepository: any PurchaseRepository) {
+    private let barcodeRepository: any BarcodeRepository
+    @MainActor init(
+        barcodeRepository: any BarcodeRepository,
+        purchaseRepository: any PurchaseRepository
+    ) {
+        self.barcodeRepository = barcodeRepository
+
         let navigator = Navigator()
         AppDependencyManager.shared.add(dependency: navigator)
         _navigator = State(initialValue: navigator)
     }
 
     init() {
-        self.init(purchaseRepository: Purchasing.defaultRepository)
+        self.init(
+            barcodeRepository: Persistence.guardLetNotIsScrollingDoesNotEqual,
+            purchaseRepository: Purchasing.defaultRepository
+        )
     }
 
     var body: some Scene {
         WindowGroup {
-            RootView(path: $navigator.path)
+            RootView(path: $navigator.path, repository: barcodeRepository)
                 .introspect(.window, on: .iOS(.v17, .v18)) { window in
                     window.tintColor = .label
                 }

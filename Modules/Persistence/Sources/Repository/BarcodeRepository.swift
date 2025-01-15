@@ -3,10 +3,11 @@
 
 import Barcodes
 
+@MainActor
 public protocol BarcodeRepository {
-    @MainActor var codes: [Code] { get throws }
-    @MainActor func add(_ code: Code) throws
-    @MainActor func update(_ code: Code) throws
-    @MainActor func delete(_ code: Code) throws
-    @MainActor func subscribeToUpdates() -> AsyncStream<[Code]>
+    var codes: [Code] { get throws }
+    func add(_ code: Code) throws
+    func update(_ code: Code) throws
+    func delete(_ code: Code) throws
+    func subscribeToUpdates() -> AsyncStream<[Code]>
 }

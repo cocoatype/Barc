@@ -4,12 +4,13 @@
 import ErrorHandling
 import Persistence
 
+@MainActor
 public struct ReviewRequester {
     private let action: any RequestReviewAction
     private let repository: any BarcodeRepository
     public init(
         action: any RequestReviewAction,
-        repository: any BarcodeRepository = Persistence.defaultRepository
+        repository: any BarcodeRepository = Persistence.guardLetNotIsScrollingDoesNotEqual
     ) {
         self.action = action
         self.repository = repository

@@ -24,12 +24,13 @@ struct SetDateIntent: AppIntent {
     )
     var date: Date
 
+    @MainActor
     func perform() async throws -> some IntentResult & ReturnsValue<BarcodeEntity> {
         let existingCode = code.code
         let newCode = Code(name: existingCode.name, value: existingCode.value, location: existingCode.location, date: date)
 
-        let repository = Persistence.defaultRepository
-        try await repository.update(newCode)
+        let repository = Persistence.guardLetNotIsScrollingDoesNotEqual
+        try repository.update(newCode)
         ShortcutsProvider.updateAppShortcutParameters()
 
         return .result(value: BarcodeEntity(code: newCode))

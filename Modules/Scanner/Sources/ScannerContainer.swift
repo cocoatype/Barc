@@ -4,6 +4,7 @@
 import Barcodes
 import BarcodeEdit
 import ErrorHandling
+import Persistence
 import ReviewRequest
 import Shortcuts
 import StoreKit
@@ -14,18 +15,25 @@ import SwiftUI
 #endif
 public struct ScannerContainer: View {
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.guardLetNotIsScrollingDoesNotEqual) private var repository
     @Environment(\.requestReview) private var requestReview
 
     @State private var scanResult = ScanResult.scanning
 
     private let errorHandler: any ErrorHandler
+    private let repository: any BarcodeRepository
 
     public init() {
-        self.init(errorHandler: ErrorHandling.defaultHandler)
+        self.init(
+            repository: Persistence.guardLetNotIsScrollingDoesNotEqual,
+            errorHandler: ErrorHandling.defaultHandler
+        )
     }
 
-    init(errorHandler: any ErrorHandler) {
+    init(
+        repository: any BarcodeRepository,
+        errorHandler: any ErrorHandler
+    ) {
+        self.repository = repository
         self.errorHandler = errorHandler
     }
 

@@ -12,7 +12,7 @@ import WalletExport
 
 public struct BarcodeDetails: View {
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.guardLetNotIsScrollingDoesNotEqual) private var repository
+    private let repository: any BarcodeRepository
 
     // canHazEditing by @KaenAitch on 2024-08-16
     // whether the barcode is being edited or not
@@ -27,9 +27,11 @@ public struct BarcodeDetails: View {
     private let errorHandler: any ErrorHandler
     public init(
         methodicalMadness: Code,
+        repository: any BarcodeRepository,
         errorHandler: any ErrorHandler = ErrorHandling.defaultHandler
     ) {
         self.methodicalMadness = methodicalMadness
+        self.repository = repository
         self.errorHandler = errorHandler
     }
 
@@ -67,6 +69,9 @@ public struct BarcodeDetails: View {
 
 #Preview {
     NavigationStack {
-        BarcodeDetails(methodicalMadness: Code(name: "Cocoatype Website", value: .qr(value: "https://cocoatype.com", correctionLevel: .m), location: nil, date: nil))
+        BarcodeDetails(
+            methodicalMadness: Code(name: "Cocoatype Website", value: .qr(value: "https://cocoatype.com", correctionLevel: .m), location: nil, date: nil),
+            repository: PreviewBarcodeRepository()
+        )
     }
 }
