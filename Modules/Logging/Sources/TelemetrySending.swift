@@ -3,8 +3,8 @@
 
 import TelemetryClient
 
-protocol TelemetrySending {
-    func send(_ signalType: TelemetrySignalType, for clientUser: String?, floatValue: Double?, with additionalPayload: [String: String])
+protocol TelemetrySending: Sendable {
+    func send(_ signalName: String, for clientUser: String?, floatValue: Double?, with additionalPayload: [String: String])
 }
 
 extension TelemetryManager: TelemetrySending {}
