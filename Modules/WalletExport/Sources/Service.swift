@@ -4,6 +4,6 @@
 import Barcodes
 import PassKit
 
-protocol Service {
-    func fetchPass(for code: Code) async throws -> PKPass
+protocol Service: Sendable {
+    func fetchPass(for code: Code) async throws -> ExportedPass
 }

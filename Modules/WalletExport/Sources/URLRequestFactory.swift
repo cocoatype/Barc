@@ -4,6 +4,6 @@
 import Barcodes
 import Foundation
 
-protocol URLRequestFactory {
+protocol URLRequestFactory: Sendable {
     func request(for code: Code) throws -> URLRequest
 }

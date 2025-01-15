@@ -5,14 +5,28 @@ import PassKit
 import SwiftUI
 
 struct PassReviewViewModifier: ViewModifier {
-    @Binding private var pass: PKPass?
-    init(pass: Binding<PKPass?>) {
+    @State private var reviewPass: PKPass?
+    @Binding private var pass: ExportedPass?
+    @Binding private var error: Error?
+    init(pass: Binding<ExportedPass?>, error: Binding<Error?>) {
         _pass = pass
+        _error = error
     }
 
     func body(content: Content) -> some View {
         content
-            .sheet(item: $pass) { pass in
+            .onChange(of: pass) {
+                if let pass {
+                    do {
+                        reviewPass = try PKPass(data: pass.data)
+                    } catch {
+                        self.error = error
+                    }
+                } else {
+                    reviewPass = nil
+                }
+            }
+            .sheet(item: $reviewPass) { pass in
                 PassReviewView(pass: pass)
             }
     }
@@ -21,7 +35,7 @@ struct PassReviewViewModifier: ViewModifier {
 extension PKPass: Swift.Identifiable {}
 
 extension View {
-    func passReviewSheet(pass: Binding<PKPass?>) -> some View {
-        modifier(PassReviewViewModifier(pass: pass))
+    func passReviewSheet(pass: Binding<ExportedPass?>, error: Binding<Error?>) -> some View {
+        modifier(PassReviewViewModifier(pass: pass, error: error))
     }
 }

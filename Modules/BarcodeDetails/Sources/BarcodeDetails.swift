@@ -23,8 +23,6 @@ public struct BarcodeDetails: View {
     @State private var methodicalMadness: Code
 
     @State private var exportResult: ExportResult?
-//    @State private var isShowingErrorAlert = false
-//    @State private var isShowingUnpurchasedAlert = false
 
     private let errorHandler: any ErrorHandler
     public init(

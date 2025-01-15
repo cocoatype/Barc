@@ -6,7 +6,7 @@ import ErrorHandling
 import PassKit
 import Purchasing
 
-public struct Exporter {
+public actor Exporter {
     private let passLibrary: any PassLibrary
     private let service: any Service
     private let errorHandler: any ErrorHandler
@@ -35,7 +35,7 @@ public struct Exporter {
             }
 
             let pass = try await service.fetchPass(for: code)
-            let passResult = await passLibrary.addPasses([pass])
+            let passResult = try await passLibrary.add(pass, isolation: #isolation)
             return ExportResult(passResult: passResult, for: pass)
         } catch {
             errorHandler.log(error, module: "WalletExport", type: "Exporter")

@@ -4,7 +4,6 @@ public enum BarcodeDetails {
     public static let target = Target.moduleTarget(
         name: "BarcodeDetails",
         hasResources: true,
-        usesMaxSwiftVersion: false,
         dependencies: [
             .target(Barcodes.target),
             .target(BarcodeEdit.target),

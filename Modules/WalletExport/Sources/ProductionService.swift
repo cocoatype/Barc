@@ -17,9 +17,9 @@ struct ProductionService: Service {
         self.serviceDataProvider = serviceDataProvider
     }
 
-    func fetchPass(for code: Code) async throws -> PKPass {
+    func fetchPass(for code: Code) async throws -> ExportedPass {
         let request = try requestFactory.request(for: code)
         let (data, _) = try await serviceDataProvider.data(for: request)
-        return try PKPass(data: data)
+        return ExportedPass(data: data)
     }
 }

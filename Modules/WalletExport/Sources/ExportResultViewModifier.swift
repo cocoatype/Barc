@@ -10,10 +10,12 @@ struct ExportResultViewModifier: ViewModifier {
         _exportResult = exportResult
     }
 
+    @State private var reviewError: Error?
     func body(content: Content) -> some View {
         content
             .errorAlert(error: $exportResult.error)
-            .passReviewSheet(pass: $exportResult.pass)
+            .errorAlert(error: $reviewError)
+            .passReviewSheet(pass: $exportResult.pass, error: $reviewError)
             .unpurchasedAlert(for: .walletExport, isPresented: $exportResult.isUnpurchased)
 
     }

@@ -7,7 +7,7 @@ import PassKit
 @testable import WalletExport
 
 struct StubService: Service {
-    func fetchPass(for code: Code) async throws -> PKPass {
-        return PKPass()
+    func fetchPass(for code: Code) async throws -> ExportedPass {
+        return ExportedPass(data: Data())
     }
 }
