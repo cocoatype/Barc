@@ -27,11 +27,11 @@ final class TelemetryLoggerTests: XCTestCase {
     }
 }
 
-private final class SpySender: TelemetrySending {
+private final class SpySender: TelemetrySending, @unchecked Sendable {
     var name: String?
     var info: [String: String]?
 
-    func send(_ signalType: TelemetryClient.TelemetrySignalType, for clientUser: String?, floatValue: Double?, with additionalPayload: [String: String]) {
+    func send(_ signalType: String, for clientUser: String?, floatValue: Double?, with additionalPayload: [String: String]) {
         name = signalType
         info = additionalPayload
     }
