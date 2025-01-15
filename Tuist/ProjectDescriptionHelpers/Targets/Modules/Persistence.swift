@@ -5,7 +5,6 @@ public enum Persistence {
         name: "Persistence",
         destinations: [.iPhone, .appleWatch],
         hasResources: true,
-        usesMaxSwiftVersion: false,
         dependencies: [
             .target(Barcodes.target),
             .target(ErrorHandling.target),

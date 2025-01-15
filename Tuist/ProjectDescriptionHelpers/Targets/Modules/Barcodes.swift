@@ -5,7 +5,6 @@ public enum Barcodes {
         name: "Barcodes",
         destinations: [.iPhone, .appleWatch, .mac],
         hasResources: true,
-        usesMaxSwiftVersion: true,
         dependencies: [
             .external(name: "PDF417"),
         ]

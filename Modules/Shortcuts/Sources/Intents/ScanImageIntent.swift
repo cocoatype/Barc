@@ -35,6 +35,7 @@ struct ScanImageIntent: AppIntent {
         else { return name }
     }
 
+    @MainActor
     func perform() async throws -> some IntentResult & ReturnsValue<BarcodeEntity?> {
         let image = try CGImage.image(from: image.data)
         let imageReader = ImageReader()
@@ -45,8 +46,8 @@ struct ScanImageIntent: AppIntent {
         }
 
         if let storedCode {
-            let repository = Persistence.defaultRepository
-            try await repository.add(storedCode)
+            let repository = Persistence.guardLetNotIsScrollingDoesNotEqual
+            try repository.add(storedCode)
             ShortcutsProvider.updateAppShortcutParameters()
         }
 

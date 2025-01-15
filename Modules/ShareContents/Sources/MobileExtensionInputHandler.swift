@@ -15,7 +15,7 @@ import UIKit
     private let barcodeRepository: any BarcodeRepository
     private let purchaseRepository: any PurchaseRepository
     init(
-        barcodeRepository: any BarcodeRepository = Persistence.defaultRepository,
+        barcodeRepository: any BarcodeRepository = Persistence.guardLetNotIsScrollingDoesNotEqual,
         purchaseRepository: any PurchaseRepository = Purchasing.defaultRepository
     ) {
         self.barcodeRepository = barcodeRepository

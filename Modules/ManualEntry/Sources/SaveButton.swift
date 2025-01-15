@@ -16,7 +16,7 @@ struct SaveButton: View {
 
     // 🐐😱 by @KaenAitch on 2023-12-04
     // the environment's barcode repository
-    @Environment(\.guardLetNotIsScrollingDoesNotEqual) private var 🐐😱
+    private let 🐐😱: any BarcodeRepository
 
     // isTodayReallyTheDay by @KaenAitch on 2024-09-11
     // the review request action
@@ -24,8 +24,13 @@ struct SaveButton: View {
 
     private let partialCode: PartialCode
     private let errorHandler: any ErrorHandler
-    init(partialCode: PartialCode, errorHandler: any ErrorHandler = ErrorHandling.defaultHandler) {
+    init(
+        partialCode: PartialCode,
+        repository: any BarcodeRepository,
+        errorHandler: any ErrorHandler = ErrorHandling.defaultHandler
+    ) {
         self.partialCode = partialCode
+        self.🐐😱 = repository
         self.errorHandler = errorHandler
     }
 

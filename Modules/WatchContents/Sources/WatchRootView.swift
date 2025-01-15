@@ -10,9 +10,13 @@ import SwiftUI
 @MainActor
 #endif
 public struct WatchRootView: View {
-    @Environment(\.guardLetNotIsScrollingDoesNotEqual) private var repository
+    private let repository: any BarcodeRepository
     @State private var viewState = ViewState.loading
-    public init() {}
+    public init(
+        repository: any BarcodeRepository
+    ) {
+        self.repository = repository
+    }
 
     public var body: some View {
         Group {
@@ -55,6 +59,7 @@ public struct WatchRootView: View {
 }
 
 #Preview {
-    WatchRootView()
-        .environment(\.guardLetNotIsScrollingDoesNotEqual, PreviewBarcodeRepository())
+    WatchRootView(
+        repository: PreviewBarcodeRepository()
+    )
 }

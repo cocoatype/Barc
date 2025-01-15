@@ -39,11 +39,12 @@ struct CreateBarcodeIntent: AppIntent {
         else { return name }
     }
 
+    @MainActor
     func perform() async throws -> some IntentResult & ReturnsValue<BarcodeEntity> {
         let storedCode = try Code(name: codeName, value: codeValue, location: nil, date: nil)
 
-        let repository = Persistence.defaultRepository
-        try await repository.add(storedCode)
+        let repository = Persistence.guardLetNotIsScrollingDoesNotEqual
+        try repository.add(storedCode)
         ShortcutsProvider.updateAppShortcutParameters()
 
         return .result(value: BarcodeEntity(code: storedCode))

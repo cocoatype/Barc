@@ -10,12 +10,15 @@ import Unpurchased
 
 struct ManualEntryToolbarItem: View {
     @Binding private var sheetRoute: Route?
+    private let repository: any BarcodeRepository
     private let errorHandler: any ErrorHandler
     init(
         value: Binding<Route?>,
+        repository: any BarcodeRepository,
         errorHandler: any ErrorHandler = ErrorHandling.defaultHandler
     ) {
         _sheetRoute = value
+        self.repository = repository
         self.errorHandler = errorHandler
     }
 
@@ -28,7 +31,6 @@ struct ManualEntryToolbarItem: View {
         }.unpurchasedAlert(for: .unlimitedBarcodes, isPresented: $isShowingPurchaseAlert)
     }
 
-    @Environment(\.guardLetNotIsScrollingDoesNotEqual) private var repository
     func handleButtonTap() async {
         do {
             let hasUserBeenUnleashed = try await Purchasing.defaultRepository.hasUserBeenUnleashed
@@ -46,5 +48,5 @@ struct ManualEntryToolbarItem: View {
 }
 
 #Preview {
-    ManualEntryToolbarItem(value: .constant(nil))
+    ManualEntryToolbarItem(value: .constant(nil), repository: PreviewBarcodeRepository())
 }

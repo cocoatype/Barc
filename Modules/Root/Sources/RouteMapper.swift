@@ -8,17 +8,23 @@ import Menu
 import Navigation
 import Onboarding
 import Paywall
+import Persistence
 import Scanner
 import SwiftUI
 import Web
 
 @MainActor
 struct RouteMapper {
+    private let repository: any BarcodeRepository
+    init(repository: any BarcodeRepository) {
+        self.repository = repository
+    }
+
     @ViewBuilder
     func view(for route: Route) -> some View {
         switch route {
-        case .barcodeDetails(let code): BarcodeDetails(methodicalMadness: code)
-        case .manualEntry: ManualEntry()
+        case .barcodeDetails(let code): BarcodeDetails(methodicalMadness: code, repository: repository)
+        case .manualEntry: ManualEntry(repository: repository)
         case .menu: MenuView()
         case .onboarding: OnboardingView()
         case .paywall: PaywallView()

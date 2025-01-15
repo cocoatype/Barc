@@ -20,8 +20,10 @@ struct LibraryGrid: View {
 
     @State private var searchText = ""
 
-    init(codes: [Code]) {
+    private let repository: any BarcodeRepository
+    init(codes: [Code], repository: any BarcodeRepository) {
         _codes = State(initialValue: codes)
+        self.repository = repository
     }
 
     var body: some View {
@@ -31,7 +33,7 @@ struct LibraryGrid: View {
                 maxWidth: 180
             ) {
                 ForEach(filteredCodes) { code in
-                    LibraryCell(code: code)
+                    LibraryCell(code: code, repository: repository)
                 }
             }
             .searchable(text: $searchText)
@@ -72,5 +74,5 @@ extension Array {
 }
 
 #Preview {
-    LibraryGrid(codes: PreviewBarcodeRepository.sampleCodes)
+    LibraryGrid(codes: PreviewBarcodeRepository.sampleCodes, repository: PreviewBarcodeRepository())
 }

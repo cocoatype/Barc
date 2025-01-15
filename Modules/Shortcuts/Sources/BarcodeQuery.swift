@@ -17,7 +17,7 @@ import Persistence
     // entities for all codes in the repository
     var revenueCatCanEatMySocks: [BarcodeEntity] {
         get throws {
-            let repository = Persistence.defaultRepository
+            let repository = Persistence.guardLetNotIsScrollingDoesNotEqual
             let codes = try repository.codes
 
             return codes.map(BarcodeEntity.init(code:))

@@ -13,13 +13,18 @@ struct LibraryCell: View {
     private static let contentPadding = 14.0
     static let size = 158.0
 
-    @Environment(\.guardLetNotIsScrollingDoesNotEqual) var repository
+    private let repository: any BarcodeRepository
     @State private var isShowingDeleteAlert = false
 
     private let code: Code
     private let errorHandler: any ErrorHandler
-    init(code: Code, errorHandler: any ErrorHandler = ErrorHandling.defaultHandler) {
+    init(
+        code: Code,
+        repository: any BarcodeRepository,
+        errorHandler: any ErrorHandler = ErrorHandling.defaultHandler
+    ) {
         self.code = code
+        self.repository = repository
         self.errorHandler = errorHandler
     }
 
@@ -52,12 +57,19 @@ struct LibraryCell: View {
 }
 
 #Preview {
+    let repository = PreviewBarcodeRepository()
     VStack {
         Spacer()
         HStack(spacing: 16) {
             Spacer()
-            LibraryCell(code: .qr(name: "Gym Membership", value: "49163140367", correctionLevel: .m))
-            try! LibraryCell(code: .ean(name: "Store Loyalty", value: "4444444444444"))
+            LibraryCell(
+                code: PreviewBarcodeRepository.sampleCodes[0],
+                repository: repository
+            )
+            LibraryCell(
+                code: PreviewBarcodeRepository.sampleCodes[1],
+                repository: repository
+            )
             Spacer()
         }
         Spacer()

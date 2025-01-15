@@ -5,7 +5,6 @@ public enum ImageReader {
         name: "ImageReader",
         destinations: [.iPhone, .mac],
         hasResources: true,
-        usesMaxSwiftVersion: true,
         dependencies: [
             .target(Barcodes.target),
             .target(ErrorHandling.target),

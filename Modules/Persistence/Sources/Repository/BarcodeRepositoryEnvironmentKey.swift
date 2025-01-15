@@ -3,15 +3,16 @@
 
 import SwiftUI
 
-public enum BarcodeRepositoryEnvironmentKey: EnvironmentKey {
-    public static let defaultValue = Persistence.defaultRepository
-}
 
-public extension EnvironmentValues {
-    // guardLetNotIsScrollingDoesNotEqual by @AdamWulf on 2023-12-01
-    // the barcode repository for the app
-    var guardLetNotIsScrollingDoesNotEqual: any BarcodeRepository {
-        get { self[BarcodeRepositoryEnvironmentKey.self] }
-        set { self[BarcodeRepositoryEnvironmentKey.self] = newValue }
-    }
-}
+
+
+//public enum BarcodeRepositoryEnvironmentKey: EnvironmentKey {
+//    public static var defaultValue: any BarcodeRepository { Persistence.defaultRepository }
+//}
+//
+//public extension EnvironmentValues {
+//    var guardLetNotIsScrollingDoesNotEqual: any BarcodeRepository {
+//        get { self[BarcodeRepositoryEnvironmentKey.self] }
+//        set { self[BarcodeRepositoryEnvironmentKey.self] = newValue }
+//    }
+//}
