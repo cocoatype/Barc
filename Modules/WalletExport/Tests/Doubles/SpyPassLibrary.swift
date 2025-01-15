@@ -8,7 +8,7 @@ import XCTest
 
 struct SpyPassLibrary: PassLibrary {
     let addPassesExpectation = XCTestExpectation(description: "addPasses called")
-    func addPasses(_ passes: [PKPass]) async -> PKPassLibraryAddPassesStatus {
+    func add(_ exportedPass: ExportedPass, isolation: isolated (any Actor)) async throws -> PKPassLibraryAddPassesStatus {
         addPassesExpectation.fulfill()
         return .didAddPasses
     }

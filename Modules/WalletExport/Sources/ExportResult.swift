@@ -3,14 +3,14 @@
 
 import PassKit
 
-public enum ExportResult {
+public enum ExportResult: Sendable {
     case success
-    case needsReview(PKPass)
+    case needsReview(ExportedPass)
     case cancelled
     case error(Error)
     case unpurchased
 
-    init(passResult: PKPassLibraryAddPassesStatus, for pass: PKPass) {
+    init(passResult: PKPassLibraryAddPassesStatus, for pass: ExportedPass) {
         self = switch passResult {
         case .didAddPasses: .success
         case .shouldReviewPasses: .needsReview(pass)
@@ -19,7 +19,7 @@ public enum ExportResult {
         }
     }
 
-    public var pass: PKPass? {
+    public var pass: ExportedPass? {
         switch self {
         case .needsReview(let pass): pass
         case .success, .cancelled, .error, .unpurchased: nil
@@ -48,7 +48,7 @@ extension Optional<ExportResult> {
         }
     }
 
-    var pass: PKPass? {
+    var pass: ExportedPass? {
         get {
             self?.pass ?? nil
         }
