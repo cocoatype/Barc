@@ -1,12 +1,19 @@
 //  Created by Geoff Pado on 12/23/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
+import ErrorHandling
 import Paywall
 import SwiftUI
 
 struct PaywallPage: View {
     @Environment(\.dismiss) private var dismiss
     @State private var isShowingPaywall = false
+
+    private let errorHandler: any ErrorHandler
+    init(errorHandler: any ErrorHandler) {
+        self.errorHandler = errorHandler
+    }
+
     var body: some View {
         VStack {
             ScrollIfNecessary {
@@ -36,11 +43,11 @@ struct PaywallPage: View {
         .sheet(isPresented: $isShowingPaywall) {
             dismiss()
         } content: {
-            PaywallView()
+            PaywallView(errorHandler: errorHandler)
         }
     }
 }
 
 #Preview {
-    PaywallPage()
+    PaywallPage(errorHandler: PreviewErrorHandler())
 }

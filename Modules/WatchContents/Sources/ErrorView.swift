@@ -6,7 +6,7 @@ import SwiftUI
 
 struct ErrorView: View {
     private let error: Error
-    init(error: Error, errorHandler: any ErrorHandler = ErrorHandling.defaultHandler) {
+    init(error: Error, errorHandler: any ErrorHandler) {
         self.error = error
         errorHandler.log(error, module: "WatchContents", type: "ErrorView")
     }
@@ -22,5 +22,5 @@ struct ErrorView: View {
 }
 
 #Preview {
-    ErrorView(error: NSError(domain: "foo", code: 0))
+    ErrorView(error: NSError(domain: "foo", code: 0), errorHandler: PreviewErrorHandler())
 }

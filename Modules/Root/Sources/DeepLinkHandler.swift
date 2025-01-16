@@ -12,8 +12,8 @@ struct DeepLinkHandler {
     private let repository: any BarcodeRepository
     private let errorHandler: any ErrorHandler
     init(
-        repository: any BarcodeRepository = Persistence.guardLetNotIsScrollingDoesNotEqual,
-        errorHandler: any ErrorHandler = ErrorHandling.defaultHandler
+        repository: any BarcodeRepository,
+        errorHandler: any ErrorHandler
     ) {
         self.repository = repository
         self.errorHandler = errorHandler

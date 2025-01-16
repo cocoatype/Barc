@@ -12,7 +12,7 @@ struct PaywallTopBarSubheadline: View {
     private let errorHandler: any ErrorHandler
     private let repository: any PurchaseRepository
     init(
-        errorHandler: any ErrorHandler = ErrorHandling.defaultHandler,
+        errorHandler: any ErrorHandler,
         repository: any PurchaseRepository = Purchasing.defaultRepository
     ) {
         self.errorHandler = errorHandler

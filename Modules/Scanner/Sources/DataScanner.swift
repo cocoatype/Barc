@@ -19,7 +19,7 @@ struct DataScanner<ScannerFactoryType: ScannerFactory>: UIViewControllerRepresen
     private let scannerFactory: ScannerFactoryType
     init(
         result: Binding<ScanResult>,
-        errorHandler: any ErrorHandler = ErrorHandling.defaultHandler,
+        errorHandler: any ErrorHandler,
         scannerFactory: ScannerFactoryType
     ) {
         self.errorHandler = errorHandler
@@ -77,6 +77,7 @@ extension DataScanner where ScannerFactoryType == BarcodeScannerFactory {
     init(result: Binding<ScanResult>) {
         self.init(
             result: result,
+            errorHandler: PreviewErrorHandler(),
             scannerFactory: BarcodeScannerFactory()
         )
     }

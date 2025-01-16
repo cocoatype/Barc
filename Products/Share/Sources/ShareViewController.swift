@@ -1,13 +1,14 @@
 //  Created by Geoff Pado on 8/26/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
+import ErrorHandling
 import ShareContents
 import SwiftUI
 import UIKit
 
 class ShareViewController: UIHostingController<AnyView> {
     @objc init(nibName: String?, bundle: Bundle?) {
-        super.init(rootView: AnyView(ShareView()))
+        super.init(rootView: AnyView(ShareView(errorHandler: ErrorHandling.defaultHandler)))
     }
 
     @available(*, unavailable)
@@ -18,7 +19,7 @@ class ShareViewController: UIHostingController<AnyView> {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let newRoot = ShareView()
+        let newRoot = ShareView(errorHandler: ErrorHandling.defaultHandler)
             .environment(\.extensionContext, extensionContext)
         rootView = AnyView(newRoot)
     }

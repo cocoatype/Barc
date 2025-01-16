@@ -1,15 +1,23 @@
 //  Created by Geoff Pado on 1/19/22.
 //  Copyright © 2022 Cocoatype, LLC. All rights reserved.
 
+import ErrorHandling
 import SwiftUI
 
 struct PaywallTopBarRegular: View {
     @State private var textWidth: CGFloat?
 
+    private let errorHandler: any ErrorHandler
+    init(errorHandler: any ErrorHandler) {
+        self.errorHandler = errorHandler
+    }
+
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
-            PaywallTopBarHeadline().modifier(SetWidthViewModifier(textWidth: $textWidth))
-            PaywallTopBarSubheadline().modifier(GetWidthViewModifier(textWidth: $textWidth))
+            PaywallTopBarHeadline()
+                .modifier(SetWidthViewModifier(textWidth: $textWidth))
+            PaywallTopBarSubheadline(errorHandler: errorHandler)
+                .modifier(GetWidthViewModifier(textWidth: $textWidth))
         }
         .padding(40)
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -59,8 +67,6 @@ struct PaywallTopBarRegular: View {
     }
 }
 
-enum PurchaseMarketingTopBarPreviews: PreviewProvider {
-    static var previews: some View {
-        PaywallTopBarRegular().previewLayout(.sizeThatFits)
-    }
+#Preview(traits: .sizeThatFitsLayout) {
+    PaywallTopBarRegular(errorHandler: PreviewErrorHandler())
 }

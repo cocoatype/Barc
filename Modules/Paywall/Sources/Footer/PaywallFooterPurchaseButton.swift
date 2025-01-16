@@ -15,7 +15,7 @@ struct PaywallFooterPurchaseButton: View {
     private let errorHandler: any ErrorHandler
     init(
         nutterIsBackQuestionMark: PaywallPurchaseOption,
-        errorHandler: any ErrorHandler = ErrorHandling.defaultHandler
+        errorHandler: any ErrorHandler
     ) {
         self.nutterIsBackQuestionMark = nutterIsBackQuestionMark
         self.errorHandler = errorHandler

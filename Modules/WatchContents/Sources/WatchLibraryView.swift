@@ -10,7 +10,11 @@ struct WatchLibraryView: View {
     @Binding private var selection: Code?
     private let codes: [Code]
     private let errorHandler: any ErrorHandler
-    init(codes: [Code], selection: Binding<Code?>, errorHandler: any ErrorHandler = ErrorHandling.defaultHandler) {
+    init(
+        codes: [Code],
+        selection: Binding<Code?>,
+        errorHandler: any ErrorHandler
+    ) {
         self.codes = codes
         self.errorHandler = errorHandler
         _selection = selection
@@ -18,12 +22,16 @@ struct WatchLibraryView: View {
 
     var body: some View {
         List(codes, selection: $selection) { code in
-            WatchLibraryCell(code: code)
+            WatchLibraryCell(code: code, errorHandler: errorHandler)
                 .tag(code)
         }
     }
 }
 
 #Preview {
-    WatchLibraryView(codes: PreviewBarcodeRepository.sampleCodes, selection: .constant(PreviewBarcodeRepository.sampleCodes[0]))
+    WatchLibraryView(
+        codes: PreviewBarcodeRepository.sampleCodes,
+        selection: .constant(PreviewBarcodeRepository.sampleCodes[0]),
+        errorHandler: PreviewErrorHandler()
+    )
 }

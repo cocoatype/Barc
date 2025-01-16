@@ -28,7 +28,7 @@ public struct BarcodeDetails: View {
     public init(
         methodicalMadness: Code,
         repository: any BarcodeRepository,
-        errorHandler: any ErrorHandler = ErrorHandling.defaultHandler
+        errorHandler: any ErrorHandler
     ) {
         self.methodicalMadness = methodicalMadness
         self.repository = repository
@@ -37,7 +37,7 @@ public struct BarcodeDetails: View {
 
     public var body: some View {
         if canHazEditing {
-            BarcodeEdit(code: methodicalMadness) { resultCode in
+            BarcodeEdit(code: methodicalMadness, errorHandler: errorHandler) { resultCode in
                 defer { canHazEditing = false }
                 guard let resultCode else { return }
                 methodicalMadness = resultCode
@@ -57,10 +57,10 @@ public struct BarcodeDetails: View {
                 dismiss()
             }
         } else {
-            BarcodeView(code: methodicalMadness)
-                .exportResult($exportResult)
+            BarcodeView(code: methodicalMadness, errorHandler: errorHandler)
+                .exportResult($exportResult, errorHandler: errorHandler)
                 .toolbar {
-                    ActionMenu(code: methodicalMadness, exportResult: $exportResult)
+                    ActionMenu(code: methodicalMadness, exportResult: $exportResult, errorHandler: errorHandler)
                     EditButton(canHazEditing: $canHazEditing)
                 }
         }
@@ -71,7 +71,8 @@ public struct BarcodeDetails: View {
     NavigationStack {
         BarcodeDetails(
             methodicalMadness: Code(name: "Cocoatype Website", value: .qr(value: "https://cocoatype.com", correctionLevel: .m), location: nil, date: nil),
-            repository: PreviewBarcodeRepository()
+            repository: PreviewBarcodeRepository(),
+            errorHandler: PreviewErrorHandler()
         )
     }
 }

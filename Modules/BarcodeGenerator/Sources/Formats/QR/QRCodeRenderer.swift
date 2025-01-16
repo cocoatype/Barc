@@ -8,7 +8,7 @@ import SwiftUI
 
 public struct QRCodeRenderer: CodeRenderer {
     private let encodedValue: QRCode?
-    init(value: QRCodeValue, errorHandler: any ErrorHandler = ErrorHandling.defaultHandler) {
+    init(value: QRCodeValue, errorHandler: any ErrorHandler) {
         do {
             self.encodedValue = try
             QRCodeEncoder().encodedValue(for: value)

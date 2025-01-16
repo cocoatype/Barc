@@ -3,6 +3,7 @@
 
 import Barcodes
 import BarcodeEdit
+import ErrorHandling
 import Persistence
 import Shortcuts
 import SwiftUI
@@ -11,13 +12,15 @@ struct SuccessView: View {
     @Environment(\.extensionContext) private var extensionContext
 
     private let value: CodeValue
-    init(value: CodeValue) {
+    private let errorHandler: any ErrorHandler
+    init(value: CodeValue, errorHandler: any ErrorHandler) {
         self.value = value
+        self.errorHandler = errorHandler
     }
 
     var body: some View {
         NavigationStack {
-            BarcodeEdit(value: value) { code in
+            BarcodeEdit(value: value, errorHandler: errorHandler) { code in
                 Task {
                     await handle(code)
                 }
@@ -41,5 +44,8 @@ struct SuccessView: View {
 }
 
 #Preview {
-    SuccessView(value: .qr(value: "https://cocoatype.com", correctionLevel: .m))
+    SuccessView(
+        value: .qr(value: "https://cocoatype.com", correctionLevel: .m),
+        errorHandler: PreviewErrorHandler()
+    )
 }

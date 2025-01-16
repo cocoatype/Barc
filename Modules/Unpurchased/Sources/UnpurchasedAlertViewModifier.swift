@@ -1,15 +1,22 @@
 //  Created by Geoff Pado on 5/11/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
+import ErrorHandling
 import Paywall
 import SwiftUI
 
 public struct UnpurchasedAlertViewModifier: ViewModifier {
     @Binding private var isPresented: Bool
     private let feature: UnpurchasedFeature
-    init(for feature: UnpurchasedFeature, isPresented: Binding<Bool>) {
+    private let errorHandler: any ErrorHandler
+    init(
+        for feature: UnpurchasedFeature,
+        isPresented: Binding<Bool>,
+        errorHandler: any ErrorHandler
+    ) {
         _isPresented = isPresented
         self.feature = feature
+        self.errorHandler = errorHandler
     }
 
     @State private var isShowingPaywall = false
@@ -24,7 +31,7 @@ public struct UnpurchasedAlertViewModifier: ViewModifier {
                 Text(feature.message)
             }
             .sheet(isPresented: $isShowingPaywall) {
-                PaywallView()
+                PaywallView(errorHandler: errorHandler)
             }
     }
 
@@ -32,7 +39,17 @@ public struct UnpurchasedAlertViewModifier: ViewModifier {
 }
 
 public extension View {
-    func unpurchasedAlert(for feature: UnpurchasedFeature, isPresented: Binding<Bool>) -> ModifiedContent<Self, UnpurchasedAlertViewModifier> {
-        modifier(UnpurchasedAlertViewModifier(for: feature, isPresented: isPresented))
+    func unpurchasedAlert(
+        for feature: UnpurchasedFeature,
+        isPresented: Binding<Bool>,
+        errorHandler: any ErrorHandler
+    ) -> ModifiedContent<Self, UnpurchasedAlertViewModifier> {
+        modifier(
+            UnpurchasedAlertViewModifier(
+                for: feature,
+                isPresented: isPresented,
+                errorHandler: errorHandler
+            )
+        )
     }
 }

@@ -2,16 +2,19 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import Barcodes
+import ErrorHandling
 import SwiftUI
 
 public struct RenderedCodeView: View {
     private let value: CodeValue
-    public init(value: CodeValue) {
+    private let errorHandler: any ErrorHandler
+    public init(value: CodeValue, errorHandler: any ErrorHandler) {
         self.value = value
+        self.errorHandler = errorHandler
     }
 
     public var body: some View {
-        let renderedCode = CodeValueRenderer(value: value).renderedCode
+        let renderedCode = CodeValueRenderer(value: value, errorHandler: errorHandler).renderedCode
 
         GeometryReader { proxy in
             let proxyRect = CGRect(origin: .zero, size: proxy.size)
@@ -40,6 +43,9 @@ public struct RenderedCodeView: View {
 }
 
 #Preview {
-    try! RenderedCodeView(value: .ean(value: "444444444444")).frame(width: 200, height: 100)
+    try! RenderedCodeView(
+        value: .ean(value: "444444444444"),
+        errorHandler: PreviewErrorHandler()
+    ).frame(width: 200, height: 100)
 //    RenderedCodeView(value: .qr(value: "https://cocoatype.com", correctionLevel: .m))
 }

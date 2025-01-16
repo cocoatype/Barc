@@ -9,7 +9,7 @@ import SwiftUI
 struct ErrorView: View {
     private let error: Error
     private let errorHandler: any ErrorHandler
-    init(error: Error, errorHandler: any ErrorHandler = ErrorHandling.defaultHandler) {
+    init(error: Error, errorHandler: any ErrorHandler) {
         self.error = error
         self.errorHandler = errorHandler
     }
@@ -60,7 +60,7 @@ struct ErrorView: View {
 
 #Preview {
     VStack {
-        ErrorView(error: ShareError.noCodeInImage)
-        ErrorView(error: ShareError.noExtensionContext)
+        ErrorView(error: ShareError.noCodeInImage, errorHandler: PreviewErrorHandler())
+        ErrorView(error: ShareError.noExtensionContext, errorHandler: PreviewErrorHandler())
     }
 }

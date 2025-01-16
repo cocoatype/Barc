@@ -2,12 +2,20 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import Barcodes
+import ErrorHandling
 import Shortcuts
 import SwiftUI
 import WidgetKit
 
 public struct CodeDisplayWidget: Widget {
-    public init() {}
+    private let errorHandler: any ErrorHandler
+    init(errorHandler: any ErrorHandler) {
+        self.errorHandler = errorHandler
+    }
+
+    public init() {
+        self.init(errorHandler: ErrorHandling.defaultHandler)
+    }
 
     public var body: some WidgetConfiguration {
         AppIntentConfiguration(
@@ -16,7 +24,7 @@ public struct CodeDisplayWidget: Widget {
             provider: CodeDisplayTimelineProvider()) { entry in
                 Group {
                     if let code = entry.code {
-                        CodeDisplayView(code: code)
+                        CodeDisplayView(code: code, errorHandler: errorHandler)
                     } else {
                         CodeMissingView()
                     }
@@ -41,7 +49,7 @@ public struct CodeDisplayWidget: Widget {
         )
     ),
     widget: {
-        CodeDisplayWidget()
+        CodeDisplayWidget(errorHandler: PreviewErrorHandler())
     },
     timelineProvider: {
         CodeDisplayTimelineProvider()
@@ -60,7 +68,7 @@ public struct CodeDisplayWidget: Widget {
         )
     ),
     widget: {
-        CodeDisplayWidget()
+        CodeDisplayWidget(errorHandler: PreviewErrorHandler())
     },
     timelineProvider: {
         CodeDisplayTimelineProvider()
@@ -79,7 +87,7 @@ public struct CodeDisplayWidget: Widget {
         )
     ),
     widget: {
-        CodeDisplayWidget()
+        CodeDisplayWidget(errorHandler: PreviewErrorHandler())
     },
     timelineProvider: {
         CodeDisplayTimelineProvider()
@@ -98,7 +106,7 @@ public struct CodeDisplayWidget: Widget {
         )
     ),
     widget: {
-        CodeDisplayWidget()
+        CodeDisplayWidget(errorHandler: PreviewErrorHandler())
     },
     timelineProvider: {
         CodeDisplayTimelineProvider()
@@ -110,7 +118,7 @@ public struct CodeDisplayWidget: Widget {
     as: .systemSmall,
     using: CodeDisplayConfigurationIntent(),
     widget: {
-        CodeDisplayWidget()
+        CodeDisplayWidget(errorHandler: PreviewErrorHandler())
     },
     timelineProvider: {
         CodeDisplayTimelineProvider()

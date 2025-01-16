@@ -15,7 +15,7 @@ struct ManualEntryToolbarItem: View {
     init(
         value: Binding<Route?>,
         repository: any BarcodeRepository,
-        errorHandler: any ErrorHandler = ErrorHandling.defaultHandler
+        errorHandler: any ErrorHandler
     ) {
         _sheetRoute = value
         self.repository = repository
@@ -28,7 +28,11 @@ struct ManualEntryToolbarItem: View {
             Task { await handleButtonTap() }
         } label: {
             Image(systemName: "plus")
-        }.unpurchasedAlert(for: .unlimitedBarcodes, isPresented: $isShowingPurchaseAlert)
+        }.unpurchasedAlert(
+            for: .unlimitedBarcodes,
+            isPresented: $isShowingPurchaseAlert,
+            errorHandler: errorHandler
+        )
     }
 
     func handleButtonTap() async {
@@ -48,5 +52,9 @@ struct ManualEntryToolbarItem: View {
 }
 
 #Preview {
-    ManualEntryToolbarItem(value: .constant(nil), repository: PreviewBarcodeRepository())
+    ManualEntryToolbarItem(
+        value: .constant(nil),
+        repository: PreviewBarcodeRepository(),
+        errorHandler: PreviewErrorHandler()
+    )
 }

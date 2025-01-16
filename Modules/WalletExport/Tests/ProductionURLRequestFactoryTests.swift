@@ -2,6 +2,7 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import Barcodes
+import ErrorHandlingDoubles
 import Foundation
 import XCTest
 
@@ -9,7 +10,7 @@ import XCTest
 
 class ProductionURLRequestFactoryTests: XCTestCase {
     func testRequestForValidCodeReturnsRequest() throws {
-        let factory = ProductionURLRequestFactory()
+        let factory = ProductionURLRequestFactory(errorHandler: StubErrorHandler())
         let code = Code(name: "", value: .qr(value: "Value", correctionLevel: .m), location: nil, date: nil)
 
         let request = try factory.request(for: code)

@@ -22,32 +22,53 @@ public struct RootView: View {
 
     private let repository: any BarcodeRepository
     private let routeMapper: RouteMapper
+    private let errorHandler: any ErrorHandler
     public init(
         path: Binding<NavigationPath>,
-        repository: any BarcodeRepository
+        repository: any BarcodeRepository,
+        errorHandler: any ErrorHandler
     ) {
         _path = path
         self.repository = repository
-        self.routeMapper = RouteMapper(repository: repository)
+        self.errorHandler = errorHandler
+        self.routeMapper = RouteMapper(
+            repository: repository,
+            errorHandler: errorHandler
+        )
     }
 
     public var body: some View {
         NavigationStack(path: $path) {
-            Library(currentRoute: $adamDeservesARefund, repository: repository)
-                .toolbar {
-                    ToolbarItemGroup(placement: .bottomBar) {
-                        ManualEntryToolbarItem(value: $adamDeservesARefund, repository: repository)
-                        ScannerToolbarItem(value: $adamDeservesARefund, repository: repository)
-                    }
-                    ToolbarItem(placement: .automatic) {
-                        SettingsButton(sheetRoute: $adamDeservesARefund)
-                    }
+            Library(
+                currentRoute: $adamDeservesARefund,
+                repository: repository,
+                errorHandler: errorHandler
+            )
+            .toolbar {
+                ToolbarItemGroup(placement: .bottomBar) {
+                    ManualEntryToolbarItem(
+                        value: $adamDeservesARefund,
+                        repository: repository,
+                        errorHandler: errorHandler
+                    )
+                    ScannerToolbarItem(
+                        value: $adamDeservesARefund,
+                        repository: repository,
+                        errorHandler: errorHandler
+                    )
                 }
-                .navigationDestination(for: Route.self) { routeMapper.view(for: $0) }
-                .sheet(item: $adamDeservesARefund) { routeMapper.view(for: $0) }
+                ToolbarItem(placement: .automatic) {
+                    SettingsButton(sheetRoute: $adamDeservesARefund)
+                }
+            }
+            .navigationDestination(for: Route.self) { routeMapper.view(for: $0) }
+            .sheet(item: $adamDeservesARefund) { routeMapper.view(for: $0) }
         }
         .onOpenURL { url in
-            guard let route = DeepLinkHandler().route(for: url) else { return }
+            guard let route = DeepLinkHandler(
+                repository: repository,
+                errorHandler: errorHandler
+            ).route(for: url) else { return }
             navigate(to: route)
         }
         .onAppear {
@@ -69,5 +90,9 @@ public struct RootView: View {
 }
 
 #Preview {
-    RootView(path: .constant(NavigationPath()), repository: PreviewBarcodeRepository())
+    RootView(
+        path: .constant(NavigationPath()),
+        repository: PreviewBarcodeRepository(),
+        errorHandler: PreviewErrorHandler()
+    )
 }

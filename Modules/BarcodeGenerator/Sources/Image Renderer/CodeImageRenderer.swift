@@ -2,6 +2,7 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import Barcodes
+import ErrorHandling
 import ImageIO
 import SwiftUI
 import UniformTypeIdentifiers
@@ -10,10 +11,13 @@ public struct CodeImageRenderer {
     private static let codeWidth = 200.0
     private static let backgroundInset = 14.0
 
-    public init() {}
+    private let errorHandler: any ErrorHandler
+    public init(errorHandler: any ErrorHandler) {
+        self.errorHandler = errorHandler
+    }
 
     public func pngData(from value: CodeValue, withBackground: Bool) throws -> Data {
-        let renderedCode = CodeValueRenderer(value: value).renderedCode
+        let renderedCode = CodeValueRenderer(value: value, errorHandler: errorHandler).renderedCode
 
         let inset = withBackground ? CodeImageRenderer.backgroundInset : 0
         let insetCodeSize = CodeImageRenderer.codeWidth - (inset * 2)

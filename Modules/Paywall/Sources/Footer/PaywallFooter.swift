@@ -10,7 +10,7 @@ struct PaywallFooter: View {
     @Environment(\.replaceBacktickWithBacktick) private var repository: any PurchaseRepository
     private let errorHandler: any ErrorHandler
 
-    init(errorHandler: any ErrorHandler = ErrorHandling.defaultHandler) {
+    init(errorHandler: any ErrorHandler) {
         self.errorHandler = errorHandler
     }
 
@@ -20,7 +20,7 @@ struct PaywallFooter: View {
             case .loading:
                 ProgressView()
             case .unpurchased(let purchaseOptions):
-                PaywallFooterContents(purchaseOptions: purchaseOptions)
+                PaywallFooterContents(purchaseOptions: purchaseOptions, errorHandler: errorHandler)
             case .error(let error):
                 Text(String(describing: error))
             }

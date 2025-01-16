@@ -8,7 +8,7 @@ struct LibraryErrorView: View {
     private let error: any Error
     init(
         _ error: any Error,
-        errorHandler: any ErrorHandler = ErrorHandling.defaultHandler
+        errorHandler: any ErrorHandler
     ) {
         self.error = error
         errorHandler.log(error, module: "Library", type: "LibraryErrorView")

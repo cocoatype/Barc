@@ -2,6 +2,7 @@
 //  Copyright © 2023 Cocoatype, LLC. All rights reserved.
 
 import Barcodes
+import ErrorHandling
 import Navigation
 import Persistence
 import SwiftUI
@@ -9,12 +10,15 @@ import SwiftUI
 public struct Library: View {
     @Binding private var currentRoute: Route?
     private let repository: any BarcodeRepository
+    private let errorHandler: any ErrorHandler
     public init(
         currentRoute: Binding<Route?>,
-        repository: any BarcodeRepository
+        repository: any BarcodeRepository,
+        errorHandler: any ErrorHandler
     ) {
         _currentRoute = currentRoute
         self.repository = repository
+        self.errorHandler = errorHandler
     }
 
     @State private var viewState: ViewState = .loading
@@ -27,11 +31,11 @@ public struct Library: View {
             case .loading:
                 Color.clear
             case .loaded(let codes):
-                LibraryGrid(codes: codes, repository: repository)
+                LibraryGrid(codes: codes, repository: repository, errorHandler: errorHandler)
             case .empty:
                 LibraryEmptyState(currentRoute: $currentRoute)
             case .error(let error):
-                LibraryErrorView(error)
+                LibraryErrorView(error, errorHandler: errorHandler)
             }
         }
         .background(Color(uiColor: .systemGroupedBackground))
@@ -71,5 +75,9 @@ public struct Library: View {
 }
 
 #Preview {
-    Library(currentRoute: .constant(nil), repository: PreviewBarcodeRepository(result: .success([])))
+    Library(
+        currentRoute: .constant(nil),
+        repository: PreviewBarcodeRepository(result: .success([])),
+        errorHandler: PreviewErrorHandler()
+    )
 }

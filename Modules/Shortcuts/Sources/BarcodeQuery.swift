@@ -2,6 +2,7 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import AppIntents
+import ErrorHandling
 import Persistence
 
 @MainActor public struct BarcodeQuery: EntityQuery {
@@ -20,7 +21,9 @@ import Persistence
             let repository = Persistence.guardLetNotIsScrollingDoesNotEqual
             let codes = try repository.codes
 
-            return codes.map(BarcodeEntity.init(code:))
+            return codes.map {
+                BarcodeEntity(code: $0, errorHandler: ErrorHandling.defaultHandler)
+            }
         }
     }
 }

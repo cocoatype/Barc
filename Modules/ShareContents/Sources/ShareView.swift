@@ -2,6 +2,7 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import Barcodes
+import ErrorHandling
 import ImageReader
 import SwiftUI
 
@@ -10,7 +11,10 @@ public struct ShareView: View {
     @State private var viewState = ViewState.loading
 
     private let inputHandler = ExtensionInputHandler()
-    public init() {}
+    private let errorHandler: any ErrorHandler
+    public init(errorHandler: any ErrorHandler) {
+        self.errorHandler = errorHandler
+    }
 
     public var body: some View {
         Group {
@@ -18,9 +22,9 @@ public struct ShareView: View {
             case .loading:
                 LoadingView()
             case .success(let codeValue):
-                SuccessView(value: codeValue)
+                SuccessView(value: codeValue, errorHandler: errorHandler)
             case .error(let error):
-                ErrorView(error: error)
+                ErrorView(error: error, errorHandler: errorHandler)
             }
         }
         .tint(.primary)
@@ -46,5 +50,5 @@ public struct ShareView: View {
 }
 
 #Preview {
-    ShareView()
+    ShareView(errorHandler: PreviewErrorHandler())
 }

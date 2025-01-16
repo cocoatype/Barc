@@ -9,7 +9,7 @@ import SwiftUI
 struct WatchLibraryCell: View {
     private let code: Code
     private let errorHandler: any ErrorHandler
-    init(code: Code, errorHandler: any ErrorHandler = ErrorHandling.defaultHandler) {
+    init(code: Code, errorHandler: any ErrorHandler) {
         self.code = code
         self.errorHandler = errorHandler
     }
