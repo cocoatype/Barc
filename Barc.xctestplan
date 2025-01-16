@@ -175,40 +175,27 @@
           "containerPath" : "container:Barc.xcodeproj",
           "identifier" : "6D03F8D3470FC3B579E0FB28",
           "name" : "WalletExport"
+        },
+        {
+          "containerPath" : "container:Barc.xcodeproj",
+          "identifier" : "920E42858715E26245523DF0",
+          "name" : "Releases"
+        },
+        {
+          "containerPath" : "container:Barc.xcodeproj",
+          "identifier" : "17251220D9B87328AE2DBCF3",
+          "name" : "Unpurchased"
+        },
+        {
+          "containerPath" : "container:Barc.xcodeproj",
+          "identifier" : "37894F98637893263049B68B",
+          "name" : "Web"
         }
       ]
     },
     "testTimeoutsEnabled" : true
   },
   "testTargets" : [
-    {
-      "target" : {
-        "containerPath" : "container:Barc.xcodeproj",
-        "identifier" : "3DF32F98DD9D80B0F33E8C0A",
-        "name" : "ShortcutsTests"
-      }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:Barc.xcodeproj",
-        "identifier" : "DE3175A6F25839D8B453EED7",
-        "name" : "LibraryTests"
-      }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:Barc.xcodeproj",
-        "identifier" : "1A65C8AF15A5FD9E4FD4DB1E",
-        "name" : "ImageReaderTests"
-      }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:Barc.xcodeproj",
-        "identifier" : "9EFEFCABDA65A3DF2E59E2C6",
-        "name" : "NavigationTests"
-      }
-    },
     {
       "target" : {
         "containerPath" : "container:Barc.xcodeproj",
@@ -219,15 +206,50 @@
     {
       "target" : {
         "containerPath" : "container:Barc.xcodeproj",
-        "identifier" : "228E2A51BFDE0A8D7DA58EEB",
-        "name" : "ScannerTests"
+        "identifier" : "BD73C85D2F2394F427BF6F64",
+        "name" : "WalletExportTests"
       }
     },
     {
       "target" : {
         "containerPath" : "container:Barc.xcodeproj",
-        "identifier" : "2C70B1BC6D8E4A3DA8C4425C",
-        "name" : "BarcodesTests"
+        "identifier" : "645C93D97EAAFC4220C464DC",
+        "name" : "PermissionTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Barc.xcodeproj",
+        "identifier" : "5C19261E96ACB9937FB80EA6",
+        "name" : "ShareContentsTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Barc.xcodeproj",
+        "identifier" : "A7D60DFC0C398C33DC1A4B84",
+        "name" : "ReviewRequestTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Barc.xcodeproj",
+        "identifier" : "E403E187A570C80A0EC519A8",
+        "name" : "PurchasingTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Barc.xcodeproj",
+        "identifier" : "F56E9E3AED05F39FC765BB55",
+        "name" : "UnpurchasedTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Barc.xcodeproj",
+        "identifier" : "DE3175A6F25839D8B453EED7",
+        "name" : "LibraryTests"
       }
     },
     {
@@ -254,36 +276,8 @@
     {
       "target" : {
         "containerPath" : "container:Barc.xcodeproj",
-        "identifier" : "DB52DCD5F0C469D41EF74B49",
-        "name" : "PaywallTests"
-      }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:Barc.xcodeproj",
-        "identifier" : "645C93D97EAAFC4220C464DC",
-        "name" : "PermissionTests"
-      }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:Barc.xcodeproj",
-        "identifier" : "E403E187A570C80A0EC519A8",
-        "name" : "PurchasingTests"
-      }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:Barc.xcodeproj",
-        "identifier" : "A7D60DFC0C398C33DC1A4B84",
-        "name" : "ReviewRequestTests"
-      }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:Barc.xcodeproj",
-        "identifier" : "239401D13100FBF059BB54E9",
-        "name" : "TriggersTests"
+        "identifier" : "F5AC73F5264F7778BB4CE9DA",
+        "name" : "ReleasesTests"
       }
     },
     {
@@ -296,15 +290,50 @@
     {
       "target" : {
         "containerPath" : "container:Barc.xcodeproj",
-        "identifier" : "5C19261E96ACB9937FB80EA6",
-        "name" : "ShareContentsTests"
+        "identifier" : "228E2A51BFDE0A8D7DA58EEB",
+        "name" : "ScannerTests"
       }
     },
     {
       "target" : {
         "containerPath" : "container:Barc.xcodeproj",
-        "identifier" : "BD73C85D2F2394F427BF6F64",
-        "name" : "WalletExportTests"
+        "identifier" : "2C70B1BC6D8E4A3DA8C4425C",
+        "name" : "BarcodesTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Barc.xcodeproj",
+        "identifier" : "DB52DCD5F0C469D41EF74B49",
+        "name" : "PaywallTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Barc.xcodeproj",
+        "identifier" : "1A65C8AF15A5FD9E4FD4DB1E",
+        "name" : "ImageReaderTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Barc.xcodeproj",
+        "identifier" : "9EFEFCABDA65A3DF2E59E2C6",
+        "name" : "NavigationTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Barc.xcodeproj",
+        "identifier" : "3DF32F98DD9D80B0F33E8C0A",
+        "name" : "ShortcutsTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Barc.xcodeproj",
+        "identifier" : "239401D13100FBF059BB54E9",
+        "name" : "TriggersTests"
       }
     }
   ],

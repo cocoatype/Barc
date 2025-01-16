@@ -11,6 +11,7 @@ public enum Root {
             .target(Navigation.target),
             .target(Onboarding.target),
             .target(Purchasing.target),
+            .target(Releases.target),
             .target(Scanner.target),
             .target(Unpurchased.target),
             .target(Web.target),

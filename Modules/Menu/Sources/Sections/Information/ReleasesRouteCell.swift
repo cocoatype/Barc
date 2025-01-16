@@ -1,12 +1,13 @@
 //  Created by Geoff Pado on 9/6/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
+import Releases
 import SwiftUI
 
 struct ReleasesRouteCell: View {
-    private let infoDictionary: [String: Any]?
-    init(infoDictionary: [String: Any]? = Bundle.main.infoDictionary) {
-        self.infoDictionary = infoDictionary
+    private let versionProvider: VersionProvider
+    init(versionProvider: VersionProvider) {
+        self.versionProvider = versionProvider
     }
 
     var body: some View {
@@ -19,23 +20,16 @@ struct ReleasesRouteCell: View {
     }
 
     var subtitle: String? {
-        guard let versionNumber else { return nil }
+        guard let versionNumber = versionProvider.version else { return nil }
         return MenuStrings.ReleasesRouteCell.subtitle(versionNumber)
     }
 
     var path: String {
-        guard let versionNumber else { return "releases/" }
+        guard let versionNumber = versionProvider.version else { return "releases/" }
         return "releases/\(versionNumber)/"
-    }
-
-    var versionNumber: String? {
-        guard let infoDictionary,
-              let version = infoDictionary["CFBundleShortVersionString"] as? String
-        else { return nil }
-        return version
     }
 }
 
 #Preview {
-    ReleasesRouteCell(infoDictionary: ["CFBundleShortVersionString": "24.0"])
+    ReleasesRouteCell(versionProvider: PreviewVersionProvider())
 }

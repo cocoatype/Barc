@@ -6,6 +6,7 @@ import ErrorHandling
 import Library
 import Navigation
 import Persistence
+import Releases
 import SwiftUI
 
 @MainActor
@@ -21,11 +22,12 @@ public struct RootView: View {
     @Binding private var path: NavigationPath
 
     private let repository: any BarcodeRepository
-    private let routeMapper: RouteMapper
     private let errorHandler: any ErrorHandler
+    private let routeMapper: RouteMapper
     public init(
         path: Binding<NavigationPath>,
         repository: any BarcodeRepository,
+        versionProvider: any VersionProvider,
         errorHandler: any ErrorHandler
     ) {
         _path = path
@@ -33,6 +35,7 @@ public struct RootView: View {
         self.errorHandler = errorHandler
         self.routeMapper = RouteMapper(
             repository: repository,
+            versionProvider: versionProvider,
             errorHandler: errorHandler
         )
     }
@@ -93,6 +96,7 @@ public struct RootView: View {
     RootView(
         path: .constant(NavigationPath()),
         repository: PreviewBarcodeRepository(),
+        versionProvider: PreviewVersionProvider(),
         errorHandler: PreviewErrorHandler()
     )
 }

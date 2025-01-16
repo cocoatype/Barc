@@ -2,18 +2,27 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import ErrorHandling
+import Releases
 import SwiftUI
 
 struct MenuList: View {
+    private let versionProvider: any VersionProvider
     private let errorHandler: any ErrorHandler
-    init(errorHandler: any ErrorHandler) {
+    init(
+        versionProvider: any VersionProvider,
+        errorHandler: any ErrorHandler
+    ) {
+        self.versionProvider = versionProvider
         self.errorHandler = errorHandler
     }
 
     var body: some View {
         List {
             UpsellSection(errorHandler: errorHandler)
-            InformationSection(errorHandler: errorHandler)
+            InformationSection(
+                versionProvider: versionProvider,
+                errorHandler: errorHandler
+            )
             ContactSection()
             OtherAppsSection()
         }
@@ -28,5 +37,8 @@ struct MenuList: View {
 }
 
 #Preview {
-    MenuList(errorHandler: PreviewErrorHandler())
+    MenuList(
+        versionProvider: PreviewVersionProvider(),
+        errorHandler: PreviewErrorHandler()
+    )
 }

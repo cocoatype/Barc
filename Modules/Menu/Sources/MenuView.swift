@@ -4,28 +4,39 @@
 import ErrorHandling
 import Onboarding
 import Paywall
+import Releases
 import SwiftUI
 
 public struct MenuView: View {
+    private let versionProvider: any VersionProvider
     private let errorHandler: any ErrorHandler
-    public init(errorHandler: any ErrorHandler) {
+    public init(
+        versionProvider: any VersionProvider,
+        errorHandler: any ErrorHandler
+    ) {
+        self.versionProvider = versionProvider
         self.errorHandler = errorHandler
     }
 
     public var body: some View {
         NavigationStack {
-            MenuList(errorHandler: errorHandler)
-                .navigationDestination(for: Route.self) {
-                    switch $0 {
-                    case .paywall: PaywallView(errorHandler: errorHandler)
-                    case .onboarding: OnboardingView(errorHandler: errorHandler)
-                    }
+            MenuList(
+                versionProvider: versionProvider,
+                errorHandler: errorHandler
+            )
+            .navigationDestination(for: Route.self) {
+                switch $0 {
+                case .paywall: PaywallView(errorHandler: errorHandler)
+                case .onboarding: OnboardingView(errorHandler: errorHandler)
                 }
+            }
         }
     }
 }
 
 #Preview {
-    MenuView(errorHandler: PreviewErrorHandler())
-        .tint(.primary)
+    MenuView(
+        versionProvider: PreviewVersionProvider(),
+        errorHandler: PreviewErrorHandler()
+    ).tint(.primary)
 }

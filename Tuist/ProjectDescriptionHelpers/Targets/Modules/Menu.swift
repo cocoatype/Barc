@@ -8,6 +8,7 @@ public enum Menu {
             .target(ErrorHandling.target),
             .target(Onboarding.target),
             .target(Purchasing.target),
+            .target(Releases.target),
             .target(Web.target),
         ]
     )
