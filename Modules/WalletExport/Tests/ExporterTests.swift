@@ -2,6 +2,7 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import Barcodes
+import ErrorHandlingDoubles
 import PurchasingDoubles
 import XCTest
 
@@ -15,6 +16,7 @@ class ExporterTests: XCTestCase {
         let exporter = Exporter(
             passLibrary: passLibrary,
             service: StubService(),
+            errorHandler: StubErrorHandler(),
             purchaseRepository: purchaseRepository
         )
         let code = Code(

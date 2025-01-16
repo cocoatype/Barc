@@ -3,18 +3,21 @@
 
 import Barcodes
 import BarcodeGenerator
+import ErrorHandling
 import SwiftUI
 
 struct WatchBarcodeView: View {
     private let code: Code
-    public init(code: Code) {
+    private let errorHandler: any ErrorHandler
+    public init(code: Code, errorHandler: any ErrorHandler) {
         self.code = code
+        self.errorHandler = errorHandler
     }
 
     var body: some View {
         GeometryReader { geometry in
             let spacing = geometry.size.height - geometry.size.width
-            RenderedCodeView(value: code.value)
+            RenderedCodeView(value: code.value, errorHandler: errorHandler)
                 .padding(14)
                 .background { Color.white }
                 .clipShape(RoundedRectangle(cornerRadius: 14))
@@ -30,11 +33,16 @@ struct WatchBarcodeView: View {
 import Persistence
 #Preview {
     NavigationStack {
-        WatchBarcodeView(code: PreviewBarcodeRepository.sampleCodes[0])
+        WatchBarcodeView(
+            code: PreviewBarcodeRepository.sampleCodes[0],
+            errorHandler: PreviewErrorHandler()
+        )
     }
 }
 
 #Preview {
-    WatchBarcodeView(code: PreviewBarcodeRepository.sampleCodes[1])
+    WatchBarcodeView(
+        code: PreviewBarcodeRepository.sampleCodes[1],
+        errorHandler: PreviewErrorHandler()
+    )
 }
-

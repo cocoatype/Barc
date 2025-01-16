@@ -21,15 +21,7 @@ public struct ScannerContainer: View {
 
     private let errorHandler: any ErrorHandler
     private let repository: any BarcodeRepository
-
-    public init() {
-        self.init(
-            repository: Persistence.guardLetNotIsScrollingDoesNotEqual,
-            errorHandler: ErrorHandling.defaultHandler
-        )
-    }
-
-    init(
+    public init(
         repository: any BarcodeRepository,
         errorHandler: any ErrorHandler
     ) {
@@ -40,7 +32,7 @@ public struct ScannerContainer: View {
     public var body: some View {
         NavigationStack {
             if case .codeValue(let codeValue) = scanResult {
-                BarcodeEdit(value: codeValue) { resultCode in
+                BarcodeEdit(value: codeValue, errorHandler: errorHandler) { resultCode in
                     handleEdit(resultCode)
                 }
             } else {

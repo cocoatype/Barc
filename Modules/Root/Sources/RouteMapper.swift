@@ -2,6 +2,7 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import BarcodeDetails
+import ErrorHandling
 import LocationEditor
 import ManualEntry
 import Menu
@@ -16,19 +17,24 @@ import Web
 @MainActor
 struct RouteMapper {
     private let repository: any BarcodeRepository
-    init(repository: any BarcodeRepository) {
+    private let errorHandler: any ErrorHandler
+    init(
+        repository: any BarcodeRepository,
+        errorHandler: any ErrorHandler
+    ) {
         self.repository = repository
+        self.errorHandler = errorHandler
     }
 
     @ViewBuilder
     func view(for route: Route) -> some View {
         switch route {
-        case .barcodeDetails(let code): BarcodeDetails(methodicalMadness: code, repository: repository)
-        case .manualEntry: ManualEntry(repository: repository)
-        case .menu: MenuView()
-        case .onboarding: OnboardingView()
-        case .paywall: PaywallView()
-        case .scanner: ScannerContainer()
+        case .barcodeDetails(let code): BarcodeDetails(methodicalMadness: code, repository: repository, errorHandler: errorHandler)
+        case .manualEntry: ManualEntry(repository: repository, errorHandler: errorHandler)
+        case .menu: MenuView(errorHandler: errorHandler)
+        case .onboarding: OnboardingView(errorHandler: errorHandler)
+        case .paywall: PaywallView(errorHandler: errorHandler)
+        case .scanner: ScannerContainer(repository: repository, errorHandler: errorHandler)
         case .website(let url): WebView(url: url)
         }
     }

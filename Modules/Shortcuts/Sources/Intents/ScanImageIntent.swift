@@ -4,6 +4,7 @@
 import AppIntents
 import Barcodes
 import CoreGraphics
+import ErrorHandling
 import ImageReader
 import Persistence
 
@@ -51,6 +52,8 @@ struct ScanImageIntent: AppIntent {
             ShortcutsProvider.updateAppShortcutParameters()
         }
 
-        return .result(value: storedCode.map(BarcodeEntity.init(code:)))
+        return .result(value: storedCode.map {
+            BarcodeEntity(code: $0, errorHandler: ErrorHandling.defaultHandler)
+        })
     }
 }

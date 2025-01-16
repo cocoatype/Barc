@@ -13,13 +13,16 @@ struct WalletExportButton: View {
     private let code: Code
     init(
         code: Code,
-        exportResult: Binding<ExportResult?>
+        exportResult: Binding<ExportResult?>,
+        errorHandler: any ErrorHandler
     ) {
         self.code = code
         _exportResult = exportResult
+
+        self.exporter = Exporter(errorHandler: errorHandler)
     }
 
-    private let exporter = Exporter()
+    private let exporter: Exporter
     var body: some View {
         Button(
             BarcodeDetailsStrings.WalletExportButton.title,

@@ -10,7 +10,7 @@ import SwiftData
 
 class FileBarcodeRepository: BarcodeRepository {
     private let errorHandler: any ErrorHandler
-    init(errorHandler: any ErrorHandler = ErrorHandling.defaultHandler) {
+    init(errorHandler: any ErrorHandler) {
         self.errorHandler = errorHandler
         do {
             self.modelContainer = try Self.createModelContainer()

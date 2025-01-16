@@ -9,7 +9,7 @@ import SwiftUI
 struct ManualEntryForm: View {
     @Binding private var partialCode: PartialCode
     private let errorHandler: any ErrorHandler
-    init(partialCode: Binding<PartialCode>, errorHandler: any ErrorHandler = ErrorHandling.defaultHandler) {
+    init(partialCode: Binding<PartialCode>, errorHandler: any ErrorHandler) {
         _partialCode = partialCode
         self.errorHandler = errorHandler
     }
@@ -30,5 +30,8 @@ struct ManualEntryForm: View {
 }
 
 #Preview {
-    ManualEntryForm(partialCode: .constant(PartialCode()))
+    ManualEntryForm(
+        partialCode: .constant(PartialCode()),
+        errorHandler: PreviewErrorHandler()
+    )
 }

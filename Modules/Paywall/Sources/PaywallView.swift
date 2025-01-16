@@ -2,12 +2,16 @@
 //  Copyright © 2021 Cocoatype, LLC. All rights reserved.
 
 import DesignSystem
+import ErrorHandling
 import SwiftUI
 
 public struct PaywallView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
 
-    public init() {}
+    private let errorHandler: any ErrorHandler
+    public init(errorHandler: any ErrorHandler) {
+        self.errorHandler = errorHandler
+    }
 
     public var body: some View {
         GeometryReader { proxy in
@@ -43,7 +47,7 @@ public struct PaywallView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .navigationBarHidden(true)
         }.safeAreaInset(edge: .bottom) {
-            PaywallFooter()
+            PaywallFooter(errorHandler: errorHandler)
                 .background(ignoresSafeAreaEdges: .bottom)
         }
     }
@@ -53,9 +57,9 @@ public struct PaywallView: View {
     @ViewBuilder
     private func topBar(forWidth width: Double) -> some View {
         if width < Self.breakWidth {
-            PaywallTopBarCompact()
+            PaywallTopBarCompact(errorHandler: errorHandler)
         } else {
-            PaywallTopBarRegular()
+            PaywallTopBarRegular(errorHandler: errorHandler)
         }
     }
 
@@ -71,5 +75,5 @@ public struct PaywallView: View {
 }
 
 #Preview {
-    PaywallView()
+    PaywallView(errorHandler: PreviewErrorHandler())
 }

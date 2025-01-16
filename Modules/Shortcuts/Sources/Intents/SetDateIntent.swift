@@ -4,6 +4,7 @@
 import AppIntents
 import Barcodes
 import CoreLocation
+import ErrorHandling
 import Persistence
 
 struct SetDateIntent: AppIntent {
@@ -33,6 +34,6 @@ struct SetDateIntent: AppIntent {
         try repository.update(newCode)
         ShortcutsProvider.updateAppShortcutParameters()
 
-        return .result(value: BarcodeEntity(code: newCode))
+        return .result(value: BarcodeEntity(code: newCode, errorHandler: ErrorHandling.defaultHandler))
     }
 }

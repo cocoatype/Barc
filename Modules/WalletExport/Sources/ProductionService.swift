@@ -10,7 +10,7 @@ struct ProductionService: Service {
     private let serviceDataProvider: any ServiceDataProvider
 
     init(
-        requestFactory: any URLRequestFactory = ProductionURLRequestFactory(),
+        requestFactory: any URLRequestFactory,
         serviceDataProvider: any ServiceDataProvider = URLSession.shared
     ) {
         self.requestFactory = requestFactory

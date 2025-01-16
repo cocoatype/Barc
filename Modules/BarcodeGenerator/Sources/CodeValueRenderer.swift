@@ -2,9 +2,11 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import Barcodes
+import ErrorHandling
 
 struct CodeValueRenderer: CodeRenderer {
     let value: CodeValue
+    let errorHandler: any ErrorHandler
 
     var renderedCode: RenderedCode {
         switch value {
@@ -17,9 +19,9 @@ struct CodeValueRenderer: CodeRenderer {
         case .ean(let value):
             EANCodeRenderer(value: value).renderedCode
         case .pdf417(let value):
-            PDF417CodeRenderer(value: value).renderedCode
+            PDF417CodeRenderer(value: value, errorHandler: errorHandler).renderedCode
         case .qr(let value):
-            QRCodeRenderer(value: value).renderedCode
+            QRCodeRenderer(value: value, errorHandler: errorHandler).renderedCode
         }
     }
 }

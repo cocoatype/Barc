@@ -1,6 +1,7 @@
 //  Created by Geoff Pado on 8/29/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
+import ErrorHandling
 import Persistence
 import WatchContents
 import SwiftUI
@@ -9,7 +10,10 @@ import SwiftUI
 struct BarcWatchApp: App {
     var body: some Scene {
         WindowGroup {
-            WatchRootView(repository: Persistence.guardLetNotIsScrollingDoesNotEqual)
+            WatchRootView(
+                repository: Persistence.guardLetNotIsScrollingDoesNotEqual,
+                errorHandler: ErrorHandling.defaultHandler
+            )
         }
     }
 }

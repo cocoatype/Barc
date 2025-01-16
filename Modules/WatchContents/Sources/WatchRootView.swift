@@ -2,6 +2,7 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import Barcodes
+import ErrorHandling
 import Navigation
 import Persistence
 import SwiftUI
@@ -10,12 +11,15 @@ import SwiftUI
 @MainActor
 #endif
 public struct WatchRootView: View {
-    private let repository: any BarcodeRepository
     @State private var viewState = ViewState.loading
+    private let repository: any BarcodeRepository
+    private let errorHandler: any ErrorHandler
     public init(
-        repository: any BarcodeRepository
+        repository: any BarcodeRepository,
+        errorHandler: any ErrorHandler
     ) {
         self.repository = repository
+        self.errorHandler = errorHandler
     }
 
     public var body: some View {
@@ -25,11 +29,11 @@ public struct WatchRootView: View {
                 ProgressView()
                     .onAppear { beginLoading() }
             case .success(let codes):
-                WatchSplitView(codes: codes)
+                WatchSplitView(codes: codes, errorHandler: errorHandler)
             case .empty:
                 LibraryEmptyView()
             case .error(let error):
-                ErrorView(error: error)
+                ErrorView(error: error, errorHandler: errorHandler)
             }
         }.onUpdate(to: repository) { updateViewState(with: $0) }
     }
@@ -60,6 +64,7 @@ public struct WatchRootView: View {
 
 #Preview {
     WatchRootView(
-        repository: PreviewBarcodeRepository()
+        repository: PreviewBarcodeRepository(),
+        errorHandler: PreviewErrorHandler()
     )
 }

@@ -1,6 +1,7 @@
 //  Created by Geoff Pado on 9/3/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
+import ErrorHandling
 import Paywall
 import SwiftUI
 
@@ -8,7 +9,10 @@ public struct OnboardingView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var currentPage = OnboardingPage.intro
 
-    public init() {}
+    private let errorHandler: any ErrorHandler
+    public init(errorHandler: any ErrorHandler) {
+        self.errorHandler = errorHandler
+    }
 
     public var body: some View {
         Group {
@@ -18,7 +22,7 @@ public struct OnboardingView: View {
             case .tag: TagPage()
             case .import: ImportPage()
             case .view: ViewPage()
-            case .paywall: PaywallPage()
+            case .paywall: PaywallPage(errorHandler: errorHandler)
             }
         }.environment(\.advance, AdvanceAction {
             guard let nextPage = currentPage.next else { return dismiss() }
@@ -28,5 +32,5 @@ public struct OnboardingView: View {
 }
 
 #Preview {
-    OnboardingView()
+    OnboardingView(errorHandler: PreviewErrorHandler())
 }

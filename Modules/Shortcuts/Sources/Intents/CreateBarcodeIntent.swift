@@ -3,6 +3,7 @@
 
 import AppIntents
 import Barcodes
+import ErrorHandling
 import PDF417
 import Persistence
 
@@ -47,7 +48,7 @@ struct CreateBarcodeIntent: AppIntent {
         try repository.add(storedCode)
         ShortcutsProvider.updateAppShortcutParameters()
 
-        return .result(value: BarcodeEntity(code: storedCode))
+        return .result(value: BarcodeEntity(code: storedCode, errorHandler: ErrorHandling.defaultHandler))
     }
 
     private var codeValue: CodeValue {

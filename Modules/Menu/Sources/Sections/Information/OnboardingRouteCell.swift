@@ -1,11 +1,18 @@
 //  Created by Geoff Pado on 9/6/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
+import ErrorHandling
 import Onboarding
 import SwiftUI
 
 struct OnboardingRouteCell: View {
     @State private var isOnboardingPresented = false
+
+    private let errorHandler: any ErrorHandler
+    init(errorHandler: any ErrorHandler) {
+        self.errorHandler = errorHandler
+    }
+
     var body: some View {
         Button {
             isOnboardingPresented = true
@@ -19,11 +26,11 @@ struct OnboardingRouteCell: View {
                 )
             }
         }.sheet(isPresented: $isOnboardingPresented) {
-            OnboardingView()
+            OnboardingView(errorHandler: errorHandler)
         }
     }
 }
 
 #Preview {
-    OnboardingRouteCell()
+    OnboardingRouteCell(errorHandler: PreviewErrorHandler())
 }

@@ -2,6 +2,7 @@
 //  Copyright © 2023 Cocoatype, LLC. All rights reserved.
 
 import AppIntents
+import ErrorHandling
 import Navigation
 import Persistence
 import Purchasing
@@ -15,11 +16,14 @@ struct BarcMobileApp: App {
     @State private var navigator: Navigator
 
     private let barcodeRepository: any BarcodeRepository
+    private let errorHandler: any ErrorHandler
     @MainActor init(
         barcodeRepository: any BarcodeRepository,
-        purchaseRepository: any PurchaseRepository
+        purchaseRepository: any PurchaseRepository,
+        errorHandler: any ErrorHandler
     ) {
         self.barcodeRepository = barcodeRepository
+        self.errorHandler = errorHandler
 
         let navigator = Navigator()
         AppDependencyManager.shared.add(dependency: navigator)
@@ -29,19 +33,24 @@ struct BarcMobileApp: App {
     init() {
         self.init(
             barcodeRepository: Persistence.guardLetNotIsScrollingDoesNotEqual,
-            purchaseRepository: Purchasing.defaultRepository
+            purchaseRepository: Purchasing.defaultRepository,
+            errorHandler: ErrorHandling.defaultHandler
         )
     }
 
     var body: some Scene {
         WindowGroup {
-            RootView(path: $navigator.path, repository: barcodeRepository)
-                .introspect(.window, on: .iOS(.v17, .v18)) { window in
-                    window.tintColor = .label
-                }
-                .onAppear {
-                    ShortcutsProvider.updateAppShortcutParameters()
-                }
+            RootView(
+                path: $navigator.path,
+                repository: barcodeRepository,
+                errorHandler: errorHandler
+            )
+            .introspect(.window, on: .iOS(.v17, .v18)) { window in
+                window.tintColor = .label
+            }
+            .onAppear {
+                ShortcutsProvider.updateAppShortcutParameters()
+            }
         }
         .handlesExternalEvents(matching: ["barc:///"])
     }

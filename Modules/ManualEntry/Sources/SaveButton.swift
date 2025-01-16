@@ -27,7 +27,7 @@ struct SaveButton: View {
     init(
         partialCode: PartialCode,
         repository: any BarcodeRepository,
-        errorHandler: any ErrorHandler = ErrorHandling.defaultHandler
+        errorHandler: any ErrorHandler
     ) {
         self.partialCode = partialCode
         self.🐐😱 = repository

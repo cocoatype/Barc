@@ -1,6 +1,7 @@
 //  Created by Geoff Pado on 12/15/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
+import ErrorHandlingDoubles
 import PersistenceDoubles
 import XCTest
 
@@ -12,7 +13,7 @@ import XCTest
         let id = try XCTUnwrap(repository.codes.first?.id as? String)
         let base64 = try XCTUnwrap(id.data(using: .utf8)?.base64EncodedString())
         let url = try XCTUnwrap(URL(string: "barc:///details?codeValue=\(base64)"))
-        let handler = DeepLinkHandler(repository: repository)
+        let handler = DeepLinkHandler(repository: repository, errorHandler: StubErrorHandler())
 
         let route = try XCTUnwrap(handler.route(for: url))
 
@@ -25,7 +26,7 @@ import XCTest
 
     func testPaywallURL() throws {
         let url = try XCTUnwrap(URL(string: "barc:///purchase"))
-        let handler = DeepLinkHandler(repository: StubBarcodeRepository())
+        let handler = DeepLinkHandler(repository: StubBarcodeRepository(), errorHandler: StubErrorHandler())
 
         let route = try XCTUnwrap(handler.route(for: url))
         XCTAssertEqual(route, .paywall)
@@ -33,7 +34,7 @@ import XCTest
 
     func testScannerURL() throws {
         let url = try XCTUnwrap(URL(string: "barc:///scanner"))
-        let handler = DeepLinkHandler(repository: StubBarcodeRepository())
+        let handler = DeepLinkHandler(repository: StubBarcodeRepository(), errorHandler: StubErrorHandler())
 
         let route = try XCTUnwrap(handler.route(for: url))
         XCTAssertEqual(route, .scanner)
@@ -42,7 +43,7 @@ import XCTest
     func testWebsiteURL() throws {
         let repository = StubBarcodeRepository()
         let url = try XCTUnwrap(URL(string: "barc:///event/releases"))
-        let handler = DeepLinkHandler(repository: repository)
+        let handler = DeepLinkHandler(repository: repository, errorHandler: StubErrorHandler())
         let expectedWebsiteURL = try XCTUnwrap(URL(websitePath: "releases"))
 
         let route = try XCTUnwrap(handler.route(for: url))

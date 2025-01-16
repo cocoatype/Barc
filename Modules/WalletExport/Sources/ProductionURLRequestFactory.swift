@@ -8,7 +8,7 @@ import Foundation
 struct ProductionURLRequestFactory: URLRequestFactory {
     private let errorHandler: ErrorHandler
     private let generateURL: URL
-    init(errorHandler: any ErrorHandler = ErrorHandling.defaultHandler) {
+    init(errorHandler: any ErrorHandler) {
         self.errorHandler = errorHandler
 
         guard let url = URL(string: "https://pass.getbarc.app/generate") else {

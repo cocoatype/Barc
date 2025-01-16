@@ -3,6 +3,7 @@
 
 import AppIntents
 import Barcodes
+import ErrorHandling
 
 public struct CodeDisplayConfigurationIntent: WidgetConfigurationIntent {
     public static let title: LocalizedStringResource = "DisplayCodeIntent.title"
@@ -11,7 +12,7 @@ public struct CodeDisplayConfigurationIntent: WidgetConfigurationIntent {
     public init() {}
 
     public init(code: Code) {
-        self.code = BarcodeEntity(code: code)
+        self.code = BarcodeEntity(code: code, errorHandler: ErrorHandling.defaultHandler)
     }
 
     @Parameter(

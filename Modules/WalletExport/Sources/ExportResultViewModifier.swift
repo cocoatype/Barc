@@ -1,13 +1,16 @@
 //  Created by Geoff Pado on 10/22/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
+import ErrorHandling
 import SwiftUI
 import Unpurchased
 
 struct ExportResultViewModifier: ViewModifier {
     @Binding private var exportResult: ExportResult?
-    init(exportResult: Binding<ExportResult?>) {
+    private let errorHandler: any ErrorHandler
+    init(exportResult: Binding<ExportResult?>, errorHandler: any ErrorHandler) {
         _exportResult = exportResult
+        self.errorHandler = errorHandler
     }
 
     @State private var reviewError: Error?
@@ -15,14 +18,30 @@ struct ExportResultViewModifier: ViewModifier {
         content
             .errorAlert(error: $exportResult.error)
             .errorAlert(error: $reviewError)
-            .passReviewSheet(pass: $exportResult.pass, error: $reviewError)
-            .unpurchasedAlert(for: .walletExport, isPresented: $exportResult.isUnpurchased)
+            .passReviewSheet(
+                pass: $exportResult.pass,
+                error: $reviewError,
+                errorHandler: errorHandler
+            )
+            .unpurchasedAlert(
+                for: .walletExport,
+                isPresented: $exportResult.isUnpurchased,
+                errorHandler: errorHandler
+            )
 
     }
 }
 
 public extension View {
-    func exportResult(_ exportResult: Binding<ExportResult?>) -> some View {
-        modifier(ExportResultViewModifier(exportResult: exportResult))
+    func exportResult(
+        _ exportResult: Binding<ExportResult?>,
+        errorHandler: any ErrorHandler
+    ) -> some View {
+        modifier(
+            ExportResultViewModifier(
+                exportResult: exportResult,
+                errorHandler: errorHandler
+            )
+        )
     }
 }

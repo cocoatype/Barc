@@ -12,14 +12,22 @@ public actor Exporter {
     private let errorHandler: any ErrorHandler
     private let purchaseRepository: any PurchaseRepository
 
-    public init() {
-        self.init(passLibrary: PKPassLibrary(), service: ProductionService())
+    public init(errorHandler: any ErrorHandler) {
+        self.init(
+            passLibrary: PKPassLibrary(),
+            service: ProductionService(
+                requestFactory: ProductionURLRequestFactory(
+                    errorHandler: errorHandler
+                )
+            ),
+            errorHandler: errorHandler
+        )
     }
 
     init(
         passLibrary: any PassLibrary = PKPassLibrary(),
-        service: any Service = ProductionService(),
-        errorHandler: any ErrorHandler = ErrorHandling.defaultHandler,
+        service: any Service,
+        errorHandler: any ErrorHandler,
         purchaseRepository: any PurchaseRepository = Purchasing.defaultRepository
     ) {
         self.passLibrary = passLibrary

@@ -7,13 +7,18 @@ import SwiftUI
 
 struct PassReviewView: UIViewControllerRepresentable {
     private let pass: PKPass
-    init(pass: PKPass) {
+    private let errorHandler: any ErrorHandler
+    init(
+        pass: PKPass,
+        errorHandler: any ErrorHandler
+    ) {
         self.pass = pass
+        self.errorHandler = errorHandler
     }
 
     func makeUIViewController(context: Context) -> PKAddPassesViewController {
         guard let controller = PKAddPassesViewController(pass: pass) else {
-            ErrorHandling.defaultHandler.fatalError("Unknown error creating PKAddPassesViewController.")
+            errorHandler.fatalError("Unknown error creating PKAddPassesViewController.")
         }
 
         return controller

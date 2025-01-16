@@ -9,7 +9,7 @@ import SwiftUI
 public struct PDF417CodeRenderer: CodeRenderer {
     private let encodedValue: [[Bool]]
     private let errorHandler: any ErrorHandler
-    init(value: PDF417CodeValue, errorHandler: any ErrorHandler = ErrorHandling.defaultHandler) {
+    init(value: PDF417CodeValue, errorHandler: any ErrorHandler) {
         self.errorHandler = errorHandler
         do {
             self.encodedValue = try PDF417CodeEncoder().encodedValue(for: value)

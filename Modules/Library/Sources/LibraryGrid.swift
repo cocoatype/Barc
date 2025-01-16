@@ -2,6 +2,7 @@
 //  Copyright © 2023 Cocoatype, LLC. All rights reserved.
 
 import Barcodes
+import ErrorHandling
 import Location
 import Persistence
 import SwiftUI
@@ -21,9 +22,15 @@ struct LibraryGrid: View {
     @State private var searchText = ""
 
     private let repository: any BarcodeRepository
-    init(codes: [Code], repository: any BarcodeRepository) {
+    private let errorHandler: any ErrorHandler
+    init(
+        codes: [Code],
+        repository: any BarcodeRepository,
+        errorHandler: any ErrorHandler
+    ) {
         _codes = State(initialValue: codes)
         self.repository = repository
+        self.errorHandler = errorHandler
     }
 
     var body: some View {
@@ -33,7 +40,7 @@ struct LibraryGrid: View {
                 maxWidth: 180
             ) {
                 ForEach(filteredCodes) { code in
-                    LibraryCell(code: code, repository: repository)
+                    LibraryCell(code: code, repository: repository, errorHandler: errorHandler)
                 }
             }
             .searchable(text: $searchText)
@@ -74,5 +81,9 @@ extension Array {
 }
 
 #Preview {
-    LibraryGrid(codes: PreviewBarcodeRepository.sampleCodes, repository: PreviewBarcodeRepository())
+    LibraryGrid(
+        codes: PreviewBarcodeRepository.sampleCodes,
+        repository: PreviewBarcodeRepository(),
+        errorHandler: PreviewErrorHandler()
+    )
 }

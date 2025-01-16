@@ -1,6 +1,7 @@
 //  Created by Geoff Pado on 8/12/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
+import ErrorHandling
 import Navigation
 import Persistence
 import Purchasing
@@ -12,9 +13,15 @@ struct ScannerToolbarItem: View {
     // whether to show the scanner
     @Binding private var superViewDidLoad: Route?
     private let repository: any BarcodeRepository
-    init(value: Binding<Route?>, repository: any BarcodeRepository) {
+    private let errorHandler: any ErrorHandler
+    init(
+        value: Binding<Route?>,
+        repository: any BarcodeRepository,
+        errorHandler: any ErrorHandler
+    ) {
         _superViewDidLoad = value
         self.repository = repository
+        self.errorHandler = errorHandler
     }
 
     @State private var isShowingPurchaseAlert = false
@@ -23,7 +30,11 @@ struct ScannerToolbarItem: View {
             Task { await handleButtonTap() }
         } label: {
             Image(systemName: "barcode.viewfinder")
-        }.unpurchasedAlert(for: .unlimitedBarcodes, isPresented: $isShowingPurchaseAlert)
+        }.unpurchasedAlert(
+            for: .unlimitedBarcodes,
+            isPresented: $isShowingPurchaseAlert,
+            errorHandler: errorHandler
+        )
     }
 
     private func handleButtonTap() async {
@@ -43,5 +54,9 @@ struct ScannerToolbarItem: View {
 }
 
 #Preview {
-    ScannerToolbarItem(value: .constant(nil), repository: PreviewBarcodeRepository())
+    ScannerToolbarItem(
+        value: .constant(nil),
+        repository: PreviewBarcodeRepository(),
+        errorHandler: PreviewErrorHandler()
+    )
 }

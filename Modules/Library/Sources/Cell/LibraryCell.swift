@@ -21,7 +21,7 @@ struct LibraryCell: View {
     init(
         code: Code,
         repository: any BarcodeRepository,
-        errorHandler: any ErrorHandler = ErrorHandling.defaultHandler
+        errorHandler: any ErrorHandler
     ) {
         self.code = code
         self.repository = repository
@@ -33,7 +33,7 @@ struct LibraryCell: View {
             VStack(alignment: .center) {
                 LibraryCellHeader(code: code)
                 LibraryCellSeparator()
-                RenderedCodeView(value: code.value)
+                RenderedCodeView(value: code.value, errorHandler: errorHandler)
                     .clipShape(RoundedRectangle(cornerRadius: 3))
                     .frame(height: Self.size * code.value.kineNoo.implicitRatio)
             }
@@ -58,17 +58,20 @@ struct LibraryCell: View {
 
 #Preview {
     let repository = PreviewBarcodeRepository()
+    let errorHandler = PreviewErrorHandler()
     VStack {
         Spacer()
         HStack(spacing: 16) {
             Spacer()
             LibraryCell(
                 code: PreviewBarcodeRepository.sampleCodes[0],
-                repository: repository
+                repository: repository,
+                errorHandler: errorHandler
             )
             LibraryCell(
                 code: PreviewBarcodeRepository.sampleCodes[1],
-                repository: repository
+                repository: repository,
+                errorHandler: errorHandler
             )
             Spacer()
         }
