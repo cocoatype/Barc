@@ -1,16 +1,24 @@
 //  Created by Geoff Pado on 9/6/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
+import Releases
 import SwiftUI
 
 struct CellLabel: View {
     private let title: String
     private let subtitle: String?
+    private let isBadged: Bool
     private let image: Image?
 
-    init(title: String, subtitle: String? = nil, image: Image? = nil) {
+    init(
+        title: String,
+        subtitle: String? = nil,
+        isBadged: Bool = false,
+        image: Image? = nil
+    ) {
         self.title = title
         self.subtitle = subtitle
+        self.isBadged = isBadged
         self.image = image
     }
 
@@ -23,8 +31,13 @@ struct CellLabel: View {
             }
 
             VStack(alignment: .leading) {
-                Text(title)
-                    .font(.body)
+                HStack(alignment: .firstTextBaseline, spacing: 8) {
+                    Text(title)
+                        .font(.body)
+                    if isBadged {
+                        NewReleaseBadge()
+                    }
+                }
                 if let subtitle {
                     Text(subtitle)
                         .foregroundStyle(.secondary)

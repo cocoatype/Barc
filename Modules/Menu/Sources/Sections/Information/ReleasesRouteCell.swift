@@ -14,6 +14,7 @@ struct ReleasesRouteCell: View {
         SiteURLCell(
             title: MenuStrings.ReleasesRouteCell.title,
             subtitle: subtitle,
+            isBadged: true,
             image: Asset.releases.swiftUIImage,
             path: path
         )

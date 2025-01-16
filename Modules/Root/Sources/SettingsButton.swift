@@ -2,6 +2,7 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import Navigation
+import Releases
 import SwiftUI
 
 struct SettingsButton: View {
@@ -16,6 +17,9 @@ struct SettingsButton: View {
             sheetRoute = .menu
         } label: {
             Image(systemName: "gear")
+                .overlay(alignment: .topTrailing) {
+                    NewReleaseBadge()
+                }
         }
     }
 }
