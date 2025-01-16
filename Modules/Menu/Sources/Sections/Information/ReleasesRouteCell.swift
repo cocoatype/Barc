@@ -14,15 +14,25 @@ struct ReleasesRouteCell: View {
             title: MenuStrings.ReleasesRouteCell.title,
             subtitle: subtitle,
             image: Asset.releases.swiftUIImage,
-            path: "/releases/"
+            path: path
         )
     }
 
     var subtitle: String? {
+        guard let versionNumber else { return nil }
+        return MenuStrings.ReleasesRouteCell.subtitle(versionNumber)
+    }
+
+    var path: String {
+        guard let versionNumber else { return "releases/" }
+        return "releases/\(versionNumber)/"
+    }
+
+    var versionNumber: String? {
         guard let infoDictionary,
               let version = infoDictionary["CFBundleShortVersionString"] as? String
         else { return nil }
-        return MenuStrings.ReleasesRouteCell.subtitle(version)
+        return version
     }
 }
 

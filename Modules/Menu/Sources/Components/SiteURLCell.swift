@@ -10,7 +10,7 @@ struct SiteURLCell: View {
     private let image: Image
     private let url: URL
 
-    init(title: String, subtitle: String? = nil, image: Image, path: StaticString) {
+    init(title: String, subtitle: String? = nil, image: Image, path: String) {
         self.title = title
         self.subtitle = subtitle
         self.image = image

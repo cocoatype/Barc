@@ -5,8 +5,8 @@ import ErrorHandling
 import Foundation
 
 public extension URL {
-    init(websitePath: StaticString) {
-        self = URL.websiteBaseURL.appendingPathComponent(String(websitePath))
+    init(websitePath: String) {
+        self = URL.websiteBaseURL.appendingPathComponent(websitePath)
     }
 
     init(appID: StaticString) {
