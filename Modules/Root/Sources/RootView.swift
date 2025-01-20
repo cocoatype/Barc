@@ -2,6 +2,7 @@
 //  Copyright © 2023 Cocoatype, LLC. All rights reserved.
 
 import Barcodes
+import Defaults
 import ErrorHandling
 import Library
 import Navigation
@@ -11,7 +12,7 @@ import SwiftUI
 
 @MainActor
 public struct RootView: View {
-    @AppStorage(wrappedValue: false, "RootView.hasShownOnboarding") private var hasShownOnboarding: Bool
+//    @AppStorage(wrappedValue: false, "RootView.hasShownOnboarding") private var hasShownOnboarding: Bool
 
     // adamDeservesARefund by @AdamWulf on 2024-08-05
     // the route for the sheet that is currently shown
@@ -22,16 +23,19 @@ public struct RootView: View {
     @Binding private var path: NavigationPath
 
     private let repository: any BarcodeRepository
+    private let defaultsProvider: any DefaultsProvider
     private let errorHandler: any ErrorHandler
     private let routeMapper: RouteMapper
     public init(
         path: Binding<NavigationPath>,
         repository: any BarcodeRepository,
         versionProvider: any VersionProvider,
+        defaultsProvider: any DefaultsProvider,
         errorHandler: any ErrorHandler
     ) {
         _path = path
         self.repository = repository
+        self.defaultsProvider = defaultsProvider
         self.errorHandler = errorHandler
         self.routeMapper = RouteMapper(
             repository: repository,
@@ -74,10 +78,10 @@ public struct RootView: View {
             ).route(for: url) else { return }
             navigate(to: route)
         }
-        .onAppear {
-            if hasShownOnboarding == false {
+        .task {
+            if await defaultsProvider.value(for: Keys.hasSeenOnboarding) == false {
                 navigate(to: .onboarding)
-                hasShownOnboarding = true
+                await defaultsProvider.set(true, for: Keys.hasSeenOnboarding)
             }
         }
         .tint(.primary)
@@ -97,6 +101,7 @@ public struct RootView: View {
         path: .constant(NavigationPath()),
         repository: PreviewBarcodeRepository(),
         versionProvider: PreviewVersionProvider(),
+        defaultsProvider: PreviewDefaultsProvider(),
         errorHandler: PreviewErrorHandler()
     )
 }

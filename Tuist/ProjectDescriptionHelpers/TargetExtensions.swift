@@ -40,7 +40,10 @@ extension Target {
             bundleId: "com.cocoatype.Barc.\(name)Tests",
             sources: ["Modules/\(name)/Tests/**"],
             resources: hasResources ? ["Modules/\(name)/TestResources/**"] : nil,
-            dependencies: [.target(name: name)] + dependencies,
+            dependencies: [
+                .target(name: name),
+                .target(TestHelpers.target),
+            ] + dependencies,
             settings: .settings(
                 base: [
                     "SWIFT_VERSION": "$(SWIFT_MAX_VERSION)",

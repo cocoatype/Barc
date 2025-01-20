@@ -5,6 +5,7 @@ public enum Root {
         name: "Root",
         dependencies: [
             .target(BarcodeDetails.target),
+            .target(Defaults.target),
             .target(Library.target),
             .target(ManualEntry.target),
             .target(Menu.target),

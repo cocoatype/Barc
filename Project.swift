@@ -18,6 +18,7 @@ let project = Project(
         BarcodeDetails.target,
         BarcodeEdit.target,
         BarcodeView.target,
+        Defaults.target,
         DesignSystem.target,
         ErrorHandling.target,
         ImageReader.target,
@@ -57,6 +58,7 @@ let project = Project(
         // tests
         BarcodeGenerator.testTarget,
         Barcodes.testTarget,
+        Defaults.testTarget,
         ErrorHandling.testTarget,
         ImageReader.testTarget,
         Library.testTarget,

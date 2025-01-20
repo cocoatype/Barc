@@ -1,18 +1,15 @@
 import ProjectDescription
 
-public enum ReviewRequest {
+public enum Defaults {
     public static let target = Target.moduleTarget(
-        name: "ReviewRequest",
+        name: "Defaults",
         dependencies: [
-            .target(ErrorHandling.target),
-            .target(Persistence.target),
         ]
     )
 
     public static let testTarget = Target.moduleTestTarget(
-        name: "ReviewRequest",
+        name: "Defaults",
         dependencies: [
-            .target(Persistence.doublesTarget),
         ]
     )
 }
