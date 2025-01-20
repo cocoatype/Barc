@@ -61,6 +61,7 @@ let project = Project(
         ImageReader.testTarget,
         Library.testTarget,
         Logging.testTarget,
+        Menu.testTarget,
         Navigation.testTarget,
         Paywall.testTarget,
         Permission.testTarget,

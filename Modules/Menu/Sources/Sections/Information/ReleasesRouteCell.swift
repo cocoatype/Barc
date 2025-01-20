@@ -15,17 +15,17 @@ struct ReleasesRouteCell: View {
             title: MenuStrings.ReleasesRouteCell.title,
             subtitle: subtitle,
             isBadged: true,
-            image: Asset.releases.swiftUIImage,
+            image: Image(decorative: Asset.releases),
             path: path
         )
     }
 
-    var subtitle: String? {
+    private var subtitle: String? {
         guard let versionNumber = versionProvider.version else { return nil }
         return MenuStrings.ReleasesRouteCell.subtitle(versionNumber)
     }
 
-    var path: String {
+    private var path: String {
         guard let versionNumber = versionProvider.version else { return "releases/" }
         return "releases/\(versionNumber)/"
     }

@@ -9,6 +9,7 @@ public enum Menu {
             .target(Onboarding.target),
             .target(Purchasing.target),
             .target(Releases.target),
+            .target(TestHelpers.interfaceTarget),
             .target(Web.target),
         ]
     )
@@ -16,6 +17,7 @@ public enum Menu {
     public static let testTarget = Target.moduleTestTarget(
         name: "Menu",
         dependencies: [
+            .external(name: "ViewInspector"),
         ]
     )
 }

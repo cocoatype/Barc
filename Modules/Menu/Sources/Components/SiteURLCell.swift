@@ -2,6 +2,7 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import SwiftUI
+import TestHelpersInterface
 import Web
 
 struct SiteURLCell: View {
@@ -25,7 +26,8 @@ struct SiteURLCell: View {
         self.url = URL(websitePath: path)
     }
 
-    @State private var isWebViewPresented = false
+    @State var isWebViewPresented = false
+    let inspection = Inspection<Self>()
     var body: some View {
         Button {
             isWebViewPresented = true
@@ -38,6 +40,7 @@ struct SiteURLCell: View {
         }.sheet(isPresented: $isWebViewPresented) {
             WebView(url: url)
         }
+        .onReceive(inspection.notice) { self.inspection.visit(self, $0) }
     }
 }
 
