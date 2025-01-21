@@ -22,7 +22,7 @@ enum OnboardingPage: CaseIterable {
         case .add: AddPage(currentPage: currentPage)
         case .tag: TagPage(currentPage: currentPage)
         case .import: ImportPage(currentPage: currentPage)
-        case .view: ViewPage(currentPage: currentPage])
+        case .view: ViewPage(currentPage: currentPage)
         case .paywall: PaywallPage(errorHandler: errorHandler)
         }
     }
