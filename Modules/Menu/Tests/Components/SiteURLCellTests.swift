@@ -61,5 +61,3 @@ struct SiteURLCellTests {
         #expect(badgeCount == 0)
     }
 }
-
-extension Inspection: @retroactive InspectionEmissary, @unchecked Sendable {}

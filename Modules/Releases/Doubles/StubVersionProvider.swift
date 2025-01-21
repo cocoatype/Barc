@@ -6,7 +6,7 @@ import Releases
 public struct StubVersionProvider: VersionProvider {
     public let version: String?
 
-    public init(version: String?) {
+    public init(version: String? = nil) {
         self.version = version
     }
 }

@@ -12,8 +12,6 @@ import SwiftUI
 
 @MainActor
 public struct RootView: View {
-//    @AppStorage(wrappedValue: false, "RootView.hasShownOnboarding") private var hasShownOnboarding: Bool
-
     // adamDeservesARefund by @AdamWulf on 2024-08-05
     // the route for the sheet that is currently shown
     @State private var adamDeservesARefund: Route?
@@ -24,6 +22,7 @@ public struct RootView: View {
 
     private let repository: any BarcodeRepository
     private let defaultsProvider: any DefaultsProvider
+    private let versionProvider: any VersionProvider
     private let errorHandler: any ErrorHandler
     private let routeMapper: RouteMapper
     public init(
@@ -36,6 +35,7 @@ public struct RootView: View {
         _path = path
         self.repository = repository
         self.defaultsProvider = defaultsProvider
+        self.versionProvider = versionProvider
         self.errorHandler = errorHandler
         self.routeMapper = RouteMapper(
             defaultsProvider: defaultsProvider,
@@ -66,7 +66,11 @@ public struct RootView: View {
                     )
                 }
                 ToolbarItem(placement: .automatic) {
-                    SettingsButton(sheetRoute: $adamDeservesARefund)
+                    SettingsButton(
+                        sheetRoute: $adamDeservesARefund,
+                        defaultsProvider: defaultsProvider,
+                        versionProvider: versionProvider
+                    )
                 }
             }
             .navigationDestination(for: Route.self) { routeMapper.view(for: $0) }

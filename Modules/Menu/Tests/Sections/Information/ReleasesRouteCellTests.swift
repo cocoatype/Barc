@@ -1,6 +1,7 @@
 //  Created by Geoff Pado on 1/20/25.
 //  Copyright © 2025 Cocoatype, LLC. All rights reserved.
 
+import Defaults
 import DefaultsDoubles
 import Releases
 import ReleasesDoubles
@@ -71,6 +72,23 @@ struct ReleasesRouteCellTests {
             let badgeCount =  inspectedCell.findAll(NewReleaseBadge.self).count
 
             #expect(badgeCount == 0)
+        }
+    }
+
+    @Test("Updates last seen version number on appearance")
+    func updatesLastSeenVersionNumberOnAppearance() async throws {
+        let defaultsProvider = StubDefaultsProvider(lastSeenVersion: "1.0")
+        let versionProvider = StubVersionProvider(version: "99.0")
+        let cell = ReleasesRouteCell(
+            defaultsProvider: defaultsProvider,
+            versionProvider: versionProvider
+        )
+
+        ViewHosting.host(view: cell)
+        defer { ViewHosting.expel() }
+        
+        try await cell.inspection.inspect { _ in
+            await #expect(defaultsProvider.value(for: Keys.lastSeenVersion) == "99.0")
         }
     }
 }

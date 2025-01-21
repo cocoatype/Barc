@@ -27,6 +27,9 @@ struct ReleasesRouteCell: View {
             path: path
         ).task {
             isBadged = await isNewReleaseAvailable
+            if let currentVersion = versionProvider.version {
+                await defaultsProvider.set(currentVersion, for: Keys.lastSeenVersion)
+            }
         }
         .onReceive(inspection.notice) { self.inspection.visit(self, $0) }
     }
