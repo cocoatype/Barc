@@ -6,10 +6,10 @@ import SwiftUI
 import UIKit
 
 struct PageControl: UIViewRepresentable {
-    private let currentPage: Int
+    @Binding private var currentPage: Int
     private let pageCount: Int
-    init(currentPage: Int, pageCount: Int) {
-        self.currentPage = currentPage
+    init(currentPage: Binding<Int>, pageCount: Int) {
+        _currentPage = currentPage
         self.pageCount = pageCount
     }
 
@@ -19,11 +19,28 @@ struct PageControl: UIViewRepresentable {
         pageControl.currentPageIndicatorTintColor = .primaryButtonBackground
         pageControl.currentPage = currentPage
         pageControl.numberOfPages = pageCount
+        pageControl.addTarget(context.coordinator, action: #selector(Coordinator.valueChanged(_:)), for: .valueChanged)
         return pageControl
     }
 
     func updateUIView(_ control: UIPageControl, context: Context) {
         control.currentPage = currentPage
         control.numberOfPages = pageCount
+    }
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator(currentPage: $currentPage)
+    }
+
+    @MainActor class Coordinator: NSObject {
+        @Binding private var currentPage: Int
+
+        init(currentPage: Binding<Int>) {
+            _currentPage = currentPage
+        }
+
+        @objc func valueChanged(_ sender: UIPageControl) {
+            currentPage = sender.currentPage
+        }
     }
 }

@@ -9,11 +9,10 @@ struct TagPage: View {
 
     var body: some View {
         StandardPage(
-            imageLight: Asset.tagOnboarding.swiftUIImage,
-            imageDark: Asset.tagOnboardingDark.swiftUIImage,
+            image: Asset.tagOnboarding.swiftUIImage,
             headline: OnboardingStrings.TagPage.headline,
             message: OnboardingStrings.TagPage.body,
-            pageIndex: 1
+            pageIndex: .constant(1)
         )
     }
 }

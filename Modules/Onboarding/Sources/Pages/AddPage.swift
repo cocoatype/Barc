@@ -7,11 +7,10 @@ import SwiftUI
 struct AddPage: View {
     var body: some View {
         StandardPage(
-            imageLight: Asset.addOnboarding.swiftUIImage,
-            imageDark: Asset.addOnboardingDark.swiftUIImage,
+            image: Asset.addOnboarding.swiftUIImage,
             headline: OnboardingStrings.AddPage.headline,
             message: LocalizedStringKey("AddPage.body\(Image(systemName: "plus"))\(Image(systemName: "barcode.viewfinder"))"),
-            pageIndex: 0
+            pageIndex: .constant(0)
         )
     }
 }

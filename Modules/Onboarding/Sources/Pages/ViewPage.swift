@@ -7,11 +7,10 @@ struct ViewPage: View {
     @Environment(\.advance) private var advance
     var body: some View {
         StandardPage(
-            imageLight: Asset.viewOnboarding.swiftUIImage,
-            imageDark: Asset.viewOnboardingDark.swiftUIImage,
+            image: Asset.viewOnboarding.swiftUIImage,
             headline: OnboardingStrings.ViewPage.headline,
             message: OnboardingStrings.ViewPage.body,
-            pageIndex: 3
+            pageIndex: .constant(3)
         )
     }
 }

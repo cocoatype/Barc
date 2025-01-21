@@ -67,6 +67,7 @@ let project = Project(
         Logging.testTarget,
         Menu.testTarget,
         Navigation.testTarget,
+        Onboarding.testTarget,
         Paywall.testTarget,
         Permission.testTarget,
         Purchasing.testTarget,
