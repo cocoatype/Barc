@@ -4,17 +4,21 @@
 import SwiftUI
 
 struct ViewPage: View {
-    @Environment(\.advance) private var advance
+    @Binding private var currentPage: Int
+    init(currentPage: Binding<Int>) {
+        _currentPage = currentPage
+    }
+
     var body: some View {
         StandardPage(
             image: Asset.viewOnboarding.swiftUIImage,
             headline: OnboardingStrings.ViewPage.headline,
             message: OnboardingStrings.ViewPage.body,
-            pageIndex: .constant(3)
+            pageIndex: $currentPage
         )
     }
 }
 
 #Preview {
-    ViewPage()
+    ViewPage(currentPage: .constant(4))
 }

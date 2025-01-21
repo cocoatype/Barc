@@ -1,7 +1,10 @@
 //  Created by Geoff Pado on 9/4/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-enum OnboardingPage {
+import ErrorHandling
+import SwiftUI
+
+enum OnboardingPage: CaseIterable {
     case intro
     case add
     case tag
@@ -9,14 +12,18 @@ enum OnboardingPage {
     case view
     case paywall
 
-    var next: OnboardingPage? {
+    @MainActor @ViewBuilder
+    func pageView(
+        currentPage: Binding<Int>,
+        errorHandler: any ErrorHandler
+    ) -> some View {
         switch self {
-        case .intro: .add
-        case .add: .tag
-        case .tag: .import
-        case .import: .view
-        case .view: .paywall
-        case .paywall: .none
+        case .intro: IntroPage()
+        case .add: AddPage(currentPage: currentPage)
+        case .tag: TagPage(currentPage: currentPage)
+        case .import: ImportPage(currentPage: currentPage)
+        case .view: ViewPage(currentPage: currentPage])
+        case .paywall: PaywallPage(errorHandler: errorHandler)
         }
     }
 }

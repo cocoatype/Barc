@@ -4,17 +4,21 @@
 import SwiftUI
 
 struct ImportPage: View {
-    @Environment(\.advance) private var advance
+    @Binding private var currentPage: Int
+    init(currentPage: Binding<Int>) {
+        _currentPage = currentPage
+    }
+
     var body: some View {
         StandardPage(
             image: Asset.importOnboarding.swiftUIImage,
             headline: OnboardingStrings.ImportPage.headline,
             message: LocalizedStringKey("ImportPage.body\(Image(systemName: "square.and.arrow.up"))"),
-            pageIndex: .constant(2)
+            pageIndex: $currentPage
         )
     }
 }
 
 #Preview {
-    ImportPage()
+    ImportPage(currentPage: .constant(3))
 }

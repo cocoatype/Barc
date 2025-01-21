@@ -7,7 +7,7 @@ import SwiftUI
 
 public struct OnboardingView: View {
     @Environment(\.dismiss) private var dismiss
-    @State private var currentPage = OnboardingPage.intro
+    @State private var currentPageIndex = 0
 
     private let errorHandler: any ErrorHandler
     public init(errorHandler: any ErrorHandler) {
@@ -15,19 +15,18 @@ public struct OnboardingView: View {
     }
 
     public var body: some View {
-        Group {
-            switch currentPage {
-            case .intro: IntroPage()
-            case .add: AddPage()
-            case .tag: TagPage()
-            case .import: ImportPage()
-            case .view: ViewPage()
-            case .paywall: PaywallPage(errorHandler: errorHandler)
-            }
-        }.environment(\.advance, AdvanceAction {
-            guard let nextPage = currentPage.next else { return dismiss() }
-            currentPage = nextPage
-        })
+        currentPage
+            .pageView(
+                currentPage: $currentPageIndex,
+                errorHandler: errorHandler
+            )
+            .environment(\.advance, AdvanceAction {
+                currentPageIndex = (currentPageIndex + 1) % OnboardingPage.allCases.count
+            })
+    }
+
+    private var currentPage: OnboardingPage {
+        OnboardingPage.allCases[currentPageIndex]
     }
 }
 
