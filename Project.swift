@@ -47,11 +47,13 @@ let project = Project(
         Web.target,
         WidgetContents.target,
         // doubles
+        Defaults.doublesTarget,
         ErrorHandling.doublesTarget,
         Logging.doublesTarget,
         Permission.doublesTarget,
         Persistence.doublesTarget,
         Purchasing.doublesTarget,
+        Releases.doublesTarget,
         // test helpers
         TestHelpers.target,
         TestHelpers.interfaceTarget,

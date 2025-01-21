@@ -18,6 +18,8 @@ public enum Menu {
     public static let testTarget = Target.moduleTestTarget(
         name: "Menu",
         dependencies: [
+            .target(Defaults.doublesTarget),
+            .target(Releases.doublesTarget),
             .external(name: "ViewInspector"),
         ]
     )

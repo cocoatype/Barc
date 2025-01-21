@@ -12,4 +12,10 @@ public enum Defaults {
         dependencies: [
         ]
     )
+
+    public static let doublesTarget = Target.moduleDoublesTarget(
+        name: "Defaults",
+        dependencies: [
+        ]
+    )
 }

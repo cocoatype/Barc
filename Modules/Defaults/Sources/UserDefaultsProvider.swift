@@ -4,7 +4,6 @@
 import Foundation
 
 actor UserDefaultsProvider: DefaultsProvider {
-    private let userDefaults: UserDefaults
     init(userDefaults: UserDefaults) {
         self.userDefaults = userDefaults
     }
@@ -23,5 +22,12 @@ actor UserDefaultsProvider: DefaultsProvider {
 
     func set(_ value: String?, for key: Key<String>) {
         userDefaults.set(value, forKey: key.value)
+    }
+
+    // MARK: - Test Hooks
+
+    let userDefaults: UserDefaults
+    func perform<T>(_ op: @Sendable (isolated UserDefaultsProvider) throws -> sending T) rethrows -> sending T {
+        try op(self)
     }
 }

@@ -8,37 +8,87 @@ import Testing
 @testable import Defaults
 
 struct UserDefaultsProviderTests {
-    @Test("string(forKey:) returns value from UserDefaults")
-    func stringForKeyReturnsValue() async throws {
+    @Test("value(for:) returns string value from UserDefaults")
+    func valueForStringKeyReturnsValue() async throws {
+        let keyValue = "key"
+        let key = Key<String>(value: keyValue)
         let userDefaults = try UserDefaults(suiteName: UUID().uuidString).unwrapped
-        userDefaults.set("test", forKey: "key")
+        userDefaults.set("test", forKey: keyValue)
         let provider = UserDefaultsProvider(userDefaults: userDefaults)
 
-        #expect(await provider.string(forKey: "key") == "test")
+        #expect(await provider.value(for: key) == "test")
     }
 
-    @Test("string(forKey:) returns nil value if not set")
-    func stringForKeyReturnsNilIfNotSet() async throws {
+    @Test("value(for:) returns nil value for string key if not set")
+    func valueForStringKeyReturnsNilIfNotSet() async throws {
+        let keyValue = "key"
+        let key = Key<String>(value: keyValue)
         let userDefaults = try UserDefaults(suiteName: UUID().uuidString).unwrapped
         let provider = UserDefaultsProvider(userDefaults: userDefaults)
 
-        #expect(await provider.string(forKey: "key") == nil)
+        #expect(await provider.value(for: key) == nil)
     }
 
-    @Test("bool(forKey:) returns value from UserDefaults")
-    func boolForKeyReturnsValue() async throws {
+    @Test("set(_:for:) sets value for string key")
+    func setValueForStringKeySetsValue() async throws {
+        let keyValue = "key"
+        let key = Key<String>(value: keyValue)
         let userDefaults = try UserDefaults(suiteName: UUID().uuidString).unwrapped
-        userDefaults.set(true, forKey: "key")
         let provider = UserDefaultsProvider(userDefaults: userDefaults)
 
-        #expect(await provider.bool(forKey: "key") == true)
+        await provider.set("test", for: key)
+        let value = await provider.perform {
+            $0.userDefaults.string(forKey: keyValue)
+        }
+        #expect(value == "test")
     }
 
-    @Test("bool(forKey:) returns false if not set")
-    func boolForKeyReturnsNilIfNotSet() async throws {
+    @Test("set(_:for:) sets nil value for string key")
+    func setValueForStringKeySetsNilValue() async throws {
+        let keyValue = "key"
+        let key = Key<String>(value: keyValue)
         let userDefaults = try UserDefaults(suiteName: UUID().uuidString).unwrapped
         let provider = UserDefaultsProvider(userDefaults: userDefaults)
 
-        #expect(await provider.bool(forKey: "key") == false)
+        await provider.set(nil, for: key)
+        let value = await provider.perform {
+            $0.userDefaults.string(forKey: keyValue)
+        }
+        #expect(value == nil)
+    }
+
+    @Test("value(for:) returns bool value from UserDefaults")
+    func valueForBoolKeyReturnsValue() async throws {
+        let keyValue = "key"
+        let key = Key<Bool>(value: keyValue)
+        let userDefaults = try UserDefaults(suiteName: UUID().uuidString).unwrapped
+        userDefaults.set(true, forKey: keyValue)
+        let provider = UserDefaultsProvider(userDefaults: userDefaults)
+
+        #expect(await provider.value(for: key) == true)
+    }
+
+    @Test("value(for:) returns false for bool key if not set")
+    func valueForBoolKeyReturnsFalseIfNotSet() async throws {
+        let keyValue = "key"
+        let key = Key<Bool>(value: keyValue)
+        let userDefaults = try UserDefaults(suiteName: UUID().uuidString).unwrapped
+        let provider = UserDefaultsProvider(userDefaults: userDefaults)
+
+        #expect(await provider.value(for: key) == false)
+    }
+
+    @Test("set(_:for:) sets value for bool key")
+    func setValueForBoolKeySetsValue() async throws {
+        let keyValue = "key"
+        let key = Key<Bool>(value: keyValue)
+        let userDefaults = try UserDefaults(suiteName: UUID().uuidString).unwrapped
+        let provider = UserDefaultsProvider(userDefaults: userDefaults)
+
+        await provider.set(true, for: key)
+        let value = await provider.perform {
+            $0.userDefaults.bool(forKey: keyValue)
+        }
+        #expect(value == true)
     }
 }

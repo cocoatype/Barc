@@ -2,6 +2,7 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import BarcodeDetails
+import Defaults
 import ErrorHandling
 import LocationEditor
 import ManualEntry
@@ -17,14 +18,17 @@ import Web
 
 @MainActor
 struct RouteMapper {
+    private let defaultsProvider: any DefaultsProvider
     private let repository: any BarcodeRepository
     private let versionProvider: any VersionProvider
     private let errorHandler: any ErrorHandler
     init(
+        defaultsProvider: any DefaultsProvider,
         repository: any BarcodeRepository,
         versionProvider: any VersionProvider,
         errorHandler: any ErrorHandler
     ) {
+        self.defaultsProvider = defaultsProvider
         self.repository = repository
         self.versionProvider = versionProvider
         self.errorHandler = errorHandler
@@ -43,6 +47,7 @@ struct RouteMapper {
             errorHandler: errorHandler
         )
         case .menu: MenuView(
+            defaultsProvider: defaultsProvider,
             versionProvider: versionProvider,
             errorHandler: errorHandler
         )

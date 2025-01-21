@@ -38,6 +38,7 @@ public struct RootView: View {
         self.defaultsProvider = defaultsProvider
         self.errorHandler = errorHandler
         self.routeMapper = RouteMapper(
+            defaultsProvider: defaultsProvider,
             repository: repository,
             versionProvider: versionProvider,
             errorHandler: errorHandler
