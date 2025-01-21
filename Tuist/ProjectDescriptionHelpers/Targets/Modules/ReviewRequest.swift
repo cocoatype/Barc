@@ -13,7 +13,6 @@ public enum ReviewRequest {
         name: "ReviewRequest",
         dependencies: [
             .target(Persistence.doublesTarget),
-            .target(TestHelpers.target),
         ]
     )
 }

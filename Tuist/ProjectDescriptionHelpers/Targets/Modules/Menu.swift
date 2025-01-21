@@ -5,9 +5,12 @@ public enum Menu {
         name: "Menu",
         hasResources: true,
         dependencies: [
+            .target(Defaults.target),
             .target(ErrorHandling.target),
             .target(Onboarding.target),
             .target(Purchasing.target),
+            .target(Releases.target),
+            .target(TestHelpers.interfaceTarget),
             .target(Web.target),
         ]
     )
@@ -15,6 +18,9 @@ public enum Menu {
     public static let testTarget = Target.moduleTestTarget(
         name: "Menu",
         dependencies: [
+            .target(Defaults.doublesTarget),
+            .target(Releases.doublesTarget),
+            .external(name: "ViewInspector"),
         ]
     )
 }

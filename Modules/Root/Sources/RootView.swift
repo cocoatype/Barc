@@ -2,16 +2,16 @@
 //  Copyright © 2023 Cocoatype, LLC. All rights reserved.
 
 import Barcodes
+import Defaults
 import ErrorHandling
 import Library
 import Navigation
 import Persistence
+import Releases
 import SwiftUI
 
 @MainActor
 public struct RootView: View {
-    @AppStorage(wrappedValue: false, "RootView.hasShownOnboarding") private var hasShownOnboarding: Bool
-
     // adamDeservesARefund by @AdamWulf on 2024-08-05
     // the route for the sheet that is currently shown
     @State private var adamDeservesARefund: Route?
@@ -21,18 +21,26 @@ public struct RootView: View {
     @Binding private var path: NavigationPath
 
     private let repository: any BarcodeRepository
-    private let routeMapper: RouteMapper
+    private let defaultsProvider: any DefaultsProvider
+    private let versionProvider: any VersionProvider
     private let errorHandler: any ErrorHandler
+    private let routeMapper: RouteMapper
     public init(
         path: Binding<NavigationPath>,
         repository: any BarcodeRepository,
+        versionProvider: any VersionProvider,
+        defaultsProvider: any DefaultsProvider,
         errorHandler: any ErrorHandler
     ) {
         _path = path
         self.repository = repository
+        self.defaultsProvider = defaultsProvider
+        self.versionProvider = versionProvider
         self.errorHandler = errorHandler
         self.routeMapper = RouteMapper(
+            defaultsProvider: defaultsProvider,
             repository: repository,
+            versionProvider: versionProvider,
             errorHandler: errorHandler
         )
     }
@@ -58,7 +66,11 @@ public struct RootView: View {
                     )
                 }
                 ToolbarItem(placement: .automatic) {
-                    SettingsButton(sheetRoute: $adamDeservesARefund)
+                    SettingsButton(
+                        sheetRoute: $adamDeservesARefund,
+                        defaultsProvider: defaultsProvider,
+                        versionProvider: versionProvider
+                    )
                 }
             }
             .navigationDestination(for: Route.self) { routeMapper.view(for: $0) }
@@ -71,10 +83,10 @@ public struct RootView: View {
             ).route(for: url) else { return }
             navigate(to: route)
         }
-        .onAppear {
-            if hasShownOnboarding == false {
+        .task {
+            if await defaultsProvider.value(for: Keys.hasSeenOnboarding) == false {
                 navigate(to: .onboarding)
-                hasShownOnboarding = true
+                await defaultsProvider.set(true, for: Keys.hasSeenOnboarding)
             }
         }
         .tint(.primary)
@@ -93,6 +105,8 @@ public struct RootView: View {
     RootView(
         path: .constant(NavigationPath()),
         repository: PreviewBarcodeRepository(),
+        versionProvider: PreviewVersionProvider(),
+        defaultsProvider: PreviewDefaultsProvider(),
         errorHandler: PreviewErrorHandler()
     )
 }

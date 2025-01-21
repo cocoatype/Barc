@@ -21,7 +21,6 @@ public enum ShareContents {
         dependencies: [
             .target(Persistence.doublesTarget),
             .target(Purchasing.doublesTarget),
-            .target(TestHelpers.target),
         ]
     )
 }

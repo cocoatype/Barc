@@ -6,6 +6,7 @@ import TestHelpers
 import XCTest
 
 final class StubErrorHandlerTests: XCTestCase {
+    @MainActor
     func testFatalErrorExpectation() {
         let expectation = expectation(description: "fatal error behavior replaced")
         let handler = StubErrorHandler(fatalErrorExpectation: expectation)
