@@ -5,19 +5,21 @@ import Permission
 import SwiftUI
 
 struct TagPage: View {
-    @Environment(\.advance) private var advance
+    @Binding private var currentPage: Int
+    init(currentPage: Binding<Int>) {
+        _currentPage = currentPage
+    }
 
     var body: some View {
         StandardPage(
-            imageLight: Asset.tagOnboarding.swiftUIImage,
-            imageDark: Asset.tagOnboardingDark.swiftUIImage,
+            image: Asset.tagOnboarding.swiftUIImage,
             headline: OnboardingStrings.TagPage.headline,
             message: OnboardingStrings.TagPage.body,
-            pageIndex: 1
+            pageIndex: $currentPage
         )
     }
 }
 
 #Preview {
-    TagPage()
+    TagPage(currentPage: .constant(2))
 }

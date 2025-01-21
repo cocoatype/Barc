@@ -6,57 +6,46 @@ import SwiftUI
 struct StandardPage: View {
     @Environment(\.advance) private var advance
     @Environment(\.colorScheme) private var colorScheme
+    @Binding private var pageIndex: Int
 
-    private let imageLight: Image
-    private let imageDark: Image
+    private let image: Image
     private let headline: String
     private let message: StringRepresentation
-    private let pageIndex: Int
     init(
-        imageLight: Image,
-        imageDark: Image,
+        image: Image,
         headline: String,
         message: StringRepresentation,
-        pageIndex: Int
+        pageIndex: Binding<Int>
     ) {
-        self.imageLight = imageLight
-        self.imageDark = imageDark
+        self.image = image
         self.headline = headline
         self.message = message
-        self.pageIndex = pageIndex
+        _pageIndex = pageIndex
     }
 
     init(
-        imageLight: Image,
-        imageDark: Image,
+        image: Image,
         headline: String,
         message: String,
-        pageIndex: Int
+        pageIndex: Binding<Int>
     ) {
-        self.init(imageLight: imageLight, imageDark: imageDark, headline: headline, message: .string(message), pageIndex: pageIndex)
+        self.init(image: image, headline: headline, message: .string(message), pageIndex: pageIndex)
     }
 
     init(
-        imageLight: Image,
-        imageDark: Image,
+        image: Image,
         headline: String,
         message: LocalizedStringKey,
-        pageIndex: Int
+        pageIndex: Binding<Int>
     ) {
-        self.init(imageLight: imageLight, imageDark: imageDark, headline: headline, message: .key(message), pageIndex: pageIndex)
+        self.init(image: image, headline: headline, message: .key(message), pageIndex: pageIndex)
     }
 
     var body: some View {
         VStack {
             ScrollIfNecessary {
                 VStack {
-                    Group {
-                        switch colorScheme {
-                        case .dark: imageDark
-                        case .light: imageLight
-                        @unknown default: imageLight
-                        }
-                    }.padding(.top, 16)
+                    image.padding(.top, 16)
                     TextStack(
                         headline: headline,
                         message: message
@@ -65,6 +54,7 @@ struct StandardPage: View {
             }
             Spacer()
             VStack {
+                PageControl(currentPage: $pageIndex, pageCount: OnboardingPage.allCases.count)
                 HStack(spacing: 16) {
                     PrimaryButton(title: OnboardingStrings.StandardPage.continueButtonTitle) {
                         advance()

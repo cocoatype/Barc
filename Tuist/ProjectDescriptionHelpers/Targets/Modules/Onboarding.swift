@@ -15,6 +15,7 @@ public enum Onboarding {
     public static let testTarget = Target.moduleTestTarget(
         name: "Onboarding",
         dependencies: [
+            .external(name: "ViewInspector"),
         ]
     )
 }

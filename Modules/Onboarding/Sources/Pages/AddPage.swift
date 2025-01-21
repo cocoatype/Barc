@@ -5,17 +5,21 @@ import Permission
 import SwiftUI
 
 struct AddPage: View {
+    @Binding private var currentPage: Int
+    init(currentPage: Binding<Int>) {
+        _currentPage = currentPage
+    }
+
     var body: some View {
         StandardPage(
-            imageLight: Asset.addOnboarding.swiftUIImage,
-            imageDark: Asset.addOnboardingDark.swiftUIImage,
+            image: Asset.addOnboarding.swiftUIImage,
             headline: OnboardingStrings.AddPage.headline,
             message: LocalizedStringKey("AddPage.body\(Image(systemName: "plus"))\(Image(systemName: "barcode.viewfinder"))"),
-            pageIndex: 0
+            pageIndex: $currentPage
         )
     }
 }
 
 #Preview {
-    AddPage()
+    AddPage(currentPage: .constant(1))
 }
