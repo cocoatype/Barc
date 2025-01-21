@@ -12,6 +12,7 @@ public enum Releases {
         name: "Releases",
         dependencies: [
             .target(Defaults.doublesTarget),
+            .target(Releases.doublesTarget),
         ]
     )
 
