@@ -2,7 +2,7 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import Barcodes
-import Shortcuts
+import WidgetShortcuts
 import WidgetKit
 
 struct CodeDisplayTimelineProvider: AppIntentTimelineProvider {

@@ -11,6 +11,7 @@ public enum Releases {
     public static let testTarget = Target.moduleTestTarget(
         name: "Releases",
         dependencies: [
+            .target(Defaults.target),
             .target(Defaults.doublesTarget),
             .target(Releases.doublesTarget),
         ]

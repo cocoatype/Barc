@@ -15,11 +15,11 @@ public enum App {
         ]),
         entitlements: "App/Mobile/Barc.entitlements",
         dependencies: [
+            .target(AppShortcuts.target),
             .target(Defaults.target),
             .target(Purchasing.target),
             .target(Root.target),
             .target(Share.target),
-            .target(Shortcuts.target),
             .target(Watch.target),
             .target(Widgets.target),
             .external(name: "SwiftUIIntrospect-Dynamic"),

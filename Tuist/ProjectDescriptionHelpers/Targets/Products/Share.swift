@@ -12,6 +12,7 @@ public enum Share {
         ],
         entitlements: "Products/Share/Share.entitlements",
         dependencies: [
+            .target(ErrorHandling.target),
             .target(ShareContents.target),
         ],
         settings: .settings(

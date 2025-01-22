@@ -6,6 +6,7 @@ public enum Unpurchased {
         hasResources: true,
         dependencies: [
             .target(DesignSystem.target),
+            .target(ErrorHandling.target),
             .target(Paywall.target),
         ]
     )
@@ -13,6 +14,7 @@ public enum Unpurchased {
     public static let testTarget = Target.moduleTestTarget(
         name: "Unpurchased",
         dependencies: [
+            .target(DesignSystem.target),
         ]
     )
 }

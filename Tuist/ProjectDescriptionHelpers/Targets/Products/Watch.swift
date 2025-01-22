@@ -15,7 +15,9 @@ public enum Watch {
         ]),
         entitlements: "Products/Watch/Watch.entitlements",
         dependencies: [
-           .target(WatchContents.target),
+            .target(ErrorHandling.target),
+            .target(Persistence.target),
+            .target(WatchContents.target),
         ],
         settings: .settings(
             base: [

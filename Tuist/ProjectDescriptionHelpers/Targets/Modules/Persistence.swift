@@ -8,6 +8,7 @@ public enum Persistence {
         dependencies: [
             .target(Barcodes.target),
             .target(ErrorHandling.target),
+            .external(name: "PDF417"),
         ]
     )
 
@@ -18,6 +19,9 @@ public enum Persistence {
     )
 
     public static let doublesTarget = Target.moduleDoublesTarget(
-        name: "Persistence"
+        name: "Persistence",
+        dependencies: [
+            .target(Barcodes.target),
+        ]
     )
 }

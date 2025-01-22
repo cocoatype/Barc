@@ -13,6 +13,7 @@ let project = Project(
         Watch.target,
         Widgets.target,
         // modules
+        AppShortcuts.target,
         BarcodeGenerator.target,
         Barcodes.target,
         BarcodeDetails.target,
@@ -39,13 +40,14 @@ let project = Project(
         Root.target,
         Scanner.target,
         ShareContents.target,
-        Shortcuts.target,
+        ShortcutsModels.target,
         Triggers.target,
         Unpurchased.target,
         WalletExport.target,
         WatchContents.target,
         Web.target,
         WidgetContents.target,
+        WidgetShortcuts.target,
         // doubles
         Defaults.doublesTarget,
         ErrorHandling.doublesTarget,
@@ -58,6 +60,7 @@ let project = Project(
         TestHelpers.target,
         TestHelpers.interfaceTarget,
         // tests
+        AppShortcuts.testTarget,
         BarcodeGenerator.testTarget,
         Barcodes.testTarget,
         Defaults.testTarget,
@@ -76,11 +79,12 @@ let project = Project(
         Root.testTarget,
         Scanner.testTarget,
         ShareContents.testTarget,
-        Shortcuts.testTarget,
+        ShortcutsModels.testTarget,
         Triggers.testTarget,
         Unpurchased.testTarget,
         WalletExport.testTarget,
         WidgetContents.testTarget,
+        WidgetShortcuts.testTarget,
     ],
     schemes: [
         .scheme(

@@ -1,0 +1,23 @@
+// Display name of the barcode entity type
+"BarcodeEntity.typeDisplayRepresentation" = "Barcode";
+
+// Display name of the barcode format entity type
+"BarcodeFormatEntity.typeDisplayRepresentation" = "Barcode Format";
+
+// Name of the Codabar format
+"BarcodeFormatEntity.codabar" = "Codabar";
+
+// Name of the Code 39 format
+"BarcodeFormatEntity.code39" = "Code 39";
+
+// Name of the Code 128 format
+"BarcodeFormatEntity.code128" = "Code 128";
+
+// Name of the EAN-13 format
+"BarcodeFormatEntity.ean13" = "UPC/EAN-13";
+
+// Name of the PDF417 format
+"BarcodeFormatEntity.pdf417" = "PDF417";
+
+// Name of the QR format
+"BarcodeFormatEntity.qr" = "QR";

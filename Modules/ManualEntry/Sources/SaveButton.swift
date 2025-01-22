@@ -1,11 +1,11 @@
 //  Created by Geoff Pado on 9/4/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
+import AppShortcuts
 import Barcodes
 import ErrorHandling
 import Persistence
 import ReviewRequest
-import Shortcuts
 import StoreKit
 import SwiftUI
 

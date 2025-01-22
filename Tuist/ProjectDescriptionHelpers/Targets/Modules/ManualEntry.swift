@@ -5,11 +5,12 @@ public enum ManualEntry {
         name: "ManualEntry",
         hasResources: true,
         dependencies: [
+            .target(AppShortcuts.target),
             .target(Barcodes.target),
             .target(ErrorHandling.target),
             .target(Persistence.target),
             .target(ReviewRequest.target),
-            .target(Shortcuts.target),
+            .external(name: "PDF417"),
         ]
     )
 
