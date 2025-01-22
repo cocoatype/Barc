@@ -17,6 +17,7 @@ public enum WidgetShortcuts {
             .target(Barcodes.target),
             .target(ErrorHandling.target),
             .target(ErrorHandling.doublesTarget),
+            .target(ShortcutsModels.target),
         ]
     )
 }

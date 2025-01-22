@@ -5,7 +5,7 @@ import Barcodes
 import ErrorHandlingDoubles
 import XCTest
 
-@testable import ShortcutsIntents
+@testable import ShortcutsModels
 
 class BarcodeEntityTests: XCTestCase {
     func testInitCopies() {

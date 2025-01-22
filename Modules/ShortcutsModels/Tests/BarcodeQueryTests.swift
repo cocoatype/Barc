@@ -3,7 +3,7 @@
 
 import XCTest
 
-@testable import ShortcutsIntents
+@testable import ShortcutsModels
 
 class BarcodeQueryTests: XCTestCase {
     

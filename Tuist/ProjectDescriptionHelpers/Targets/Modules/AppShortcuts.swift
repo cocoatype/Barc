@@ -19,6 +19,7 @@ public enum AppShortcuts {
     public static let testTarget = Target.moduleTestTarget(
         name: "AppShortcuts",
         dependencies: [
+            .target(ShortcutsModels.target),
         ]
     )
 }
