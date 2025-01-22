@@ -5,12 +5,13 @@ public enum BarcodeDetails {
         name: "BarcodeDetails",
         hasResources: true,
         dependencies: [
+            .target(AppShortcuts.target),
             .target(Barcodes.target),
             .target(BarcodeEdit.target),
             .target(BarcodeView.target),
             .target(ErrorHandling.target),
             .target(Persistence.target),
-            .target(Shortcuts.target),
+            .target(Purchasing.target),
             .target(WalletExport.target),
         ]
     )

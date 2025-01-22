@@ -8,7 +8,7 @@ public enum WidgetContents {
             .target(Barcodes.target),
             .target(BarcodeGenerator.target),
             .target(ErrorHandling.target),
-            .target(Shortcuts.target),
+            .target(WidgetShortcuts.target),
         ]
     )
 

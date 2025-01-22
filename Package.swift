@@ -9,6 +9,8 @@ let watchCompatibility: SettingsDictionary = ["TARGETED_DEVICE_FAMILY": "1,4"]
 
 let packageSettings = PackageSettings(
     productTypes: [
+        "BigInt": .framework,
+        "PDF417": .framework,
         "TelemetryClient": .framework,
         "SwiftUIIntrospect": .framework,
     ],

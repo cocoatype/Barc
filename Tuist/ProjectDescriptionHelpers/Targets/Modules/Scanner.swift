@@ -5,12 +5,13 @@ public enum Scanner {
         name: "Scanner",
         hasResources: true,
         dependencies: [
+            .target(AppShortcuts.target),
+            .target(Barcodes.target),
             .target(BarcodeEdit.target),
             .target(ErrorHandling.target),
             .target(ImageReader.target),
             .target(Persistence.target),
             .target(ReviewRequest.target),
-            .target(Shortcuts.target),
         ]
     )
 

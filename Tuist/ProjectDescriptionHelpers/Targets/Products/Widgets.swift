@@ -12,7 +12,8 @@ public enum Widgets {
         ],
         entitlements: "Products/Widgets/Widgets.entitlements",
         dependencies: [
-           .target(WidgetContents.target),
+            .target(WidgetShortcuts.target),
+            .target(WidgetContents.target),
         ],
         settings: .settings(
             base: [

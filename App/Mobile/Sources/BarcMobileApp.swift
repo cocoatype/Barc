@@ -2,6 +2,7 @@
 //  Copyright © 2023 Cocoatype, LLC. All rights reserved.
 
 import AppIntents
+import AppShortcuts
 import Defaults
 import ErrorHandling
 import Navigation
@@ -9,7 +10,6 @@ import Persistence
 import Purchasing
 import Releases
 import Root
-import Shortcuts
 import SwiftUI
 import SwiftUIIntrospect
 

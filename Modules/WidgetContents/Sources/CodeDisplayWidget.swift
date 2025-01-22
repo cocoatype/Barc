@@ -3,9 +3,9 @@
 
 import Barcodes
 import ErrorHandling
-import Shortcuts
 import SwiftUI
 import WidgetKit
+import WidgetShortcuts
 
 public struct CodeDisplayWidget: Widget {
     private let errorHandler: any ErrorHandler

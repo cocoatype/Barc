@@ -1,0 +1,128 @@
+// Description for the "create code" intent
+"CreateBarcodeIntent.description" = "Creates a barcode with a given value.";
+
+// Default value for the name parameter in the "create code" intent
+"CreateBarcodeIntent.defaultName" = "New Code";
+
+// Title for the format parameter in the "create code" intent
+"CreateBarcodeIntent.format" = "Format";
+
+// Title for the name parameter in the "create code" intent
+"CreateBarcodeIntent.name" = "Name";
+
+// Title for the value parameter in the "create code" intent
+"CreateBarcodeIntent.value" = "Value";
+
+// Parameter summary for the "create code" intent
+"CreateBarcodeIntent.parameterSummary${format}${value}" = "Create a ${format} code with value ${value}";
+
+// Title for the "create code" intent
+"CreateBarcodeIntent.title" = "Create Barcode";
+
+// Description for the "display code" intent
+"DisplayCodeIntent.description" = "Displays an image of a barcode.";
+
+// The title for the code parameter in the "display code" intent
+"DisplayCodeIntent.code.title" = "Barcode";
+
+// The title for the "has background" parameter in the "display code" intent
+"DisplayCodeIntent.hasBackground.title" = "With Background";
+
+// The parameter summary for the "display code" intent
+"DisplayCodeIntent.parameterSummary${code}" = "Show ${code}";
+
+// The title for the "display code" intent
+"DisplayCodeIntent.title" = "Show Barcode";
+
+// The title for the code parameter in the "get barcode value" intent
+"GetBarcodeValueIntent.code" = "Barcode";
+
+// Description for the "get barcode value" intent
+"GetBarcodeValueIntent.description" = "Gets the value of a barcode.";
+
+// Parameter summary for the "get barcode value" intent
+"GetBarcodeValueIntent.parameterSummary${code}" = "Get value of ${code}";
+
+// Title for the "get barcode value" intent
+"GetBarcodeValueIntent.title" = "Get Barcode Value";
+
+// Error description for when we are unable to create a CGImage from the given image data
+"ImageError.cannotCreateImageFromData" = "Barc was unable to create an image from the given data.";
+
+// Description for the "list barcodes" intent
+"ListBarcodesIntent.description" = "Lists all the barcodes in Barc.";
+
+// Parameter summary for the "list barcodes" intent
+"ListBarcodesIntent.parameterSummary" = "List all barcodes";
+
+// Title for the "list barcodes" intent
+"ListBarcodesIntent.title" = "List Barcodes";
+
+// Description for the "open code" intent
+"OpenCodeIntent.description" = "Opens a barcode in Barc.";
+
+// The title for the code parameter in the "open code" intent
+"OpenCodeIntent.code.title" = "Barcode";
+
+// The parameter summary for the "open code" intent
+"OpenCodeIntent.parameterSummary${target}" = "Open ${target}";
+
+// The title for the "open code" intent
+"OpenCodeIntent.title" = "Open Barcode";
+
+// Default value for the name parameter in the "create code" intent
+"ScanImageIntent.defaultName" = "Scanned Code";
+
+// Description for the "scan image" intent
+"ScanImageIntent.description" = "Scans an image looking for a barcode.";
+
+// The title for the image parameter in the "scan image" intent
+"ScanImageIntent.image" = "Image";
+
+// The title for the name parameter in the "scan image" intent
+"ScanImageIntent.name" = "Name";
+
+// Parameter summary for the "scan image" intent
+"ScanImageIntent.parameterSummary${image}" = "Scan ${image}";
+
+// Title for the "scan image" intent
+"ScanImageIntent.title" = "Scan Image";
+
+// Description for the "set date" intent
+"SetDateIntent.description" = "Sets the relevant date for a barcode.";
+
+// The title for the date parameter in the "set date" intent
+"SetDateIntent.date" = "Date";
+
+// The title for the code parameter in the "set date" intent
+"SetDateIntent.code" = "Barcode";
+
+// Parameter summary for the "set date" intent
+"SetDateIntent.parameterSummary${code}${date}" = "Set date of ${code} to ${date}";
+
+// Title for the "set date" intent
+"SetDateIntent.title" = "Set Date";
+
+// Description for the "set location" intent
+"SetLocationIntent.description" = "Sets the relevant location for a barcode.";
+
+// The title for the placemark parameter in the "set location" intent
+"SetLocationIntent.placemark" = "Location";
+
+// The title for the code parameter in the "set location" intent
+"SetLocationIntent.code" = "Barcode";
+
+// Parameter summary for the "set location" intent
+"SetLocationIntent.parameterSummary${code}${placemark}" = "Set location of ${code} to ${placemark}";
+
+// Title for the "set location" intent
+"SetLocationIntent.title" = "Set Location";
+
+// Error description when a location has no associated coordinate.
+"SetLocationIntentError.missingCoordinate" = "The given location has no associated coordinate.";
+
+// The default phrase for the “open code” App Shortcut
+"ShortcutsProvider.OpenCodeIntent.phrase${code}" = "${code}";
+
+// The short title for the “open code” App Shortcut
+"ShortcutsProvider.OpenCodeIntent.shortTitle" = "Open Barcode";

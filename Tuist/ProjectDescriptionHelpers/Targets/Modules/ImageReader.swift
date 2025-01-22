@@ -15,6 +15,7 @@ public enum ImageReader {
         name: "ImageReader",
         hasResources: true,
         dependencies: [
+            .target(Barcodes.target),
         ]
     )
 }

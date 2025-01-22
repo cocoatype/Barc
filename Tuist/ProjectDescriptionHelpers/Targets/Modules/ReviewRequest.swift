@@ -12,7 +12,9 @@ public enum ReviewRequest {
     public static let testTarget = Target.moduleTestTarget(
         name: "ReviewRequest",
         dependencies: [
+            .target(Barcodes.target),
             .target(Persistence.doublesTarget),
+            .target(TestHelpers.interfaceTarget),
         ]
     )
 }

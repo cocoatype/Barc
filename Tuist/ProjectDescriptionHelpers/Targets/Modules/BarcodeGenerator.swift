@@ -16,6 +16,7 @@ public enum BarcodeGenerator {
     public static let testTarget = Target.moduleTestTarget(
         name: "BarcodeGenerator",
         dependencies: [
+            .target(Barcodes.target),
         ]
     )
 }

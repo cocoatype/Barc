@@ -9,12 +9,15 @@ public enum WalletExport {
             .target(ErrorHandling.target),
             .target(Purchasing.target),
             .target(Unpurchased.target),
+            .external(name: "PDF417"),
         ]
     )
 
     public static let testTarget = Target.moduleTestTarget(
         name: "WalletExport",
         dependencies: [
+            .target(Barcodes.target),
+            .target(ErrorHandling.doublesTarget),
             .target(Purchasing.doublesTarget),
         ]
     )

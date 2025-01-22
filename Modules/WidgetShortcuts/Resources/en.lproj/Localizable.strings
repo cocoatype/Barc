@@ -1,0 +1,14 @@
+// Description for the "display code" intent
+"DisplayCodeIntent.description" = "Displays an image of a barcode.";
+
+// The title for the code parameter in the "display code" intent
+"DisplayCodeIntent.code.title" = "Barcode";
+
+// The title for the "has background" parameter in the "display code" intent
+"DisplayCodeIntent.hasBackground.title" = "With Background";
+
+// The parameter summary for the "display code" intent
+"DisplayCodeIntent.parameterSummary${code}" = "Show ${code}";
+
+// The title for the "display code" intent
+"DisplayCodeIntent.title" = "Show Barcode";

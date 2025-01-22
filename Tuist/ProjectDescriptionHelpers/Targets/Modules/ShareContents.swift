@@ -5,6 +5,7 @@ public enum ShareContents {
         name: "ShareContents",
         hasResources: true,
         dependencies: [
+            .target(AppShortcuts.target),
             .target(BarcodeEdit.target),
             .target(Barcodes.target),
             .target(DesignSystem.target),
@@ -12,7 +13,6 @@ public enum ShareContents {
             .target(ImageReader.target),
             .target(Persistence.target),
             .target(Purchasing.target),
-            .target(Shortcuts.target),
         ]
     )
 
