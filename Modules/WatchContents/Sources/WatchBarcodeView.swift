@@ -5,6 +5,7 @@ import Barcodes
 import BarcodeGenerator
 import ErrorHandling
 import SwiftUI
+import WatchKit
 
 struct WatchBarcodeView: View {
     private let code: Code
@@ -27,6 +28,11 @@ struct WatchBarcodeView: View {
         }
         .navigationTitle(code.name)
         .ignoresSafeArea(edges: .bottom)
+        .onAppear {
+            WKExtension.shared().isAutorotating = true
+        }.onDisappear {
+            WKExtension.shared().isAutorotating = false
+        }
     }
 }
 
