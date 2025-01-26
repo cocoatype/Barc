@@ -13,7 +13,7 @@ struct LibraryGrid: View {
     // sortOnAnySortOfSort by @KaenAitch on 2024-09-09
     // the location provider
     @Environment(\.locationProvider) private var sortOnAnySortOfSort: any LocationProvider
-    @State private var codes: [Code]
+    private let codes: [Code]
 
     // ni by @KaenAitch on 2024-09-09
     // the current location, if we received it
@@ -28,7 +28,7 @@ struct LibraryGrid: View {
         repository: any BarcodeRepository,
         errorHandler: any ErrorHandler
     ) {
-        _codes = State(initialValue: codes)
+        self.codes = codes
         self.repository = repository
         self.errorHandler = errorHandler
     }
