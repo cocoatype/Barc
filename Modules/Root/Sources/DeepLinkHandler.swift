@@ -4,7 +4,7 @@
 import Barcodes
 import ErrorHandling
 import Foundation
-import Navigation
+import Routing
 import Persistence
 
 @MainActor

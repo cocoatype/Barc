@@ -5,7 +5,7 @@ import Barcodes
 import BarcodeGenerator
 import DesignSystem
 import ErrorHandling
-import Navigation
+import Routing
 import Persistence
 import SwiftUI
 

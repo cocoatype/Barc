@@ -2,7 +2,7 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import DesignSystem
-import Navigation
+import Routing
 import SwiftUI
 
 struct BarcodeTriggersButton: View {
