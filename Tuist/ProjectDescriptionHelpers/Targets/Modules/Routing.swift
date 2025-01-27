@@ -1,8 +1,8 @@
 import ProjectDescription
 
-public enum Navigation {
+public enum Routing {
     public static let target = Target.moduleTarget(
-        name: "Navigation",
+        name: "Routing",
         destinations: [.iPhone, .appleWatch],
         dependencies: [
             .target(Barcodes.target),
@@ -10,7 +10,7 @@ public enum Navigation {
     )
 
     public static let testTarget = Target.moduleTestTarget(
-        name: "Navigation",
+        name: "Routing",
         dependencies: [
         ]
     )

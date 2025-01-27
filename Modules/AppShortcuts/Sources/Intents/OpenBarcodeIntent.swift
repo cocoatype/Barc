@@ -2,7 +2,7 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import AppIntents
-import Navigation
+import Routing
 import ShortcutsModels
 
 struct OpenCodeIntent: OpenIntent {

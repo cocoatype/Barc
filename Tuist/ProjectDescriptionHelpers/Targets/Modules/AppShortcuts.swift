@@ -9,8 +9,8 @@ public enum AppShortcuts {
             .target(Barcodes.target),
             .target(ErrorHandling.target),
             .target(ImageReader.target),
-            .target(Navigation.target),
             .target(Persistence.target),
+            .target(Routing.target),
             .target(ShortcutsModels.target),
             .external(name: "PDF417"),
         ]

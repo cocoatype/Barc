@@ -2,7 +2,7 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import Defaults
-import Navigation
+import Routing
 import Releases
 import SwiftUI
 import TestHelpersInterface
