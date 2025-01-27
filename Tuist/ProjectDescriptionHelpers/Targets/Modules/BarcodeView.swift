@@ -8,7 +8,7 @@ public enum BarcodeView {
             .target(Barcodes.target),
             .target(BarcodeGenerator.target),
             .target(DesignSystem.target),
-            .target(Navigation.target),
+            .target(Routing.target),
             .external(name: "SwiftUIIntrospect-Dynamic"),
         ]
     )

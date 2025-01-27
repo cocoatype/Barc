@@ -5,7 +5,7 @@ import AppIntents
 import AppShortcuts
 import Defaults
 import ErrorHandling
-import Navigation
+import Routing
 import Persistence
 import Purchasing
 import Releases

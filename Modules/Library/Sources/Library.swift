@@ -3,7 +3,7 @@
 
 import Barcodes
 import ErrorHandling
-import Navigation
+import Routing
 import Persistence
 import SwiftUI
 

@@ -2,7 +2,7 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import ErrorHandling
-import Navigation
+import Routing
 import Persistence
 import Purchasing
 import SwiftUI

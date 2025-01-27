@@ -7,7 +7,7 @@ import ErrorHandling
 import LocationEditor
 import ManualEntry
 import Menu
-import Navigation
+import Routing
 import Onboarding
 import Paywall
 import Persistence

@@ -10,8 +10,8 @@ public enum Library {
             .target(DesignSystem.target),
             .target(ErrorHandling.target),
             .target(Location.target),
-            .target(Navigation.target),
             .target(Persistence.target),
+            .target(Routing.target),
             .target(Triggers.target),
         ]
     )

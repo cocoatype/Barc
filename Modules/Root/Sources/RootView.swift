@@ -5,7 +5,7 @@ import Barcodes
 import Defaults
 import ErrorHandling
 import Library
-import Navigation
+import Routing
 import Persistence
 import Releases
 import SwiftUI

@@ -2,7 +2,7 @@
 //  Copyright © 2025 Cocoatype, LLC. All rights reserved.
 
 import DefaultsDoubles
-import Navigation
+import Routing
 import Releases
 import ReleasesDoubles
 import SwiftUI
