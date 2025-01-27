@@ -6,6 +6,13 @@ import WidgetShortcuts
 import WidgetKit
 
 struct CodeDisplayTimelineProvider: AppIntentTimelineProvider {
+    let codes: [Code]
+    func recommendations() -> [AppIntentRecommendation<WidgetShortcuts.CodeDisplayConfigurationIntent>] {
+        codes.map { code in
+            AppIntentRecommendation(intent: CodeDisplayConfigurationIntent(code: code), description: code.name)
+        }
+    }
+
     typealias Intent = CodeDisplayConfigurationIntent
 
     func placeholder(in context: Context) -> CodeDisplayTimelineEntry {
