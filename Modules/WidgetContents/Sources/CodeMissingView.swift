@@ -5,18 +5,32 @@ import SwiftUI
 
 struct CodeMissingView: View {
     var body: some View {
-        VStack {
+        SizeDependentView { square in
             Asset.customBarcodeBadgeQuestionmark.swiftUIImage
-                .font(.largeTitle)
-                .foregroundStyle(.black)
-            Text(WidgetContentsStrings.CodeMissingView.text)
-                .font(.subheadline)
-                .padding(.horizontal, 14)
-                .foregroundStyle(.black)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .offset(x: 3, y: 3)
+                .padding(3)
+                .frame(width: square.width, height: square.height, alignment: .center)
+                .position(x: square.midX, y: square.midY)
+        } largeContent: {
+            VStack {
+                Asset.customBarcodeBadgeQuestionmark.swiftUIImage
+                    .font(.largeTitle)
+                    .foregroundStyle(.black)
+                Text(WidgetContentsStrings.CodeMissingView.text)
+                    .font(.subheadline)
+                    .padding(.horizontal, 14)
+                    .foregroundStyle(.black)
+            }
         }
     }
 }
 
-#Preview {
+#Preview("Small", traits: .fixedLayout(width: 47, height: 47)) {
+    CodeMissingView()
+}
+
+#Preview("Large", traits: .fixedLayout(width: 200, height: 200)) {
     CodeMissingView()
 }

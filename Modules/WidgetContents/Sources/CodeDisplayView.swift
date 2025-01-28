@@ -17,19 +17,17 @@ struct CodeDisplayView: View {
     }
 
     var body: some View {
-        GeometryReader { proxy in
-            if isSmall(proxy.size) {
-                let square = self.square(in: proxy.size)
-                Image(systemName: imageName)
-                    .resizable()
-                    .padding(3)
-                    .frame(width: square.width, height: square.height, alignment: .topLeading)
-                    .position(x: proxy.frame(in: .local).midX, y: proxy.frame(in: .local).midY)
-            } else {
-                RenderedCodeView(value: code.value, errorHandler: errorHandler)
-                    .padding(14)
-                    .clipShape(ContainerRelativeShape().inset(by: 14))
-            }
+        SizeDependentView { square in
+            Image(systemName: imageName)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .padding(3)
+                .frame(width: square.width, height: square.height, alignment: .center)
+                .position(x: square.midX, y: square.midY)
+        } largeContent: {
+            RenderedCodeView(value: code.value, errorHandler: errorHandler)
+                .padding(14)
+                .clipShape(ContainerRelativeShape().inset(by: 14))
         }
         .codeURL(code)
     }
@@ -40,20 +38,16 @@ struct CodeDisplayView: View {
         case .pdf417, .qr: "qrcode"
         }
     }
-
-    private func isSmall(_ size: CGSize) -> Bool {
-        max(size.height, size.width) < 100
-    }
-
-    private func square(in circleSize: CGSize) -> CGRect {
-        let diameter = min(circleSize.height, circleSize.width)
-        let sideLength = diameter / 2.squareRoot()
-        let offset = (diameter - sideLength) / 2
-        return CGRect(x: offset, y: offset, width: sideLength, height: sideLength)
-    }
 }
 
-#Preview(traits: .fixedLayout(width: 47, height: 47)) {
+#Preview("Small", traits: .fixedLayout(width: 47, height: 47)) {
+    CodeDisplayView(
+        code: PreviewBarcodeRepository.sampleCodes[1],
+        errorHandler: PreviewErrorHandler()
+    )
+}
+
+#Preview("Large", traits: .fixedLayout(width: 200, height: 200)) {
     CodeDisplayView(
         code: PreviewBarcodeRepository.sampleCodes[1],
         errorHandler: PreviewErrorHandler()
