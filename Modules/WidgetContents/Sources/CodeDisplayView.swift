@@ -4,6 +4,7 @@
 import Barcodes
 import BarcodeGenerator
 import ErrorHandling
+import Persistence
 import SwiftUI
 import WidgetKit
 
@@ -16,9 +17,39 @@ struct CodeDisplayView: View {
     }
 
     var body: some View {
-        RenderedCodeView(value: code.value, errorHandler: errorHandler)
-            .padding(14)
-            .clipShape(ContainerRelativeShape().inset(by: 14))
-            .codeURL(code)
+        SizeDependentView { square in
+            Image(systemName: imageName)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .padding(3)
+                .frame(width: square.width, height: square.height, alignment: .center)
+                .position(x: square.midX, y: square.midY)
+        } largeContent: {
+            RenderedCodeView(value: code.value, errorHandler: errorHandler)
+                .padding(14)
+                .clipShape(ContainerRelativeShape().inset(by: 14))
+        }
+        .codeURL(code)
     }
+
+    private var imageName: String {
+        switch code.value {
+        case .code128, .code39, .codabar, .ean: "barcode"
+        case .pdf417, .qr: "qrcode"
+        }
+    }
+}
+
+#Preview("Small", traits: .fixedLayout(width: 47, height: 47)) {
+    CodeDisplayView(
+        code: PreviewBarcodeRepository.sampleCodes[1],
+        errorHandler: PreviewErrorHandler()
+    )
+}
+
+#Preview("Large", traits: .fixedLayout(width: 200, height: 200)) {
+    CodeDisplayView(
+        code: PreviewBarcodeRepository.sampleCodes[1],
+        errorHandler: PreviewErrorHandler()
+    )
 }

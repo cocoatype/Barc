@@ -3,6 +3,7 @@ import ProjectDescription
 public enum WidgetShortcuts {
     public static let target = Target.moduleTarget(
         name: "WidgetShortcuts",
+        destinations: [.iPhone, .appleWatch],
         hasResources: true,
         dependencies: [
             .target(Barcodes.target),

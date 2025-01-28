@@ -7,10 +7,8 @@ import Routing
 import Persistence
 import SwiftUI
 
-#if compiler(<6.0)
-@MainActor
-#endif
 public struct WatchRootView: View {
+    @State private var selectedCode: Code?
     @State private var viewState = ViewState.loading
     private let repository: any BarcodeRepository
     private let errorHandler: any ErrorHandler
@@ -29,13 +27,40 @@ public struct WatchRootView: View {
                 ProgressView()
                     .onAppear { beginLoading() }
             case .success(let codes):
-                WatchSplitView(codes: codes, errorHandler: errorHandler)
+                WatchSplitView(
+                    codes: codes,
+                    selectedCode: $selectedCode,
+                    errorHandler: errorHandler
+                )
             case .empty:
                 LibraryEmptyView()
             case .error(let error):
                 ErrorView(error: error, errorHandler: errorHandler)
             }
-        }.onUpdate(to: repository) { updateViewState(with: $0) }
+        }
+        .onUpdate(to: repository) { updateViewState(with: $0) }
+        .onOpenURL { handle($0) }
+    }
+
+    private func handle(_ url: URL) {
+        guard let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true),
+              url.pathComponents.count > 1,
+              url.pathComponents[1] == "details",
+              let queryItems = urlComponents.queryItems,
+              let codeValueItem = queryItems.first(where: { $0.name == "codeValue" }),
+              let codeValue = codeValueItem.value,
+              let codeData = Data(base64Encoded: codeValue),
+              let decodedValue = String(data: codeData, encoding: .utf8)
+        else { return }
+
+        do {
+            let codes = try repository.codes
+            let matchingCode = codes.first(where: { $0.id == decodedValue })
+
+            updateViewState(with: codes, selectedCode: matchingCode)
+        } catch {
+            errorHandler.log(error, module: "WatchContents", type: "WatchRootView")
+        }
     }
 
     private func beginLoading() {
@@ -46,17 +71,19 @@ public struct WatchRootView: View {
         }
     }
 
-    private func updateViewState(with codes: [Code]) {
+    private func updateViewState(with codes: [Code], selectedCode: Code? = nil) {
         if codes.count > 0 {
-            viewState = .success(codes)
+            viewState = .success(codes: codes)
+            self.selectedCode = selectedCode ?? codes.first
         } else {
             viewState = .empty
+            self.selectedCode = nil
         }
     }
 
     private enum ViewState {
         case loading
-        case success([Code])
+        case success(codes: [Code])
         case empty
         case error(Error)
     }

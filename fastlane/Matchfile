@@ -13,6 +13,7 @@ for_platform :ios do
                    "com.cocoatype.Barc",
                    "com.cocoatype.Barc.Share",
                    "com.cocoatype.Barc.Watch",
+                   "com.cocoatype.Barc.Watch.Widgets",
                    "com.cocoatype.Barc.Widgets",
                  ])
 end

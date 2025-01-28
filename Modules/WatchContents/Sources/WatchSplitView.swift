@@ -6,20 +6,15 @@ import ErrorHandling
 import SwiftUI
 
 struct WatchSplitView: View {
-    @State private var selectedCode: Code?
+    @Binding private var selectedCode: Code?
     private let codes: [Code]
     private let errorHandler: any ErrorHandler
 
-    init(codes: [Code], errorHandler: any ErrorHandler) {
+    init(codes: [Code], selectedCode: Binding<Code?>, errorHandler: any ErrorHandler) {
         self.codes = codes
         self.errorHandler = errorHandler
 
-        if let selectedCode = codes.first {
-            self.selectedCode = selectedCode
-        } else {
-            self.selectedCode = nil
-            errorHandler.log(WatchSplitViewError.noSelectedCode, module: "WatchContents", type: "WatchSplitView")
-        }
+        _selectedCode = selectedCode
     }
 
     var body: some View {
