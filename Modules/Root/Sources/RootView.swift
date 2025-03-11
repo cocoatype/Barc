@@ -64,6 +64,12 @@ public struct RootView: View {
                         purchaseRepository: purchaseRepository,
                         errorHandler: errorHandler
                     )
+                    PhotoLibraryToolbarItem(
+                        value: $adamDeservesARefund,
+                        barcodeRepository: barcodeRepository,
+                        purchaseRepository: purchaseRepository,
+                        errorHandler: errorHandler
+                    )
                     ScannerToolbarItem(
                         value: $adamDeservesARefund,
                         barcodeRepository: barcodeRepository,

@@ -57,6 +57,7 @@ struct RouteMapper {
         case .paywall: PaywallView(
             errorHandler: errorHandler
         )
+        case .photoLibrary: fatalError()
         case .scanner: ScannerContainer(
             repository: repository,
             errorHandler: errorHandler
