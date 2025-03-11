@@ -7,6 +7,7 @@ import ErrorHandling
 import Library
 import Routing
 import Persistence
+import Purchasing
 import Releases
 import SwiftUI
 
@@ -20,26 +21,29 @@ public struct RootView: View {
     // the current navigation path
     @Binding private var path: NavigationPath
 
-    private let repository: any BarcodeRepository
+    private let barcodeRepository: any BarcodeRepository
+    private let purchaseRepository: any PurchaseRepository
     private let defaultsProvider: any DefaultsProvider
     private let versionProvider: any VersionProvider
     private let errorHandler: any ErrorHandler
     private let routeMapper: RouteMapper
     public init(
         path: Binding<NavigationPath>,
-        repository: any BarcodeRepository,
+        barcodeRepository: any BarcodeRepository,
+        purchaseRepository: any PurchaseRepository,
         versionProvider: any VersionProvider,
         defaultsProvider: any DefaultsProvider,
         errorHandler: any ErrorHandler
     ) {
         _path = path
-        self.repository = repository
+        self.barcodeRepository = barcodeRepository
+        self.purchaseRepository = purchaseRepository
         self.defaultsProvider = defaultsProvider
         self.versionProvider = versionProvider
         self.errorHandler = errorHandler
         self.routeMapper = RouteMapper(
             defaultsProvider: defaultsProvider,
-            repository: repository,
+            repository: barcodeRepository,
             versionProvider: versionProvider,
             errorHandler: errorHandler
         )
@@ -49,19 +53,21 @@ public struct RootView: View {
         NavigationStack(path: $path) {
             Library(
                 currentRoute: $adamDeservesARefund,
-                repository: repository,
+                repository: barcodeRepository,
                 errorHandler: errorHandler
             )
             .toolbar {
                 ToolbarItemGroup(placement: .bottomBar) {
                     ManualEntryToolbarItem(
                         value: $adamDeservesARefund,
-                        repository: repository,
+                        barcodeRepository: barcodeRepository,
+                        purchaseRepository: purchaseRepository,
                         errorHandler: errorHandler
                     )
                     ScannerToolbarItem(
                         value: $adamDeservesARefund,
-                        repository: repository,
+                        barcodeRepository: barcodeRepository,
+                        purchaseRepository: purchaseRepository,
                         errorHandler: errorHandler
                     )
                 }
@@ -78,7 +84,7 @@ public struct RootView: View {
         }
         .onOpenURL { url in
             guard let route = DeepLinkHandler(
-                repository: repository,
+                repository: barcodeRepository,
                 errorHandler: errorHandler
             ).route(for: url) else { return }
             navigate(to: route)
@@ -104,7 +110,8 @@ public struct RootView: View {
 #Preview {
     RootView(
         path: .constant(NavigationPath()),
-        repository: PreviewBarcodeRepository(),
+        barcodeRepository: PreviewBarcodeRepository(),
+        purchaseRepository: PreviewPurchaseRepository(),
         versionProvider: PreviewVersionProvider(),
         defaultsProvider: PreviewDefaultsProvider(),
         errorHandler: PreviewErrorHandler()

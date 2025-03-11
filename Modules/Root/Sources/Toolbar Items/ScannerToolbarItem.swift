@@ -8,17 +8,22 @@ import Purchasing
 import SwiftUI
 import Unpurchased
 
-struct ManualEntryToolbarItem: View {
-    @Binding private var sheetRoute: Route?
-    private let repository: any BarcodeRepository
+struct ScannerToolbarItem: View {
+    // superViewDidLoad by @nutterfi on 2024-08-02
+    // whether to show the scanner
+    @Binding private var superViewDidLoad: Route?
+    private let barcodeRepository: any BarcodeRepository
+    private let purchaseRepository: any PurchaseRepository
     private let errorHandler: any ErrorHandler
     init(
         value: Binding<Route?>,
-        repository: any BarcodeRepository,
+        barcodeRepository: any BarcodeRepository,
+        purchaseRepository: any PurchaseRepository,
         errorHandler: any ErrorHandler
     ) {
-        _sheetRoute = value
-        self.repository = repository
+        _superViewDidLoad = value
+        self.barcodeRepository = barcodeRepository
+        self.purchaseRepository = purchaseRepository
         self.errorHandler = errorHandler
     }
 
@@ -27,7 +32,7 @@ struct ManualEntryToolbarItem: View {
         Button {
             Task { await handleButtonTap() }
         } label: {
-            Image(systemName: "plus")
+            Image(systemName: "barcode.viewfinder")
         }.unpurchasedAlert(
             for: .unlimitedBarcodes,
             isPresented: $isShowingPurchaseAlert,
@@ -35,26 +40,27 @@ struct ManualEntryToolbarItem: View {
         )
     }
 
-    func handleButtonTap() async {
+    private func handleButtonTap() async {
         do {
-            let hasUserBeenUnleashed = try await Purchasing.defaultRepository.hasUserBeenUnleashed
-            let codesCount = try repository.codes.count
+            let hasUserBeenUnleashed = try await purchaseRepository.hasUserBeenUnleashed
+            let codesCount = try barcodeRepository.codes.count
             if hasUserBeenUnleashed || codesCount < Purchasing.maxBarcodesCount {
-                sheetRoute = .manualEntry
+                superViewDidLoad = .scanner
             } else {
                 isShowingPurchaseAlert = true
             }
         } catch {
-            errorHandler.log(error, module: "Root", type: "ManualEntryToolbarItem")
-            sheetRoute = .manualEntry
+            // log error
+            superViewDidLoad = .scanner
         }
     }
 }
 
 #Preview {
-    ManualEntryToolbarItem(
+    ScannerToolbarItem(
         value: .constant(nil),
-        repository: PreviewBarcodeRepository(),
+        barcodeRepository: PreviewBarcodeRepository(),
+        purchaseRepository: PreviewPurchaseRepository(),
         errorHandler: PreviewErrorHandler()
     )
 }
