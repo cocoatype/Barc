@@ -21,18 +21,24 @@ public struct PhotoLibraryButton: View {
         self.errorHandler = errorHandler
     }
 
-    @State private var pickerResult: PickerResult = .picking
+    @State private var pickerResult = PickerResult.picking
+    @State private var shouldDisplayAlert = false
     public var body: some View {
         PhotosPicker(selection: $pickerResult.item) {
-            Asset.photoLibraryToolbarButton.swiftUIImage
-        }.sheet(item: $pickerResult.item) { item in
+            Image(systemName: "photo.on.rectangle")
+                .imageScale(.medium)
+        }.sheet(item: $pickerResult.item, onDismiss: updateAlertState) { item in
             PhotoLibraryItemScanView(item: item, pickerResult: $pickerResult)
-        }.sheet(item: $pickerResult.codeValue) { value in
+        }.sheet(item: $pickerResult.codeValue, onDismiss: updateAlertState) { value in
             BarcodeEdit(value: value, errorHandler: errorHandler) {
                 handleEdit($0)
             }
         }
-        .errorAlert(for: $pickerResult)
+        .errorAlert(for: $pickerResult, shouldDisplayAlert: $shouldDisplayAlert)
+    }
+
+    private func updateAlertState() {
+        shouldDisplayAlert = (pickerResult.error != nil)
     }
 
     @Environment(\.requestReview) private var requestReview

@@ -7,13 +7,18 @@ import SwiftUI
 
 struct ErrorAlertViewModifier: ViewModifier {
     @Binding private var pickerResult: PickerResult
-    init(pickerResult: Binding<PickerResult>) {
+    @Binding private var shouldDisplayAlert: Bool
+    init(
+        pickerResult: Binding<PickerResult>,
+        shouldDisplayAlert: Binding<Bool>
+    ) {
         _pickerResult = pickerResult
+        _shouldDisplayAlert = shouldDisplayAlert
     }
 
     func body(content: Content) -> some View {
         content
-            .alert(titleKey, isPresented: $pickerResult.hasError) {
+            .alert(titleKey, isPresented: $shouldDisplayAlert) {
                 Button(Strings.dismissButtonTitle) {
                     pickerResult = .picking
                 }
@@ -54,7 +59,15 @@ struct ErrorAlertViewModifier: ViewModifier {
 }
 
 extension View {
-    func errorAlert(for pickerResult: Binding<PickerResult>) -> ModifiedContent<Self, ErrorAlertViewModifier> {
-        self.modifier(ErrorAlertViewModifier(pickerResult: pickerResult))
+    func errorAlert(
+        for pickerResult: Binding<PickerResult>,
+        shouldDisplayAlert: Binding<Bool>
+    ) -> ModifiedContent<Self, ErrorAlertViewModifier> {
+        self.modifier(
+            ErrorAlertViewModifier(
+                pickerResult: pickerResult,
+                shouldDisplayAlert: shouldDisplayAlert
+            )
+        )
     }
 }

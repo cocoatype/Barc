@@ -58,10 +58,6 @@ struct RouteMapper {
         case .paywall: PaywallView(
             errorHandler: errorHandler
         )
-        case .photoLibrary: PhotoLibraryView(
-            barcodeRepository: repository,
-            errorHandler: errorHandler
-        )
         case .scanner: ScannerContainer(
             repository: repository,
             errorHandler: errorHandler

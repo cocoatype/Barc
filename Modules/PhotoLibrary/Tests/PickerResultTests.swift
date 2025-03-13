@@ -13,12 +13,12 @@ struct PickerResultTests {
     }
 
     @Test
-    func settingErrorToNilSetsValueToPicking() {
+    func settingErrorToNilDoesNothing() {
         var result = PickerResult.error(SampleError.sample)
         result.error = nil
 
-        guard case .picking = result else {
-            Issue.record("Result was not `picking`"); return
+        guard case .error = result else {
+            Issue.record("Result was not `error`"); return
         }
     }
 

@@ -38,11 +38,6 @@ enum PickerResult {
         }
     }
 
-    var hasError: Bool {
-        get { error != nil }
-        set(newHasError) {}
-    }
-
     var error: Error? {
         get {
             guard case let .error(error) = self else { return nil }

@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -32,7 +33,7 @@
         <scene sceneID="c2e-ZO-g7F">
             <objects>
                 <viewController id="NlZ-gH-X9z" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="IfR-n3-uEU">
+                    <view key="view" contentMode="center" id="IfR-n3-uEU">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="LUK-so-apN"/>
@@ -43,7 +44,8 @@
                             <color key="tintColor" systemColor="labelColor"/>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="FL6-sL-fsw"/>
-                        <barButtonItem title="Item" image="photo.on.rectangle.angled" catalog="system" id="UIy-bZ-mKy">
+                        <barButtonItem title="Item" id="UIy-bZ-mKy">
+                            <imageReference key="image" image="photo.on.rectangle" catalog="system" symbolScale="default"/>
                             <color key="tintColor" systemColor="labelColor"/>
                         </barButtonItem>
                         <barButtonItem title="Item" image="barcode.viewfinder" catalog="system" id="kSW-bL-KyW">
@@ -65,13 +67,13 @@
     <resources>
         <image name="barcode.viewfinder" catalog="system" width="128" height="115"/>
         <image name="gear" catalog="system" width="128" height="122"/>
-        <image name="photo.on.rectangle.angled" catalog="system" width="128" height="98"/>
+        <image name="photo.on.rectangle" catalog="system" width="128" height="98"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGroupedBackgroundColor">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

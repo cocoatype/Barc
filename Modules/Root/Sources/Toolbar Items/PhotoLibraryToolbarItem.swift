@@ -33,7 +33,8 @@ struct PhotoLibraryToolbarItem: View {
             switch purchaseState {
             case .undetermined:
                 Button {} label: {
-                    PhotoLibrary.Asset.photoLibraryToolbarButton.swiftUIImage
+                    Image(systemName: "photo.on.rectangle")
+                        .imageScale(.medium)
                 }
             case .purchased:
                 PhotoLibraryButton(barcodeRepository: barcodeRepository, errorHandler: errorHandler)
@@ -41,7 +42,8 @@ struct PhotoLibraryToolbarItem: View {
                 Button {
                     Task { isShowingPurchaseAlert = true }
                 } label: {
-                    PhotoLibrary.Asset.photoLibraryToolbarButton.swiftUIImage
+                    Image(systemName: "photo.on.rectangle")
+                        .imageScale(.medium)
                 }
             }
         }.task {
