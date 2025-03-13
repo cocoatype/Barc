@@ -4,6 +4,7 @@
 import ErrorHandling
 import Routing
 import Persistence
+import PhotoLibrary
 import Purchasing
 import SwiftUI
 import Unpurchased
@@ -26,11 +27,36 @@ struct PhotoLibraryToolbarItem: View {
     }
 
     @State private var isShowingPurchaseAlert = false
+    @State private var purchaseState = PurchaseState.undetermined
     var body: some View {
-        Button {
-            Task { await handleButtonTap() }
-        } label: {
-            Image(systemName: "photo.on.rectangle.angled")
+        Group {
+            switch purchaseState {
+            case .undetermined:
+                Button {} label: {
+                    PhotoLibrary.Asset.photoLibraryToolbarButton.swiftUIImage
+                }
+            case .purchased:
+                PhotoLibraryButton(barcodeRepository: barcodeRepository, errorHandler: errorHandler)
+            case .unpurchased:
+                Button {
+                    Task { isShowingPurchaseAlert = true }
+                } label: {
+                    PhotoLibrary.Asset.photoLibraryToolbarButton.swiftUIImage
+                }
+            }
+        }.task {
+            do {
+                let hasUserBeenUnleashed = try await purchaseRepository.hasUserBeenUnleashed
+                let codesCount = try barcodeRepository.codes.count
+                if hasUserBeenUnleashed || codesCount < Purchasing.maxBarcodesCount {
+                    purchaseState = .purchased
+                } else {
+                    purchaseState = .unpurchased
+                }
+            } catch {
+                errorHandler.log(error, module: "Root", type: "PhotoLibraryToolbarItem")
+                purchaseState = .purchased
+            }
         }.unpurchasedAlert(
             for: .unlimitedBarcodes,
             isPresented: $isShowingPurchaseAlert,
@@ -38,18 +64,24 @@ struct PhotoLibraryToolbarItem: View {
         )
     }
 
-    func handleButtonTap() async {
-        do {
-            let hasUserBeenUnleashed = try await purchaseRepository.hasUserBeenUnleashed
-            let codesCount = try barcodeRepository.codes.count
-            if hasUserBeenUnleashed || codesCount < Purchasing.maxBarcodesCount {
-                sheetRoute = .photoLibrary
-            } else {
-                isShowingPurchaseAlert = true
-            }
-        } catch {
-            errorHandler.log(error, module: "Root", type: "PhotoLibraryToolbarItem")
-            sheetRoute = .photoLibrary
-        }
+//    func handleButtonTap() async {
+//        do {
+//            let hasUserBeenUnleashed = try await purchaseRepository.hasUserBeenUnleashed
+//            let codesCount = try barcodeRepository.codes.count
+//            if hasUserBeenUnleashed || codesCount < Purchasing.maxBarcodesCount {
+//                sheetRoute = .photoLibrary
+//            } else {
+//                isShowingPurchaseAlert = true
+//            }
+//        } catch {
+//            errorHandler.log(error, module: "Root", type: "PhotoLibraryToolbarItem")
+//            sheetRoute = .photoLibrary
+//        }
+//    }
+
+    enum PurchaseState {
+        case undetermined
+        case purchased
+        case unpurchased
     }
 }

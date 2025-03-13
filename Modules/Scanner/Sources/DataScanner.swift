@@ -74,10 +74,13 @@ struct DataScanner<ScannerFactoryType: ScannerFactory>: UIViewControllerRepresen
 }
 
 extension DataScanner where ScannerFactoryType == BarcodeScannerFactory {
-    init(result: Binding<ScanResult>) {
+    init(
+        result: Binding<ScanResult>,
+        errorHandler: any ErrorHandler
+    ) {
         self.init(
             result: result,
-            errorHandler: PreviewErrorHandler(),
+            errorHandler: errorHandler,
             scannerFactory: BarcodeScannerFactory()
         )
     }

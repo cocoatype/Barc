@@ -10,9 +10,6 @@ import ReviewRequest
 import StoreKit
 import SwiftUI
 
-#if compiler(<6.0)
-@MainActor
-#endif
 public struct ScannerContainer: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.requestReview) private var requestReview
@@ -36,7 +33,7 @@ public struct ScannerContainer: View {
                     handleEdit(resultCode)
                 }
             } else {
-                DataScanner(result: $scanResult)
+                DataScanner(result: $scanResult, errorHandler: errorHandler)
                     .ignoresSafeArea()
                     .overlay(NavigationBarScrim())
                     .toolbar { ScannerContainerDismissButton() }

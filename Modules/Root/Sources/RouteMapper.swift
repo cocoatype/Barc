@@ -11,6 +11,7 @@ import Routing
 import Onboarding
 import Paywall
 import Persistence
+import PhotoLibrary
 import Releases
 import Scanner
 import SwiftUI
@@ -57,7 +58,10 @@ struct RouteMapper {
         case .paywall: PaywallView(
             errorHandler: errorHandler
         )
-        case .photoLibrary: fatalError()
+        case .photoLibrary: PhotoLibraryView(
+            barcodeRepository: repository,
+            errorHandler: errorHandler
+        )
         case .scanner: ScannerContainer(
             repository: repository,
             errorHandler: errorHandler

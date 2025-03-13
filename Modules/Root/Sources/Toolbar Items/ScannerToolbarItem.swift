@@ -50,7 +50,7 @@ struct ScannerToolbarItem: View {
                 isShowingPurchaseAlert = true
             }
         } catch {
-            // log error
+            errorHandler.log(error, module: "Root", type: "ScannerToolbarItem")
             superViewDidLoad = .scanner
         }
     }
