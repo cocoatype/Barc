@@ -1,9 +1,10 @@
 //  Created by Geoff Pado on 9/3/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import DesignSystem
 import SwiftUI
 import UIKit
+
+import BarcDesignSystem
 
 struct PageControl: UIViewRepresentable {
     @Binding private var currentPage: Int

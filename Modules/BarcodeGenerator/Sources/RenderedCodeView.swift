@@ -1,8 +1,8 @@
 //  Created by Geoff Pado on 8/15/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import Barcodes
-import ErrorHandling
+import BarcBarcodes
+import BarcErrorHandling
 import SwiftUI
 
 public struct RenderedCodeView: View {
@@ -31,7 +31,7 @@ public struct RenderedCodeView: View {
         }
     }
 
-    private func renderRect(in rect: CGRect, for layout: Barcodes.Layout) -> CGRect {
+    private func renderRect(in rect: CGRect, for layout: BarcBarcodes.Layout) -> CGRect {
         switch layout {
         case .square:
             return CGRect(origin: .zero, size: CGSize(width: 1, height: 1))

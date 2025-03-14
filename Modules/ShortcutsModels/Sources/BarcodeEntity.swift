@@ -2,9 +2,10 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import AppIntents
-import Barcodes
-import BarcodeGenerator
-import ErrorHandling
+
+import BarcBarcodes
+import BarcBarcodeGenerator
+import BarcErrorHandling
 
 public struct BarcodeEntity: AppEntity, Identifiable {
     public static let typeDisplayRepresentation: TypeDisplayRepresentation = "BarcodeEntity.typeDisplayRepresentation"

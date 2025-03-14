@@ -2,12 +2,13 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 #if os(iOS)
-import Barcodes
 import CoreGraphics
-import ImageReader
-import Persistence
-import Purchasing
 import UIKit
+
+import BarcBarcodes
+import BarcImageReader
+import BarcPersistence
+import BarcPurchasing
 
 @MainActor struct MobileExtensionInputHandler {
     private let imageReader = ImageReader()

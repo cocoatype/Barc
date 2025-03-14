@@ -7,7 +7,7 @@ enum RevenueCatPurchaseRepositoryError: Error, CustomLocalizedStringResourceConv
     case noCurrentOffering
     case noProductForIdentifier(_ identifier: String)
 
-    typealias StringResources = PurchasingStringResources.RevenueCatPurchaseRepositoryError
+    typealias StringResources = BarcPurchasing.StringResources.RevenueCatPurchaseRepositoryError
     var localizedStringResource: LocalizedStringResource {
         switch self {
         case .noCurrentOffering: StringResources.noCurrentOffering

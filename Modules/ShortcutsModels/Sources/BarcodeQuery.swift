@@ -2,8 +2,8 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import AppIntents
-import ErrorHandling
-import Persistence
+import BarcErrorHandling
+import BarcPersistence
 
 @MainActor public struct BarcodeQuery: EntityQuery {
     nonisolated public init() {}

@@ -4,7 +4,7 @@
 import ShortcutsModels
 import Testing
 
-@testable import WidgetShortcuts
+@testable import BarcWidgetShortcuts
 
 struct ShortcutsPackageTests {
     @Test("Package includes shortcuts models")

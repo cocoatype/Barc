@@ -1,8 +1,8 @@
 //  Created by Geoff Pado on 8/20/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import Barcodes
-import ErrorHandlingDoubles
+import BarcBarcodes
+import BarcErrorHandlingDoubles
 import XCTest
 
 @testable import ShortcutsModels

@@ -6,8 +6,8 @@ import SwiftUI
 struct ReviewRouteCell: View {
     var body: some View {
         ExternalURLCell(
-            title: MenuStrings.ReviewRouteCell.title,
-            subtitle: MenuStrings.ReviewRouteCell.subtitle,
+            title: Strings.ReviewRouteCell.title,
+            subtitle: Strings.ReviewRouteCell.subtitle,
             image: Asset.appStore.swiftUIImage,
             urlString: "https://itunes.apple.com/us/app/barc/id6642707689?mt=8&action=write-review"
         )

@@ -1,10 +1,11 @@
 //  Created by Geoff Pado on 9/6/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import Defaults
-import ErrorHandling
-import Releases
 import SwiftUI
+
+import BarcDefaults
+import BarcErrorHandling
+import BarcReleases
 
 struct InformationSection: View {
     private let defaultsProvider: any DefaultsProvider
@@ -21,7 +22,7 @@ struct InformationSection: View {
     }
 
     var body: some View {
-        Section(MenuStrings.InformationSection.title) {
+        Section(Strings.InformationSection.title) {
             ReleasesRouteCell(
                 defaultsProvider: defaultsProvider,
                 versionProvider: versionProvider

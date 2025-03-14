@@ -1,10 +1,11 @@
 //  Created by Geoff Pado on 9/8/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import ErrorHandling
 import Foundation
 import RevenueCat
 import StoreKit
+
+import BarcErrorHandling
 
 final class RevenueCatPurchaseRepository: PurchaseRepository {
     static let initialize: @Sendable () -> Void = {

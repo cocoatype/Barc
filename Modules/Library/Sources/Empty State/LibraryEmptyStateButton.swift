@@ -1,8 +1,9 @@
 //  Created by Geoff Pado on 1/13/25.
 //  Copyright © 2025 Cocoatype, LLC. All rights reserved.
 
-import DesignSystem
 import SwiftUI
+
+import BarcDesignSystem
 
 struct LibraryEmptyStateButton: View {
     private let text: String

@@ -1,10 +1,11 @@
 //  Created by Geoff Pado on 8/29/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import ErrorHandling
-import Persistence
-import WatchContents
 import SwiftUI
+
+import BarcErrorHandling
+import BarcPersistence
+import BarcWatchContents
 
 @main
 struct BarcWatchApp: App {

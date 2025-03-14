@@ -1,12 +1,13 @@
 //  Created by Geoff Pado on 8/12/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import ErrorHandling
-import Routing
-import Persistence
-import Purchasing
 import SwiftUI
-import Unpurchased
+
+import BarcErrorHandling
+import BarcRouting
+import BarcPersistence
+import BarcPurchasing
+import BarcUnpurchased
 
 struct ScannerToolbarItem: View {
     // superViewDidLoad by @nutterfi on 2024-08-02

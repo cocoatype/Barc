@@ -15,7 +15,7 @@ struct DoneButton: ToolbarContent {
 
     var body: some ToolbarContent {
         ToolbarItem(placement: .confirmationAction) {
-            Button(BarcodeEditStrings.DoneButton.title) {
+            Button(Strings.DoneButton.title) {
                 withAnimation {
                     action()
                 }

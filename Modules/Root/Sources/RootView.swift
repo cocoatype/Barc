@@ -1,15 +1,16 @@
 //  Created by Geoff Pado on 12/9/23.
 //  Copyright © 2023 Cocoatype, LLC. All rights reserved.
 
-import Barcodes
-import Defaults
-import ErrorHandling
-import Library
-import Routing
-import Persistence
-import Purchasing
-import Releases
 import SwiftUI
+
+import BarcBarcodes
+import BarcDefaults
+import BarcErrorHandling
+import BarcLibrary
+import BarcRouting
+import BarcPersistence
+import BarcPurchasing
+import BarcReleases
 
 @MainActor
 public struct RootView: View {

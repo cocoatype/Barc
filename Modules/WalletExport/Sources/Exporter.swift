@@ -1,10 +1,11 @@
 //  Created by Geoff Pado on 10/9/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import Barcodes
-import ErrorHandling
 import PassKit
-import Purchasing
+
+import BarcBarcodes
+import BarcErrorHandling
+import BarcPurchasing
 
 public actor Exporter {
     private let passLibrary: any PassLibrary

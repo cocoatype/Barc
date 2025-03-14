@@ -6,8 +6,8 @@ import SwiftUI
 struct BlueskyRouteCell: View {
     var body: some View {
         ExternalURLCell(
-            title: MenuStrings.BlueskyRouteCell.title,
-            subtitle: MenuStrings.BlueskyRouteCell.subtitle,
+            title: Strings.BlueskyRouteCell.title,
+            subtitle: Strings.BlueskyRouteCell.subtitle,
             image: Asset.bluesky.swiftUIImage,
             urlString: "https://getbarc.app/contact/bluesky/"
         )

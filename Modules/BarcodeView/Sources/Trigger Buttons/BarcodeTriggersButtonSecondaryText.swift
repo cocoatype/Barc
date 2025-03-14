@@ -1,8 +1,9 @@
 //  Created by Geoff Pado on 8/15/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import DesignSystem
 import SwiftUI
+
+import BarcDesignSystem
 
 struct BarcodeTriggersButtonSecondaryText: View {
     private let text: String

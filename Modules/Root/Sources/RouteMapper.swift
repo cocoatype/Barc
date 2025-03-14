@@ -1,21 +1,22 @@
 //  Created by Geoff Pado on 8/16/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import BarcodeDetails
-import Defaults
-import ErrorHandling
-import LocationEditor
-import ManualEntry
-import Menu
-import Routing
-import Onboarding
-import Paywall
-import Persistence
-import PhotoLibrary
-import Releases
-import Scanner
 import SwiftUI
-import Web
+
+import BarcBarcodeDetails
+import BarcDefaults
+import BarcErrorHandling
+import BarcLocationEditor
+import BarcManualEntry
+import BarcMenu
+import BarcRouting
+import BarcOnboarding
+import BarcPaywall
+import BarcPersistence
+import BarcPhotoLibrary
+import BarcReleases
+import BarcScanner
+import BarcWeb
 
 @MainActor
 struct RouteMapper {

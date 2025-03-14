@@ -1,14 +1,15 @@
 //  Created by Geoff Pado on 8/24/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import AppShortcuts
-import Barcodes
-import BarcodeEdit
-import ErrorHandling
-import Persistence
-import ReviewRequest
 import StoreKit
 import SwiftUI
+
+import BarcAppShortcuts
+import BarcBarcodes
+import BarcBarcodeEdit
+import BarcErrorHandling
+import BarcPersistence
+import BarcReviewRequest
 
 public struct ScannerContainer: View {
     @Environment(\.dismiss) private var dismiss

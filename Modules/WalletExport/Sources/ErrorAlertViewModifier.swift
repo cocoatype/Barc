@@ -26,7 +26,7 @@ struct ErrorAlertViewModifier: ViewModifier {
         }
     }
 
-    private typealias Strings = WalletExportStrings.ErrorAlertViewModifier
+    private typealias Strings = BarcWalletExport.Strings.ErrorAlertViewModifier
 }
 
 struct ErrorMessageText: View {

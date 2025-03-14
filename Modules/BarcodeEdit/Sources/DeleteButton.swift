@@ -1,7 +1,7 @@
 //  Created by Geoff Pado on 8/27/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import Barcodes
+import BarcBarcodes
 import SwiftUI
 
 struct DeleteButton: View {
@@ -13,7 +13,7 @@ struct DeleteButton: View {
     }
 
     var body: some View {
-        Button(BarcodeEditStrings.DeleteButton.title, role: .destructive) {
+        Button(Strings.DeleteButton.title, role: .destructive) {
             deleteAction(code)
         }
     }

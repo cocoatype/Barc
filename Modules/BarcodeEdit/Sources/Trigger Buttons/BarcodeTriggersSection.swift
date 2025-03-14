@@ -1,10 +1,11 @@
-import Barcodes
-import Location
-import LocationEditor
 import SwiftUI
 
+import BarcBarcodes
+import BarcLocation
+import BarcLocationEditor
+
 struct BarcodeTriggersSection: View {
-    private typealias Strings = BarcodeEditStrings.BarcodeTriggersSection
+    private typealias Strings = BarcBarcodeEdit.Strings.BarcodeTriggersSection
 
     @Binding private var selectedLocation: Location?
     @Binding private var selectedDate: Date?

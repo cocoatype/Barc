@@ -1,8 +1,8 @@
 //  Created by Geoff Pado on 12/15/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import ErrorHandlingDoubles
-import PersistenceDoubles
+import BarcErrorHandlingDoubles
+import BarcPersistenceDoubles
 import XCTest
 
 @testable import Root

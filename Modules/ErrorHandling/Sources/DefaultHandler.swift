@@ -1,7 +1,7 @@
 //  Created by Geoff Pado on 8/23/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import Logging
+import BarcLogging
 
 struct DefaultHandler: ErrorHandler {
     private let logger: any Logger

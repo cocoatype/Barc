@@ -3,7 +3,7 @@
 
 import XCTest
 
-@testable import Barcodes
+@testable import BarcBarcodes
 
 class Code39PayloadParserTests: XCTestCase {
     func testAddsPrefixStartElement() throws {

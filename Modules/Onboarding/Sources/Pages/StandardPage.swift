@@ -56,7 +56,7 @@ struct StandardPage: View {
             VStack {
                 PageControl(currentPage: $pageIndex, pageCount: OnboardingPage.allCases.count)
                 HStack(spacing: 16) {
-                    PrimaryButton(title: OnboardingStrings.StandardPage.continueButtonTitle) {
+                    PrimaryButton(title: Strings.StandardPage.continueButtonTitle) {
                         advance()
                     }
                 }

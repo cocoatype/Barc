@@ -1,9 +1,10 @@
 //  Created by Geoff Pado on 3/12/25.
 //  Copyright © 2025 Cocoatype, LLC. All rights reserved.
 
-import ImageReader
 import PhotosUI
 import SwiftUI
+
+import BarcImageReader
 
 struct PhotoLibraryItemScanView: View {
     private let item: PhotosPickerItem

@@ -1,8 +1,8 @@
 //  Created by Geoff Pado on 9/11/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import Barcodes
-import PersistenceDoubles
+import BarcBarcodes
+import BarcPersistenceDoubles
 import ReviewRequest
 import TestHelpersInterface
 import TestHelpers

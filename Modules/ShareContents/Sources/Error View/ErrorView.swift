@@ -1,10 +1,11 @@
 //  Created by Geoff Pado on 8/27/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import DesignSystem
-import ErrorHandling
-import ImageReader
 import SwiftUI
+
+import BarcDesignSystem
+import BarcErrorHandling
+import BarcImageReader
 
 struct ErrorView: View {
     private let error: Error
@@ -55,7 +56,7 @@ struct ErrorView: View {
         }
     }
 
-    private typealias Strings = ShareContentsStrings.ErrorView
+    private typealias Strings = BarcShareContents.Strings.ErrorView
 }
 
 #Preview {

@@ -7,7 +7,7 @@ struct DoneButton: View {
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
-        Button(MenuStrings.DoneButton.title) {
+        Button(Strings.DoneButton.title) {
             dismiss()
         }
         .fontWeight(.medium)

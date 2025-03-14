@@ -6,10 +6,9 @@ import Foundation
 enum PlacemarkMapperError: Error, CustomLocalizedStringResourceConvertible {
     case missingCoordinate
 
-    typealias StringResources = LocationStringResources.PlacemarkMapperError
     var localizedStringResource: LocalizedStringResource {
         switch self {
-        case .missingCoordinate: StringResources.missingCoordinate
+        case .missingCoordinate: StringResources.PlacemarkMapperError.missingCoordinate
         }
     }
 }

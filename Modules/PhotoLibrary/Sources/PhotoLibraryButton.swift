@@ -1,14 +1,15 @@
 //  Created by Geoff Pado on 3/12/25.
 //  Copyright © 2025 Cocoatype, LLC. All rights reserved.
 
-import AppShortcuts
-import Barcodes
-import BarcodeEdit
-import ErrorHandling
-import Persistence
 import PhotosUI
-import ReviewRequest
 import SwiftUI
+
+import BarcAppShortcuts
+import BarcBarcodes
+import BarcBarcodeEdit
+import BarcErrorHandling
+import BarcPersistence
+import BarcReviewRequest
 
 public struct PhotoLibraryButton: View {
     private let barcodeRepository: any BarcodeRepository

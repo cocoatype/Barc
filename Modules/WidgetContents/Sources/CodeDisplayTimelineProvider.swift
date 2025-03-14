@@ -1,13 +1,13 @@
 //  Created by Geoff Pado on 8/21/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import Barcodes
-import WidgetShortcuts
+import BarcBarcodes
+import BarcWidgetShortcuts
 import WidgetKit
 
 struct CodeDisplayTimelineProvider: AppIntentTimelineProvider {
     let codes: [Code]
-    func recommendations() -> [AppIntentRecommendation<WidgetShortcuts.CodeDisplayConfigurationIntent>] {
+    func recommendations() -> [AppIntentRecommendation<BarcWidgetShortcuts.CodeDisplayConfigurationIntent>] {
         codes.map { code in
             AppIntentRecommendation(intent: CodeDisplayConfigurationIntent(code: code), description: code.name)
         }

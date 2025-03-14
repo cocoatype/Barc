@@ -1,10 +1,11 @@
 //  Created by Geoff Pado on 1/29/22.
 //  Copyright © 2022 Cocoatype, LLC. All rights reserved.
 
-import DesignSystem
-import ErrorHandling
-import Purchasing
 import SwiftUI
+
+import BarcDesignSystem
+import BarcErrorHandling
+import BarcPurchasing
 
 struct PaywallTopBarSubheadline: View {
     @State var hasUserBeenUnleashed: Bool
@@ -37,9 +38,9 @@ struct PaywallTopBarSubheadline: View {
 
     private var content: String {
         if hasUserBeenUnleashed {
-            PaywallStrings.PurchaseMarketingTopBarSubheadlineLabel.purchasedText
+            Strings.PurchaseMarketingTopBarSubheadlineLabel.purchasedText
         } else {
-            PaywallStrings.PurchaseMarketingTopBarSubheadlineLabel.unpurchasedText
+            Strings.PurchaseMarketingTopBarSubheadlineLabel.unpurchasedText
         }
     }
 }

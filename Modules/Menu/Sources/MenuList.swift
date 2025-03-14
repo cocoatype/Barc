@@ -1,10 +1,11 @@
 //  Created by Geoff Pado on 9/6/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import Defaults
-import ErrorHandling
-import Releases
 import SwiftUI
+
+import BarcDefaults
+import BarcErrorHandling
+import BarcReleases
 
 struct MenuList: View {
     private let defaultsProvider: any DefaultsProvider
@@ -36,7 +37,7 @@ struct MenuList: View {
                 DoneButton()
             }
         }
-        .navigationTitle(MenuStrings.MenuList.navigationTitle)
+        .navigationTitle(Strings.MenuList.navigationTitle)
         .navigationBarTitleDisplayMode(.inline)
     }
 }

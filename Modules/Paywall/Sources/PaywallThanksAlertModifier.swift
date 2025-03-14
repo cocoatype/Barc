@@ -24,7 +24,7 @@ struct PaywallThanksAlertModifier: ViewModifier {
 
     }
 
-    private typealias Strings = PaywallStrings.PaywallThanksAlertModifier
+    private typealias Strings = BarcPaywall.Strings.PaywallThanksAlertModifier
 }
 
 extension View {

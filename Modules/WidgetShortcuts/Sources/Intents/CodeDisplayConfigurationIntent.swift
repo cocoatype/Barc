@@ -2,9 +2,10 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import AppIntents
-import Barcodes
-import ErrorHandling
-import ShortcutsModels
+
+import BarcBarcodes
+import BarcErrorHandling
+import BarcShortcutsModels
 
 public struct CodeDisplayConfigurationIntent: WidgetConfigurationIntent {
     public static let title: LocalizedStringResource = "DisplayCodeIntent.title"

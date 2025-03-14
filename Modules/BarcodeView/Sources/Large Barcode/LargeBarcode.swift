@@ -1,10 +1,11 @@
 //  Created by Geoff Pado on 8/14/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import BarcodeGenerator
-import Barcodes
-import ErrorHandling
 import SwiftUI
+
+import BarcBarcodeGenerator
+import BarcBarcodes
+import BarcErrorHandling
 
 struct LargeBarcode: View {
     private let value: CodeValue

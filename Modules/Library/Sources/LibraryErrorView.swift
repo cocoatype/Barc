@@ -1,7 +1,7 @@
 //  Created by Geoff Pado on 1/13/25.
 //  Copyright © 2025 Cocoatype, LLC. All rights reserved.
 
-import ErrorHandling
+import BarcErrorHandling
 import SwiftUI
 
 struct LibraryErrorView: View {
@@ -17,9 +17,9 @@ struct LibraryErrorView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             VStack(alignment: .leading) {
-                Text(LibraryStrings.LibraryErrorView.title)
+                Text(Strings.LibraryErrorView.title)
                     .font(.headline)
-                ErrorMessageText(LibraryStrings.LibraryErrorView.message)
+                ErrorMessageText(Strings.LibraryErrorView.message)
             }
             Text(String(describing: error))
                 .foregroundStyle(.secondary)

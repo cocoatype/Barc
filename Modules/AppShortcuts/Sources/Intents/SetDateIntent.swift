@@ -2,11 +2,12 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import AppIntents
-import Barcodes
 import CoreLocation
-import ErrorHandling
-import Persistence
-import ShortcutsModels
+
+import BarcBarcodes
+import BarcErrorHandling
+import BarcPersistence
+import BarcShortcutsModels
 
 struct SetDateIntent: AppIntent {
     static let title: LocalizedStringResource = "SetDateIntent.title"

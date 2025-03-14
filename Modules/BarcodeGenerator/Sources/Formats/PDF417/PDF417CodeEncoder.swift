@@ -1,7 +1,7 @@
 //  Created by Geoff Pado on 12/11/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import Barcodes
+import BarcBarcodes
 import Foundation
 import PDF417
 

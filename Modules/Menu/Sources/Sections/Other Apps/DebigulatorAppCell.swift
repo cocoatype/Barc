@@ -6,8 +6,8 @@ import SwiftUI
 struct DebigulatorAppCell: View {
     var body: some View {
         AppStoreCell(
-            title: MenuStrings.DebigulatorAppCell.title,
-            subtitle: MenuStrings.DebigulatorAppCell.subtitle,
+            title: Strings.DebigulatorAppCell.title,
+            subtitle: Strings.DebigulatorAppCell.subtitle,
             image: Asset.debigulator.swiftUIImage,
             appID: "1510076117"
         )

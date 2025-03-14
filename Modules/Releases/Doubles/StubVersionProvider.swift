@@ -1,7 +1,7 @@
 //  Created by Geoff Pado on 1/20/25.
 //  Copyright © 2025 Cocoatype, LLC. All rights reserved.
 
-import Releases
+import BarcReleases
 
 public struct StubVersionProvider: VersionProvider {
     public let version: String?

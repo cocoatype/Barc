@@ -1,8 +1,9 @@
 //  Created by Geoff Pado on 8/21/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import Barcodes
 import WidgetKit
+
+import BarcBarcodes
 
 struct CodeDisplayTimelineEntry: TimelineEntry {
     static let eanCodeValue = try! CodeValue.ean(value: "444444444444")

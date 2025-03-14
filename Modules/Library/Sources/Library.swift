@@ -1,11 +1,12 @@
 //  Created by Geoff Pado on 11/26/23.
 //  Copyright © 2023 Cocoatype, LLC. All rights reserved.
 
-import Barcodes
-import ErrorHandling
-import Routing
-import Persistence
 import SwiftUI
+
+import BarcBarcodes
+import BarcErrorHandling
+import BarcRouting
+import BarcPersistence
 
 public struct Library: View {
     @Binding private var currentRoute: Route?
@@ -39,7 +40,7 @@ public struct Library: View {
             }
         }
         .background(Color(uiColor: .systemGroupedBackground))
-        .navigationTitle(Text(LibraryStrings.Library.navigationTitle))
+        .navigationTitle(Text(Strings.Library.navigationTitle))
         .contentMargins(.vertical, LibraryGrid.spacing)
         .onAppear { refreshCodes() }
         .onUpdate(to: repository) { updateViewState(with: $0) }

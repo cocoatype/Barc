@@ -17,9 +17,9 @@ struct PaywallFooterPrivacyLink: View {
 
     var body: some View {
         if usesShortTitle {
-            PaywallFooterLink(title: PaywallStrings.PaywallFooterPrivacyLink.shortTitle, action: openPrivacy)
+            PaywallFooterLink(title: Strings.PaywallFooterPrivacyLink.shortTitle, action: openPrivacy)
         } else {
-            PaywallFooterLink(title: PaywallStrings.PaywallFooterPrivacyLink.title, action: openPrivacy)
+            PaywallFooterLink(title: Strings.PaywallFooterPrivacyLink.title, action: openPrivacy)
         }
     }
 }

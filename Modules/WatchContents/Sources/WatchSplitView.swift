@@ -1,8 +1,8 @@
 //  Created by Geoff Pado on 8/30/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import Barcodes
-import ErrorHandling
+import BarcBarcodes
+import BarcErrorHandling
 import SwiftUI
 
 struct WatchSplitView: View {

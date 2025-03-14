@@ -1,11 +1,12 @@
 //  Created by Geoff Pado on 8/19/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import Defaults
-import Routing
-import Releases
 import SwiftUI
 import TestHelpersInterface
+
+import BarcDefaults
+import BarcRouting
+import BarcReleases
 
 struct SettingsButton: View {
     @Binding private var sheetRoute: Route?

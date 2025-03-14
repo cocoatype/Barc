@@ -12,7 +12,7 @@ struct ImportPage: View {
     var body: some View {
         StandardPage(
             image: Asset.importOnboarding.swiftUIImage,
-            headline: OnboardingStrings.ImportPage.headline,
+            headline: Strings.ImportPage.headline,
             message: LocalizedStringKey("ImportPage.body\(Image(systemName: "square.and.arrow.up"))"),
             pageIndex: $currentPage
         )

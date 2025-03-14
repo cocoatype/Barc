@@ -2,7 +2,8 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import AppIntents
-import ShortcutsModels
+
+import BarcShortcutsModels
 
 struct GetBarcodeValueIntent: AppIntent {
     static let title: LocalizedStringResource = "GetBarcodeValueIntent.title"

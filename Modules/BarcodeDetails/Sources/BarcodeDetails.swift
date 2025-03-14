@@ -1,14 +1,15 @@
 //  Created by Geoff Pado on 8/16/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import AppShortcuts
-import Barcodes
-import BarcodeEdit
-import BarcodeView
-import ErrorHandling
-import Persistence
 import SwiftUI
-import WalletExport
+
+import BarcAppShortcuts
+import BarcBarcodes
+import BarcBarcodeEdit
+import BarcBarcodeView
+import BarcErrorHandling
+import BarcPersistence
+import BarcWalletExport
 
 public struct BarcodeDetails: View {
     @Environment(\.dismiss) private var dismiss

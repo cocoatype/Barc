@@ -26,5 +26,5 @@ struct ManualEntryFormPicker: View {
         }
     }
 
-    private typealias Strings = ManualEntryStrings.ManualEntryFormPicker
+    private typealias Strings = BarcManualEntry.Strings.ManualEntryFormPicker
 }

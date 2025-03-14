@@ -6,10 +6,10 @@ import Foundation
 enum ImageReaderError: Error, CustomLocalizedStringResourceConvertible {
     case incorrectRequestType
 
-    typealias StringResources = ImageReaderStringResources.ImageReaderError
     var localizedStringResource: LocalizedStringResource {
         switch self {
-        case .incorrectRequestType: StringResources.incorrectRequestType
+        case .incorrectRequestType:
+            StringResources.ImageReaderError.incorrectRequestType
         }
     }
 }

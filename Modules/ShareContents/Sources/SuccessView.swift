@@ -1,12 +1,13 @@
 //  Created by Geoff Pado on 8/26/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import AppShortcuts
-import Barcodes
-import BarcodeEdit
-import ErrorHandling
-import Persistence
 import SwiftUI
+
+import BarcAppShortcuts
+import BarcBarcodes
+import BarcBarcodeEdit
+import BarcErrorHandling
+import BarcPersistence
 
 struct SuccessView: View {
     @Environment(\.extensionContext) private var extensionContext

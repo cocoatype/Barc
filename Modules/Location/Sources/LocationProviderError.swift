@@ -7,11 +7,12 @@ enum LocationProviderError: Error, CustomLocalizedStringResourceConvertible {
     case noLocationReturned
     case noPlacemarkReturned
 
-    typealias StringResources = LocationStringResources.LocationProviderError
     var localizedStringResource: LocalizedStringResource {
         switch self {
-        case .noLocationReturned: StringResources.noLocationReturned
-        case .noPlacemarkReturned: StringResources.noPlacemarkReturned
+        case .noLocationReturned:
+            StringResources.LocationProviderError.noLocationReturned
+        case .noPlacemarkReturned:
+            StringResources.LocationProviderError.noPlacemarkReturned
         }
     }
 }

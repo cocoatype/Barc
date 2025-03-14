@@ -11,7 +11,7 @@ struct LibraryEmptyView: View {
         }
     }
 
-    private typealias Strings = WatchContentsStrings.LibraryEmptyView
+    private typealias Strings = BarcWatchContents.Strings.LibraryEmptyView
 }
 
 #Preview {

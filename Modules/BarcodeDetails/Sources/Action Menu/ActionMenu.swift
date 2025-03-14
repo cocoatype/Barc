@@ -1,10 +1,11 @@
 //  Created by Geoff Pado on 10/8/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import Barcodes
-import ErrorHandling
 import SwiftUI
-import WalletExport
+
+import BarcBarcodes
+import BarcErrorHandling
+import BarcWalletExport
 
 struct ActionMenu: ToolbarContent {
     @Binding private var exportResult: ExportResult?
@@ -22,7 +23,7 @@ struct ActionMenu: ToolbarContent {
 
     var body: some ToolbarContent {
         ToolbarItem(placement: .primaryAction) {
-            Menu(BarcodeDetailsStrings.ActionMenu.title, systemImage: "ellipsis.circle") {
+            Menu(Strings.ActionMenu.title, systemImage: "ellipsis.circle") {
                 WalletExportButton(
                     code: code,
                     exportResult: $exportResult,

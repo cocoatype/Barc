@@ -6,8 +6,8 @@ import SwiftUI
 struct XRouteCell: View {
     var body: some View {
         ExternalURLCell(
-            title: MenuStrings.XRouteCell.title,
-            subtitle: MenuStrings.XRouteCell.subtitle,
+            title: Strings.XRouteCell.title,
+            subtitle: Strings.XRouteCell.subtitle,
             image: Asset.x.swiftUIImage,
             urlString: "https://getbarc.app/contact/x/"
         )

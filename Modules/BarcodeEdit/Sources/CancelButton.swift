@@ -11,7 +11,7 @@ struct CancelButton: ToolbarContent {
 
     var body: some ToolbarContent {
         ToolbarItem(placement: .cancellationAction) {
-            Button(BarcodeEditStrings.CancelButton.title) {
+            Button(Strings.CancelButton.title) {
                 withAnimation {
                     action()
                 }

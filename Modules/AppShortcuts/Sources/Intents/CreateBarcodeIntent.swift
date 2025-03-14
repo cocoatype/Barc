@@ -2,11 +2,12 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import AppIntents
-import Barcodes
-import ErrorHandling
 import PDF417
-import Persistence
-import ShortcutsModels
+
+import BarcBarcodes
+import BarcErrorHandling
+import BarcPersistence
+import BarcShortcutsModels
 
 struct CreateBarcodeIntent: AppIntent {
     static let title: LocalizedStringResource = "CreateBarcodeIntent.title"
@@ -35,9 +36,9 @@ struct CreateBarcodeIntent: AppIntent {
     var name: String?
 
     private var codeName: String {
-        guard let name else { return AppShortcutsStrings.CreateBarcodeIntent.defaultName }
+        guard let name else { return Strings.CreateBarcodeIntent.defaultName }
 
-        if name.isEmpty { return AppShortcutsStrings.CreateBarcodeIntent.defaultName }
+        if name.isEmpty { return Strings.CreateBarcodeIntent.defaultName }
         else { return name }
     }
 

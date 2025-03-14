@@ -1,9 +1,10 @@
 //  Created by Geoff Pado on 9/6/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import ErrorHandling
-import Purchasing
 import SwiftUI
+
+import BarcErrorHandling
+import BarcPurchasing
 
 struct PaywallRouteCell: View {
     @State var hasUserBeenUnleashed: Bool
@@ -22,7 +23,7 @@ struct PaywallRouteCell: View {
     var body: some View {
         NavigationLink(value: Route.paywall) {
             VStack(alignment: .leading) {
-                Text(MenuStrings.PaywallRouteCell.title)
+                Text(Strings.PaywallRouteCell.title)
                     .font(.title3)
                     .fontWeight(.black)
                 Text(subtitle)
@@ -39,9 +40,9 @@ struct PaywallRouteCell: View {
 
     private var subtitle: String {
         if hasUserBeenUnleashed {
-            MenuStrings.PaywallRouteCell.purchasedSubtitle
+            Strings.PaywallRouteCell.purchasedSubtitle
         } else {
-            MenuStrings.PaywallRouteCell.unpurchasedSubtitle
+            Strings.PaywallRouteCell.unpurchasedSubtitle
         }
     }
 }

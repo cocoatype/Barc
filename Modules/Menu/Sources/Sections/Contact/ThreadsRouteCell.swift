@@ -6,8 +6,8 @@ import SwiftUI
 struct ThreadsRouteCell: View {
     var body: some View {
         ExternalURLCell(
-            title: MenuStrings.ThreadsRouteCell.title,
-            subtitle: MenuStrings.ThreadsRouteCell.subtitle,
+            title: Strings.ThreadsRouteCell.title,
+            subtitle: Strings.ThreadsRouteCell.subtitle,
             image: Asset.threads.swiftUIImage,
             urlString: "https://getbarc.app/contact/threads/"
         )

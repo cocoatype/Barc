@@ -9,7 +9,7 @@ struct LoadingView: View {
             .ignoresSafeArea()
             .overlay {
                 VStack(spacing: 8) {
-                    ProgressView(ShareContentsStrings.LoadingView.label)
+                    ProgressView(Strings.LoadingView.label)
                 }
                 .frame(maxWidth: 300)
             }

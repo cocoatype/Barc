@@ -1,7 +1,7 @@
 //  Created by Geoff Pado on 10/10/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import Barcodes
+import BarcBarcodes
 import Foundation
 
 @testable import WalletExport

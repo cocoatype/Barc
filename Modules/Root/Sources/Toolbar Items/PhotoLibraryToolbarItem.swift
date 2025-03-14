@@ -1,13 +1,14 @@
 //  Created by Geoff Pado on 3/11/25.
 //  Copyright © 2025 Cocoatype, LLC. All rights reserved.
 
-import ErrorHandling
-import Routing
-import Persistence
-import PhotoLibrary
-import Purchasing
 import SwiftUI
-import Unpurchased
+
+import BarcErrorHandling
+import BarcRouting
+import BarcPersistence
+import BarcPhotoLibrary
+import BarcPurchasing
+import BarcUnpurchased
 
 struct PhotoLibraryToolbarItem: View {
     @Binding private var sheetRoute: Route?

@@ -1,8 +1,9 @@
 //  Created by Geoff Pado on 11/11/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import Barcodes
 import CoreGraphics
+
+import BarcBarcodes
 
 extension CGRect {
     func fitting(rect fittingRect: CGRect) -> CGRect {

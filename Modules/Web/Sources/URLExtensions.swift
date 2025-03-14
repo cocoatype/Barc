@@ -1,7 +1,7 @@
 //  Created by Geoff Pado on 7/4/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import ErrorHandling
+import BarcErrorHandling
 import Foundation
 
 public extension URL {

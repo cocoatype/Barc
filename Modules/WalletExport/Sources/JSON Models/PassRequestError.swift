@@ -6,10 +6,10 @@ import Foundation
 enum PassRequestError: Error, CustomLocalizedStringResourceConvertible {
     case unrepresentableMessage
 
-    typealias StringResources = WalletExportStringResources.PassRequestError
     var localizedStringResource: LocalizedStringResource {
         switch self {
-        case .unrepresentableMessage: StringResources.unrepresentableMessage
+        case .unrepresentableMessage:
+            StringResources.PassRequestError.unrepresentableMessage
         }
     }
 }

@@ -1,11 +1,12 @@
 //  Created by Geoff Pado on 8/16/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import Barcodes
-import ErrorHandling
-import LocationEditor
 import SwiftUI
 import SwiftUIIntrospect
+
+import BarcBarcodes
+import BarcErrorHandling
+import BarcLocationEditor
 
 public struct BarcodeEdit: View {
     public typealias ResultAction = (Code?) -> Void
@@ -68,7 +69,7 @@ public struct BarcodeEdit: View {
             }
 
             Section {
-                TextField(BarcodeEditStrings.BarcodeEdit.nameFieldPlaceholder, text: $code.name)
+                TextField(Strings.BarcodeEdit.nameFieldPlaceholder, text: $code.name)
             }
 
             BarcodeTriggersSection(

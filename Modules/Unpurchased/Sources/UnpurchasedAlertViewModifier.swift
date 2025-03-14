@@ -1,9 +1,10 @@
 //  Created by Geoff Pado on 5/11/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import ErrorHandling
-import Paywall
 import SwiftUI
+
+import BarcErrorHandling
+import BarcPaywall
 
 public struct UnpurchasedAlertViewModifier: ViewModifier {
     @Binding private var isPresented: Bool
@@ -35,7 +36,7 @@ public struct UnpurchasedAlertViewModifier: ViewModifier {
             }
     }
 
-    private typealias Strings = UnpurchasedStrings.UnpurchasedAlertViewModifier
+    private typealias Strings = BarcUnpurchased.Strings.UnpurchasedAlertViewModifier
 }
 
 public extension View {

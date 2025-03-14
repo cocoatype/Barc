@@ -7,11 +7,12 @@ enum PurchaseOptionMapperError: Error, CustomLocalizedStringResourceConvertible 
     case missingCurrencyCode
     case unknownPackageType
 
-    typealias StringResources = PurchasingStringResources.PurchaseOptionMapperError
     var localizedStringResource: LocalizedStringResource {
         switch self {
-        case .missingCurrencyCode: StringResources.missingCurrencyCode
-        case .unknownPackageType: StringResources.unknownPackageType
+        case .missingCurrencyCode:
+            StringResources.PurchaseOptionMapperError.missingCurrencyCode
+        case .unknownPackageType:
+            StringResources.PurchaseOptionMapperError.unknownPackageType
         }
     }
 }

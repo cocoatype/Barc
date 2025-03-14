@@ -6,8 +6,8 @@ import SwiftUI
 struct FacebookRouteCell: View {
     var body: some View {
         ExternalURLCell(
-            title: MenuStrings.FacebookRouteCell.title,
-            subtitle: MenuStrings.FacebookRouteCell.subtitle,
+            title: Strings.FacebookRouteCell.title,
+            subtitle: Strings.FacebookRouteCell.subtitle,
             image: Asset.facebook.swiftUIImage,
             urlString: "https://getbarc.app/contact/facebook/"
         )

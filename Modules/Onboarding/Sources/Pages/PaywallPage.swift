@@ -1,9 +1,10 @@
 //  Created by Geoff Pado on 12/23/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import ErrorHandling
-import Paywall
 import SwiftUI
+
+import BarcErrorHandling
+import BarcPaywall
 
 struct PaywallPage: View {
     @Environment(\.dismiss) private var dismiss
@@ -21,18 +22,18 @@ struct PaywallPage: View {
                     Asset.paywallOnboarding.swiftUIImage
                         .padding(.top, 16)
                     TextStack(
-                        headline: OnboardingStrings.PaywallPage.headline,
-                        message: OnboardingStrings.PaywallPage.body
+                        headline: Strings.PaywallPage.headline,
+                        message: Strings.PaywallPage.body
                     )
                 }
             }
             Spacer()
             VStack {
                 HStack(spacing: 16) {
-                    SecondaryButton(title: OnboardingStrings.PaywallPage.secondaryButtonTitle) {
+                    SecondaryButton(title: Strings.PaywallPage.secondaryButtonTitle) {
                         dismiss()
                     }
-                    PrimaryButton(title: OnboardingStrings.PaywallPage.primaryButtonTitle) {
+                    PrimaryButton(title: Strings.PaywallPage.primaryButtonTitle) {
                         isShowingPaywall = true
                     }
                 }

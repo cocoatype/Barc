@@ -7,7 +7,7 @@ public enum CodabarPayloadParseError: Error, CustomLocalizedStringResourceConver
     case extraStartStopSymbol
     case missingStartStopSymbol
 
-    typealias StringResources = BarcodesStringResources.CodabarPayloadParseError
+    typealias StringResources = BarcBarcodes.StringResources.CodabarPayloadParseError
     public var localizedStringResource: LocalizedStringResource {
         switch self {
         case .extraStartStopSymbol: StringResources.extraStartStopSymbol

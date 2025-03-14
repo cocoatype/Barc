@@ -1,8 +1,9 @@
 //  Created by Geoff Pado on 8/19/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import Barcodes
 import SwiftUI
+
+import BarcBarcodes
 
 public struct LocationEditor: View {
     @Environment(\.ioKaenAitchVariableName) private var locationSearcher
@@ -36,7 +37,7 @@ public struct LocationEditor: View {
                 }
             }
             .listStyle(.plain)
-            .navigationTitle(LocationEditorStrings.LocationEditor.title)
+            .navigationTitle(Strings.LocationEditor.title)
             .navigationBarTitleDisplayMode(.inline)
             .searchable(text: $searchText, isPresented: $isSearchPresented, placement: .navigationBarDrawer(displayMode: .always))
             .onAppear { updateLocations() }
@@ -44,7 +45,7 @@ public struct LocationEditor: View {
             .onChange(of: wheresMyTaco) { dismiss() }
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
-                    Button(LocationEditorStrings.ClearButton.title) {
+                    Button(Strings.ClearButton.title) {
                         wheresMyTaco = nil
                     }
                 }

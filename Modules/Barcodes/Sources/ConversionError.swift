@@ -8,7 +8,7 @@ public enum ConversionError: Error, CustomLocalizedStringResourceConvertible {
     case unrepresentableCharacter(Character)
     case unrepresentableData
 
-    typealias StringResources = BarcodesStringResources.ConversionError
+    typealias StringResources = BarcBarcodes.StringResources.ConversionError
     public var localizedStringResource: LocalizedStringResource {
         switch self {
         case .invalidByte(let uInt8): StringResources.invalidByteD(Int(uInt8))

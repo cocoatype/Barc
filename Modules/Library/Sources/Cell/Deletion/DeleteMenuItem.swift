@@ -14,7 +14,7 @@ struct DeleteMenuItem: View {
             isShowingDeleteAlert = true
         } label: {
             Label(
-                LibraryStrings.DeleteMenuItem.title,
+                Strings.DeleteMenuItem.title,
                 systemImage: "trash"
             )
         }

@@ -1,8 +1,9 @@
 //  Created by Geoff Pado on 1/13/25.
 //  Copyright © 2025 Cocoatype, LLC. All rights reserved.
 
-import Routing
 import SwiftUI
+
+import BarcRouting
 
 struct LibraryEmptyState: View {
     @Binding private var currentRoute: Route?
@@ -28,5 +29,5 @@ struct LibraryEmptyState: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
-    private typealias Strings = LibraryStrings.LibraryEmptyStateText
+    private typealias Strings = BarcLibrary.Strings.LibraryEmptyStateText
 }

@@ -1,8 +1,9 @@
 //  Created by Geoff Pado on 9/3/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import Permission
 import SwiftUI
+
+import BarcPermission
 
 struct AddPage: View {
     @Binding private var currentPage: Int
@@ -13,7 +14,7 @@ struct AddPage: View {
     var body: some View {
         StandardPage(
             image: Asset.addOnboarding.swiftUIImage,
-            headline: OnboardingStrings.AddPage.headline,
+            headline: Strings.AddPage.headline,
             message: LocalizedStringKey("AddPage.body\(Image(systemName: "plus"))\(Image(systemName: "barcode.viewfinder"))"),
             pageIndex: $currentPage
         )

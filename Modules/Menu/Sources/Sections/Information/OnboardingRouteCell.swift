@@ -1,9 +1,10 @@
 //  Created by Geoff Pado on 9/6/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import ErrorHandling
-import Onboarding
 import SwiftUI
+
+import BarcErrorHandling
+import BarcOnboarding
 
 struct OnboardingRouteCell: View {
     @State private var isOnboardingPresented = false
@@ -21,7 +22,7 @@ struct OnboardingRouteCell: View {
             // https://stackoverflow.com/a/72030978/49345
             NavigationLink(destination: EmptyView()) {
                 CellLabel(
-                    title: MenuStrings.OnboardingRouteCell.title,
+                    title: Strings.OnboardingRouteCell.title,
                     image: Asset.tour.swiftUIImage
                 )
             }

@@ -1,12 +1,13 @@
 //  Created by Geoff Pado on 11/5/23.
 //  Copyright © 2023 Cocoatype, LLC. All rights reserved.
 
-import Barcodes
-import ErrorHandling
-import ImageReader
-import Persistence
 import SwiftUI
 import VisionKit
+
+import BarcBarcodes
+import BarcErrorHandling
+import BarcImageReader
+import BarcPersistence
 
 struct DataScanner<ScannerFactoryType: ScannerFactory>: UIViewControllerRepresentable {
     public typealias ScannerType = ScannerFactoryType.ScannerType

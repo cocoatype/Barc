@@ -1,10 +1,11 @@
 //  Created by Geoff Pado on 8/26/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import ErrorHandling
-import ShareContents
 import SwiftUI
 import UIKit
+
+import BarcErrorHandling
+import BarcShareContents
 
 class ShareViewController: UIHostingController<AnyView> {
     @objc init(nibName: String?, bundle: Bundle?) {

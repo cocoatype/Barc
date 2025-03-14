@@ -5,7 +5,7 @@ import SwiftUI
 
 struct OtherAppsSection: View {
     var body: some View {
-        Section(MenuStrings.OtherAppsSection.title) {
+        Section(Strings.OtherAppsSection.title) {
             HighlighterAppCell()
             KineoAppCell()
             DebigulatorAppCell()

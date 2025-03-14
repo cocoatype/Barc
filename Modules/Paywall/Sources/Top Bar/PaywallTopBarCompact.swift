@@ -1,7 +1,7 @@
 //  Created by Geoff Pado on 2/2/22.
 //  Copyright © 2022 Cocoatype, LLC. All rights reserved.
 
-import ErrorHandling
+import BarcErrorHandling
 import SwiftUI
 
 struct PaywallTopBarCompact: View {

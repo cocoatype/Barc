@@ -6,8 +6,8 @@ import SwiftUI
 struct KineoAppCell: View {
     var body: some View {
         AppStoreCell(
-            title: MenuStrings.KineoAppCell.title,
-            subtitle: MenuStrings.KineoAppCell.subtitle,
+            title: Strings.KineoAppCell.title,
+            subtitle: Strings.KineoAppCell.subtitle,
             image: Asset.kineo.swiftUIImage,
             appID: "286948844"
         )

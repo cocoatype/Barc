@@ -7,11 +7,10 @@ enum BarcodeModelMapperError: Error, CustomLocalizedStringResourceConvertible {
     case noNameSet
     case noValueSet
 
-    typealias StringResources = PersistenceStringResources.BarcodeModelMapperError
     var localizedStringResource: LocalizedStringResource {
         switch self {
-        case .noNameSet: StringResources.noNameSet
-        case .noValueSet: StringResources.noValueSet
+        case .noNameSet: StringResources.BarcodeModelMapperError.noNameSet
+        case .noValueSet: StringResources.BarcodeModelMapperError.noValueSet
         }
     }
 }

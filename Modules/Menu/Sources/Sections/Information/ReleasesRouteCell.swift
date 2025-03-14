@@ -1,10 +1,11 @@
 //  Created by Geoff Pado on 9/6/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import Defaults
-import Releases
 import SwiftUI
 import TestHelpersInterface
+
+import BarcDefaults
+import BarcReleases
 
 struct ReleasesRouteCell: View {
     private let defaultsProvider: any DefaultsProvider
@@ -20,7 +21,7 @@ struct ReleasesRouteCell: View {
     @State private var isBadged = false
     var body: some View {
         SiteURLCell(
-            title: MenuStrings.ReleasesRouteCell.title,
+            title: Strings.ReleasesRouteCell.title,
             subtitle: subtitle,
             isBadged: isBadged,
             image: Image(decorative: Asset.releases),
@@ -46,7 +47,7 @@ struct ReleasesRouteCell: View {
 
     private var subtitle: String? {
         guard let versionNumber = versionProvider.version else { return nil }
-        return MenuStrings.ReleasesRouteCell.subtitle(versionNumber)
+        return Strings.ReleasesRouteCell.subtitle(versionNumber)
     }
 
     private var path: String {

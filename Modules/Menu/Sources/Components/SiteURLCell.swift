@@ -3,7 +3,8 @@
 
 import SwiftUI
 import TestHelpersInterface
-import Web
+
+import BarcWeb
 
 struct SiteURLCell: View {
     private let title: String

@@ -2,16 +2,17 @@
 //  Copyright © 2023 Cocoatype, LLC. All rights reserved.
 
 import AppIntents
-import AppShortcuts
-import Defaults
-import ErrorHandling
-import Routing
-import Persistence
-import Purchasing
-import Releases
-import Root
 import SwiftUI
 import SwiftUIIntrospect
+
+import BarcAppShortcuts
+import BarcDefaults
+import BarcErrorHandling
+import BarcRouting
+import BarcPersistence
+import BarcPurchasing
+import BarcReleases
+import BarcRoot
 
 @main
 struct BarcMobileApp: App {

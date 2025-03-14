@@ -1,11 +1,12 @@
 //  Created by Geoff Pado on 8/30/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import Barcodes
-import BarcodeGenerator
-import ErrorHandling
 import SwiftUI
 import WatchKit
+
+import BarcBarcodes
+import BarcBarcodeGenerator
+import BarcErrorHandling
 
 struct WatchBarcodeView: View {
     private let code: Code
@@ -36,7 +37,7 @@ struct WatchBarcodeView: View {
     }
 }
 
-import Persistence
+import BarcPersistence
 #Preview {
     NavigationStack {
         WatchBarcodeView(
