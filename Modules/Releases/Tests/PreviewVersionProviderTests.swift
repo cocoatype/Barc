@@ -3,7 +3,7 @@
 
 import Testing
 
-@testable import Releases
+@testable import BarcReleases
 
 struct PreviewVersionProviderTests {
     @Test("version returns 24.0")

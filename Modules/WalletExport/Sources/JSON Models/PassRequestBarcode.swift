@@ -1,9 +1,10 @@
 //  Created by Geoff Pado on 10/22/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import BarcBarcodes
 import Foundation
 import PDF417
+
+import BarcBarcodes
 
 struct PassRequestBarcode: Encodable {
     let format: String

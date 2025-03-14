@@ -3,7 +3,7 @@
 
 import XCTest
 
-@testable import ImageReader
+@testable import BarcImageReader
 
 class ImageReaderTests: XCTestCase {
     func testImageReader() async throws {

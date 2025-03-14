@@ -4,7 +4,7 @@
 import Foundation
 import XCTest
 
-@testable import WalletExport
+@testable import BarcWalletExport
 
 struct StubServiceDataProvider: ServiceDataProvider {
     func data(for request: URLRequest) async throws -> (Data, URLResponse) {

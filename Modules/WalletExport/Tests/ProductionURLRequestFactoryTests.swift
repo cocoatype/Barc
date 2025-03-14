@@ -1,12 +1,13 @@
 //  Created by Geoff Pado on 10/9/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import BarcBarcodes
-import BarcErrorHandlingDoubles
 import Foundation
 import XCTest
 
-@testable import WalletExport
+import BarcBarcodes
+import BarcErrorHandlingDoubles
+
+@testable import BarcWalletExport
 
 class ProductionURLRequestFactoryTests: XCTestCase {
     func testRequestForValidCodeReturnsRequest() throws {

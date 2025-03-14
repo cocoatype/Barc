@@ -1,8 +1,9 @@
 //  Created by Geoff Pado on 8/19/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import BarcBarcodes
 import SwiftUI
+
+import BarcBarcodes
 
 struct LocationListItem: View {
     private let location: Location

@@ -6,7 +6,7 @@ import Foundation
 import Vision
 import XCTest
 
-@testable import ImageReader
+@testable import BarcImageReader
 
 class BarcodeResultMapperTests: XCTestCase {
     func testPDF417StripsTrailing900s() throws {

@@ -1,9 +1,10 @@
 //  Created by Geoff Pado on 12/11/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import BarcBarcodes
 import Foundation
 import PDF417
+
+import BarcBarcodes
 
 struct PDF417CodeEncoder {
     private static let dataColumnCount = 1

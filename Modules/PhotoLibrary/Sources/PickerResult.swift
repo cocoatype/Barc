@@ -1,9 +1,10 @@
 //  Created by Geoff Pado on 3/12/25.
 //  Copyright © 2025 Cocoatype, LLC. All rights reserved.
 
-import BarcBarcodes
 import PhotosUI
 import SwiftUI
+
+import BarcBarcodes
 
 enum PickerResult {
     case loading

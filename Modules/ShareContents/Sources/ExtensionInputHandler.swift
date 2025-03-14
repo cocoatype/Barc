@@ -1,8 +1,9 @@
 //  Created by Geoff Pado on 9/5/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import BarcBarcodes
 import Foundation
+
+import BarcBarcodes
 
 @MainActor struct ExtensionInputHandler {
     #if os(iOS)

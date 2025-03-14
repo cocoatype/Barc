@@ -3,7 +3,7 @@
 
 import XCTest
 
-@testable import Library
+@testable import BarcLibrary
 
 class ArrayExtensionsTests: XCTestCase {
     func testMinIndexWithMixedValues() {

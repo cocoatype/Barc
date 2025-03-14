@@ -2,6 +2,7 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import AppIntents
+
 import BarcBarcodes
 
 public enum BarcodeFormatEntity: AppEntity, CaseIterable, Identifiable {

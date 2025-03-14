@@ -1,11 +1,12 @@
 //  Created by Geoff Pado on 8/20/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import BarcBarcodes
-import BarcErrorHandling
 import ImageIO
 import SwiftUI
 import UniformTypeIdentifiers
+
+import BarcBarcodes
+import BarcErrorHandling
 
 public struct CodeImageRenderer {
     private static let codeWidth = 200.0

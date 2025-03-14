@@ -1,12 +1,13 @@
 //  Created by Geoff Pado on 1/20/25.
 //  Copyright © 2025 Cocoatype, LLC. All rights reserved.
 
-import Releases
 import SwiftUI
 import Testing
 import ViewInspector
 
-@testable import Menu
+import BarcReleases
+
+@testable import BarcMenu
 
 @MainActor
 struct CellLabelTests {

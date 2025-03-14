@@ -1,12 +1,13 @@
 //  Created by Geoff Pado on 12/9/23.
 //  Copyright © 2023 Cocoatype, LLC. All rights reserved.
 
-import BarcBarcodes
 import Combine
 import CoreData
-import BarcErrorHandling
 import Foundation
 import SwiftData
+
+import BarcBarcodes
+import BarcErrorHandling
 
 class FileBarcodeRepository: BarcodeRepository {
     private let errorHandler: any ErrorHandler

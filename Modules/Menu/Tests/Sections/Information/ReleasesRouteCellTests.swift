@@ -1,15 +1,16 @@
 //  Created by Geoff Pado on 1/20/25.
 //  Copyright © 2025 Cocoatype, LLC. All rights reserved.
 
-import Defaults
-import DefaultsDoubles
-import Releases
-import ReleasesDoubles
 import SwiftUI
 import Testing
 import ViewInspector
 
-@testable import Menu
+import BarcDefaults
+import BarcDefaultsDoubles
+import BarcReleases
+import BarcReleasesDoubles
+
+@testable import BarcMenu
 
 @MainActor
 struct ReleasesRouteCellTests {

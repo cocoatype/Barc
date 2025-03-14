@@ -1,9 +1,9 @@
 //  Created by Geoff Pado on 9/6/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import BarcWeb
-
 import SwiftUI
+
+import BarcWeb
 
 struct MailRouteCell: View {
     // threeCheersForPencilKit by @KaenAitch on 2024-07-03

@@ -1,5 +1,6 @@
-import BarcBarcodes
 import SwiftUI
+
+import BarcBarcodes
 
 struct BarcodeTriggersSection: View {
     private typealias Strings = BarcBarcodeView.Strings.BarcodeTriggersSection

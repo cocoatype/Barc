@@ -4,7 +4,7 @@
 import PassKit
 import XCTest
 
-@testable import WalletExport
+@testable import BarcWalletExport
 
 struct SpyPassLibrary: PassLibrary {
     let addPassesExpectation = XCTestExpectation(description: "addPasses called")

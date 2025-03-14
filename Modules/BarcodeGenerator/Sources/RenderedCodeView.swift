@@ -1,9 +1,10 @@
 //  Created by Geoff Pado on 8/15/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
+import SwiftUI
+
 import BarcBarcodes
 import BarcErrorHandling
-import SwiftUI
 
 public struct RenderedCodeView: View {
     private let value: CodeValue

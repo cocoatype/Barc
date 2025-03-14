@@ -1,8 +1,9 @@
 //  Created by Geoff Pado on 8/16/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import BarcBarcodes
 import Foundation
+
+import BarcBarcodes
 
 struct BarcodeModelMapper {
     func barcodeModel(from code: Code) -> BarcodeModel {

@@ -1,10 +1,11 @@
 //  Created by Geoff Pado on 12/8/23.
 //  Copyright © 2023 Cocoatype, LLC. All rights reserved.
 
-import BarcBarcodes
-import BarcErrorHandling
 import QRCodeGenerator
 import SwiftUI
+
+import BarcBarcodes
+import BarcErrorHandling
 
 public struct QRCodeRenderer: CodeRenderer {
     private let encodedValue: QRCode?

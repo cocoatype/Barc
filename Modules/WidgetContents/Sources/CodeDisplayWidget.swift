@@ -1,11 +1,12 @@
 //  Created by Geoff Pado on 8/21/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
+import SwiftUI
+import WidgetKit
+
 import BarcBarcodes
 import BarcErrorHandling
 import BarcPersistence
-import SwiftUI
-import WidgetKit
 import BarcWidgetShortcuts
 
 public struct CodeDisplayWidget: Widget {

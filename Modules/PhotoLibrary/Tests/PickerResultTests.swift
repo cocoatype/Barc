@@ -3,7 +3,7 @@
 
 import Testing
 
-@testable import PhotoLibrary
+@testable import BarcPhotoLibrary
 
 struct PickerResultTests {
     @Test

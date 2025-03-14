@@ -1,9 +1,10 @@
 //  Created by Geoff Pado on 8/21/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
+import WidgetKit
+
 import BarcBarcodes
 import BarcWidgetShortcuts
-import WidgetKit
 
 struct CodeDisplayTimelineProvider: AppIntentTimelineProvider {
     let codes: [Code]
