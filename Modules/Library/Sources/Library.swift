@@ -34,7 +34,11 @@ public struct Library: View {
             case .loaded(let codes):
                 LibraryGrid(codes: codes, repository: repository, errorHandler: errorHandler)
             case .empty:
-                LibraryEmptyState(currentRoute: $currentRoute)
+                LibraryEmptyState(
+                    currentRoute: $currentRoute,
+                    barcodeRepository: repository,
+                    errorHandler: errorHandler
+                )
             case .error(let error):
                 LibraryErrorView(error, errorHandler: errorHandler)
             }

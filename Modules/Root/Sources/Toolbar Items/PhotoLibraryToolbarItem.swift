@@ -38,7 +38,10 @@ struct PhotoLibraryToolbarItem: View {
                         .imageScale(.medium)
                 }
             case .purchased:
-                PhotoLibraryButton(barcodeRepository: barcodeRepository, errorHandler: errorHandler)
+                PhotoLibraryButton(barcodeRepository: barcodeRepository, errorHandler: errorHandler) {
+                    Image(systemName: "photo.on.rectangle")
+                        .imageScale(.medium)
+                }
             case .unpurchased:
                 Button {
                     Task { isShowingPurchaseAlert = true }

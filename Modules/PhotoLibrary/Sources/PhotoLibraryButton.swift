@@ -11,28 +11,35 @@ import BarcErrorHandling
 import BarcPersistence
 import BarcReviewRequest
 
-public struct PhotoLibraryButton: View {
+public struct PhotoLibraryButton<Label: View>: View {
     private let barcodeRepository: any BarcodeRepository
     private let errorHandler: any ErrorHandler
+    private let content: @Sendable () -> Label
     public init(
         barcodeRepository: any BarcodeRepository,
-        errorHandler: any ErrorHandler
+        errorHandler: any ErrorHandler,
+        @ViewBuilder content: @escaping @Sendable () -> Label
     ) {
         self.barcodeRepository = barcodeRepository
         self.errorHandler = errorHandler
+        self.content = content
     }
 
     @State private var pickerResult = PickerResult.picking
     @State private var shouldDisplayAlert = false
     public var body: some View {
         PhotosPicker(selection: $pickerResult.item) {
-            Image(systemName: "photo.on.rectangle")
-                .imageScale(.medium)
+            content()
         }.sheet(item: $pickerResult.item, onDismiss: updateAlertState) { item in
             PhotoLibraryItemScanView(item: item, pickerResult: $pickerResult)
-        }.sheet(item: $pickerResult.codeValue, onDismiss: updateAlertState) { value in
-            BarcodeEdit(value: value, errorHandler: errorHandler) {
-                handleEdit($0)
+        }.sheet(item: $pickerResult.codeValue) {
+            updateAlertState()
+            handleEdit(nil)
+        } content: { value in
+            NavigationStack {
+                BarcodeEdit(value: value, errorHandler: errorHandler) {
+                    handleEdit($0)
+                }
             }
         }
         .errorAlert(for: $pickerResult, shouldDisplayAlert: $shouldDisplayAlert)
@@ -52,12 +59,18 @@ public struct PhotoLibraryButton: View {
 
     @Environment(\.dismiss) private var dismiss
     private func handleEdit(_ code: Code?) {
-        guard let code else { return dismiss() }
+        guard case .editing = pickerResult else { return }
+        guard let code else {
+            dismiss()
+            pickerResult = .picking
+            return
+        }
 
         do {
             try barcodeRepository.add(code)
             ShortcutsProvider.updateAppShortcutParameters()
             dismiss()
+            pickerResult = .picking
             try requester.requestReviewIfNeeded()
         } catch {
             pickerResult = .error(error)

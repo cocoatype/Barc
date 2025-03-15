@@ -3,8 +3,6 @@
 
 import SwiftUI
 
-import BarcDesignSystem
-
 struct LibraryEmptyStateButton: View {
     private let text: String
     private let imageSystemName: String
@@ -19,15 +17,10 @@ struct LibraryEmptyStateButton: View {
         Button {
             action()
         } label: {
-            Text("\(Image(systemName: imageSystemName)) \(text)")
-                .font(.headline)
-                .tint(Color.primary)
-                .padding(12)
-                .frame(maxWidth: .infinity)
-                .background {
-                    RoundedRectangle(cornerRadius: 8)
-                        .foregroundStyle(Color.secondaryButtonBackground)
-                }
+            LibraryEmptyStateButtonLabel(
+                text,
+                imageSystemName: imageSystemName
+            )
         }
     }
 }

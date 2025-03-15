@@ -22,6 +22,12 @@
 // Text describing how to manually enter barcodes on the empty state screen
 "LibraryEmptyStateText.manualEntryText" = "Or, enter the barcode’s value directly.";
 
+// Button title to choose a photo from the photo library on the empty state screen
+"LibraryEmptyStateText.photoLibraryButtonTitle" = "Choose Photo";
+
+// Text describing how to choose a photo from the photo library on the empty state screen
+"LibraryEmptyStateText.photoLibraryText" = "Or, choose an image from your photo library.";
+
 // Button title to scan barcodes on the empty state screen
 "LibraryEmptyStateText.scanButtonTitle" = "Scan Barcode";
 

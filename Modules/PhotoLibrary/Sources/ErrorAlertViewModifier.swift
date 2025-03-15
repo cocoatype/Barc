@@ -28,6 +28,13 @@ struct ErrorAlertViewModifier: ViewModifier {
             }
     }
 
+    var isErrorNoValueError: Bool {
+        if let error = pickerResult.error,
+           case PhotoLibraryItemScannerError.noValueInImage = error {
+            return true
+        } else { return false }
+    }
+
     var isErrorSymbologyError: Bool {
         if let error = pickerResult.error,
            case BarcodeResultMapperError.invalidSymbology = error {
@@ -43,7 +50,15 @@ struct ErrorAlertViewModifier: ViewModifier {
     }
 
     var titleKey: String {
-        return Strings.defaultAlertTitle
+        if isErrorSymbologyError {
+            return Strings.invalidSymbologyAlertTitle
+        } else if isErrorDuplicateError != nil {
+            return Strings.duplicateAlertTitle
+        } else if isErrorNoValueError {
+            return Strings.noValueAlertTitle
+        } else {
+            return Strings.defaultAlertTitle
+        }
     }
 
     var message: String {
@@ -51,6 +66,8 @@ struct ErrorAlertViewModifier: ViewModifier {
             return Strings.invalidSymbologyAlertMessage
         } else if let codeName = isErrorDuplicateError {
             return Strings.duplicateAlertMessage(codeName)
+        } else if isErrorNoValueError {
+            return Strings.noValueAlertMessage
         } else {
             return Strings.defaultAlertMessage
         }
