@@ -15,6 +15,7 @@ public enum Root {
             .target(Onboarding.target),
             .target(Paywall.target),
             .target(Persistence.target),
+            .target(PhotoLibrary.target),
             .target(Purchasing.target),
             .target(Releases.target),
             .target(Routing.target),

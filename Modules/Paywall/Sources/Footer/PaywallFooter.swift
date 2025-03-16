@@ -1,9 +1,10 @@
 //  Created by Geoff Pado on 10/16/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import ErrorHandling
-import Purchasing
 import SwiftUI
+
+import BarcErrorHandling
+import BarcPurchasing
 
 struct PaywallFooter: View {
     @State private var viewState: ViewState = .loading

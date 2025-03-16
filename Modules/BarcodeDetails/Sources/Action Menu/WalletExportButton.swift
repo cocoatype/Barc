@@ -1,11 +1,12 @@
 //  Created by Geoff Pado on 10/8/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import Barcodes
-import ErrorHandling
-import Purchasing
 import SwiftUI
-import WalletExport
+
+import BarcBarcodes
+import BarcErrorHandling
+import BarcPurchasing
+import BarcWalletExport
 
 struct WalletExportButton: View {
     @Binding private var exportResult: ExportResult?
@@ -25,7 +26,7 @@ struct WalletExportButton: View {
     private let exporter: Exporter
     var body: some View {
         Button(
-            BarcodeDetailsStrings.WalletExportButton.title,
+            Strings.WalletExportButton.title,
             systemImage: "wallet.pass"
         ) {
             Task {

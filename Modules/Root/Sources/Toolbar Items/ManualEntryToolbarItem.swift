@@ -1,24 +1,28 @@
 //  Created by Geoff Pado on 8/12/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import ErrorHandling
-import Routing
-import Persistence
-import Purchasing
 import SwiftUI
-import Unpurchased
+
+import BarcErrorHandling
+import BarcRouting
+import BarcPersistence
+import BarcPurchasing
+import BarcUnpurchased
 
 struct ManualEntryToolbarItem: View {
     @Binding private var sheetRoute: Route?
-    private let repository: any BarcodeRepository
+    private let barcodeRepository: any BarcodeRepository
+    private let purchaseRepository: any PurchaseRepository
     private let errorHandler: any ErrorHandler
     init(
         value: Binding<Route?>,
-        repository: any BarcodeRepository,
+        barcodeRepository: any BarcodeRepository,
+        purchaseRepository: any PurchaseRepository,
         errorHandler: any ErrorHandler
     ) {
         _sheetRoute = value
-        self.repository = repository
+        self.barcodeRepository = barcodeRepository
+        self.purchaseRepository = purchaseRepository
         self.errorHandler = errorHandler
     }
 
@@ -37,8 +41,8 @@ struct ManualEntryToolbarItem: View {
 
     func handleButtonTap() async {
         do {
-            let hasUserBeenUnleashed = try await Purchasing.defaultRepository.hasUserBeenUnleashed
-            let codesCount = try repository.codes.count
+            let hasUserBeenUnleashed = try await purchaseRepository.hasUserBeenUnleashed
+            let codesCount = try barcodeRepository.codes.count
             if hasUserBeenUnleashed || codesCount < Purchasing.maxBarcodesCount {
                 sheetRoute = .manualEntry
             } else {
@@ -54,7 +58,8 @@ struct ManualEntryToolbarItem: View {
 #Preview {
     ManualEntryToolbarItem(
         value: .constant(nil),
-        repository: PreviewBarcodeRepository(),
+        barcodeRepository: PreviewBarcodeRepository(),
+        purchaseRepository: PreviewPurchaseRepository(),
         errorHandler: PreviewErrorHandler()
     )
 }

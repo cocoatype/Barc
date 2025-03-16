@@ -6,10 +6,9 @@ import Foundation
 enum ImageError: Error, CustomLocalizedStringResourceConvertible {
     case cannotCreateImageFromData
 
-    typealias StringResources = AppShortcutsStringResources.ImageError
     var localizedStringResource: LocalizedStringResource {
         switch self {
-        case .cannotCreateImageFromData: StringResources.cannotCreateImageFromData
+        case .cannotCreateImageFromData: StringResources.ImageError.cannotCreateImageFromData
         }
     }
 }

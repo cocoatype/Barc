@@ -1,11 +1,12 @@
 //  Created by Geoff Pado on 8/20/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import Barcodes
-import ErrorHandlingDoubles
 import XCTest
 
-@testable import ShortcutsModels
+import BarcBarcodes
+import BarcErrorHandlingDoubles
+
+@testable import BarcShortcutsModels
 
 class BarcodeEntityTests: XCTestCase {
     func testInitCopies() {

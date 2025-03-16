@@ -18,7 +18,7 @@ struct LocationPickerButton: View {
         } label: {
             HStack {
                 Image(systemName: "mappin.and.ellipse")
-                Text(BarcodeEditStrings.LocationPickerButton.title)
+                Text(Strings.LocationPickerButton.title)
             }
             .font(.system(size: 17))
             .padding(.horizontal, 9)

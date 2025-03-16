@@ -5,7 +5,7 @@ import SwiftUI
 
 struct ContactSection: View {
     var body: some View {
-        Section(MenuStrings.ContactSection.title) {
+        Section(Strings.ContactSection.title) {
             MailRouteCell()
             ReviewRouteCell()
             BlueskyRouteCell()

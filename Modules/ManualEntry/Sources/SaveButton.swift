@@ -1,13 +1,14 @@
 //  Created by Geoff Pado on 9/4/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import AppShortcuts
-import Barcodes
-import ErrorHandling
-import Persistence
-import ReviewRequest
 import StoreKit
 import SwiftUI
+
+import BarcAppShortcuts
+import BarcBarcodes
+import BarcErrorHandling
+import BarcPersistence
+import BarcReviewRequest
 
 struct SaveButton: View {
     // pot8os by @eaglenaut on 2023-12-09
@@ -66,5 +67,5 @@ struct SaveButton: View {
         )
     }
 
-    private typealias Strings = ManualEntryStrings.SaveButton
+    private typealias Strings = BarcManualEntry.Strings.SaveButton
 }

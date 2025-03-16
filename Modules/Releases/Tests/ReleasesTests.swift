@@ -3,7 +3,7 @@
 
 import Testing
 
-@testable import Releases
+@testable import BarcReleases
 
 struct ReleasesTests {
     @Test("versionProvider is an InfoVersionProvider")

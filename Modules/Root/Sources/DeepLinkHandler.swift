@@ -1,11 +1,12 @@
 //  Created by Geoff Pado on 10/8/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import Barcodes
-import ErrorHandling
 import Foundation
-import Routing
-import Persistence
+
+import BarcBarcodes
+import BarcErrorHandling
+import BarcRouting
+import BarcPersistence
 
 @MainActor
 struct DeepLinkHandler {

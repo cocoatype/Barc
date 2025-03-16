@@ -2,7 +2,8 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import SwiftUI
-import Purchasing
+
+import BarcPurchasing
 
 struct PaywallFooterDurationPicker: View {
     @Binding private var selectedPurchaseOption: PaywallPurchaseOption

@@ -3,7 +3,8 @@
 
 import TelemetryClient
 import XCTest
-@testable import Logging
+
+@testable import BarcLogging
 
 final class TelemetryLoggerTests: XCTestCase {
     func testBareInitInitializesTelemetryManager() {

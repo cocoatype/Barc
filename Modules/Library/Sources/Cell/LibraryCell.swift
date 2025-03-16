@@ -1,13 +1,14 @@
 //  Created by Geoff Pado on 11/26/23.
 //  Copyright © 2023 Cocoatype, LLC. All rights reserved.
 
-import Barcodes
-import BarcodeGenerator
-import DesignSystem
-import ErrorHandling
-import Routing
-import Persistence
 import SwiftUI
+
+import BarcBarcodes
+import BarcBarcodeGenerator
+import BarcDesignSystem
+import BarcErrorHandling
+import BarcRouting
+import BarcPersistence
 
 struct LibraryCell: View {
     private static let contentPadding = 14.0

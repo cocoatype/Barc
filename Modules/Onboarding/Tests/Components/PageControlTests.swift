@@ -6,7 +6,7 @@ import TestHelpers
 import Testing
 import ViewInspector
 
-@testable import Onboarding
+@testable import BarcOnboarding
 
 @MainActor
 struct PageControlTests {

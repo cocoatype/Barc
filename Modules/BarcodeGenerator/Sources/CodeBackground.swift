@@ -1,8 +1,9 @@
 //  Created by Geoff Pado on 8/14/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import DesignSystem
 import SwiftUI
+
+import BarcDesignSystem
 
 public struct CodeBackground: View {
     public static let padding = 14.0

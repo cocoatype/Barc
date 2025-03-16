@@ -1,7 +1,7 @@
 //  Created by Geoff Pado on 9/23/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import Barcodes
+import BarcBarcodes
 
 struct Code128CodeRenderer: CodeRenderer {
     private let encodedValue: [Bool]

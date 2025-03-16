@@ -18,7 +18,7 @@ struct CodeMissingView: View {
                 Asset.customBarcodeBadgeQuestionmark.swiftUIImage
                     .font(.largeTitle)
                     .foregroundStyle(.black)
-                Text(WidgetContentsStrings.CodeMissingView.text)
+                Text(Strings.CodeMissingView.text)
                     .font(.subheadline)
                     .padding(.horizontal, 14)
                     .foregroundStyle(.black)

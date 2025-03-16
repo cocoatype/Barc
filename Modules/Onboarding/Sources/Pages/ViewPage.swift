@@ -12,8 +12,8 @@ struct ViewPage: View {
     var body: some View {
         StandardPage(
             image: Asset.viewOnboarding.swiftUIImage,
-            headline: OnboardingStrings.ViewPage.headline,
-            message: OnboardingStrings.ViewPage.body,
+            headline: Strings.ViewPage.headline,
+            message: Strings.ViewPage.body,
             pageIndex: $currentPage
         )
     }

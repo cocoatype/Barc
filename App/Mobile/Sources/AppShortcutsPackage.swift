@@ -2,7 +2,8 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import AppIntents
-import AppShortcuts
+
+import BarcAppShortcuts
 
 struct AppShortcutsPackage: AppIntentsPackage {
     static var includedPackages: [any AppIntentsPackage.Type] {

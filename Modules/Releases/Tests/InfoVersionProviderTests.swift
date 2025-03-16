@@ -3,7 +3,7 @@
 
 import Testing
 
-@testable import Releases
+@testable import BarcReleases
 
 struct InfoVersionProviderTests {
     @Test("When CFBundleShortVersionString is a string, return it")

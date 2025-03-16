@@ -1,10 +1,11 @@
 //  Created by Geoff Pado on 10/9/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import Barcodes
 import XCTest
 
-@testable import WalletExport
+import BarcBarcodes
+
+@testable import BarcWalletExport
 
 class PassRequestTests: XCTestCase {
     func testPassRequestInitValidQR() throws {

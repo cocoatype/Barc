@@ -1,8 +1,9 @@
 //  Created by Geoff Pado on 5/16/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import Logging
 import TestHelpersInterface
+
+import BarcLogging
 
 public class SpyLogger: Logger {
     public init(

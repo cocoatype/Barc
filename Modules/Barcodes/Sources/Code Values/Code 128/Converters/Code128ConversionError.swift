@@ -9,7 +9,7 @@ enum Code128ConversionError: Error, CustomLocalizedStringResourceConvertible {
     case missingStopSymbol
     case missingCheckDigit
 
-    typealias StringResources = BarcodesStringResources.Code128ConversionError
+    typealias StringResources = BarcBarcodes.StringResources.Code128ConversionError
     var localizedStringResource: LocalizedStringResource {
         switch self {
         case .noEquivalentCharacter: StringResources.noEquivalentCharacter

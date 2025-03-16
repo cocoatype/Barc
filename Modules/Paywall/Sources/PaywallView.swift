@@ -1,9 +1,10 @@
 //  Created by Geoff Pado on 5/18/21.
 //  Copyright © 2021 Cocoatype, LLC. All rights reserved.
 
-import DesignSystem
-import ErrorHandling
 import SwiftUI
+
+import BarcDesignSystem
+import BarcErrorHandling
 
 public struct PaywallView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
@@ -71,7 +72,7 @@ public struct PaywallView: View {
         }
     }
 
-    private typealias Strings = PaywallStrings.PurchaseMarketingView
+    private typealias Strings = BarcPaywall.Strings.PurchaseMarketingView
 }
 
 #Preview {

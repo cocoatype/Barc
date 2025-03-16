@@ -6,7 +6,7 @@ import SwiftUI
 struct PrivacyRouteCell: View {
     var body: some View {
         SiteURLCell(
-            title: MenuStrings.PrivacyRouteCell.title,
+            title: Strings.PrivacyRouteCell.title,
             image: Asset.privacy.swiftUIImage,
             path: "/privacy/"
         )

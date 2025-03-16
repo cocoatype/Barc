@@ -7,7 +7,7 @@ struct CancelButton: View {
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
-        Button(ManualEntryStrings.CancelButton.title) {
+        Button(Strings.CancelButton.title) {
             dismiss()
         }
     }

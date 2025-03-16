@@ -1,12 +1,13 @@
 //  Created by Geoff Pado on 10/9/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import Barcodes
-import ErrorHandlingDoubles
-import PurchasingDoubles
 import XCTest
 
-@testable import WalletExport
+import BarcBarcodes
+import BarcErrorHandlingDoubles
+import BarcPurchasingDoubles
+
+@testable import BarcWalletExport
 
 class ExporterTests: XCTestCase {
     @MainActor func testRequestExportCallsAddPasses() async throws {

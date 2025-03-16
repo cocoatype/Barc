@@ -1,11 +1,12 @@
 //  Created by Geoff Pado on 8/14/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import Barcodes
-import DesignSystem
-import ErrorHandling
 import SwiftUI
 import SwiftUIIntrospect
+
+import BarcBarcodes
+import BarcDesignSystem
+import BarcErrorHandling
 
 public struct BarcodeView: View {
     @State private var cachedBrightness: Double = 1.0

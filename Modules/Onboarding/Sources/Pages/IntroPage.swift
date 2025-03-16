@@ -24,7 +24,7 @@ struct IntroPage: View {
         }
     }
 
-    private typealias Strings = OnboardingStrings.IntroPage
+    private typealias Strings = BarcOnboarding.Strings.IntroPage
 }
 
 #Preview {

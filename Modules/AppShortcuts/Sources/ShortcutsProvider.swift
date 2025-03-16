@@ -2,7 +2,8 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import AppIntents
-import ShortcutsModels
+
+import BarcShortcutsModels
 
 public struct ShortcutsProvider: AppShortcutsProvider {
     public static var appShortcuts: [AppShortcut] {

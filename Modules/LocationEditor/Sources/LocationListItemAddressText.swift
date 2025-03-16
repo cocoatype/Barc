@@ -1,10 +1,11 @@
 //  Created by Geoff Pado on 8/19/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import Barcodes
 import Contacts
-import DesignSystem
 import SwiftUI
+
+import BarcBarcodes
+import BarcDesignSystem
 
 struct LocationListItemAddressText: View {
     private let location: Location

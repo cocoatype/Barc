@@ -1,9 +1,10 @@
 //  Created by Geoff Pado on 9/3/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import ErrorHandling
-import Paywall
 import SwiftUI
+
+import BarcErrorHandling
+import BarcPaywall
 
 public struct OnboardingView: View {
     @Environment(\.dismiss) private var dismiss

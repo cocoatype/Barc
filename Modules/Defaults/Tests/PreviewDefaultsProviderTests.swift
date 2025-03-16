@@ -3,7 +3,7 @@
 
 import Testing
 
-@testable import Defaults
+@testable import BarcDefaults
 
 struct PreviewDefaultsProviderTests {
     @Test func boolValueIsFalse() async {

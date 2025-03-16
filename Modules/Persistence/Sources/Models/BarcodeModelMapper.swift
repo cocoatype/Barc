@@ -1,8 +1,9 @@
 //  Created by Geoff Pado on 8/16/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import Barcodes
 import Foundation
+
+import BarcBarcodes
 
 struct BarcodeModelMapper {
     func barcodeModel(from code: Code) -> BarcodeModel {
@@ -49,7 +50,7 @@ struct BarcodeModelMapper {
         }
 
         guard let modelName = model.name else { throw BarcodeModelMapperError.noNameSet }
-        let name = if modelName.isEmpty { PersistenceStrings.BarcodeModelMapper.untitledCodeName } else { modelName }
+        let name = if modelName.isEmpty { Strings.BarcodeModelMapper.untitledCodeName } else { modelName }
 
         return Code(
             name: name,

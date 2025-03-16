@@ -1,8 +1,9 @@
 //  Created by Geoff Pado on 1/19/22.
 //  Copyright © 2022 Cocoatype, LLC. All rights reserved.
 
-import ErrorHandling
 import SwiftUI
+
+import BarcErrorHandling
 
 struct PaywallTopBarRegular: View {
     @State private var textWidth: CGFloat?

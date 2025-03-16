@@ -2,12 +2,13 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import AppIntents
-import Barcodes
 import CoreGraphics
-import ErrorHandling
-import ImageReader
-import Persistence
-import ShortcutsModels
+
+import BarcBarcodes
+import BarcErrorHandling
+import BarcImageReader
+import BarcPersistence
+import BarcShortcutsModels
 
 struct ScanImageIntent: AppIntent {
     static let title: LocalizedStringResource = "ScanImageIntent.title"
@@ -31,9 +32,9 @@ struct ScanImageIntent: AppIntent {
     var name: String?
 
     private var codeName: String {
-        guard let name else { return AppShortcutsStrings.ScanImageIntent.defaultName }
+        guard let name else { return Strings.ScanImageIntent.defaultName }
 
-        if name.isEmpty { return AppShortcutsStrings.ScanImageIntent.defaultName }
+        if name.isEmpty { return Strings.ScanImageIntent.defaultName }
         else { return name }
     }
 

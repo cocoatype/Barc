@@ -1,10 +1,11 @@
 //  Created by Geoff Pado on 8/26/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import Barcodes
-import ErrorHandling
-import ImageReader
 import SwiftUI
+
+import BarcBarcodes
+import BarcErrorHandling
+import BarcImageReader
 
 public struct ShareView: View {
     @Environment(\.extensionContext) private var extensionContext

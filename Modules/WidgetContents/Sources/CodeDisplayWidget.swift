@@ -1,12 +1,13 @@
 //  Created by Geoff Pado on 8/21/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import Barcodes
-import ErrorHandling
-import Persistence
 import SwiftUI
 import WidgetKit
-import WidgetShortcuts
+
+import BarcBarcodes
+import BarcErrorHandling
+import BarcPersistence
+import BarcWidgetShortcuts
 
 public struct CodeDisplayWidget: Widget {
     private let repository: any BarcodeRepository

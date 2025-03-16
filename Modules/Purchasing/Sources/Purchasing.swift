@@ -4,12 +4,14 @@
 
 import Foundation
 
-public let defaultRepository: any PurchaseRepository = {
-    if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] != nil {
-        return PreviewPurchaseRepository()
-    } else {
-        return RevenueCatPurchaseRepository()
-    }
-}()
+public enum Purchasing {
+    public static let defaultRepository: any PurchaseRepository = {
+        if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] != nil {
+            return PreviewPurchaseRepository()
+        } else {
+            return RevenueCatPurchaseRepository()
+        }
+    }()
 
-public let maxBarcodesCount = 3
+    public static let maxBarcodesCount = 3
+}

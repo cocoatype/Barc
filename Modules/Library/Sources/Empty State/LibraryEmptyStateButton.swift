@@ -1,7 +1,6 @@
 //  Created by Geoff Pado on 1/13/25.
 //  Copyright © 2025 Cocoatype, LLC. All rights reserved.
 
-import DesignSystem
 import SwiftUI
 
 struct LibraryEmptyStateButton: View {
@@ -18,15 +17,10 @@ struct LibraryEmptyStateButton: View {
         Button {
             action()
         } label: {
-            Text("\(Image(systemName: imageSystemName)) \(text)")
-                .font(.headline)
-                .tint(Color.primary)
-                .padding(12)
-                .frame(maxWidth: .infinity)
-                .background {
-                    RoundedRectangle(cornerRadius: 8)
-                        .foregroundStyle(Color.secondaryButtonBackground)
-                }
+            LibraryEmptyStateButtonLabel(
+                text,
+                imageSystemName: imageSystemName
+            )
         }
     }
 }

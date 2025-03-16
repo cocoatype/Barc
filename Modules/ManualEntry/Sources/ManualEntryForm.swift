@@ -1,10 +1,11 @@
 //  Created by Geoff Pado on 12/9/23.
 //  Copyright © 2023 Cocoatype, LLC. All rights reserved.
 
-import Barcodes
-import ErrorHandling
-import Persistence
 import SwiftUI
+
+import BarcBarcodes
+import BarcErrorHandling
+import BarcPersistence
 
 struct ManualEntryForm: View {
     @Binding private var partialCode: PartialCode
@@ -26,7 +27,7 @@ struct ManualEntryForm: View {
         }
     }
 
-    private typealias Strings = ManualEntryStrings.ManualEntryForm
+    private typealias Strings = BarcManualEntry.Strings.ManualEntryForm
 }
 
 #Preview {

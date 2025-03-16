@@ -2,7 +2,8 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import AppIntents
-import Barcodes
+
+import BarcBarcodes
 
 public enum BarcodeFormatEntity: AppEntity, CaseIterable, Identifiable {
     case codabar, code39, code128, ean13, pdf417, qr
@@ -34,7 +35,7 @@ public enum BarcodeFormatEntity: AppEntity, CaseIterable, Identifiable {
         }
     }
     
-    private typealias StringResources = ShortcutsModelsStringResources.BarcodeFormatEntity
+    private typealias StringResources = BarcShortcutsModels.StringResources.BarcodeFormatEntity
     public var displayRepresentation: DisplayRepresentation {
         let resource: LocalizedStringResource = switch self {
         case .codabar: StringResources.codabar

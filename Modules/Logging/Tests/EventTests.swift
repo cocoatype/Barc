@@ -2,7 +2,8 @@
 //  Copyright © 2023 Cocoatype, LLC. All rights reserved.
 
 import XCTest
-@testable import Logging
+
+@testable import BarcLogging
 
 final class EventTests: XCTestCase {
     func testNameInitWithValue() {

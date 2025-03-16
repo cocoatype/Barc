@@ -6,10 +6,9 @@ import Foundation
 enum SetLocationIntentError: Error, CustomLocalizedStringResourceConvertible {
     case missingCoordinate
 
-    typealias StringResources = AppShortcutsStringResources.SetLocationIntentError
     var localizedStringResource: LocalizedStringResource {
         switch self {
-        case .missingCoordinate: StringResources.missingCoordinate
+        case .missingCoordinate: StringResources.SetLocationIntentError.missingCoordinate
         }
     }
 }

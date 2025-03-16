@@ -3,7 +3,7 @@
 
 import XCTest
 
-@testable import ShortcutsModels
+@testable import BarcShortcutsModels
 
 class BarcodeQueryTests: XCTestCase {
     

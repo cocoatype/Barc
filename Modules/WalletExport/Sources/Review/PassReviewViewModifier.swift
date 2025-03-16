@@ -1,9 +1,10 @@
 //  Created by Geoff Pado on 10/22/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import ErrorHandling
 import PassKit
 import SwiftUI
+
+import BarcErrorHandling
 
 struct PassReviewViewModifier: ViewModifier {
     @State private var reviewPass: PKPass?

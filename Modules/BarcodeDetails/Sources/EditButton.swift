@@ -11,7 +11,7 @@ struct EditButton: ToolbarContent {
 
     var body: some ToolbarContent {
         ToolbarItem(placement: .primaryAction) {
-            Button(BarcodeDetailsStrings.EditButton.title) {
+            Button(Strings.EditButton.title) {
                 withAnimation {
                     canHazEditing = true
                 }

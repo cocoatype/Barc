@@ -6,10 +6,9 @@ import Foundation
 enum PartialCodeValidationError: Error, CustomLocalizedStringResourceConvertible {
     case emptyName
 
-    typealias StringResources = ManualEntryStringResources.PartialCodeValidationError
     var localizedStringResource: LocalizedStringResource {
         switch self {
-        case .emptyName: StringResources.emptyName
+        case .emptyName: StringResources.PartialCodeValidationError.emptyName
         }
     }
 }

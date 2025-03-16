@@ -2,7 +2,8 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import Foundation
-import Purchasing
+
+import BarcPurchasing
 
 struct PaywallPurchaseOption: Hashable, Identifiable {
     var id: String {
@@ -60,5 +61,5 @@ struct PaywallPurchaseOption: Hashable, Identifiable {
         }
     }
 
-    private typealias Strings = PaywallStrings.PurchaseOption
+    private typealias Strings = BarcPaywall.Strings.PurchaseOption
 }

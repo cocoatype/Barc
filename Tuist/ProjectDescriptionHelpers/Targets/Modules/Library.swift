@@ -11,6 +11,7 @@ public enum Library {
             .target(ErrorHandling.target),
             .target(Location.target),
             .target(Persistence.target),
+            .target(PhotoLibrary.target),
             .target(Routing.target),
             .target(Triggers.target),
         ]

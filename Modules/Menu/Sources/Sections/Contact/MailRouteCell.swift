@@ -2,7 +2,8 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import SwiftUI
-import Web
+
+import BarcWeb
 
 struct MailRouteCell: View {
     // threeCheersForPencilKit by @KaenAitch on 2024-07-03
@@ -29,8 +30,8 @@ struct MailRouteCell: View {
             // https://stackoverflow.com/a/72030978/49345
             NavigationLink(destination: EmptyView()) {
                 CellLabel(
-                    title: MenuStrings.MailRouteCell.title,
-                    subtitle: MenuStrings.MailRouteCell.subtitle,
+                    title: Strings.MailRouteCell.title,
+                    subtitle: Strings.MailRouteCell.subtitle,
                     image: Asset.mail.swiftUIImage
                 )
             }

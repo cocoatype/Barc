@@ -1,8 +1,9 @@
 //  Created by Geoff Pado on 9/2/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import Barcodes
 import CoreLocation
+
+import BarcBarcodes
 
 struct PlacemarkMapper {
     func location(from placemark: CLPlacemark) throws -> Location {

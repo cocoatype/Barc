@@ -9,7 +9,7 @@ extension Target {
         dependencies: [TargetDependency] = []
     ) -> Target {
         Target.target(
-            name: name,
+            name: "Barc\(name)",
             destinations: destinations,
             product: .framework,
             bundleId: "com.cocoatype.Barc.\(name)",
@@ -34,14 +34,14 @@ extension Target {
         dependencies: [TargetDependency] = []
     ) -> Target {
         return Target.target(
-            name: "\(name)Tests",
+            name: "Barc\(name)Tests",
             destinations: [.iPhone],
             product: .unitTests,
             bundleId: "com.cocoatype.Barc.\(name)Tests",
             sources: ["Modules/\(name)/Tests/**"],
             resources: hasResources ? ["Modules/\(name)/TestResources/**"] : nil,
             dependencies: [
-                .target(name: name),
+                .target(name: "Barc\(name)"),
                 .target(TestHelpers.target),
             ] + dependencies,
             settings: .settings(
@@ -57,13 +57,13 @@ extension Target {
         dependencies: [TargetDependency] = []
     ) -> Target {
         return Target.target(
-            name: "\(name)Doubles",
+            name: "Barc\(name)Doubles",
             destinations: [.iPhone],
             product: .framework,
             bundleId: "com.cocoatype.Barc.\(name)Doubles",
             sources: ["Modules/\(name)/Doubles/**"],
             dependencies: [
-                .target(name: name),
+                .target(name: "Barc\(name)"),
                 .target(TestHelpers.interfaceTarget),
             ] + dependencies,
             settings: .settings(

@@ -18,9 +18,9 @@ struct PaywallFooterRestoreLink: View {
 
     var body: some View {
         if usesShortTitle {
-            PaywallFooterLink(title: PaywallStrings.PaywallFooterRestoreLink.shortTitle, action: restore)
+            PaywallFooterLink(title: Strings.PaywallFooterRestoreLink.shortTitle, action: restore)
         } else {
-            PaywallFooterLink(title: PaywallStrings.PaywallFooterRestoreLink.title, action: restore)
+            PaywallFooterLink(title: Strings.PaywallFooterRestoreLink.title, action: restore)
         }
     }
 }

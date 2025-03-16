@@ -1,9 +1,10 @@
 //  Created by Geoff Pado on 8/15/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import DesignSystem
-import Routing
 import SwiftUI
+
+import BarcDesignSystem
+import BarcRouting
 
 struct BarcodeTriggersButton: View {
     private let title: String
@@ -31,7 +32,7 @@ struct BarcodeTriggersButton: View {
     }
 }
 
-import Barcodes
+import BarcBarcodes
 #Preview {
     BarcodeTriggersButton(title: "Location", subtitle: "None", isEditorShowing: .constant(false))
 }

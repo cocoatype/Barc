@@ -8,7 +8,7 @@ enum CodeImageRenderError: Error, CustomLocalizedStringResourceConvertible {
     case cannotCreateImageContext
     case cannotGenerateImage
 
-    typealias StringResources = BarcodeGeneratorStringResources.CodeImageRenderError
+    typealias StringResources = BarcBarcodeGenerator.StringResources.CodeImageRenderError
     var localizedStringResource: LocalizedStringResource {
         switch self {
         case .cannotCreateImageDestination: StringResources.cannotCreateImageDestination

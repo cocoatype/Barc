@@ -1,12 +1,13 @@
 //  Created by Geoff Pado on 9/11/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import Barcodes
-import PersistenceDoubles
-import ReviewRequest
 import TestHelpersInterface
 import TestHelpers
 import XCTest
+
+import BarcBarcodes
+import BarcPersistenceDoubles
+import BarcReviewRequest
 
 class ReviewRequesterTests: XCTestCase {
     static let sampleCode = Code(name: "Name", value: .qr(value: "", correctionLevel: .m), location: nil, date: nil)

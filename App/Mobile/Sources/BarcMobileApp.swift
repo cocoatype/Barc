@@ -2,22 +2,24 @@
 //  Copyright © 2023 Cocoatype, LLC. All rights reserved.
 
 import AppIntents
-import AppShortcuts
-import Defaults
-import ErrorHandling
-import Routing
-import Persistence
-import Purchasing
-import Releases
-import Root
 import SwiftUI
 import SwiftUIIntrospect
+
+import BarcAppShortcuts
+import BarcDefaults
+import BarcErrorHandling
+import BarcRouting
+import BarcPersistence
+import BarcPurchasing
+import BarcReleases
+import BarcRoot
 
 @main
 struct BarcMobileApp: App {
     @State private var navigator: Navigator
 
     private let barcodeRepository: any BarcodeRepository
+    private let purchaseRepository: any PurchaseRepository
     private let versionProvider: any VersionProvider
     private let defaultsProvider: any DefaultsProvider
     private let errorHandler: any ErrorHandler
@@ -29,6 +31,7 @@ struct BarcMobileApp: App {
         errorHandler: any ErrorHandler
     ) {
         self.barcodeRepository = barcodeRepository
+        self.purchaseRepository = purchaseRepository
         self.versionProvider = versionProvider
         self.defaultsProvider = defaultsProvider
         self.errorHandler = errorHandler
@@ -52,7 +55,8 @@ struct BarcMobileApp: App {
         WindowGroup {
             RootView(
                 path: $navigator.path,
-                repository: barcodeRepository,
+                barcodeRepository: barcodeRepository,
+                purchaseRepository: purchaseRepository,
                 versionProvider: versionProvider,
                 defaultsProvider: defaultsProvider,
                 errorHandler: errorHandler

@@ -1,13 +1,14 @@
 //  Created by Geoff Pado on 9/2/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import Barcodes
 import CoreLocation
 import CoreLocationUI
-import DesignSystem
-import Location
 import OSLog
 import SwiftUI
+
+import BarcBarcodes
+import BarcDesignSystem
+import BarcLocation
 
 struct CurrentLocationButton: View {
     @Environment(\.locationProvider) private var locationProvider

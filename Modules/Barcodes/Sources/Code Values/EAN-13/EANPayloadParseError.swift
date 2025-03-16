@@ -6,7 +6,7 @@ import Foundation
 public enum EANPayloadParseError: Error, CustomLocalizedStringResourceConvertible {
     case invalidBarcodeValue(String)
 
-    typealias StringResources = BarcodesStringResources.EANPayloadParseError
+    typealias StringResources = BarcBarcodes.StringResources.EANPayloadParseError
     public var localizedStringResource: LocalizedStringResource {
         switch self {
         case .invalidBarcodeValue(let string): StringResources.invalidBarcodeValue(string)

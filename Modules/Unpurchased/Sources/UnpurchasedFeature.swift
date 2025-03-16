@@ -17,5 +17,5 @@ public struct UnpurchasedFeature: Sendable {
         self.message = message
     }
 
-    private typealias Strings = UnpurchasedStrings.UnpurchasedFeature
+    private typealias Strings = BarcUnpurchased.Strings.UnpurchasedFeature
 }

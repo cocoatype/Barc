@@ -3,7 +3,7 @@
 
 import XCTest
 
-@testable import Barcodes
+@testable import BarcBarcodes
 
 class Code128ValueToStringConverterTests: XCTestCase {
     func testValueConversionModeA() throws {

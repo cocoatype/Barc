@@ -1,9 +1,10 @@
 //  Created by Geoff Pado on 8/24/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import ImageReader
-import Persistence
 import SwiftUI
+
+import BarcImageReader
+import BarcPersistence
 
 struct ErrorAlertViewModifier: ViewModifier {
     @Binding private var scanResult: ScanResult
@@ -56,7 +57,7 @@ struct ErrorAlertViewModifier: ViewModifier {
         }
     }
 
-    private typealias Strings = ScannerStrings.ErrorAlertViewModifier
+    private typealias Strings = BarcScanner.Strings.ErrorAlertViewModifier
 }
 
 extension View {

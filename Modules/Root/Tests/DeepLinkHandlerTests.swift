@@ -1,11 +1,12 @@
 //  Created by Geoff Pado on 12/15/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import ErrorHandlingDoubles
-import PersistenceDoubles
 import XCTest
 
-@testable import Root
+import BarcErrorHandlingDoubles
+import BarcPersistenceDoubles
+
+@testable import BarcRoot
 
 @MainActor class DeepLinkHandlerTests: XCTestCase {
     func testDetailsURL() throws {

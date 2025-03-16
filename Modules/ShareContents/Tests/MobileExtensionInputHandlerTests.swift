@@ -1,12 +1,13 @@
 //  Created by Geoff Pado on 9/17/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import PersistenceDoubles
-import PurchasingDoubles
 import TestHelpers
 import XCTest
 
-@testable import ShareContents
+import BarcPersistenceDoubles
+import BarcPurchasingDoubles
+
+@testable import BarcShareContents
 
 class MobileExtensionInputHandlerTests: XCTestCase {
     @MainActor

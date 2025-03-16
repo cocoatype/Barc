@@ -1,9 +1,10 @@
 //  Created by Geoff Pado on 10/22/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import ErrorHandling
 import SwiftUI
-import Unpurchased
+
+import BarcErrorHandling
+import BarcUnpurchased
 
 struct ExportResultViewModifier: ViewModifier {
     @Binding private var exportResult: ExportResult?

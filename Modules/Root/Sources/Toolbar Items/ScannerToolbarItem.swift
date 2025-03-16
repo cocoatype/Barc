@@ -1,26 +1,30 @@
 //  Created by Geoff Pado on 8/12/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import ErrorHandling
-import Routing
-import Persistence
-import Purchasing
 import SwiftUI
-import Unpurchased
+
+import BarcErrorHandling
+import BarcRouting
+import BarcPersistence
+import BarcPurchasing
+import BarcUnpurchased
 
 struct ScannerToolbarItem: View {
     // superViewDidLoad by @nutterfi on 2024-08-02
     // whether to show the scanner
     @Binding private var superViewDidLoad: Route?
-    private let repository: any BarcodeRepository
+    private let barcodeRepository: any BarcodeRepository
+    private let purchaseRepository: any PurchaseRepository
     private let errorHandler: any ErrorHandler
     init(
         value: Binding<Route?>,
-        repository: any BarcodeRepository,
+        barcodeRepository: any BarcodeRepository,
+        purchaseRepository: any PurchaseRepository,
         errorHandler: any ErrorHandler
     ) {
         _superViewDidLoad = value
-        self.repository = repository
+        self.barcodeRepository = barcodeRepository
+        self.purchaseRepository = purchaseRepository
         self.errorHandler = errorHandler
     }
 
@@ -39,15 +43,15 @@ struct ScannerToolbarItem: View {
 
     private func handleButtonTap() async {
         do {
-            let hasUserBeenUnleashed = try await Purchasing.defaultRepository.hasUserBeenUnleashed
-            let codesCount = try repository.codes.count
+            let hasUserBeenUnleashed = try await purchaseRepository.hasUserBeenUnleashed
+            let codesCount = try barcodeRepository.codes.count
             if hasUserBeenUnleashed || codesCount < Purchasing.maxBarcodesCount {
                 superViewDidLoad = .scanner
             } else {
                 isShowingPurchaseAlert = true
             }
         } catch {
-            // log error
+            errorHandler.log(error, module: "Root", type: "ScannerToolbarItem")
             superViewDidLoad = .scanner
         }
     }
@@ -56,7 +60,8 @@ struct ScannerToolbarItem: View {
 #Preview {
     ScannerToolbarItem(
         value: .constant(nil),
-        repository: PreviewBarcodeRepository(),
+        barcodeRepository: PreviewBarcodeRepository(),
+        purchaseRepository: PreviewPurchaseRepository(),
         errorHandler: PreviewErrorHandler()
     )
 }

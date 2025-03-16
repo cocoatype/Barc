@@ -6,8 +6,8 @@ import SwiftUI
 struct HighlighterAppCell: View {
     var body: some View {
         AppStoreCell(
-            title: MenuStrings.HighlighterAppCell.title,
-            subtitle: MenuStrings.HighlighterAppCell.subtitle,
+            title: Strings.HighlighterAppCell.title,
+            subtitle: Strings.HighlighterAppCell.subtitle,
             image: Asset.highlighter.swiftUIImage,
             appID: "1215283742"
         )

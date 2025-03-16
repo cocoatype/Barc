@@ -1,8 +1,9 @@
 //  Created by Geoff Pado on 8/15/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import Routing
 import SwiftUI
+
+import BarcRouting
 
 struct BarcodeTriggersItem: View {
     private let title: String
@@ -21,7 +22,7 @@ struct BarcodeTriggersItem: View {
     }
 }
 
-import Barcodes
+import BarcBarcodes
 #Preview {
     BarcodeTriggersItem(title: "Location", subtitle: "None")
 }

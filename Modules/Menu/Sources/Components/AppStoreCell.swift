@@ -2,7 +2,8 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import SwiftUI
-import Web
+
+import BarcWeb
 
 struct AppStoreCell: View {
     private let title: String

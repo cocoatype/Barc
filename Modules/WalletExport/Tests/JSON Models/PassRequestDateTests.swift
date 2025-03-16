@@ -3,7 +3,7 @@
 
 import XCTest
 
-@testable import WalletExport
+@testable import BarcWalletExport
 
 class PassRequestDateTests: XCTestCase {
     func testEncoding() throws {

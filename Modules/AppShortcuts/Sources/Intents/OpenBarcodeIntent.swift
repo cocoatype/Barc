@@ -2,8 +2,9 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import AppIntents
-import Routing
-import ShortcutsModels
+
+import BarcRouting
+import BarcShortcutsModels
 
 struct OpenCodeIntent: OpenIntent {
     static let title: LocalizedStringResource = "OpenCodeIntent.title"

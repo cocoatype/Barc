@@ -1,8 +1,8 @@
 //  Created by Geoff Pado on 9/11/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import Barcodes
-import Persistence
+import BarcBarcodes
+import BarcPersistence
 
 public struct StubBarcodeRepository: BarcodeRepository {
     public var codes: [Code] = [

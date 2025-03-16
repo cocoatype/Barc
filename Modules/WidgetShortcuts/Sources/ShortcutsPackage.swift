@@ -2,10 +2,11 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import AppIntents
-import ShortcutsModels
+
+import BarcShortcutsModels
 
 public struct ShortcutsPackage: AppIntentsPackage {
     public static var includedPackages: [any AppIntentsPackage.Type] {
-        [ShortcutsModels.ShortcutsPackage.self]
+        [BarcShortcutsModels.ShortcutsPackage.self]
     }
 }

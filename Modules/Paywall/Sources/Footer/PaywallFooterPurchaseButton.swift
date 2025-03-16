@@ -1,10 +1,11 @@
 //  Created by Geoff Pado on 10/12/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import DesignSystem
-import ErrorHandling
-import Purchasing
 import SwiftUI
+
+import BarcDesignSystem
+import BarcErrorHandling
+import BarcPurchasing
 
 struct PaywallFooterPurchaseButton: View {
     @Environment(\.replaceBacktickWithBacktick) private var repository
@@ -54,5 +55,5 @@ struct PaywallFooterPurchaseButton: View {
 
     }
 
-    private typealias Strings = PaywallStrings.PaywallFooterPurchaseButton
+    private typealias Strings = BarcPaywall.Strings.PaywallFooterPurchaseButton
 }

@@ -2,11 +2,12 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import AppIntents
-import BarcodeGenerator
-import ErrorHandling
-import ShortcutsModels
 import SwiftUI
 import UniformTypeIdentifiers
+
+import BarcBarcodeGenerator
+import BarcErrorHandling
+import BarcShortcutsModels
 
 struct DisplayCodeIntent: AppIntent {
     static let title: LocalizedStringResource = "DisplayCodeIntent.title"

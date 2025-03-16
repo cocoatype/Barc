@@ -4,7 +4,7 @@
 import SwiftUI
 
 public enum PurchaseRepositoryEnvironmentKey: EnvironmentKey {
-    public static var defaultValue: any PurchaseRepository { defaultRepository }
+    public static var defaultValue: any PurchaseRepository { Purchasing.defaultRepository }
 }
 
 public extension EnvironmentValues {

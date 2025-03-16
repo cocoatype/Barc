@@ -1,9 +1,10 @@
 //  Created by Geoff Pado on 9/9/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import Barcodes
 import Foundation
-import Location
+
+import BarcBarcodes
+import BarcLocation
 
 public struct TriggerSensor {
     public init() {}

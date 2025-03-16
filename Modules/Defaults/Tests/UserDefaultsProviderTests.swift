@@ -5,7 +5,7 @@ import Foundation
 import TestHelpers
 import Testing
 
-@testable import Defaults
+@testable import BarcDefaults
 
 struct UserDefaultsProviderTests {
     @Test("value(for:) returns string value from UserDefaults")

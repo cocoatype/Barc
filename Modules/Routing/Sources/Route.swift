@@ -1,8 +1,9 @@
 //  Created by Geoff Pado on 8/16/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import Barcodes
 import SwiftUI
+
+import BarcBarcodes
 
 public enum Route: Hashable, Identifiable {
     case barcodeDetails(Code)
@@ -28,7 +29,8 @@ public enum Route: Hashable, Identifiable {
     public var usesSheetPresentation: Bool {
         switch self {
         case .barcodeDetails: false
-        case .manualEntry, .menu, .onboarding, .paywall, .scanner, .website: true
+        case .manualEntry, .menu, .onboarding, .paywall,
+                .scanner, .website: true
         }
     }
 }

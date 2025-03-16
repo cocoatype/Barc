@@ -1,8 +1,9 @@
 //  Created by Geoff Pado on 8/27/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import Barcodes
 import SwiftUI
+
+import BarcBarcodes
 
 struct DeleteAlertViewModifier: ViewModifier {
     @Binding private var isPresented: Bool
@@ -25,7 +26,7 @@ struct DeleteAlertViewModifier: ViewModifier {
         }
     }
 
-    private typealias Strings = LibraryStrings.DeleteAlertViewModifier
+    private typealias Strings = BarcLibrary.Strings.DeleteAlertViewModifier
 }
 
 extension View {

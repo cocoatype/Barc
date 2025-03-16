@@ -1,12 +1,13 @@
 //  Created by Geoff Pado on 1/20/25.
 //  Copyright © 2025 Cocoatype, LLC. All rights reserved.
 
-import Defaults
-import DefaultsDoubles
-import ReleasesDoubles
 import Testing
 
-@testable import Releases
+import BarcDefaults
+import BarcDefaultsDoubles
+import BarcReleasesDoubles
+
+@testable import BarcReleases
 
 struct NewReleaseDeciderTests {
     @Test("returns false if no last seen version")

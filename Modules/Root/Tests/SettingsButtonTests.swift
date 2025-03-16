@@ -1,15 +1,16 @@
 //  Created by Geoff Pado on 1/20/25.
 //  Copyright © 2025 Cocoatype, LLC. All rights reserved.
 
-import DefaultsDoubles
-import Routing
-import Releases
-import ReleasesDoubles
 import SwiftUI
 import Testing
 import ViewInspector
 
-@testable import Root
+import BarcDefaultsDoubles
+import BarcRouting
+import BarcReleases
+import BarcReleasesDoubles
+
+@testable import BarcRoot
 
 @MainActor
 struct SettingsButtonTests {

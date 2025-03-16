@@ -9,7 +9,7 @@ public enum BarcodeResultMapperError: Error, CustomLocalizedStringResourceConver
     case missingPayloadStringValue
     case invalidSymbology(VNBarcodeSymbology)
 
-    typealias StringResources = ImageReaderStringResources.BarcodeResultMapperError
+    typealias StringResources = BarcImageReader.StringResources.BarcodeResultMapperError
     public var localizedStringResource: LocalizedStringResource {
         switch self {
         case .missingLengthValue:

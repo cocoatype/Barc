@@ -1,10 +1,11 @@
 //  Created by Geoff Pado on 12/11/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import Barcodes
-import ErrorHandling
 import PDF417
 import SwiftUI
+
+import BarcBarcodes
+import BarcErrorHandling
 
 public struct PDF417CodeRenderer: CodeRenderer {
     private let encodedValue: [[Bool]]

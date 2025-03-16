@@ -1,8 +1,9 @@
 //  Created by Geoff Pado on 10/8/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import Barcodes
 import SwiftUI
+
+import BarcBarcodes
 
 struct CodeURLViewModifier: ViewModifier {
     private let code: Code

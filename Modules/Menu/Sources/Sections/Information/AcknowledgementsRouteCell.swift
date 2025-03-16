@@ -6,7 +6,7 @@ import SwiftUI
 struct AcknowledgementsRouteCell: View {
     var body: some View {
         SiteURLCell(
-            title: MenuStrings.AcknowledgementsRouteCell.title,
+            title: Strings.AcknowledgementsRouteCell.title,
             image: Asset.acknowledgements.swiftUIImage,
             path: "/acknowledgements/"
         )
