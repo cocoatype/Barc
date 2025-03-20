@@ -11,6 +11,7 @@ let project = Project(
         CodeScanner.target,
         Share.target,
         Watch.target,
+        WatchWidgets.target,
         Widgets.target,
         // modules
         AppShortcuts.target,
