@@ -1,11 +1,11 @@
 import ProjectDescription
 
-public enum Widgets {
+public enum WatchWidgets {
     public static let target = Target.target(
-        name: "Widgets",
-        destinations: [.iPhone],
+        name: "WatchWidgets",
+        destinations: [.appleWatch],
         product: .appExtension,
-        bundleId: "com.cocoatype.Barc.Widgets",
+        bundleId: "com.cocoatype.Barc.Watch.Widgets",
         infoPlist: "Products/Widgets/Info.plist",
         sources: [
             "Products/Widgets/Sources/**",
@@ -21,10 +21,10 @@ public enum Widgets {
                 "TARGETED_DEVICE_FAMILY": "1,4",
             ],
             debug: [
-                "PROVISIONING_PROFILE_SPECIFIER": "match Development com.cocoatype.Barc.Widgets",
+                "PROVISIONING_PROFILE_SPECIFIER": "match Development com.cocoatype.Barc.Watch.Widgets",
                 "ENABLE_DEBUG_DYLIB": true,
             ], release: [
-                "PROVISIONING_PROFILE_SPECIFIER": "match AppStore com.cocoatype.Barc.Widgets",
+                "PROVISIONING_PROFILE_SPECIFIER": "match AppStore com.cocoatype.Barc.Watch.Widgets",
             ],
             defaultSettings: .recommended(excluding: [
                 "CODE_SIGN_IDENTITY",

@@ -18,7 +18,7 @@ public enum Watch {
             .target(ErrorHandling.target),
             .target(Persistence.target),
             .target(WatchContents.target),
-            .target(Widgets.target),
+            .target(WatchWidgets.target),
         ],
         settings: .settings(
             base: [
