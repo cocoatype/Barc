@@ -43,6 +43,7 @@ public struct CodeDisplayWidget: Widget {
                     Color.cellBackground
                 }
             }
+            .backportPromptsForViewConfiguration()
 #if os(iOS)
             .supportedFamilies([
                 .systemSmall,
