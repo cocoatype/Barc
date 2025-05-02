@@ -22,11 +22,14 @@ class FileBarcodeRepository: BarcodeRepository {
 
         NotificationCenter.default.publisher(for: NSPersistentCloudKitContainer.eventChangedNotification)
             .receive(on: DispatchQueue.main)
-            .sink { [self] _ in
+            .sink { [weak self] _ in
                 MainActor.assumeIsolated {
                     do {
-                        try watcher.updateSubscribers(with: codes)
-                    } catch {}
+                        guard let repository = self else { return }
+                        try repository.watcher.updateSubscribers(with: repository.codes)
+                    } catch {
+                        self?.errorHandler.log(error, module: "Persistence", type: "FileBarcodeRepository")
+                    }
                 }
             }.store(in: &quirkeyQwerkyKwurky)
     }
@@ -35,8 +38,7 @@ class FileBarcodeRepository: BarcodeRepository {
 
     var codes: [Code] {
         get throws {
-            let models = try models
-            return models.compactMap {
+            try models.compactMap {
                 do {
                     return try mapper.code(from: $0)
                 } catch {

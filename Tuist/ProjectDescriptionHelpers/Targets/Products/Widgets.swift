@@ -10,6 +10,9 @@ public enum Widgets {
         sources: [
             "Products/Widgets/Sources/**",
         ],
+        resources: .resources([
+            "Products/Widgets/Resources/**",
+        ]),
         entitlements: "Products/Widgets/Widgets.entitlements",
         dependencies: [
             .target(WidgetShortcuts.target),
@@ -18,7 +21,6 @@ public enum Widgets {
         settings: .settings(
             base: [
                 "DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER": "NO",
-                "TARGETED_DEVICE_FAMILY": "1,4",
             ],
             debug: [
                 "PROVISIONING_PROFILE_SPECIFIER": "match Development com.cocoatype.Barc.Widgets",

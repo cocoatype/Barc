@@ -32,13 +32,8 @@ public struct CodeDisplayWidget: Widget {
             kind: "com.cocoatype.Barc.Widgets.CodeDisplayWidget",
             intent: CodeDisplayConfigurationIntent.self,
             provider: CodeDisplayTimelineProvider(codes: codes)) { entry in
-                Group {
-                    if let code = entry.code {
-                        CodeDisplayView(code: code, errorHandler: errorHandler)
-                    } else {
-                        CodeMissingView()
-                    }
-                }
+                let _ = print("returning view for \(entry)")
+                view(for: entry)
                 .containerBackground(for: .widget) {
                     Color.cellBackground
                 }
@@ -58,6 +53,16 @@ public struct CodeDisplayWidget: Widget {
             ])
 #endif
             .contentMarginsDisabled()
+    }
+
+    @ViewBuilder private func view(for entry: CodeDisplayTimelineEntry) -> some View {
+        if let code = entry.code {
+            let _ = print("returning code display view for \(code)")
+            CodeDisplayView(code: code, errorHandler: errorHandler)
+        } else {
+            let _ = print("returning missing code display view for \(entry)")
+            CodeMissingView()
+        }
     }
 
     private var codes: [Code] {

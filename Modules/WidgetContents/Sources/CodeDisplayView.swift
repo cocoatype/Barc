@@ -19,8 +19,11 @@ struct CodeDisplayView: View {
 
     var body: some View {
         SizeDependentView { square in
-            Image(systemName: imageName)
-                .resizable()
+//            Image("Artboard")
+//                .resizable()
+//                .renderingMode(.template)
+            codeShape
+//            Color.red
                 .aspectRatio(contentMode: .fit)
                 .padding(3)
                 .frame(width: square.width, height: square.height, alignment: .center)
@@ -33,10 +36,16 @@ struct CodeDisplayView: View {
         .codeURL(code)
     }
 
-    private var imageName: String {
+    @ViewBuilder
+    private var codeShape: some View {
+        let _ = print("code \(code.name) has value: \(String(describing: code.value))")
         switch code.value {
-        case .code128, .code39, .codabar, .ean: "barcode"
-        case .pdf417, .qr: "qrcode"
+        case .code128, .code39, .codabar, .ean:
+            BarcodeShape()
+                .foregroundStyle(.orange)
+        case .pdf417, .qr:
+            QRCodeShape()
+                .foregroundStyle(.cyan)
         }
     }
 }
