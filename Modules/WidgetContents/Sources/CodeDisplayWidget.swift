@@ -31,33 +31,36 @@ public struct CodeDisplayWidget: Widget {
         AppIntentConfiguration(
             kind: "com.cocoatype.Barc.Widgets.CodeDisplayWidget",
             intent: CodeDisplayConfigurationIntent.self,
-            provider: CodeDisplayTimelineProvider(codes: codes)) { entry in
-                Group {
-                    if let code = entry.code {
-                        CodeDisplayView(code: code, errorHandler: errorHandler)
-                    } else {
-                        CodeMissingView()
-                    }
-                }
+            provider: CodeDisplayTimelineProvider(codes: codes)
+        ) { entry in
+            view(for: entry)
                 .containerBackground(for: .widget) {
                     Color.cellBackground
                 }
-            }
-            .backportPromptsForViewConfiguration()
+        }
+        .backportPromptsForViewConfiguration()
 #if os(iOS)
-            .supportedFamilies([
-                .systemSmall,
-                .systemMedium,
-                .systemLarge,
-                .systemExtraLarge,
-                .accessoryCircular,
-            ])
+        .supportedFamilies([
+            .systemSmall,
+            .systemMedium,
+            .systemLarge,
+            .systemExtraLarge,
+            .accessoryCircular,
+        ])
 #elseif os(watchOS)
-            .supportedFamilies([
-                .accessoryCircular,
-            ])
+        .supportedFamilies([
+            .accessoryCircular,
+        ])
 #endif
-            .contentMarginsDisabled()
+        .contentMarginsDisabled()
+    }
+
+    @ViewBuilder private func view(for entry: CodeDisplayTimelineEntry) -> some View {
+        if let code = entry.code {
+            CodeDisplayView(code: code, errorHandler: errorHandler)
+        } else {
+            CodeMissingView()
+        }
     }
 
     private var codes: [Code] {
@@ -152,6 +155,5 @@ let previewQRCode = Code(
     widget: { previewWidget },
     timelineProvider: { previewTimelineProvider }
 )
-
 #endif
 #endif

@@ -1,6 +1,7 @@
 //  Created by Geoff Pado on 8/21/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
+import OSLog
 import SwiftUI
 import WidgetKit
 
@@ -19,10 +20,11 @@ struct CodeDisplayView: View {
 
     var body: some View {
         SizeDependentView { square in
-            Image(systemName: imageName)
+            // bangFirst by @KaenAitch on 2025-03-19
+            // the default complication image
+            Asset.bangFirst.swiftUIImage
                 .resizable()
-                .aspectRatio(contentMode: .fit)
-                .padding(3)
+                .aspectRatio(contentMode: .fill)
                 .frame(width: square.width, height: square.height, alignment: .center)
                 .position(x: square.midX, y: square.midY)
         } largeContent: {
@@ -31,13 +33,6 @@ struct CodeDisplayView: View {
                 .clipShape(ContainerRelativeShape().inset(by: 14))
         }
         .codeURL(code)
-    }
-
-    private var imageName: String {
-        switch code.value {
-        case .code128, .code39, .codabar, .ean: "barcode"
-        case .pdf417, .qr: "qrcode"
-        }
     }
 }
 

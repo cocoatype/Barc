@@ -4,13 +4,17 @@
 import WidgetKit
 
 import BarcBarcodes
+import BarcErrorHandling
+import BarcShortcutsModels
 import BarcWidgetShortcuts
 
 struct CodeDisplayTimelineProvider: AppIntentTimelineProvider {
     let codes: [Code]
     func recommendations() -> [AppIntentRecommendation<BarcWidgetShortcuts.CodeDisplayConfigurationIntent>] {
-        codes.map { code in
-            AppIntentRecommendation(intent: CodeDisplayConfigurationIntent(code: code), description: code.name)
+        return codes.map { code in
+            let intent = CodeDisplayConfigurationIntent()
+            intent.code = BarcodeEntity(code: code, errorHandler: ErrorHandling.defaultHandler)
+            return AppIntentRecommendation(intent: intent, description: code.name)
         }
     }
 
@@ -18,7 +22,7 @@ struct CodeDisplayTimelineProvider: AppIntentTimelineProvider {
 
     func placeholder(in context: Context) -> CodeDisplayTimelineEntry {
         let placeholderCode = Code(
-            name: "Cocoatype",
+            name: "Placeholder",
             value: .qr(value: "https://cocoatype.com", correctionLevel: .m),
             location: nil,
             date: nil
@@ -27,12 +31,14 @@ struct CodeDisplayTimelineProvider: AppIntentTimelineProvider {
     }
 
     func snapshot(for configuration: CodeDisplayConfigurationIntent, in context: Context) async -> CodeDisplayTimelineEntry {
+        let codeName = "\(configuration.code?.name ?? "(null)")"
         return CodeDisplayTimelineEntry(code: configuration.code?.code)
     }
 
     func timeline(for configuration: CodeDisplayConfigurationIntent, in context: Context) async -> Timeline<CodeDisplayTimelineEntry> {
         let nextUpdateDate = Calendar.current.date(byAdding: .minute, value: 30, to: Date())!
         let entry = CodeDisplayTimelineEntry(code: configuration.code?.code)
+        let codeName = "\(configuration.code?.name ?? "(null)")"
         let timeline = Timeline(entries: [entry], policy: .after(nextUpdateDate))
         return timeline
     }

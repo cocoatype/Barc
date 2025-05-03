@@ -2,6 +2,7 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import SwiftUI
+import WidgetKit
 
 import BarcBarcodes
 import BarcErrorHandling
@@ -39,7 +40,10 @@ public struct WatchRootView: View {
                 ErrorView(error: error, errorHandler: errorHandler)
             }
         }
-        .onUpdate(to: repository) { updateViewState(with: $0) }
+        .onUpdate(to: repository) {
+            updateViewState(with: $0)
+            WidgetCenter.shared.invalidateConfigurationRecommendations()
+        }
         .onOpenURL { handle($0) }
     }
 
