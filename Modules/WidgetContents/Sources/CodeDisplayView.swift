@@ -1,6 +1,7 @@
 //  Created by Geoff Pado on 8/21/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
+import OSLog
 import SwiftUI
 import WidgetKit
 
@@ -19,13 +20,9 @@ struct CodeDisplayView: View {
 
     var body: some View {
         SizeDependentView { square in
-//            Image("Artboard")
-//                .resizable()
-//                .renderingMode(.template)
-            codeShape
-//            Color.red
-                .aspectRatio(contentMode: .fit)
-                .padding(3)
+            Asset.complication.swiftUIImage
+                .resizable()
+                .aspectRatio(contentMode: .fill)
                 .frame(width: square.width, height: square.height, alignment: .center)
                 .position(x: square.midX, y: square.midY)
         } largeContent: {
@@ -34,19 +31,6 @@ struct CodeDisplayView: View {
                 .clipShape(ContainerRelativeShape().inset(by: 14))
         }
         .codeURL(code)
-    }
-
-    @ViewBuilder
-    private var codeShape: some View {
-        let _ = print("code \(code.name) has value: \(String(describing: code.value))")
-        switch code.value {
-        case .code128, .code39, .codabar, .ean:
-            BarcodeShape()
-                .foregroundStyle(.orange)
-        case .pdf417, .qr:
-            QRCodeShape()
-                .foregroundStyle(.cyan)
-        }
     }
 }
 

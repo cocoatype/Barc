@@ -1,6 +1,7 @@
 //  Created by Geoff Pado on 8/21/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
+import OSLog
 import SwiftUI
 import WidgetKit
 
@@ -31,36 +32,37 @@ public struct CodeDisplayWidget: Widget {
         AppIntentConfiguration(
             kind: "com.cocoatype.Barc.Widgets.CodeDisplayWidget",
             intent: CodeDisplayConfigurationIntent.self,
-            provider: CodeDisplayTimelineProvider(codes: codes)) { entry in
-                let _ = print("returning view for \(entry)")
-                view(for: entry)
+            provider: CodeDisplayTimelineProvider(codes: codes)
+        ) { entry in
+            let _ = os_log("returning view for %{public}@", String(describing: entry.code?.name))
+            view(for: entry)
                 .containerBackground(for: .widget) {
                     Color.cellBackground
                 }
-            }
-            .backportPromptsForViewConfiguration()
+        }
+        .backportPromptsForViewConfiguration()
 #if os(iOS)
-            .supportedFamilies([
-                .systemSmall,
-                .systemMedium,
-                .systemLarge,
-                .systemExtraLarge,
-                .accessoryCircular,
-            ])
+        .supportedFamilies([
+            .systemSmall,
+            .systemMedium,
+            .systemLarge,
+            .systemExtraLarge,
+            .accessoryCircular,
+        ])
 #elseif os(watchOS)
-            .supportedFamilies([
-                .accessoryCircular,
-            ])
+        .supportedFamilies([
+            .accessoryCircular,
+        ])
 #endif
-            .contentMarginsDisabled()
+        .contentMarginsDisabled()
     }
 
     @ViewBuilder private func view(for entry: CodeDisplayTimelineEntry) -> some View {
         if let code = entry.code {
-            let _ = print("returning code display view for \(code)")
+            let _ = os_log("returning code display view for %{public}@", code.name)
             CodeDisplayView(code: code, errorHandler: errorHandler)
         } else {
-            let _ = print("returning missing code display view for \(entry)")
+            let _ = os_log("returning missing code display view for %{public}@", String(describing: entry))
             CodeMissingView()
         }
     }
@@ -143,20 +145,20 @@ let previewQRCode = Code(
     timelineProvider: { previewTimelineProvider }
 )
 #elseif os(watchOS)
-#Preview(
-    "QR Circular",
-    as: .accessoryCircular,
-    using: CodeDisplayConfigurationIntent(code: previewQRCode),
-    widget: { previewWidget },
-    timelineProvider: { previewTimelineProvider }
-)
-#Preview(
-    "QR Rectangular",
-    as: .accessoryRectangular,
-    using: CodeDisplayConfigurationIntent(code: previewQRCode),
-    widget: { previewWidget },
-    timelineProvider: { previewTimelineProvider }
-)
+//#Preview(
+//    "QR Circular",
+//    as: .accessoryCircular,
+//    using: CodeDisplayConfigurationIntent(code: previewQRCode),
+//    widget: { previewWidget },
+//    timelineProvider: { previewTimelineProvider }
+//)
+//#Preview(
+//    "QR Rectangular",
+//    as: .accessoryRectangular,
+//    using: CodeDisplayConfigurationIntent(code: previewQRCode),
+//    widget: { previewWidget },
+//    timelineProvider: { previewTimelineProvider }
+//)
 
 #endif
 #endif

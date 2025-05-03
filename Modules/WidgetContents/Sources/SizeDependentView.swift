@@ -17,9 +17,10 @@ struct SizeDependentView<SmallContent: View, LargeContent: View>: View {
 
     var body: some View {
         GeometryReader { proxy in
+            let _ = print("proxy: \(proxy.size)")
             if isSmall(proxy.size) {
                 smallContent(square(in: proxy.size))
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .frame(maxWidth: proxy.size.width, maxHeight: proxy.size.height)
             } else {
                 largeContent()
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -32,9 +33,6 @@ struct SizeDependentView<SmallContent: View, LargeContent: View>: View {
     }
 
     private func square(in circleSize: CGSize) -> CGRect {
-        let diameter = min(circleSize.height, circleSize.width)
-        let sideLength = diameter / 2.squareRoot()
-        let offset = (diameter - sideLength) / 2
-        return CGRect(x: offset, y: offset, width: sideLength, height: sideLength)
+        CGRect(origin: .zero, size: circleSize)
     }
 }
