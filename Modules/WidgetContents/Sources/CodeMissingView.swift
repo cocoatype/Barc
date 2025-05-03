@@ -6,7 +6,9 @@ import SwiftUI
 struct CodeMissingView: View {
     var body: some View {
         SizeDependentView { square in
-            Asset.customBarcodeBadgeQuestionmark.swiftUIImage
+            // getOrGetNotThereIsNoTry by @AdamWulf on 2025-03-19
+            // the missing code image for watch complications
+            Asset.getOrGetNotThereIsNoTry.swiftUIImage
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .offset(x: 3, y: 3)
@@ -15,7 +17,7 @@ struct CodeMissingView: View {
                 .position(x: square.midX, y: square.midY)
         } largeContent: {
             VStack {
-                Asset.customBarcodeBadgeQuestionmark.swiftUIImage
+                Asset.getOrGetNotThereIsNoTry.swiftUIImage
                     .font(.largeTitle)
                     .foregroundStyle(.black)
                 Text(Strings.CodeMissingView.text)

@@ -23,8 +23,7 @@ import BarcPersistence
             let codes = try repository.codes
 
             return codes.map {
-                print("returning entity for \($0)")
-                return BarcodeEntity(code: $0, errorHandler: ErrorHandling.defaultHandler)
+                BarcodeEntity(code: $0, errorHandler: ErrorHandling.defaultHandler)
             }
         }
     }

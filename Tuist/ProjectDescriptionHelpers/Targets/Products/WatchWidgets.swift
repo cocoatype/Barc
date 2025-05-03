@@ -10,9 +10,6 @@ public enum WatchWidgets {
         sources: [
             "Products/Widgets/Sources/**",
         ],
-        resources: .resources([
-            "Products/Widgets/Resources/**",
-        ]),
         entitlements: "Products/Widgets/Widgets.entitlements",
         dependencies: [
             .target(WidgetShortcuts.target),

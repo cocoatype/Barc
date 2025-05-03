@@ -1,7 +1,6 @@
 //  Created by Geoff Pado on 8/21/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import OSLog
 import SwiftUI
 import WidgetKit
 
@@ -34,7 +33,6 @@ public struct CodeDisplayWidget: Widget {
             intent: CodeDisplayConfigurationIntent.self,
             provider: CodeDisplayTimelineProvider(codes: codes)
         ) { entry in
-            let _ = os_log("returning view for %{public}@", String(describing: entry.code?.name))
             view(for: entry)
                 .containerBackground(for: .widget) {
                     Color.cellBackground
@@ -59,10 +57,8 @@ public struct CodeDisplayWidget: Widget {
 
     @ViewBuilder private func view(for entry: CodeDisplayTimelineEntry) -> some View {
         if let code = entry.code {
-            let _ = os_log("returning code display view for %{public}@", code.name)
             CodeDisplayView(code: code, errorHandler: errorHandler)
         } else {
-            let _ = os_log("returning missing code display view for %{public}@", String(describing: entry))
             CodeMissingView()
         }
     }
@@ -145,20 +141,19 @@ let previewQRCode = Code(
     timelineProvider: { previewTimelineProvider }
 )
 #elseif os(watchOS)
-//#Preview(
-//    "QR Circular",
-//    as: .accessoryCircular,
-//    using: CodeDisplayConfigurationIntent(code: previewQRCode),
-//    widget: { previewWidget },
-//    timelineProvider: { previewTimelineProvider }
-//)
-//#Preview(
-//    "QR Rectangular",
-//    as: .accessoryRectangular,
-//    using: CodeDisplayConfigurationIntent(code: previewQRCode),
-//    widget: { previewWidget },
-//    timelineProvider: { previewTimelineProvider }
-//)
-
+#Preview(
+    "QR Circular",
+    as: .accessoryCircular,
+    using: CodeDisplayConfigurationIntent(code: previewQRCode),
+    widget: { previewWidget },
+    timelineProvider: { previewTimelineProvider }
+)
+#Preview(
+    "QR Rectangular",
+    as: .accessoryRectangular,
+    using: CodeDisplayConfigurationIntent(code: previewQRCode),
+    widget: { previewWidget },
+    timelineProvider: { previewTimelineProvider }
+)
 #endif
 #endif

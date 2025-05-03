@@ -20,7 +20,9 @@ struct CodeDisplayView: View {
 
     var body: some View {
         SizeDependentView { square in
-            Asset.complication.swiftUIImage
+            // bangFirst by @KaenAitch on 2025-03-19
+            // the default complication image
+            Asset.bangFirst.swiftUIImage
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(width: square.width, height: square.height, alignment: .center)

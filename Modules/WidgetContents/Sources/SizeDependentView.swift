@@ -17,7 +17,6 @@ struct SizeDependentView<SmallContent: View, LargeContent: View>: View {
 
     var body: some View {
         GeometryReader { proxy in
-            let _ = print("proxy: \(proxy.size)")
             if isSmall(proxy.size) {
                 smallContent(square(in: proxy.size))
                     .frame(maxWidth: proxy.size.width, maxHeight: proxy.size.height)
