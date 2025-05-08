@@ -11,7 +11,7 @@ import BarcPersistence
 
 public struct WatchRootView: View {
     @State private var selectedCode: Code?
-    @State private var viewState = ViewState.loading
+    @State private var viewState: ViewState
     private let repository: any BarcodeRepository
     private let errorHandler: any ErrorHandler
     public init(
@@ -20,15 +20,24 @@ public struct WatchRootView: View {
     ) {
         self.repository = repository
         self.errorHandler = errorHandler
+
+        do {
+            let codes = try repository.codes
+            if let firstCode = codes.first {
+                _viewState = State(initialValue: .codes(codes))
+                _selectedCode = State(initialValue: firstCode)
+            } else {
+                _viewState = State(initialValue: .empty)
+            }
+        } catch {
+            _viewState = State(initialValue: .error(error))
+        }
     }
 
     public var body: some View {
         Group {
             switch viewState {
-            case .loading:
-                ProgressView()
-                    .onAppear { beginLoading() }
-            case .success(let codes):
+            case .codes(let codes):
                 WatchSplitView(
                     codes: codes,
                     selectedCode: $selectedCode,
@@ -60,35 +69,27 @@ public struct WatchRootView: View {
 
         do {
             let codes = try repository.codes
-            let matchingCode = codes.first(where: { $0.id == decodedValue })
+            updateViewState(with: codes)
 
-            updateViewState(with: codes, selectedCode: matchingCode)
-        } catch {
-            errorHandler.log(error, module: "WatchContents", type: "WatchRootView")
-        }
-    }
-
-    private func beginLoading() {
-        do {
-            try updateViewState(with: repository.codes)
+            if let matchingCode = codes.first(where: { $0.id == decodedValue }) {
+                selectedCode = matchingCode
+            }
         } catch {
             viewState = .error(error)
         }
     }
 
-    private func updateViewState(with codes: [Code], selectedCode: Code? = nil) {
+    private func updateViewState(with codes: [Code]) {
         if codes.count > 0 {
-            viewState = .success(codes: codes)
-            self.selectedCode = selectedCode ?? codes.first
+            viewState = .codes(codes)
         } else {
             viewState = .empty
-            self.selectedCode = nil
+            selectedCode = nil
         }
     }
 
     private enum ViewState {
-        case loading
-        case success(codes: [Code])
+        case codes([Code])
         case empty
         case error(Error)
     }
