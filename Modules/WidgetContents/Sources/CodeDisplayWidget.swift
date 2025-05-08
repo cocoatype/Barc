@@ -39,7 +39,6 @@ public struct CodeDisplayWidget: Widget {
                 }
         }
         .backportPromptsForViewConfiguration()
-#if os(iOS)
         .supportedFamilies([
             .systemSmall,
             .systemMedium,
@@ -47,11 +46,6 @@ public struct CodeDisplayWidget: Widget {
             .systemExtraLarge,
             .accessoryCircular,
         ])
-#elseif os(watchOS)
-        .supportedFamilies([
-            .accessoryCircular,
-        ])
-#endif
         .contentMarginsDisabled()
     }
 
@@ -86,7 +80,6 @@ let previewQRCode = Code(
 )
 @MainActor let previewTimelineProvider = CodeDisplayTimelineProvider(codes: PreviewBarcodeRepository.sampleCodes)
 
-#if os(iOS)
 #Preview(
     "QR Small",
     as: .systemSmall,
@@ -140,20 +133,4 @@ let previewQRCode = Code(
     widget: { previewWidget },
     timelineProvider: { previewTimelineProvider }
 )
-#elseif os(watchOS)
-#Preview(
-    "QR Circular",
-    as: .accessoryCircular,
-    using: CodeDisplayConfigurationIntent(code: previewQRCode),
-    widget: { previewWidget },
-    timelineProvider: { previewTimelineProvider }
-)
-#Preview(
-    "QR Rectangular",
-    as: .accessoryRectangular,
-    using: CodeDisplayConfigurationIntent(code: previewQRCode),
-    widget: { previewWidget },
-    timelineProvider: { previewTimelineProvider }
-)
-#endif
 #endif

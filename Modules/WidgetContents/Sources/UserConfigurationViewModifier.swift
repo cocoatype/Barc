@@ -5,14 +5,10 @@ import SwiftUI
 
 extension WidgetConfiguration {
     func backportPromptsForViewConfiguration() -> some WidgetConfiguration {
-    #if os(iOS)
-    if #available(iOS 18.0, *) {
-        return self.promptsForUserConfiguration()
-    } else {
-        return self
-    }
-    #else
-    return self
-    #endif
+        if #available(iOS 18.0, *) {
+            return self.promptsForUserConfiguration()
+        } else {
+            return self
+        }
     }
 }

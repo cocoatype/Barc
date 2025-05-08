@@ -19,20 +19,10 @@ struct CodeDisplayView: View {
     }
 
     var body: some View {
-        SizeDependentView { square in
-            // bangFirst by @KaenAitch on 2025-03-19
-            // the default complication image
-            Asset.bangFirst.swiftUIImage
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: square.width, height: square.height, alignment: .center)
-                .position(x: square.midX, y: square.midY)
-        } largeContent: {
-            RenderedCodeView(value: code.value, errorHandler: errorHandler)
-                .padding(14)
-                .clipShape(ContainerRelativeShape().inset(by: 14))
-        }
-        .codeURL(code)
+        RenderedCodeView(value: code.value, errorHandler: errorHandler)
+            .padding(14)
+            .clipShape(ContainerRelativeShape().inset(by: 14))
+            .codeURL(code)
     }
 }
 

@@ -8,12 +8,16 @@ public enum WatchWidgets {
         bundleId: "com.cocoatype.Barc.Watch.Widgets",
         infoPlist: "Products/Widgets/Info.plist",
         sources: [
-            "Products/Widgets/Sources/**",
+            "Products/WatchWidgets/Sources/**",
         ],
-        entitlements: "Products/Widgets/Widgets.entitlements",
+        resources: .resources([
+            "Products/WatchWidgets/Resources/**",
+        ]),
+        entitlements: "Products/WatchWidgets/WatchWidgets.entitlements",
         dependencies: [
-            .target(WidgetShortcuts.target),
-            .target(WidgetContents.target),
+            .target(Barcodes.target),
+            .target(ErrorHandling.target),
+            .target(Persistence.target),
         ],
         settings: .settings(
             base: [
