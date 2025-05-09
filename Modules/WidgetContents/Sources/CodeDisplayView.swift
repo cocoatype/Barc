@@ -19,10 +19,29 @@ struct CodeDisplayView: View {
     }
 
     var body: some View {
-        RenderedCodeView(value: code.value, errorHandler: errorHandler)
-            .padding(14)
-            .clipShape(ContainerRelativeShape().inset(by: 14))
-            .codeURL(code)
+        SizeDependentView { square in
+            codeShape
+                .foregroundStyle(.white)
+                .aspectRatio(contentMode: .fit)
+                .frame(width: square.width, height: square.height, alignment: .center)
+                .position(x: square.midX, y: square.midY)
+        } largeContent: {
+            RenderedCodeView(value: code.value, errorHandler: errorHandler)
+                .padding(14)
+                .clipShape(ContainerRelativeShape().inset(by: 14))
+        }
+        .codeURL(code)
+    }
+
+    @ViewBuilder
+    private var codeShape: some View {
+        let _ = print("code \(code.name) has value: \(String(describing: code.value))")
+        switch code.value {
+        case .code128, .code39, .codabar, .ean:
+            BarcodeShape()
+        case .pdf417, .qr:
+            QRCodeShape()
+        }
     }
 }
 
