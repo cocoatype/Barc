@@ -21,14 +21,14 @@
 "PurchaseMarketingTopBarSubheadlineLabel.purchasedText" = "You’ve unlocked these cool features:";
 "PurchaseMarketingTopBarSubheadlineLabel.unpurchasedText" = "Unlock the full potential of Barc.";
 
-"PurchaseMarketingView.multipleItemsHeader" = "Save to your heart’s content.";
-"PurchaseMarketingView.multipleItemsText" = "Add as many items to Barc as you'd like.";
+"PurchaseMarketingView.multipleItemsHeader" = "Every card, every time.";
+"PurchaseMarketingView.multipleItemsText" = "Unlimited storage for all your cards, tickets, and memberships.";
 
-"PurchaseMarketingView.supportDevelopmentHeader" = "Support indie app development.";
-"PurchaseMarketingView.supportDevelopmentText" = "Help keep updates to Barc coming!";
+"PurchaseMarketingView.supportDevelopmentHeader" = "Regular updates, real improvements.";
+"PurchaseMarketingView.supportDevelopmentText" = "Your subscription helps an indie developer build the features you ask for.";
 
-"PurchaseMarketingView.walletExportHeader" = "Add to Apple Wallet";
-"PurchaseMarketingView.walletExportText" = "Add your barcodes to Apple Wallet for quick access.";
+"PurchaseMarketingView.walletExportHeader" = "Fewer taps, faster scans.";
+"PurchaseMarketingView.walletExportText" = "Save your barcodes in Apple Wallet for instant access.";
 
 "PurchaseOption.yearly.shortName" = "Annual";
 "PurchaseOption.yearly.message" = "Unlock all these features for just %@/year (%@/month).";
