@@ -7,6 +7,7 @@ public enum Menu {
         dependencies: [
             .target(Defaults.target),
             .target(ErrorHandling.target),
+            .target(Logging.target),
             .target(Onboarding.target),
             .target(Paywall.target),
             .target(Purchasing.target),

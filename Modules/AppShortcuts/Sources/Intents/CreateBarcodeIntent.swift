@@ -50,7 +50,7 @@ struct CreateBarcodeIntent: AppIntent {
         try repository.add(storedCode)
         ShortcutsProvider.updateAppShortcutParameters()
 
-        return .result(value: BarcodeEntity(code: storedCode, errorHandler: ErrorHandling.defaultHandler))
+        return .result(value: BarcodeEntity(code: storedCode, errorHandler: ErrorHandling.deprecatedHandler))
     }
 
     private var codeValue: CodeValue {

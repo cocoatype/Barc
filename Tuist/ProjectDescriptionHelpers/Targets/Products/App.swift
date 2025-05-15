@@ -17,6 +17,7 @@ public enum App {
         dependencies: [
             .target(AppShortcuts.target),
             .target(Defaults.target),
+            .target(Logging.target),
             .target(Purchasing.target),
             .target(Root.target),
             .target(Share.target),

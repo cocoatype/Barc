@@ -10,7 +10,7 @@ import BarcErrorHandling
 final class RevenueCatPurchaseRepository: PurchaseRepository {
     static let initialize: @Sendable () -> Void = {
         guard let userDefaults = UserDefaults(suiteName: "group.com.cocoatype.Barc") else {
-            ErrorHandling.defaultHandler.fatalError("Unable to create shared user defaults")
+            ErrorHandling.deprecatedHandler.fatalError("Unable to create shared user defaults")
         }
 
         let configuration = Configuration.Builder(withAPIKey: "appl_qYQUCjAKqlSxoGqUuwBHysdhQTT")

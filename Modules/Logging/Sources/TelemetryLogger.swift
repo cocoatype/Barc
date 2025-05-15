@@ -4,8 +4,8 @@
 import OSLog
 import TelemetryClient
 
-public struct TelemetryLogger: Logger {
-    public static func initializeTelemetry() {
+struct TelemetryLogger: Logger {
+    private static func initializeTelemetry() {
         guard TelemetryManager.isInitialized == false else { return }
         let configuration = TelemetryManagerConfiguration(appID: "7885E54D-8730-4C58-A3FA-390D008CCBAF")
         TelemetryDeck.initialize(config: configuration)
@@ -16,12 +16,12 @@ public struct TelemetryLogger: Logger {
         self.manager = manager
     }
 
-    public init() {
+    init() {
         Self.initializeTelemetry()
         self.init(manager: TelemetryManager.shared)
     }
 
-    public func log(_ event: Event) {
+    func log(_ event: Event) {
         os_log("TelemetryLogger logged: %{public}@ (%{public}@)", event.value, event.info)
         manager.send(event.value, for: nil, floatValue: nil, with: event.info)
     }

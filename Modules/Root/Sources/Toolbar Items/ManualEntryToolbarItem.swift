@@ -4,9 +4,10 @@
 import SwiftUI
 
 import BarcErrorHandling
-import BarcRouting
+import BarcLogging
 import BarcPersistence
 import BarcPurchasing
+import BarcRouting
 import BarcUnpurchased
 
 struct ManualEntryToolbarItem: View {
@@ -14,16 +15,19 @@ struct ManualEntryToolbarItem: View {
     private let barcodeRepository: any BarcodeRepository
     private let purchaseRepository: any PurchaseRepository
     private let errorHandler: any ErrorHandler
+    private let logger: any Logger
     init(
         value: Binding<Route?>,
         barcodeRepository: any BarcodeRepository,
         purchaseRepository: any PurchaseRepository,
-        errorHandler: any ErrorHandler
+        errorHandler: any ErrorHandler,
+        logger: any Logger
     ) {
         _sheetRoute = value
         self.barcodeRepository = barcodeRepository
         self.purchaseRepository = purchaseRepository
         self.errorHandler = errorHandler
+        self.logger = logger
     }
 
     @State private var isShowingPurchaseAlert = false
@@ -35,7 +39,8 @@ struct ManualEntryToolbarItem: View {
         }.unpurchasedAlert(
             for: .unlimitedBarcodes,
             isPresented: $isShowingPurchaseAlert,
-            errorHandler: errorHandler
+            errorHandler: errorHandler,
+            logger: logger
         )
     }
 
@@ -60,6 +65,7 @@ struct ManualEntryToolbarItem: View {
         value: .constant(nil),
         barcodeRepository: PreviewBarcodeRepository(),
         purchaseRepository: PreviewPurchaseRepository(),
-        errorHandler: PreviewErrorHandler()
+        errorHandler: PreviewErrorHandler(),
+        logger: PreviewLogger()
     )
 }

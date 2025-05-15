@@ -5,13 +5,19 @@ import SwiftUI
 
 import BarcDesignSystem
 import BarcErrorHandling
+import BarcLogging
 
 public struct PaywallView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
 
     private let errorHandler: any ErrorHandler
-    public init(errorHandler: any ErrorHandler) {
+    private let logger: any Logger
+    public init(
+        errorHandler: any ErrorHandler,
+        logger: any Logger
+    ) {
         self.errorHandler = errorHandler
+        self.logger = logger
     }
 
     public var body: some View {
@@ -76,5 +82,8 @@ public struct PaywallView: View {
 }
 
 #Preview {
-    PaywallView(errorHandler: PreviewErrorHandler())
+    PaywallView(
+        errorHandler: PreviewErrorHandler(),
+        logger: PreviewLogger()
+    )
 }

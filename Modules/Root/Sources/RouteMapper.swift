@@ -7,6 +7,7 @@ import BarcBarcodeDetails
 import BarcDefaults
 import BarcErrorHandling
 import BarcLocationEditor
+import BarcLogging
 import BarcManualEntry
 import BarcMenu
 import BarcRouting
@@ -24,16 +25,19 @@ struct RouteMapper {
     private let repository: any BarcodeRepository
     private let versionProvider: any VersionProvider
     private let errorHandler: any ErrorHandler
+    private let logger: any Logger
     init(
         defaultsProvider: any DefaultsProvider,
         repository: any BarcodeRepository,
         versionProvider: any VersionProvider,
-        errorHandler: any ErrorHandler
+        errorHandler: any ErrorHandler,
+        logger: any Logger
     ) {
         self.defaultsProvider = defaultsProvider
         self.repository = repository
         self.versionProvider = versionProvider
         self.errorHandler = errorHandler
+        self.logger = logger
     }
 
     @ViewBuilder
@@ -42,7 +46,8 @@ struct RouteMapper {
         case .barcodeDetails(let code): BarcodeDetails(
             methodicalMadness: code,
             repository: repository,
-            errorHandler: errorHandler
+            errorHandler: errorHandler,
+            logger: logger
         )
         case .manualEntry: ManualEntry(
             repository: repository,
@@ -51,13 +56,16 @@ struct RouteMapper {
         case .menu: MenuView(
             defaultsProvider: defaultsProvider,
             versionProvider: versionProvider,
-            errorHandler: errorHandler
+            errorHandler: errorHandler,
+            logger: logger
         )
         case .onboarding: OnboardingView(
-            errorHandler: errorHandler
+            errorHandler: errorHandler,
+            logger: logger
         )
         case .paywall: PaywallView(
-            errorHandler: errorHandler
+            errorHandler: errorHandler,
+            logger: logger
         )
         case .scanner: ScannerContainer(
             repository: repository,

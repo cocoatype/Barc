@@ -4,14 +4,21 @@
 import SwiftUI
 
 import BarcErrorHandling
+import BarcLogging
 import BarcUnpurchased
 
 struct ExportResultViewModifier: ViewModifier {
     @Binding private var exportResult: ExportResult?
     private let errorHandler: any ErrorHandler
-    init(exportResult: Binding<ExportResult?>, errorHandler: any ErrorHandler) {
+    private let logger: any Logger
+    init(
+        exportResult: Binding<ExportResult?>,
+        errorHandler: any ErrorHandler,
+        logger: any Logger
+    ) {
         _exportResult = exportResult
         self.errorHandler = errorHandler
+        self.logger = logger
     }
 
     @State private var reviewError: Error?
@@ -27,7 +34,8 @@ struct ExportResultViewModifier: ViewModifier {
             .unpurchasedAlert(
                 for: .walletExport,
                 isPresented: $exportResult.isUnpurchased,
-                errorHandler: errorHandler
+                errorHandler: errorHandler,
+                logger: logger
             )
 
     }
@@ -36,12 +44,14 @@ struct ExportResultViewModifier: ViewModifier {
 public extension View {
     func exportResult(
         _ exportResult: Binding<ExportResult?>,
-        errorHandler: any ErrorHandler
+        errorHandler: any ErrorHandler,
+        logger: any Logger
     ) -> some View {
         modifier(
             ExportResultViewModifier(
                 exportResult: exportResult,
-                errorHandler: errorHandler
+                errorHandler: errorHandler,
+                logger: logger
             )
         )
     }

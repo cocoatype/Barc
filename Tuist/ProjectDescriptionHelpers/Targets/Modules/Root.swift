@@ -10,6 +10,7 @@ public enum Root {
             .target(ErrorHandling.target),
             .target(Library.target),
             .target(LocationEditor.target),
+            .target(Logging.target),
             .target(ManualEntry.target),
             .target(Menu.target),
             .target(Onboarding.target),

@@ -4,14 +4,20 @@
 import SwiftUI
 
 import BarcErrorHandling
+import BarcLogging
 import BarcOnboarding
 
 struct OnboardingRouteCell: View {
     @State private var isOnboardingPresented = false
 
     private let errorHandler: any ErrorHandler
-    init(errorHandler: any ErrorHandler) {
+    private let logger: any Logger
+    init(
+        errorHandler: any ErrorHandler,
+        logger: any Logger
+    ) {
         self.errorHandler = errorHandler
+        self.logger = logger
     }
 
     var body: some View {
@@ -27,11 +33,17 @@ struct OnboardingRouteCell: View {
                 )
             }
         }.sheet(isPresented: $isOnboardingPresented) {
-            OnboardingView(errorHandler: errorHandler)
+            OnboardingView(
+                errorHandler: errorHandler,
+                logger: logger
+            )
         }
     }
 }
 
 #Preview {
-    OnboardingRouteCell(errorHandler: PreviewErrorHandler())
+    OnboardingRouteCell(
+        errorHandler: PreviewErrorHandler(),
+        logger: PreviewLogger()
+    )
 }

@@ -36,6 +36,6 @@ struct SetDateIntent: AppIntent {
         try repository.update(newCode)
         ShortcutsProvider.updateAppShortcutParameters()
 
-        return .result(value: BarcodeEntity(code: newCode, errorHandler: ErrorHandling.defaultHandler))
+        return .result(value: BarcodeEntity(code: newCode, errorHandler: ErrorHandling.deprecatedHandler))
     }
 }

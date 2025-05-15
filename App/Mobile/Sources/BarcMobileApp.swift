@@ -8,6 +8,7 @@ import SwiftUIIntrospect
 import BarcAppShortcuts
 import BarcDefaults
 import BarcErrorHandling
+import BarcLogging
 import BarcRouting
 import BarcPersistence
 import BarcPurchasing
@@ -23,18 +24,21 @@ struct BarcMobileApp: App {
     private let versionProvider: any VersionProvider
     private let defaultsProvider: any DefaultsProvider
     private let errorHandler: any ErrorHandler
+    private let logger: any Logger
     @MainActor init(
         barcodeRepository: any BarcodeRepository,
         purchaseRepository: any PurchaseRepository,
         versionProvider: any VersionProvider,
         defaultsProvider: any DefaultsProvider,
-        errorHandler: any ErrorHandler
+        errorHandler: any ErrorHandler,
+        logger: any Logger
     ) {
         self.barcodeRepository = barcodeRepository
         self.purchaseRepository = purchaseRepository
         self.versionProvider = versionProvider
         self.defaultsProvider = defaultsProvider
         self.errorHandler = errorHandler
+        self.logger = logger
 
         let navigator = Navigator()
         AppDependencyManager.shared.add(dependency: navigator)
@@ -42,12 +46,14 @@ struct BarcMobileApp: App {
     }
 
     init() {
+        let logger = Logging.logger
         self.init(
             barcodeRepository: Persistence.guardLetNotIsScrollingDoesNotEqual,
             purchaseRepository: Purchasing.defaultRepository,
             versionProvider: Releases.versionProvider,
             defaultsProvider: Defaults.provider,
-            errorHandler: ErrorHandling.defaultHandler
+            errorHandler: ErrorHandling.defaultHandler(logger: logger),
+            logger: logger
         )
     }
 
@@ -59,7 +65,8 @@ struct BarcMobileApp: App {
                 purchaseRepository: purchaseRepository,
                 versionProvider: versionProvider,
                 defaultsProvider: defaultsProvider,
-                errorHandler: errorHandler
+                errorHandler: errorHandler,
+                logger: logger
             )
             .introspect(.window, on: .iOS(.v17, .v18)) { window in
                 window.tintColor = .label

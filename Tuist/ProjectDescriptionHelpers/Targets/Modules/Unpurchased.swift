@@ -7,6 +7,7 @@ public enum Unpurchased {
         dependencies: [
             .target(DesignSystem.target),
             .target(ErrorHandling.target),
+            .target(Logging.target),
             .target(Paywall.target),
         ]
     )
