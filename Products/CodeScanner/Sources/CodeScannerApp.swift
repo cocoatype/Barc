@@ -1,7 +1,7 @@
 //  Created by Geoff Pado on 9/22/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import ImageReader
+import BarcImageReader
 import SwiftUI
 
 @main
