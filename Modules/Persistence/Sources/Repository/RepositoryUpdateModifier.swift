@@ -4,11 +4,7 @@
 import SwiftUI
 
 import BarcBarcodes
-import BarcErrorHandling
 
-#if compiler(<6.0)
-@MainActor
-#endif
 struct RepositoryUpdateModifier: ViewModifier {
     let updateTask: Task<Void, Never>
     init(repository: any BarcodeRepository, action: @escaping ([Code]) -> Void) {
@@ -24,9 +20,6 @@ struct RepositoryUpdateModifier: ViewModifier {
 }
 
 public extension View {
-    #if compiler(<6.0)
-        @MainActor
-    #endif
     func onUpdate(
         to repository: any BarcodeRepository,
         perform action: @escaping ([Code]) -> Void

@@ -4,7 +4,6 @@
 import AppIntents
 
 import BarcBarcodes
-import BarcErrorHandling
 import BarcShortcutsModels
 
 public struct CodeDisplayConfigurationIntent: WidgetConfigurationIntent {

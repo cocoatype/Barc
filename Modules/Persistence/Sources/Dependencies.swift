@@ -5,22 +5,20 @@ import Foundation
 
 import FactoryKit
 
-import BarcErrorHandling
-
 public extension Container {
     // guardLetNotIsScrollingDoesNotEqual by @AdamWulf on 2023-12-01
     // the barcode repository for the app
     @MainActor var guardLetNotIsScrollingDoesNotEqual: Factory<any BarcodeRepository> {
         self { @MainActor in
-//            #if os(watchOS) && targetEnvironment(simulator)
-//            return PreviewBarcodeRepository()
-//            #else
-//            if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] != nil {
-//                return PreviewBarcodeRepository()
-//            } else {
+            #if os(watchOS) && targetEnvironment(simulator)
+            return PreviewBarcodeRepository()
+            #else
+            if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] != nil {
+                return PreviewBarcodeRepository()
+            } else {
                 return FileBarcodeRepository()
-//            }
-//            #endif
+            }
+            #endif
         }
     }
 }

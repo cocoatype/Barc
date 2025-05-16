@@ -4,7 +4,6 @@
 import SwiftUI
 
 import BarcBarcodes
-import BarcPersistence
 
 struct ManualEntryForm: View {
     @Binding private var partialCode: PartialCode

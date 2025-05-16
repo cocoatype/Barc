@@ -3,9 +3,6 @@
 
 import SwiftUI
 
-import BarcErrorHandling
-import BarcPersistence
-
 public struct ManualEntry: View {
     public init() {}
 

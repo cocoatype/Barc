@@ -6,7 +6,6 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 import BarcBarcodeGenerator
-import BarcErrorHandling
 import BarcShortcutsModels
 
 struct DisplayCodeIntent: AppIntent {

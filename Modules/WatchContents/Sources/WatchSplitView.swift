@@ -4,7 +4,6 @@
 import SwiftUI
 
 import BarcBarcodes
-import BarcErrorHandling
 
 struct WatchSplitView: View {
     @Binding private var selectedCode: Code?

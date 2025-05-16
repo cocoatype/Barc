@@ -3,8 +3,6 @@
 
 import SwiftUI
 
-import BarcErrorHandling
-import BarcLogging
 import BarcPaywall
 
 struct PaywallPage: View {

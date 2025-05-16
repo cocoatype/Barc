@@ -7,12 +7,8 @@ import FactoryKit
 
 import BarcBarcodes
 import BarcDefaults
-import BarcErrorHandling
 import BarcLibrary
 import BarcRouting
-import BarcPersistence
-import BarcPurchasing
-import BarcReleases
 
 @MainActor
 public struct RootView: View {

@@ -6,13 +6,7 @@ import SwiftUI
 import SwiftUIIntrospect
 
 import BarcAppShortcuts
-import BarcDefaults
-import BarcErrorHandling
-import BarcLogging
 import BarcRouting
-import BarcPersistence
-import BarcPurchasing
-import BarcReleases
 import BarcRoot
 
 @main

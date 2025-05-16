@@ -2,7 +2,6 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import BarcBarcodes
-import BarcErrorHandling
 
 struct CodeValueRenderer: CodeRenderer {
     private let value: CodeValue

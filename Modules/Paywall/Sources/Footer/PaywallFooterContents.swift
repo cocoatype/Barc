@@ -3,9 +3,6 @@
 
 import SwiftUI
 
-import BarcErrorHandling
-import BarcPurchasing
-
 struct PaywallFooterContents: View {
     @State private var selectedPurchaseOption: PaywallPurchaseOption
     private let purchaseOptions: [PaywallPurchaseOption]
@@ -38,6 +35,7 @@ struct PaywallFooterContents: View {
     }
 }
 
+import BarcPurchasing
 #Preview(traits: .sizeThatFitsLayout) {
     PaywallFooterContents(
         purchaseOptions: [

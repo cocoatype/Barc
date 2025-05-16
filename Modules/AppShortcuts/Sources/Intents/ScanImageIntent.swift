@@ -7,7 +7,6 @@ import CoreGraphics
 import FactoryKit
 
 import BarcBarcodes
-import BarcErrorHandling
 import BarcImageReader
 import BarcPersistence
 import BarcShortcutsModels

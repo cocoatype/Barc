@@ -4,7 +4,6 @@
 import WidgetKit
 
 import BarcBarcodes
-import BarcErrorHandling
 import BarcShortcutsModels
 import BarcWidgetShortcuts
 

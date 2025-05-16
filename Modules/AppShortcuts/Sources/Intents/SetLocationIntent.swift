@@ -7,7 +7,6 @@ import CoreLocation
 import FactoryKit
 
 import BarcBarcodes
-import BarcErrorHandling
 import BarcPersistence
 import BarcShortcutsModels
 

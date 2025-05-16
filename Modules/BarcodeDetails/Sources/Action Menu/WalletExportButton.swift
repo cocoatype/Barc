@@ -4,7 +4,6 @@
 import SwiftUI
 
 import BarcBarcodes
-import BarcPurchasing
 import BarcWalletExport
 
 struct WalletExportButton: View {

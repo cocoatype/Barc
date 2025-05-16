@@ -5,7 +5,6 @@ import AppIntents
 
 import FactoryKit
 
-import BarcErrorHandling
 import BarcPersistence
 
 @MainActor public struct BarcodeQuery: EntityQuery {

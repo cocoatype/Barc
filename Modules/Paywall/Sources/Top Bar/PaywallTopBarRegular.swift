@@ -3,8 +3,6 @@
 
 import SwiftUI
 
-import BarcErrorHandling
-
 struct PaywallTopBarRegular: View {
     @State private var textWidth: CGFloat?
 

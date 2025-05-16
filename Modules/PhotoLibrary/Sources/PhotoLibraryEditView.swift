@@ -3,30 +3,23 @@
 
 import SwiftUI
 
+import FactoryKit
+
 import BarcAppShortcuts
 import BarcBarcodes
 import BarcBarcodeEdit
-import BarcErrorHandling
 import BarcPersistence
 import BarcReviewRequest
 
 struct PhotoLibraryEditView: View {
     @Binding private var pickerResult: PickerResult
-
     private let codeValue: CodeValue
-    private let barcodeRepository: any BarcodeRepository
-    private let errorHandler: any ErrorHandler
-
     init(
         codeValue: CodeValue,
-        pickerResult: Binding<PickerResult>,
-        barcodeRepository: any BarcodeRepository,
-        errorHandler: any ErrorHandler
+        pickerResult: Binding<PickerResult>
     ) {
         self.codeValue = codeValue
         _pickerResult = pickerResult
-        self.barcodeRepository = barcodeRepository
-        self.errorHandler = errorHandler
     }
 
     var body: some View {
@@ -43,6 +36,7 @@ struct PhotoLibraryEditView: View {
     }
 
     @Environment(\.dismiss) private var dismiss
+    @Injected(\.guardLetNotIsScrollingDoesNotEqual) private var barcodeRepository
     private func handleEdit(_ code: Code?) {
         guard let code else { return dismiss() }
 

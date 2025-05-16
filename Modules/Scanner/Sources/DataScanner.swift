@@ -9,7 +9,6 @@ import FactoryKit
 import BarcBarcodes
 import BarcErrorHandling
 import BarcImageReader
-import BarcPersistence
 
 struct DataScanner<ScannerFactoryType: ScannerFactory>: UIViewControllerRepresentable {
     public typealias ScannerType = ScannerFactoryType.ScannerType

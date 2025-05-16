@@ -3,8 +3,6 @@
 
 import SwiftUI
 
-import BarcErrorHandling
-
 struct UpsellSection: View {
     var body: some View {
         Section {

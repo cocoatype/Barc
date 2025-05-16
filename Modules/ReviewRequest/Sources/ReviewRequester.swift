@@ -3,7 +3,6 @@
 
 import FactoryKit
 
-import BarcErrorHandling
 import BarcPersistence
 
 @MainActor

@@ -7,7 +7,6 @@ import FactoryKit
 import PDF417
 
 import BarcBarcodes
-import BarcErrorHandling
 import BarcPersistence
 import BarcShortcutsModels
 

@@ -4,18 +4,13 @@
 import SwiftUI
 
 import BarcBarcodeDetails
-import BarcDefaults
-import BarcErrorHandling
 import BarcLocationEditor
-import BarcLogging
 import BarcManualEntry
 import BarcMenu
 import BarcRouting
 import BarcOnboarding
 import BarcPaywall
-import BarcPersistence
 import BarcPhotoLibrary
-import BarcReleases
 import BarcScanner
 import BarcWeb
 
