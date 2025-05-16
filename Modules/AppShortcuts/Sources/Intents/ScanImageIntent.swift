@@ -55,7 +55,7 @@ struct ScanImageIntent: AppIntent {
         }
 
         return .result(value: storedCode.map {
-            BarcodeEntity(code: $0, errorHandler: ErrorHandling.defaultHandler)
+            BarcodeEntity(code: $0, errorHandler: ErrorHandling.deprecatedHandler)
         })
     }
 }

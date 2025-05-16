@@ -4,20 +4,24 @@
 import SwiftUI
 
 import BarcErrorHandling
+import BarcLogging
 import BarcPaywall
 
 public struct UnpurchasedAlertViewModifier: ViewModifier {
     @Binding private var isPresented: Bool
     private let feature: UnpurchasedFeature
     private let errorHandler: any ErrorHandler
+    private let logger: any Logger
     init(
         for feature: UnpurchasedFeature,
         isPresented: Binding<Bool>,
-        errorHandler: any ErrorHandler
+        errorHandler: any ErrorHandler,
+        logger: any Logger
     ) {
         _isPresented = isPresented
         self.feature = feature
         self.errorHandler = errorHandler
+        self.logger = logger
     }
 
     @State private var isShowingPaywall = false
@@ -32,7 +36,10 @@ public struct UnpurchasedAlertViewModifier: ViewModifier {
                 Text(feature.message)
             }
             .sheet(isPresented: $isShowingPaywall) {
-                PaywallView(errorHandler: errorHandler)
+                PaywallView(
+                    errorHandler: errorHandler,
+                    logger: logger
+                )
             }
     }
 
@@ -43,13 +50,15 @@ public extension View {
     func unpurchasedAlert(
         for feature: UnpurchasedFeature,
         isPresented: Binding<Bool>,
-        errorHandler: any ErrorHandler
+        errorHandler: any ErrorHandler,
+        logger: any Logger
     ) -> ModifiedContent<Self, UnpurchasedAlertViewModifier> {
         modifier(
             UnpurchasedAlertViewModifier(
                 for: feature,
                 isPresented: isPresented,
-                errorHandler: errorHandler
+                errorHandler: errorHandler,
+                logger: logger
             )
         )
     }

@@ -4,6 +4,7 @@
 import SwiftUI
 
 import BarcErrorHandling
+import BarcLogging
 import BarcPaywall
 
 struct PaywallPage: View {
@@ -11,8 +12,13 @@ struct PaywallPage: View {
     @State private var isShowingPaywall = false
 
     private let errorHandler: any ErrorHandler
-    init(errorHandler: any ErrorHandler) {
+    private let logger: any Logger
+    init(
+        errorHandler: any ErrorHandler,
+        logger: any Logger
+    ) {
         self.errorHandler = errorHandler
+        self.logger = logger
     }
 
     var body: some View {
@@ -44,11 +50,17 @@ struct PaywallPage: View {
         .sheet(isPresented: $isShowingPaywall) {
             dismiss()
         } content: {
-            PaywallView(errorHandler: errorHandler)
+            PaywallView(
+                errorHandler: errorHandler,
+                logger: logger
+            )
         }
     }
 }
 
 #Preview {
-    PaywallPage(errorHandler: PreviewErrorHandler())
+    PaywallPage(
+        errorHandler: PreviewErrorHandler(),
+        logger: PreviewLogger()
+    )
 }

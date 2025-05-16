@@ -22,7 +22,7 @@ public struct Complication: Widget {
     public init() {
         self.init(
             repository: Persistence.guardLetNotIsScrollingDoesNotEqual,
-            errorHandler: ErrorHandling.defaultHandler
+            errorHandler: ErrorHandling.deprecatedHandler
         )
     }
 

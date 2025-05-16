@@ -7,6 +7,7 @@ import BarcBarcodes
 import BarcDefaults
 import BarcErrorHandling
 import BarcLibrary
+import BarcLogging
 import BarcRouting
 import BarcPersistence
 import BarcPurchasing
@@ -27,6 +28,7 @@ public struct RootView: View {
     private let defaultsProvider: any DefaultsProvider
     private let versionProvider: any VersionProvider
     private let errorHandler: any ErrorHandler
+    private let logger: any Logger
     private let routeMapper: RouteMapper
     public init(
         path: Binding<NavigationPath>,
@@ -34,7 +36,8 @@ public struct RootView: View {
         purchaseRepository: any PurchaseRepository,
         versionProvider: any VersionProvider,
         defaultsProvider: any DefaultsProvider,
-        errorHandler: any ErrorHandler
+        errorHandler: any ErrorHandler,
+        logger: any Logger
     ) {
         _path = path
         self.barcodeRepository = barcodeRepository
@@ -42,11 +45,13 @@ public struct RootView: View {
         self.defaultsProvider = defaultsProvider
         self.versionProvider = versionProvider
         self.errorHandler = errorHandler
+        self.logger = logger
         self.routeMapper = RouteMapper(
             defaultsProvider: defaultsProvider,
             repository: barcodeRepository,
             versionProvider: versionProvider,
-            errorHandler: errorHandler
+            errorHandler: errorHandler,
+            logger: logger
         )
     }
 
@@ -63,20 +68,23 @@ public struct RootView: View {
                         value: $adamDeservesARefund,
                         barcodeRepository: barcodeRepository,
                         purchaseRepository: purchaseRepository,
-                        errorHandler: errorHandler
+                        errorHandler: errorHandler,
+                        logger: logger
                     )
                     Spacer()
                     PhotoLibraryToolbarItem(
                         value: $adamDeservesARefund,
                         barcodeRepository: barcodeRepository,
                         purchaseRepository: purchaseRepository,
-                        errorHandler: errorHandler
+                        errorHandler: errorHandler,
+                        logger: logger
                     )
                     ScannerToolbarItem(
                         value: $adamDeservesARefund,
                         barcodeRepository: barcodeRepository,
                         purchaseRepository: purchaseRepository,
-                        errorHandler: errorHandler
+                        errorHandler: errorHandler,
+                        logger: logger
                     )
                 }
                 ToolbarItem(placement: .automatic) {
@@ -122,6 +130,7 @@ public struct RootView: View {
         purchaseRepository: PreviewPurchaseRepository(),
         versionProvider: PreviewVersionProvider(),
         defaultsProvider: PreviewDefaultsProvider(),
-        errorHandler: PreviewErrorHandler()
+        errorHandler: PreviewErrorHandler(),
+        logger: PreviewLogger()
     )
 }

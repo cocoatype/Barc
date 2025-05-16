@@ -32,6 +32,6 @@ let package = Package(
         .package(url: "git@github.com:nalexn/ViewInspector.git", from: "0.10.1"),
         .package(url: "git@github.com:RevenueCat/purchases-ios-spm.git", from: "5.0.0"),
         .package(url: "git@github.com:siteline/swiftui-introspect.git", from: "1.3.0"),
-        .package(url: "git@github.com:TelemetryDeck/SwiftClient.git", from: "2.6.0"),
+        .package(url: "git@github.com:TelemetryDeck/SwiftClient.git", from: "2.8.0"),
     ]
 )

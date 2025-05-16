@@ -7,6 +7,7 @@ public enum Paywall {
         dependencies: [
             .target(DesignSystem.target),
             .target(ErrorHandling.target),
+            .target(Logging.target),
             .target(Purchasing.target),
         ]
     )

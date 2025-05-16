@@ -4,6 +4,7 @@
 import SwiftUI
 
 import BarcErrorHandling
+import BarcLogging
 import BarcPaywall
 
 public struct OnboardingView: View {
@@ -11,15 +12,21 @@ public struct OnboardingView: View {
     @State private var currentPageIndex = 0
 
     private let errorHandler: any ErrorHandler
-    public init(errorHandler: any ErrorHandler) {
+    private let logger: any Logger
+    public init(
+        errorHandler: any ErrorHandler,
+        logger: any Logger
+    ) {
         self.errorHandler = errorHandler
+        self.logger = logger
     }
 
     public var body: some View {
         currentPage
             .pageView(
                 currentPage: $currentPageIndex,
-                errorHandler: errorHandler
+                errorHandler: errorHandler,
+                logger: logger
             )
             .environment(\.advance, AdvanceAction {
                 currentPageIndex = (currentPageIndex + 1) % OnboardingPage.allCases.count
@@ -32,5 +39,8 @@ public struct OnboardingView: View {
 }
 
 #Preview {
-    OnboardingView(errorHandler: PreviewErrorHandler())
+    OnboardingView(
+        errorHandler: PreviewErrorHandler(),
+        logger: PreviewLogger()
+    )
 }

@@ -32,7 +32,7 @@ struct DisplayCodeIntent: AppIntent {
 
     @MainActor
     func perform() async throws -> some IntentResult & ReturnsValue<IntentFile> {
-        let renderer = CodeImageRenderer(errorHandler: ErrorHandling.defaultHandler)
+        let renderer = CodeImageRenderer(errorHandler: ErrorHandling.deprecatedHandler)
         let imageData = try renderer.pngData(from: code.value, withBackground: hasBackground)
         let file = IntentFile(data: imageData, filename: code.name, type: .png)
 

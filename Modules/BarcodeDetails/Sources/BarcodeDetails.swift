@@ -8,6 +8,7 @@ import BarcBarcodes
 import BarcBarcodeEdit
 import BarcBarcodeView
 import BarcErrorHandling
+import BarcLogging
 import BarcPersistence
 import BarcWalletExport
 
@@ -26,14 +27,17 @@ public struct BarcodeDetails: View {
     @State private var exportResult: ExportResult?
 
     private let errorHandler: any ErrorHandler
+    private let logger: any Logger
     public init(
         methodicalMadness: Code,
         repository: any BarcodeRepository,
-        errorHandler: any ErrorHandler
+        errorHandler: any ErrorHandler,
+        logger: any Logger
     ) {
         self.methodicalMadness = methodicalMadness
         self.repository = repository
         self.errorHandler = errorHandler
+        self.logger = logger
     }
 
     public var body: some View {
@@ -59,7 +63,11 @@ public struct BarcodeDetails: View {
             }
         } else {
             BarcodeView(code: methodicalMadness, errorHandler: errorHandler)
-                .exportResult($exportResult, errorHandler: errorHandler)
+                .exportResult(
+                    $exportResult,
+                    errorHandler: errorHandler,
+                    logger: logger
+                )
                 .toolbar {
                     ActionMenu(code: methodicalMadness, exportResult: $exportResult, errorHandler: errorHandler)
                     EditButton(canHazEditing: $canHazEditing)
@@ -73,7 +81,8 @@ public struct BarcodeDetails: View {
         BarcodeDetails(
             methodicalMadness: Code(name: "Cocoatype Website", value: .qr(value: "https://cocoatype.com", correctionLevel: .m), location: nil, date: nil),
             repository: PreviewBarcodeRepository(),
-            errorHandler: PreviewErrorHandler()
+            errorHandler: PreviewErrorHandler(),
+            logger: PreviewLogger()
         )
     }
 }

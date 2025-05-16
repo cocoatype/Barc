@@ -5,11 +5,15 @@ import SwiftUI
 import UIKit
 
 import BarcErrorHandling
+import BarcLogging
 import BarcShareContents
 
 class ShareViewController: UIHostingController<AnyView> {
+    private let errorHandler: any ErrorHandler
     @objc init(nibName: String?, bundle: Bundle?) {
-        super.init(rootView: AnyView(ShareView(errorHandler: ErrorHandling.defaultHandler)))
+        let logger = Logging.logger
+        self.errorHandler = ErrorHandling.defaultHandler(logger: logger)
+        super.init(rootView: AnyView(ShareView(errorHandler: errorHandler)))
     }
 
     @available(*, unavailable)
@@ -20,7 +24,7 @@ class ShareViewController: UIHostingController<AnyView> {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let newRoot = ShareView(errorHandler: ErrorHandling.defaultHandler)
+        let newRoot = ShareView(errorHandler: errorHandler)
             .environment(\.extensionContext, extensionContext)
         rootView = AnyView(newRoot)
     }

@@ -11,12 +11,16 @@ public extension URL {
     }
 
     init(appID: StaticString) {
-        guard let url = URL(string: "https://apps.apple.com/us/app/cocoatype/id\(appID)?uo=4") else { ErrorHandling.defaultHandler.fatalError("Error creating URL from app ID") }
+        guard let url = URL(string: "https://apps.apple.com/us/app/cocoatype/id\(appID)?uo=4") else {
+            ErrorHandling.deprecatedHandler.fatalError("Error creating URL from app ID")
+        }
         self = url
     }
 
     init(staticString: StaticString) {
-        guard let url = URL(string: String(staticString)) else { ErrorHandling.defaultHandler.fatalError("Error creating URL from StaticString") }
+        guard let url = URL(string: String(staticString)) else {
+            ErrorHandling.deprecatedHandler.fatalError("Error creating URL from StaticString")
+        }
         self = url
     }
 

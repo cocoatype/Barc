@@ -4,6 +4,7 @@
 import SwiftUI
 
 import BarcErrorHandling
+import BarcLogging
 import BarcPersistence
 import BarcWatchContents
 
@@ -13,7 +14,7 @@ struct BarcWatchApp: App {
         WindowGroup {
             WatchRootView(
                 repository: Persistence.guardLetNotIsScrollingDoesNotEqual,
-                errorHandler: ErrorHandling.defaultHandler
+                errorHandler: ErrorHandling.defaultHandler(logger: Logging.logger)
             )
         }
     }

@@ -23,7 +23,7 @@ public struct CodeDisplayWidget: Widget {
     public init() {
         self.init(
             repository: Persistence.guardLetNotIsScrollingDoesNotEqual,
-            errorHandler: ErrorHandling.defaultHandler
+            errorHandler: ErrorHandling.deprecatedHandler
         )
     }
 

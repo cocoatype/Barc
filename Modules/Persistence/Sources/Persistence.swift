@@ -16,7 +16,7 @@ public enum Persistence {
         if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] != nil {
             return PreviewBarcodeRepository()
         } else {
-            return FileBarcodeRepository(errorHandler: ErrorHandling.defaultHandler)
+            return FileBarcodeRepository(errorHandler: ErrorHandling.deprecatedHandler)
         }
         #endif
     }()

@@ -5,7 +5,7 @@ import BarcLogging
 
 struct DefaultHandler: ErrorHandler {
     private let logger: any Logger
-    init(logger: any Logger = Logging.logger) {
+    init(logger: any Logger) {
         self.logger = logger
     }
 
