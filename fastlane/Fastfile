@@ -51,6 +51,7 @@ platform :ios do
         distribute_external: true,
         changelog: logs,
         groups: [
+          "Alpha Flight",
           "Public Testers"
         ]
       )
