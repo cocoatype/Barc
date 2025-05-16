@@ -56,6 +56,10 @@ public struct PaywallView: View {
         }.safeAreaInset(edge: .bottom) {
             PaywallFooter(errorHandler: errorHandler)
                 .background(ignoresSafeAreaEdges: .bottom)
+        }.onAppear {
+            logger.log(
+                Event(name: "Barc.PaywallView.viewed", info: [:])
+            )
         }
     }
 
