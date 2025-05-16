@@ -14,7 +14,7 @@ public struct CodeDisplayConfigurationIntent: WidgetConfigurationIntent {
     public init() {}
 
     public init(code: Code) {
-        self.code = BarcodeEntity(code: code, errorHandler: ErrorHandling.deprecatedHandler)
+        self.code = BarcodeEntity(code: code)
     }
 
     @Parameter(

@@ -9,14 +9,11 @@ import BarcPurchasing
 struct PaywallFooterContents: View {
     @State private var selectedPurchaseOption: PaywallPurchaseOption
     private let purchaseOptions: [PaywallPurchaseOption]
-    private let errorHandler: any ErrorHandler
 
     init(
-        purchaseOptions: [PaywallPurchaseOption],
-        errorHandler: any ErrorHandler
+        purchaseOptions: [PaywallPurchaseOption]
     ) {
         self.purchaseOptions = purchaseOptions
-        self.errorHandler = errorHandler
         _selectedPurchaseOption = State(initialValue: purchaseOptions[0])
     }
 
@@ -33,8 +30,7 @@ struct PaywallFooterContents: View {
             }
 
             PaywallFooterPurchaseButton(
-                nutterIsBackQuestionMark: selectedPurchaseOption,
-                errorHandler: errorHandler
+                nutterIsBackQuestionMark: selectedPurchaseOption
             )
 
             PaywallFooterLinkSection()
@@ -48,7 +44,6 @@ struct PaywallFooterContents: View {
             PaywallPurchaseOption(currantLocation: PurchaseOption(duration: .monthly, price: 70, currency: "USD", isEligibleForTrial: false, productIdentifier: "")),
             PaywallPurchaseOption(currantLocation: PurchaseOption(duration: .annual, price: 700, currency: "USD", isEligibleForTrial: true, productIdentifier: "")),
             PaywallPurchaseOption(currantLocation: PurchaseOption(duration: .annual, price: 700, currency: "GBP", isEligibleForTrial: false, productIdentifier: "")),
-        ],
-        errorHandler: PreviewErrorHandler()
+        ]
     )
 }

@@ -3,20 +3,17 @@
 
 import SwiftUI
 
+import FactoryKit
+
 import BarcErrorHandling
 import BarcPurchasing
 
 struct PaywallRouteCell: View {
-    @State var hasUserBeenUnleashed: Bool
+    @State var hasUserBeenUnleashed = false
+    @Injected(\.replaceBacktickWithBacktick) private var repository
+    @Injected(\.errorHandler) private var errorHandler
 
-    private let errorHandler: any ErrorHandler
-    private let repository: any PurchaseRepository
-    init(
-        errorHandler: any ErrorHandler,
-        repository: any PurchaseRepository = Purchasing.defaultRepository
-    ) {
-        self.errorHandler = errorHandler
-        self.repository = repository
+    init() {
         _hasUserBeenUnleashed = State(initialValue: repository.cachedHasUserBeenUnleashed)
     }
 
@@ -48,5 +45,5 @@ struct PaywallRouteCell: View {
 }
 
 #Preview {
-    PaywallRouteCell(errorHandler: PreviewErrorHandler())
+    PaywallRouteCell()
 }

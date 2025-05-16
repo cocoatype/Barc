@@ -5,6 +5,7 @@ public enum Releases {
         name: "Releases",
         dependencies: [
             .target(Defaults.target),
+            .external(name: "FactoryKit"),
         ]
     )
 

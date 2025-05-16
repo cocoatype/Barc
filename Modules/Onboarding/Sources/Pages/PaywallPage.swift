@@ -11,16 +11,6 @@ struct PaywallPage: View {
     @Environment(\.dismiss) private var dismiss
     @State private var isShowingPaywall = false
 
-    private let errorHandler: any ErrorHandler
-    private let logger: any Logger
-    init(
-        errorHandler: any ErrorHandler,
-        logger: any Logger
-    ) {
-        self.errorHandler = errorHandler
-        self.logger = logger
-    }
-
     var body: some View {
         VStack {
             ScrollIfNecessary {
@@ -50,17 +40,11 @@ struct PaywallPage: View {
         .sheet(isPresented: $isShowingPaywall) {
             dismiss()
         } content: {
-            PaywallView(
-                errorHandler: errorHandler,
-                logger: logger
-            )
+            PaywallView()
         }
     }
 }
 
 #Preview {
-    PaywallPage(
-        errorHandler: PreviewErrorHandler(),
-        logger: PreviewLogger()
-    )
+    PaywallPage()
 }

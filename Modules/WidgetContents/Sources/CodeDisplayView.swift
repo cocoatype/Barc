@@ -7,15 +7,12 @@ import WidgetKit
 
 import BarcBarcodes
 import BarcBarcodeGenerator
-import BarcErrorHandling
 import BarcPersistence
 
 struct CodeDisplayView: View {
     private let code: Code
-    private let errorHandler: any ErrorHandler
-    init(code: Code, errorHandler: any ErrorHandler) {
+    init(code: Code) {
         self.code = code
-        self.errorHandler = errorHandler
     }
 
     var body: some View {
@@ -26,7 +23,7 @@ struct CodeDisplayView: View {
                 .frame(width: square.width, height: square.height, alignment: .center)
                 .position(x: square.midX, y: square.midY)
         } largeContent: {
-            RenderedCodeView(value: code.value, errorHandler: errorHandler)
+            RenderedCodeView(value: code.value)
                 .padding(14)
                 .clipShape(ContainerRelativeShape().inset(by: 14))
         }
@@ -47,14 +44,12 @@ struct CodeDisplayView: View {
 
 #Preview("Small", traits: .fixedLayout(width: 47, height: 47)) {
     CodeDisplayView(
-        code: PreviewBarcodeRepository.sampleCodes[1],
-        errorHandler: PreviewErrorHandler()
+        code: PreviewBarcodeRepository.sampleCodes[1]
     )
 }
 
 #Preview("Large", traits: .fixedLayout(width: 200, height: 200)) {
     CodeDisplayView(
-        code: PreviewBarcodeRepository.sampleCodes[1],
-        errorHandler: PreviewErrorHandler()
+        code: PreviewBarcodeRepository.sampleCodes[1]
     )
 }

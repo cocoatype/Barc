@@ -4,27 +4,17 @@
 import SwiftUI
 import WidgetKit
 
+import FactoryKit
+
 import BarcBarcodes
 import BarcErrorHandling
 import BarcPersistence
 
 public struct Complication: Widget {
-    private let repository: any BarcodeRepository
-    private let errorHandler: any ErrorHandler
-    init(
-        repository: any BarcodeRepository,
-        errorHandler: any ErrorHandler
-    ) {
-        self.repository = repository
-        self.errorHandler = errorHandler
-    }
+    @Injected(\.guardLetNotIsScrollingDoesNotEqual) private var repository
+    @Injected(\.errorHandler) private var errorHandler
 
-    public init() {
-        self.init(
-            repository: Persistence.guardLetNotIsScrollingDoesNotEqual,
-            errorHandler: ErrorHandling.deprecatedHandler
-        )
-    }
+    public init() {}
 
     public var body: some WidgetConfiguration {
         AppIntentConfiguration(
@@ -62,10 +52,7 @@ let previewQRCode = Code(
     location: nil,
     date: nil
 )
-@MainActor let previewWidget = Complication(
-    repository: PreviewBarcodeRepository(),
-    errorHandler: PreviewErrorHandler()
-)
+@MainActor let previewWidget = Complication()
 @MainActor let previewTimelineProvider = ComplicationTimelineProvider(codes: PreviewBarcodeRepository.sampleCodes)
 
 #Preview(

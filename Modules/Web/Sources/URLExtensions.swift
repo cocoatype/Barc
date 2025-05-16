@@ -3,6 +3,8 @@
 
 import Foundation
 
+import FactoryKit
+
 import BarcErrorHandling
 
 public extension URL {
@@ -12,14 +14,14 @@ public extension URL {
 
     init(appID: StaticString) {
         guard let url = URL(string: "https://apps.apple.com/us/app/cocoatype/id\(appID)?uo=4") else {
-            ErrorHandling.deprecatedHandler.fatalError("Error creating URL from app ID")
+            Container.shared.errorHandler().fatalError("Error creating URL from app ID")
         }
         self = url
     }
 
     init(staticString: StaticString) {
         guard let url = URL(string: String(staticString)) else {
-            ErrorHandling.deprecatedHandler.fatalError("Error creating URL from StaticString")
+            Container.shared.errorHandler().fatalError("Error creating URL from StaticString")
         }
         self = url
     }

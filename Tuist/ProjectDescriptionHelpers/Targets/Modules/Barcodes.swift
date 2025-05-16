@@ -6,6 +6,7 @@ public enum Barcodes {
         destinations: [.iPhone, .appleWatch, .mac],
         hasResources: true,
         dependencies: [
+            .external(name: "FactoryKit"),
             .external(name: "PDF417"),
         ]
     )

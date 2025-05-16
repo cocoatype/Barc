@@ -3,25 +3,24 @@
 
 import SwiftUI
 
+import FactoryKit
+
 import BarcAppShortcuts
 import BarcBarcodes
 import BarcBarcodeEdit
-import BarcErrorHandling
 import BarcPersistence
 
 struct SuccessView: View {
     @Environment(\.extensionContext) private var extensionContext
 
     private let value: CodeValue
-    private let errorHandler: any ErrorHandler
-    init(value: CodeValue, errorHandler: any ErrorHandler) {
+    init(value: CodeValue) {
         self.value = value
-        self.errorHandler = errorHandler
     }
 
     var body: some View {
         NavigationStack {
-            BarcodeEdit(value: value, errorHandler: errorHandler) { code in
+            BarcodeEdit(value: value) { code in
                 Task {
                     await handle(code)
                 }
@@ -29,10 +28,11 @@ struct SuccessView: View {
         }
     }
 
+    @Injected(\.guardLetNotIsScrollingDoesNotEqual) private var repository
     private func handle(_ code: Code?) async {
         if let code {
             do {
-                try Persistence.guardLetNotIsScrollingDoesNotEqual.add(code)
+                try repository.add(code)
                 ShortcutsProvider.updateAppShortcutParameters()
                 extensionContext?.completeRequest(returningItems: [])
             } catch {
@@ -46,7 +46,6 @@ struct SuccessView: View {
 
 #Preview {
     SuccessView(
-        value: .qr(value: "https://cocoatype.com", correctionLevel: .m),
-        errorHandler: PreviewErrorHandler()
+        value: .qr(value: "https://cocoatype.com", correctionLevel: .m)
     )
 }

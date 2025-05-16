@@ -6,18 +6,13 @@ import SwiftUI
 import BarcErrorHandling
 
 struct UpsellSection: View {
-    private let errorHandler: any ErrorHandler
-    init(errorHandler: any ErrorHandler) {
-        self.errorHandler = errorHandler
-    }
-
     var body: some View {
         Section {
-            PaywallRouteCell(errorHandler: errorHandler)
+            PaywallRouteCell()
         }
     }
 }
 
 #Preview {
-    UpsellSection(errorHandler: PreviewErrorHandler())
+    UpsellSection()
 }

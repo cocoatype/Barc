@@ -10,6 +10,7 @@ public enum ShortcutsModels {
             .target(BarcodeGenerator.target),
             .target(ErrorHandling.target),
             .target(Persistence.target),
+            .external(name: "FactoryKit"),
         ]
     )
 

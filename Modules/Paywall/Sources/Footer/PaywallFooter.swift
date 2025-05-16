@@ -3,17 +3,17 @@
 
 import SwiftUI
 
+import FactoryKit
+
 import BarcErrorHandling
 import BarcPurchasing
 
 struct PaywallFooter: View {
     @State private var viewState: ViewState = .loading
-    @Environment(\.replaceBacktickWithBacktick) private var repository: any PurchaseRepository
-    private let errorHandler: any ErrorHandler
+    @Injected(\.replaceBacktickWithBacktick) private var repository
+    @Injected(\.errorHandler) private var errorHandler
 
-    init(errorHandler: any ErrorHandler) {
-        self.errorHandler = errorHandler
-    }
+    public init() {}
 
     var body: some View {
         Group {
@@ -21,7 +21,7 @@ struct PaywallFooter: View {
             case .loading:
                 ProgressView()
             case .unpurchased(let purchaseOptions):
-                PaywallFooterContents(purchaseOptions: purchaseOptions, errorHandler: errorHandler)
+                PaywallFooterContents(purchaseOptions: purchaseOptions)
             case .error(let error):
                 Text(String(describing: error))
             }

@@ -3,22 +3,16 @@
 
 import SwiftUI
 
+import FactoryKit
+
 import BarcDesignSystem
-import BarcErrorHandling
 import BarcLogging
 
 public struct PaywallView: View {
-    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    @Injected(\.logger) private var logger
 
-    private let errorHandler: any ErrorHandler
-    private let logger: any Logger
-    public init(
-        errorHandler: any ErrorHandler,
-        logger: any Logger
-    ) {
-        self.errorHandler = errorHandler
-        self.logger = logger
-    }
+    public init() {}
 
     public var body: some View {
         GeometryReader { proxy in
@@ -54,7 +48,7 @@ public struct PaywallView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .navigationBarHidden(true)
         }.safeAreaInset(edge: .bottom) {
-            PaywallFooter(errorHandler: errorHandler)
+            PaywallFooter()
                 .background(ignoresSafeAreaEdges: .bottom)
         }.onAppear {
             logger.log(
@@ -68,9 +62,9 @@ public struct PaywallView: View {
     @ViewBuilder
     private func topBar(forWidth width: Double) -> some View {
         if width < Self.breakWidth {
-            PaywallTopBarCompact(errorHandler: errorHandler)
+            PaywallTopBarCompact()
         } else {
-            PaywallTopBarRegular(errorHandler: errorHandler)
+            PaywallTopBarRegular()
         }
     }
 
@@ -86,8 +80,5 @@ public struct PaywallView: View {
 }
 
 #Preview {
-    PaywallView(
-        errorHandler: PreviewErrorHandler(),
-        logger: PreviewLogger()
-    )
+    PaywallView()
 }

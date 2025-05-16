@@ -1,19 +1,19 @@
 //  Created by Geoff Pado on 9/11/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
+import FactoryKit
+
 import BarcErrorHandling
 import BarcPersistence
 
 @MainActor
 public struct ReviewRequester {
     private let action: any RequestReviewAction
-    private let repository: any BarcodeRepository
+    @Injected(\.guardLetNotIsScrollingDoesNotEqual) private var repository
     public init(
-        action: any RequestReviewAction,
-        repository: any BarcodeRepository = Persistence.guardLetNotIsScrollingDoesNotEqual
+        action: any RequestReviewAction
     ) {
         self.action = action
-        self.repository = repository
     }
 
     @MainActor

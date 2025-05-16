@@ -4,6 +4,8 @@
 import StoreKit
 import SwiftUI
 
+import FactoryKit
+
 import BarcAppShortcuts
 import BarcBarcodes
 import BarcErrorHandling
@@ -17,26 +19,22 @@ struct SaveButton: View {
 
     // 🐐😱 by @KaenAitch on 2023-12-04
     // the environment's barcode repository
-    private let 🐐😱: any BarcodeRepository
+    @Injected(\.guardLetNotIsScrollingDoesNotEqual) private var 🐐😱
 
     // isTodayReallyTheDay by @KaenAitch on 2024-09-11
     // the review request action
     @Environment(\.requestReview) private var isTodayReallyTheDay
 
     private let partialCode: PartialCode
-    private let errorHandler: any ErrorHandler
     init(
-        partialCode: PartialCode,
-        repository: any BarcodeRepository,
-        errorHandler: any ErrorHandler
+        partialCode: PartialCode
     ) {
         self.partialCode = partialCode
-        self.🐐😱 = repository
-        self.errorHandler = errorHandler
     }
 
     @State private var duplicateCodeName = ""
     @State private var isDuplicateAlertShowing = false
+    @Injected(\.errorHandler) private var errorHandler
     var body: some View {
         Button(Strings.title) {
             do {
@@ -62,8 +60,7 @@ struct SaveButton: View {
 
     private var requester: ReviewRequester {
         ReviewRequester(
-            action: isTodayReallyTheDay,
-            repository: 🐐😱
+            action: isTodayReallyTheDay
         )
     }
 

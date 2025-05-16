@@ -4,21 +4,17 @@
 import SwiftUI
 
 import BarcBarcodes
-import BarcErrorHandling
 import BarcWalletExport
 
 struct ActionMenu: ToolbarContent {
     @Binding private var exportResult: ExportResult?
     private let code: Code
-    private let errorHandler: any ErrorHandler
     init(
         code: Code,
-        exportResult: Binding<ExportResult?>,
-        errorHandler: any ErrorHandler
+        exportResult: Binding<ExportResult?>
     ) {
         self.code = code
         _exportResult = exportResult
-        self.errorHandler = errorHandler
     }
 
     var body: some ToolbarContent {
@@ -26,8 +22,7 @@ struct ActionMenu: ToolbarContent {
             Menu(Strings.ActionMenu.title, systemImage: "ellipsis.circle") {
                 WalletExportButton(
                     code: code,
-                    exportResult: $exportResult,
-                    errorHandler: errorHandler
+                    exportResult: $exportResult
                 )
             }
         }

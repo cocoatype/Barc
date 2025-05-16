@@ -4,6 +4,7 @@ public enum Defaults {
     public static let target = Target.moduleTarget(
         name: "Defaults",
         dependencies: [
+            .external(name: "FactoryKit"),
         ]
     )
 

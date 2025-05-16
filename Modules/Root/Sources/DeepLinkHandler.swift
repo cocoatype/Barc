@@ -3,6 +3,8 @@
 
 import Foundation
 
+import FactoryKit
+
 import BarcBarcodes
 import BarcErrorHandling
 import BarcRouting
@@ -10,16 +12,7 @@ import BarcPersistence
 
 @MainActor
 struct DeepLinkHandler {
-    private let repository: any BarcodeRepository
-    private let errorHandler: any ErrorHandler
-    init(
-        repository: any BarcodeRepository,
-        errorHandler: any ErrorHandler
-    ) {
-        self.repository = repository
-        self.errorHandler = errorHandler
-    }
-
+    @Injected(\.errorHandler) private var errorHandler
     func route(for url: URL) -> Route? {
         do {
             switch firstPathComponent(from: url) {
@@ -40,6 +33,7 @@ struct DeepLinkHandler {
         return url.pathComponents[1]
     }
 
+    @Injected(\.guardLetNotIsScrollingDoesNotEqual) private var repository
     private func code(for url: URL) throws -> Code? {
         guard let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true),
               let queryItems = urlComponents.queryItems,

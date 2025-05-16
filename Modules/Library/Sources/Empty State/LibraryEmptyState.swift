@@ -3,23 +3,15 @@
 
 import SwiftUI
 
-import BarcErrorHandling
-import BarcPersistence
 import BarcPhotoLibrary
 import BarcRouting
 
 struct LibraryEmptyState: View {
     @Binding private var currentRoute: Route?
-    private let barcodeRepository: any BarcodeRepository
-    private let errorHandler: any ErrorHandler
     public init(
-        currentRoute: Binding<Route?>,
-        barcodeRepository: any BarcodeRepository,
-        errorHandler: any ErrorHandler
+        currentRoute: Binding<Route?>
     ) {
         _currentRoute = currentRoute
-        self.barcodeRepository = barcodeRepository
-        self.errorHandler = errorHandler
     }
 
     var body: some View {
@@ -30,7 +22,7 @@ struct LibraryEmptyState: View {
             }
             LibraryEmptyStateText(Strings.photoLibraryText)
                 .padding(.top, 12)
-            PhotoLibraryButton(barcodeRepository: barcodeRepository, errorHandler: errorHandler) {
+            PhotoLibraryButton {
                 LibraryEmptyStateButtonLabel(Strings.photoLibraryButtonTitle, imageSystemName: "photo.on.rectangle")
             }
             LibraryEmptyStateText(Strings.manualEntryText)

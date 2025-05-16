@@ -11,6 +11,7 @@ public enum WatchContents {
             .target(ErrorHandling.target),
             .target(Persistence.target),
             .target(Routing.target),
+            .external(name: "FactoryKit"),
         ]
     )
 

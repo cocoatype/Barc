@@ -3,22 +3,10 @@
 
 import SwiftUI
 
-import BarcErrorHandling
-import BarcLogging
 import BarcOnboarding
 
 struct OnboardingRouteCell: View {
     @State private var isOnboardingPresented = false
-
-    private let errorHandler: any ErrorHandler
-    private let logger: any Logger
-    init(
-        errorHandler: any ErrorHandler,
-        logger: any Logger
-    ) {
-        self.errorHandler = errorHandler
-        self.logger = logger
-    }
 
     var body: some View {
         Button {
@@ -33,17 +21,11 @@ struct OnboardingRouteCell: View {
                 )
             }
         }.sheet(isPresented: $isOnboardingPresented) {
-            OnboardingView(
-                errorHandler: errorHandler,
-                logger: logger
-            )
+            OnboardingView()
         }
     }
 }
 
 #Preview {
-    OnboardingRouteCell(
-        errorHandler: PreviewErrorHandler(),
-        logger: PreviewLogger()
-    )
+    OnboardingRouteCell()
 }

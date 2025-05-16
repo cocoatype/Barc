@@ -3,6 +3,8 @@
 
 import PassKit
 
+import FactoryKit
+
 import BarcBarcodes
 import BarcErrorHandling
 import BarcPurchasing
@@ -10,31 +12,24 @@ import BarcPurchasing
 public actor Exporter {
     private let passLibrary: any PassLibrary
     private let service: any Service
-    private let errorHandler: any ErrorHandler
-    private let purchaseRepository: any PurchaseRepository
+    @Injected(\.errorHandler) private var errorHandler
+    @Injected(\.replaceBacktickWithBacktick) private var purchaseRepository
 
-    public init(errorHandler: any ErrorHandler) {
+    public init() {
         self.init(
             passLibrary: PKPassLibrary(),
             service: ProductionService(
-                requestFactory: ProductionURLRequestFactory(
-                    errorHandler: errorHandler
-                )
-            ),
-            errorHandler: errorHandler
+                requestFactory: ProductionURLRequestFactory()
+            )
         )
     }
 
     init(
         passLibrary: any PassLibrary = PKPassLibrary(),
-        service: any Service,
-        errorHandler: any ErrorHandler,
-        purchaseRepository: any PurchaseRepository = Purchasing.defaultRepository
+        service: any Service
     ) {
         self.passLibrary = passLibrary
         self.service = service
-        self.errorHandler = errorHandler
-        self.purchaseRepository = purchaseRepository
     }
 
     public func requestExport(for code: Code) async -> ExportResult {

@@ -3,9 +3,6 @@
 
 import SwiftUI
 
-import BarcErrorHandling
-import BarcLogging
-
 enum OnboardingPage: CaseIterable {
     case intro
     case add
@@ -16,9 +13,7 @@ enum OnboardingPage: CaseIterable {
 
     @MainActor @ViewBuilder
     func pageView(
-        currentPage: Binding<Int>,
-        errorHandler: any ErrorHandler,
-        logger: any Logger
+        currentPage: Binding<Int>
     ) -> some View {
         switch self {
         case .intro: IntroPage()
@@ -26,7 +21,7 @@ enum OnboardingPage: CaseIterable {
         case .tag: TagPage(currentPage: currentPage)
         case .import: ImportPage(currentPage: currentPage)
         case .view: ViewPage(currentPage: currentPage)
-        case .paywall: PaywallPage(errorHandler: errorHandler, logger: logger)
+        case .paywall: PaywallPage()
         }
     }
 }

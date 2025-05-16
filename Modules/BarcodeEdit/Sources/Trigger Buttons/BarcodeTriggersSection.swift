@@ -99,5 +99,4 @@ extension Optional<Date> {
             isLocationPickerPresented: .constant(false)
         )
     }.listStyle(.plain)
-        .environment(\.locationProvider, PreviewLocationProvider())
 }

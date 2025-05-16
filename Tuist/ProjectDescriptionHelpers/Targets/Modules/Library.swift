@@ -14,6 +14,7 @@ public enum Library {
             .target(PhotoLibrary.target),
             .target(Routing.target),
             .target(Triggers.target),
+            .external(name: "FactoryKit"),
         ]
     )
 

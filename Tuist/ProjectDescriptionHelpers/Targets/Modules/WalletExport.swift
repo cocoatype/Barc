@@ -9,6 +9,7 @@ public enum WalletExport {
             .target(ErrorHandling.target),
             .target(Purchasing.target),
             .target(Unpurchased.target),
+            .external(name: "FactoryKit"),
             .external(name: "PDF417"),
         ]
     )

@@ -6,16 +6,18 @@ import CoreData
 import Foundation
 import SwiftData
 
+import FactoryKit
+
 import BarcBarcodes
 import BarcErrorHandling
 
 class FileBarcodeRepository: BarcodeRepository {
-    private let errorHandler: any ErrorHandler
-    init(errorHandler: any ErrorHandler) {
-        self.errorHandler = errorHandler
+    @Injected(\.errorHandler) private var errorHandler
+    init() {
         do {
             self.modelContainer = try Self.createModelContainer()
         } catch {
+            let errorHandler = Container.shared.errorHandler()
             errorHandler.log(error, module: "Persistence", type: "FileBarcodeRepository")
             errorHandler.fatalError("Failed to create model container")
         }

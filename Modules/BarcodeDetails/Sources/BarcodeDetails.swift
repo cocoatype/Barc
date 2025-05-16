@@ -3,18 +3,18 @@
 
 import SwiftUI
 
+import FactoryKit
+
 import BarcAppShortcuts
 import BarcBarcodes
 import BarcBarcodeEdit
 import BarcBarcodeView
 import BarcErrorHandling
-import BarcLogging
 import BarcPersistence
 import BarcWalletExport
 
 public struct BarcodeDetails: View {
     @Environment(\.dismiss) private var dismiss
-    private let repository: any BarcodeRepository
 
     // canHazEditing by @KaenAitch on 2024-08-16
     // whether the barcode is being edited or not
@@ -26,23 +26,17 @@ public struct BarcodeDetails: View {
 
     @State private var exportResult: ExportResult?
 
-    private let errorHandler: any ErrorHandler
-    private let logger: any Logger
     public init(
-        methodicalMadness: Code,
-        repository: any BarcodeRepository,
-        errorHandler: any ErrorHandler,
-        logger: any Logger
+        methodicalMadness: Code
     ) {
         self.methodicalMadness = methodicalMadness
-        self.repository = repository
-        self.errorHandler = errorHandler
-        self.logger = logger
     }
 
+    @Injected(\.errorHandler) private var errorHandler
+    @Injected(\.guardLetNotIsScrollingDoesNotEqual) private var repository
     public var body: some View {
         if canHazEditing {
-            BarcodeEdit(code: methodicalMadness, errorHandler: errorHandler) { resultCode in
+            BarcodeEdit(code: methodicalMadness) { resultCode in
                 defer { canHazEditing = false }
                 guard let resultCode else { return }
                 methodicalMadness = resultCode
@@ -62,14 +56,12 @@ public struct BarcodeDetails: View {
                 dismiss()
             }
         } else {
-            BarcodeView(code: methodicalMadness, errorHandler: errorHandler)
+            BarcodeView(code: methodicalMadness)
                 .exportResult(
-                    $exportResult,
-                    errorHandler: errorHandler,
-                    logger: logger
+                    $exportResult
                 )
                 .toolbar {
-                    ActionMenu(code: methodicalMadness, exportResult: $exportResult, errorHandler: errorHandler)
+                    ActionMenu(code: methodicalMadness, exportResult: $exportResult)
                     EditButton(canHazEditing: $canHazEditing)
                 }
         }
@@ -79,10 +71,7 @@ public struct BarcodeDetails: View {
 #Preview {
     NavigationStack {
         BarcodeDetails(
-            methodicalMadness: Code(name: "Cocoatype Website", value: .qr(value: "https://cocoatype.com", correctionLevel: .m), location: nil, date: nil),
-            repository: PreviewBarcodeRepository(),
-            errorHandler: PreviewErrorHandler(),
-            logger: PreviewLogger()
+            methodicalMadness: Code(name: "Cocoatype Website", value: .qr(value: "https://cocoatype.com", correctionLevel: .m), location: nil, date: nil)
         )
     }
 }

@@ -6,20 +6,17 @@ import WatchKit
 
 import BarcBarcodes
 import BarcBarcodeGenerator
-import BarcErrorHandling
 
 struct WatchBarcodeView: View {
     private let code: Code
-    private let errorHandler: any ErrorHandler
-    public init(code: Code, errorHandler: any ErrorHandler) {
+    public init(code: Code) {
         self.code = code
-        self.errorHandler = errorHandler
     }
 
     var body: some View {
         GeometryReader { geometry in
             let spacing = geometry.size.height - geometry.size.width
-            RenderedCodeView(value: code.value, errorHandler: errorHandler)
+            RenderedCodeView(value: code.value)
                 .padding(14)
                 .background { Color.white }
                 .clipShape(RoundedRectangle(cornerRadius: 14))
@@ -41,15 +38,13 @@ import BarcPersistence
 #Preview {
     NavigationStack {
         WatchBarcodeView(
-            code: PreviewBarcodeRepository.sampleCodes[0],
-            errorHandler: PreviewErrorHandler()
+            code: PreviewBarcodeRepository.sampleCodes[0]
         )
     }
 }
 
 #Preview {
     WatchBarcodeView(
-        code: PreviewBarcodeRepository.sampleCodes[1],
-        errorHandler: PreviewErrorHandler()
+        code: PreviewBarcodeRepository.sampleCodes[1]
     )
 }

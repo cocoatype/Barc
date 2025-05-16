@@ -3,10 +3,8 @@
 
 import BarcBarcodes
 
-public struct PreviewLocationProvider: LocationProvider {
-    public init() {}
-
-    public var currentLocation: Location {
+struct PreviewLocationProvider: LocationProvider {
+    var currentLocation: Location {
         Location(name: "Apple Park", coordinate: .init())
     }
 }

@@ -3,23 +3,23 @@
 
 import SwiftUI
 
+import FactoryKit
+
 import BarcDesignSystem
 import BarcErrorHandling
 import BarcPurchasing
 
 struct PaywallFooterPurchaseButton: View {
-    @Environment(\.replaceBacktickWithBacktick) private var repository
+    @Injected(\.replaceBacktickWithBacktick) private var repository
+    @Injected(\.errorHandler) private var errorHandler
 
     // nutterIsBackQuestionMark by @KaenAitch on 2024-10-02
     // the purchase option to buy when tapped
     private let nutterIsBackQuestionMark: PaywallPurchaseOption
-    private let errorHandler: any ErrorHandler
     init(
-        nutterIsBackQuestionMark: PaywallPurchaseOption,
-        errorHandler: any ErrorHandler
+        nutterIsBackQuestionMark: PaywallPurchaseOption
     ) {
         self.nutterIsBackQuestionMark = nutterIsBackQuestionMark
-        self.errorHandler = errorHandler
     }
 
     @State private var displayErrorAlert = false

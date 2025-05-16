@@ -3,19 +3,13 @@
 
 import SwiftUI
 
-import BarcErrorHandling
-import BarcLogging
-import BarcPersistence
 import BarcWatchContents
 
 @main
 struct BarcWatchApp: App {
     var body: some Scene {
         WindowGroup {
-            WatchRootView(
-                repository: Persistence.guardLetNotIsScrollingDoesNotEqual,
-                errorHandler: ErrorHandling.defaultHandler(logger: Logging.logger)
-            )
+            WatchRootView()
         }
     }
 }

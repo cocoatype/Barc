@@ -4,28 +4,18 @@
 import SwiftUI
 import WidgetKit
 
+import FactoryKit
+
 import BarcBarcodes
 import BarcErrorHandling
 import BarcPersistence
 import BarcWidgetShortcuts
 
 public struct CodeDisplayWidget: Widget {
-    private let repository: any BarcodeRepository
-    private let errorHandler: any ErrorHandler
-    init(
-        repository: any BarcodeRepository,
-        errorHandler: any ErrorHandler
-    ) {
-        self.repository = repository
-        self.errorHandler = errorHandler
-    }
+    @Injected(\.guardLetNotIsScrollingDoesNotEqual) private var repository
+    @Injected(\.errorHandler) private var errorHandler
 
-    public init() {
-        self.init(
-            repository: Persistence.guardLetNotIsScrollingDoesNotEqual,
-            errorHandler: ErrorHandling.deprecatedHandler
-        )
-    }
+    public init() {}
 
     public var body: some WidgetConfiguration {
         AppIntentConfiguration(
@@ -51,7 +41,7 @@ public struct CodeDisplayWidget: Widget {
 
     @ViewBuilder private func view(for entry: CodeDisplayTimelineEntry) -> some View {
         if let code = entry.code {
-            CodeDisplayView(code: code, errorHandler: errorHandler)
+            CodeDisplayView(code: code)
         } else {
             CodeMissingView()
         }
@@ -74,10 +64,7 @@ let previewQRCode = Code(
     location: nil,
     date: nil
 )
-@MainActor let previewWidget = CodeDisplayWidget(
-    repository: PreviewBarcodeRepository(),
-    errorHandler: PreviewErrorHandler()
-)
+@MainActor let previewWidget = CodeDisplayWidget()
 @MainActor let previewTimelineProvider = CodeDisplayTimelineProvider(codes: PreviewBarcodeRepository.sampleCodes)
 
 #Preview(

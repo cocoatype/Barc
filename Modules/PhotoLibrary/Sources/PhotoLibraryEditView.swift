@@ -30,7 +30,7 @@ struct PhotoLibraryEditView: View {
     }
 
     var body: some View {
-        BarcodeEdit(value: codeValue, errorHandler: errorHandler) { resultCode in
+        BarcodeEdit(value: codeValue) { resultCode in
             handleEdit(resultCode)
         }
     }
@@ -38,8 +38,7 @@ struct PhotoLibraryEditView: View {
     @Environment(\.requestReview) private var requestReview
     private var requester: ReviewRequester {
         ReviewRequester(
-            action: requestReview,
-            repository: barcodeRepository
+            action: requestReview
         )
     }
 

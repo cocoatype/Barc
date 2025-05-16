@@ -4,19 +4,16 @@
 import SwiftUI
 import TestHelpersInterface
 
+import FactoryKit
+
 import BarcDefaults
 import BarcReleases
 
 struct ReleasesRouteCell: View {
-    private let defaultsProvider: any DefaultsProvider
-    private let versionProvider: any VersionProvider
-    init(
-        defaultsProvider: any DefaultsProvider,
-        versionProvider: any VersionProvider
-    ) {
-        self.defaultsProvider = defaultsProvider
-        self.versionProvider = versionProvider
-    }
+    @Injected(\.defaultsProvider) private var defaultsProvider
+    @Injected(\.versionProvider) private var versionProvider
+
+    public init() {}
 
     @State private var isBadged = false
     var body: some View {
@@ -37,11 +34,7 @@ struct ReleasesRouteCell: View {
 
     private var isNewReleaseAvailable: Bool {
         get async {
-            let decider = NewReleaseDecider(
-                defaultsProvider: defaultsProvider,
-                versionProvider: versionProvider
-            )
-            return await decider.shouldShowNewReleaseBadge()
+            return await NewReleaseDecider().shouldShowNewReleaseBadge()
         }
     }
 
@@ -60,8 +53,5 @@ struct ReleasesRouteCell: View {
 }
 
 #Preview {
-    ReleasesRouteCell(
-        defaultsProvider: PreviewDefaultsProvider(),
-        versionProvider: PreviewVersionProvider()
-    )
+    ReleasesRouteCell()
 }

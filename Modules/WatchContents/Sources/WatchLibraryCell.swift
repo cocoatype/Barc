@@ -4,15 +4,12 @@
 import SwiftUI
 
 import BarcBarcodes
-import BarcErrorHandling
 import BarcRouting
 
 struct WatchLibraryCell: View {
     private let code: Code
-    private let errorHandler: any ErrorHandler
-    init(code: Code, errorHandler: any ErrorHandler) {
+    init(code: Code) {
         self.code = code
-        self.errorHandler = errorHandler
     }
 
     var body: some View {

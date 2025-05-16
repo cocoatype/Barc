@@ -10,6 +10,15 @@
       }
     },
     {
+      "identity" : "factory",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:hmlongco/Factory.git",
+      "state" : {
+        "revision" : "22157b88670bbeac591895c0fc8b8f7f340cf757",
+        "version" : "2.5.0"
+      }
+    },
+    {
       "identity" : "pdf417",
       "kind" : "remoteSourceControl",
       "location" : "git@github.com:cocoatype/PDF417.git",

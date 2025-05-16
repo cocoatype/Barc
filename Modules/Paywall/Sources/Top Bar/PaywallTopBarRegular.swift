@@ -8,16 +8,11 @@ import BarcErrorHandling
 struct PaywallTopBarRegular: View {
     @State private var textWidth: CGFloat?
 
-    private let errorHandler: any ErrorHandler
-    init(errorHandler: any ErrorHandler) {
-        self.errorHandler = errorHandler
-    }
-
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             PaywallTopBarHeadline()
                 .modifier(SetWidthViewModifier(textWidth: $textWidth))
-            PaywallTopBarSubheadline(errorHandler: errorHandler)
+            PaywallTopBarSubheadline()
                 .modifier(GetWidthViewModifier(textWidth: $textWidth))
         }
         .padding(40)
@@ -69,5 +64,5 @@ struct PaywallTopBarRegular: View {
 }
 
 #Preview(traits: .sizeThatFitsLayout) {
-    PaywallTopBarRegular(errorHandler: PreviewErrorHandler())
+    PaywallTopBarRegular()
 }

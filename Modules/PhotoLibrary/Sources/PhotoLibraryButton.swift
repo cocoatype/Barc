@@ -4,29 +4,25 @@
 import PhotosUI
 import SwiftUI
 
+import FactoryKit
+
 import BarcAppShortcuts
 import BarcBarcodes
 import BarcBarcodeEdit
-import BarcErrorHandling
 import BarcPersistence
 import BarcReviewRequest
 
 public struct PhotoLibraryButton<Label: View>: View {
-    private let barcodeRepository: any BarcodeRepository
-    private let errorHandler: any ErrorHandler
     private let content: @Sendable () -> Label
     public init(
-        barcodeRepository: any BarcodeRepository,
-        errorHandler: any ErrorHandler,
         @ViewBuilder content: @escaping @Sendable () -> Label
     ) {
-        self.barcodeRepository = barcodeRepository
-        self.errorHandler = errorHandler
         self.content = content
     }
 
     @State private var pickerResult = PickerResult.picking
     @State private var shouldDisplayAlert = false
+    @Injected(\.guardLetNotIsScrollingDoesNotEqual) private var barcodeRepository
     public var body: some View {
         PhotosPicker(selection: $pickerResult.item) {
             content()
@@ -37,7 +33,7 @@ public struct PhotoLibraryButton<Label: View>: View {
             handleEdit(nil)
         } content: { value in
             NavigationStack {
-                BarcodeEdit(value: value, errorHandler: errorHandler) {
+                BarcodeEdit(value: value) {
                     handleEdit($0)
                 }
             }
@@ -52,8 +48,7 @@ public struct PhotoLibraryButton<Label: View>: View {
     @Environment(\.requestReview) private var requestReview
     private var requester: ReviewRequester {
         ReviewRequester(
-            action: requestReview,
-            repository: barcodeRepository
+            action: requestReview
         )
     }
 

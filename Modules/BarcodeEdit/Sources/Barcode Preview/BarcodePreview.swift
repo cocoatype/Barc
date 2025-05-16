@@ -5,20 +5,17 @@ import SwiftUI
 
 import BarcBarcodeGenerator
 import BarcBarcodes
-import BarcErrorHandling
 
 struct BarcodePreview: View {
     private let value: CodeValue
-    private let errorHandler: any ErrorHandler
-    init(value: CodeValue, errorHandler: any ErrorHandler) {
+    init(value: CodeValue) {
         self.value = value
-        self.errorHandler = errorHandler
     }
 
     var body: some View {
         HStack {
             Spacer()
-            RenderedCodeView(value: value, errorHandler: errorHandler)
+            RenderedCodeView(value: value)
                 .frame(width: 140, height: 140)
                 .padding(14)
                 .background(CodeBackground())
@@ -29,7 +26,6 @@ struct BarcodePreview: View {
 
 #Preview {
     BarcodePreview(
-        value: .qr(value: "https://cocoatype.com", correctionLevel: .m),
-        errorHandler: PreviewErrorHandler()
+        value: .qr(value: "https://cocoatype.com", correctionLevel: .m)
     )
 }

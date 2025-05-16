@@ -13,7 +13,7 @@ struct CodeDisplayTimelineProvider: AppIntentTimelineProvider {
     func recommendations() -> [AppIntentRecommendation<BarcWidgetShortcuts.CodeDisplayConfigurationIntent>] {
         return codes.map { code in
             let intent = CodeDisplayConfigurationIntent()
-            intent.code = BarcodeEntity(code: code, errorHandler: ErrorHandling.deprecatedHandler)
+            intent.code = BarcodeEntity(code: code)
             return AppIntentRecommendation(intent: intent, description: code.name)
         }
     }

@@ -2,6 +2,8 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import AppIntents
+
+import FactoryKit
 import PDF417
 
 import BarcBarcodes
@@ -46,11 +48,11 @@ struct CreateBarcodeIntent: AppIntent {
     func perform() async throws -> some IntentResult & ReturnsValue<BarcodeEntity> {
         let storedCode = try Code(name: codeName, value: codeValue, location: nil, date: nil)
 
-        let repository = Persistence.guardLetNotIsScrollingDoesNotEqual
+        let repository = Container.shared.guardLetNotIsScrollingDoesNotEqual()
         try repository.add(storedCode)
         ShortcutsProvider.updateAppShortcutParameters()
 
-        return .result(value: BarcodeEntity(code: storedCode, errorHandler: ErrorHandling.deprecatedHandler))
+        return .result(value: BarcodeEntity(code: storedCode))
     }
 
     private var codeValue: CodeValue {

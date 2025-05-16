@@ -4,26 +4,22 @@
 import SwiftUI
 
 import BarcBarcodes
-import BarcErrorHandling
 import BarcPersistence
 
 struct WatchLibraryView: View {
     @Binding private var selection: Code?
     private let codes: [Code]
-    private let errorHandler: any ErrorHandler
     init(
         codes: [Code],
-        selection: Binding<Code?>,
-        errorHandler: any ErrorHandler
+        selection: Binding<Code?>
     ) {
         self.codes = codes
-        self.errorHandler = errorHandler
         _selection = selection
     }
 
     var body: some View {
         List(codes, selection: $selection) { code in
-            WatchLibraryCell(code: code, errorHandler: errorHandler)
+            WatchLibraryCell(code: code)
                 .tag(code)
         }
     }
@@ -32,7 +28,6 @@ struct WatchLibraryView: View {
 #Preview {
     WatchLibraryView(
         codes: PreviewBarcodeRepository.sampleCodes,
-        selection: .constant(PreviewBarcodeRepository.sampleCodes[0]),
-        errorHandler: PreviewErrorHandler()
+        selection: .constant(PreviewBarcodeRepository.sampleCodes[0])
     )
 }

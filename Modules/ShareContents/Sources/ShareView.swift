@@ -4,7 +4,6 @@
 import SwiftUI
 
 import BarcBarcodes
-import BarcErrorHandling
 import BarcImageReader
 
 public struct ShareView: View {
@@ -12,10 +11,7 @@ public struct ShareView: View {
     @State private var viewState = ViewState.loading
 
     private let inputHandler = ExtensionInputHandler()
-    private let errorHandler: any ErrorHandler
-    public init(errorHandler: any ErrorHandler) {
-        self.errorHandler = errorHandler
-    }
+    public init() {}
 
     public var body: some View {
         Group {
@@ -23,9 +19,9 @@ public struct ShareView: View {
             case .loading:
                 LoadingView()
             case .success(let codeValue):
-                SuccessView(value: codeValue, errorHandler: errorHandler)
+                SuccessView(value: codeValue)
             case .error(let error):
-                ErrorView(error: error, errorHandler: errorHandler)
+                ErrorView(error: error)
             }
         }
         .tint(.primary)
@@ -36,7 +32,8 @@ public struct ShareView: View {
 
     private func handleExtensionContext() async {
         do {
-            let codeValue = try await inputHandler.handleInput(from: extensionContext)
+            let codeValue = try await inputHandler
+                .handleInput(from: extensionContext)
             viewState = .success(codeValue)
         } catch {
             viewState = .error(error)
@@ -51,5 +48,5 @@ public struct ShareView: View {
 }
 
 #Preview {
-    ShareView(errorHandler: PreviewErrorHandler())
+    ShareView()
 }

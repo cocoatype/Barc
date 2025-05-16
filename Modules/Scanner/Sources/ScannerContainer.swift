@@ -4,10 +4,11 @@
 import StoreKit
 import SwiftUI
 
+import FactoryKit
+
 import BarcAppShortcuts
 import BarcBarcodes
 import BarcBarcodeEdit
-import BarcErrorHandling
 import BarcPersistence
 import BarcReviewRequest
 
@@ -17,24 +18,16 @@ public struct ScannerContainer: View {
 
     @State private var scanResult = ScanResult.scanning
 
-    private let errorHandler: any ErrorHandler
-    private let repository: any BarcodeRepository
-    public init(
-        repository: any BarcodeRepository,
-        errorHandler: any ErrorHandler
-    ) {
-        self.repository = repository
-        self.errorHandler = errorHandler
-    }
+    public init() {}
 
     public var body: some View {
         NavigationStack {
             if case .codeValue(let codeValue) = scanResult {
-                BarcodeEdit(value: codeValue, errorHandler: errorHandler) { resultCode in
+                BarcodeEdit(value: codeValue) { resultCode in
                     handleEdit(resultCode)
                 }
             } else {
-                DataScanner(result: $scanResult, errorHandler: errorHandler)
+                DataScanner(result: $scanResult)
                     .ignoresSafeArea()
                     .overlay(NavigationBarScrim())
                     .toolbar { ScannerContainerDismissButton() }
@@ -45,11 +38,11 @@ public struct ScannerContainer: View {
 
     private var requester: ReviewRequester {
         ReviewRequester(
-            action: requestReview,
-            repository: repository
+            action: requestReview
         )
     }
 
+    @Injected(\.guardLetNotIsScrollingDoesNotEqual) private var repository
     private func handleEdit(_ code: Code?) {
         guard let code else { return dismiss() }
 

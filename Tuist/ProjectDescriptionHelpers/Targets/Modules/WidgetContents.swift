@@ -11,6 +11,7 @@ public enum WidgetContents {
             .target(ErrorHandling.target),
             .target(Persistence.target),
             .target(WidgetShortcuts.target),
+            .external(name: "FactoryKit"),
         ]
     )
 

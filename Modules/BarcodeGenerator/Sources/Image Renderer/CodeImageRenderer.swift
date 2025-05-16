@@ -6,19 +6,15 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 import BarcBarcodes
-import BarcErrorHandling
 
 public struct CodeImageRenderer {
     private static let codeWidth = 200.0
     private static let backgroundInset = 14.0
 
-    private let errorHandler: any ErrorHandler
-    public init(errorHandler: any ErrorHandler) {
-        self.errorHandler = errorHandler
-    }
+    public init() {}
 
     public func pngData(from value: CodeValue, withBackground: Bool) throws -> Data {
-        let renderedCode = CodeValueRenderer(value: value, errorHandler: errorHandler).renderedCode
+        let renderedCode = CodeValueRenderer(value: value).renderedCode
 
         let inset = withBackground ? CodeImageRenderer.backgroundInset : 0
         let insetCodeSize = CodeImageRenderer.codeWidth - (inset * 2)

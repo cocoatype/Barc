@@ -9,6 +9,7 @@ public enum Paywall {
             .target(ErrorHandling.target),
             .target(Logging.target),
             .target(Purchasing.target),
+            .external(name: "FactoryKit"),
         ]
     )
 

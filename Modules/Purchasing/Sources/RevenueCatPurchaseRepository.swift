@@ -2,15 +2,17 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import Foundation
-import RevenueCat
 import StoreKit
+
+import FactoryKit
+import RevenueCat
 
 import BarcErrorHandling
 
 final class RevenueCatPurchaseRepository: PurchaseRepository {
     static let initialize: @Sendable () -> Void = {
         guard let userDefaults = UserDefaults(suiteName: "group.com.cocoatype.Barc") else {
-            ErrorHandling.deprecatedHandler.fatalError("Unable to create shared user defaults")
+            Container.shared.errorHandler().fatalError("Unable to create shared user defaults")
         }
 
         let configuration = Configuration.Builder(withAPIKey: "appl_qYQUCjAKqlSxoGqUuwBHysdhQTT")

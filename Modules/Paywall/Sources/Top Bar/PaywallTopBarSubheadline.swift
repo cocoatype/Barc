@@ -3,21 +3,18 @@
 
 import SwiftUI
 
+import FactoryKit
+
 import BarcDesignSystem
 import BarcErrorHandling
 import BarcPurchasing
 
 struct PaywallTopBarSubheadline: View {
-    @State var hasUserBeenUnleashed: Bool
+    @State var hasUserBeenUnleashed = false
+    @Injected(\.errorHandler) private var errorHandler
+    @Injected(\.replaceBacktickWithBacktick) private var repository
 
-    private let errorHandler: any ErrorHandler
-    private let repository: any PurchaseRepository
-    init(
-        errorHandler: any ErrorHandler,
-        repository: any PurchaseRepository = Purchasing.defaultRepository
-    ) {
-        self.errorHandler = errorHandler
-        self.repository = repository
+    init() {
         _hasUserBeenUnleashed = State(initialValue: repository.cachedHasUserBeenUnleashed)
     }
 

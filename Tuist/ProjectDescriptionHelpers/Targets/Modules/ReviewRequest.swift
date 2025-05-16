@@ -6,6 +6,7 @@ public enum ReviewRequest {
         dependencies: [
             .target(ErrorHandling.target),
             .target(Persistence.target),
+            .external(name: "FactoryKit"),
         ]
     )
 

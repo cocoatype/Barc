@@ -3,16 +3,18 @@
 
 import SwiftUI
 
+import FactoryKit
+
 import BarcErrorHandling
 
 struct LibraryErrorView: View {
     private let error: any Error
     init(
-        _ error: any Error,
-        errorHandler: any ErrorHandler
+        _ error: any Error
     ) {
         self.error = error
-        errorHandler.log(error, module: "Library", type: "LibraryErrorView")
+        Container.shared.errorHandler()
+            .log(error, module: "Library", type: "LibraryErrorView")
     }
 
     var body: some View {

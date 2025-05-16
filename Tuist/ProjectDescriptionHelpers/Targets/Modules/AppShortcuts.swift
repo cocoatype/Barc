@@ -12,6 +12,7 @@ public enum AppShortcuts {
             .target(Persistence.target),
             .target(Routing.target),
             .target(ShortcutsModels.target),
+            .external(name: "FactoryKit"),
             .external(name: "PDF417"),
         ]
     )

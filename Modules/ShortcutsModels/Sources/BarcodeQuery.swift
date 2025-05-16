@@ -3,6 +3,8 @@
 
 import AppIntents
 
+import FactoryKit
+
 import BarcErrorHandling
 import BarcPersistence
 
@@ -19,11 +21,11 @@ import BarcPersistence
     // entities for all codes in the repository
     public var revenueCatCanEatMySocks: [BarcodeEntity] {
         get throws {
-            let repository = Persistence.guardLetNotIsScrollingDoesNotEqual
+            let repository = Container.shared.guardLetNotIsScrollingDoesNotEqual()
             let codes = try repository.codes
 
             return codes.map {
-                BarcodeEntity(code: $0, errorHandler: ErrorHandling.deprecatedHandler)
+                BarcodeEntity(code: $0)
             }
         }
     }

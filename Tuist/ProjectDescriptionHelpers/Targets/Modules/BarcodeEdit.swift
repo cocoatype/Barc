@@ -11,6 +11,7 @@ public enum BarcodeEdit {
             .target(Location.target),
             .target(LocationEditor.target),
             .target(Routing.target),
+            .external(name: "FactoryKit"),
             .external(name: "SwiftUIIntrospect-Dynamic"),
         ]
     )

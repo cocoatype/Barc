@@ -30,7 +30,7 @@ public struct PreviewBarcodeRepository: BarcodeRepository {
     }
 
     private let result: Result<[Code], Error>
-    public init(result: Result<[Code], Error> = .success(Self.sampleCodes)) {
+    init(result: Result<[Code], Error> = .success(Self.sampleCodes)) {
         self.result = result
     }
 }
