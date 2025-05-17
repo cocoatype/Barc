@@ -16,6 +16,7 @@ struct SettingsButton: View {
     }
 
     @State private var isBadged = false
+    private let newReleaseDecider = NewReleaseDecider()
     var body: some View {
         Button {
             sheetRoute = .menu
@@ -25,7 +26,7 @@ struct SettingsButton: View {
                     if isBadged { NewReleaseBadge() }
                 }
         }.task {
-            isBadged = await NewReleaseDecider().shouldShowNewReleaseBadge()
+            isBadged = await newReleaseDecider.shouldShowNewReleaseBadge()
         }
         .onReceive(inspection.notice) { self.inspection.visit(self, $0) }
         .accessibilityIdentifier("SettingsButton")

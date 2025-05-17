@@ -41,9 +41,11 @@ struct SettingsButtonTests {
         ViewHosting.host(view: button)
         defer { ViewHosting.expel() }
 
-        let badgeCount = try button.inspect()
-            .findAll(NewReleaseBadge.self).count
-        #expect(badgeCount == 1)
+        try await button.inspection.inspect { inspectedButton in
+            let badgeCount =  inspectedButton.findAll(NewReleaseBadge.self).count
+
+            #expect(badgeCount == 1)
+        }
     }
 
     @Test("Hides badge if no new release")
@@ -55,8 +57,10 @@ struct SettingsButtonTests {
         ViewHosting.host(view: button)
         defer { ViewHosting.expel() }
 
-        let badgeCount = try button.inspect()
-            .findAll(NewReleaseBadge.self).count
-        #expect(badgeCount == 0)
+        try await button.inspection.inspect { inspectedButton in
+            let badgeCount =  inspectedButton.findAll(NewReleaseBadge.self).count
+
+            #expect(badgeCount == 0)
+        }
     }
 }

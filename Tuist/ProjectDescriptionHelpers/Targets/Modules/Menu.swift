@@ -21,7 +21,9 @@ public enum Menu {
     public static let testTarget = Target.moduleTestTarget(
         name: "Menu",
         dependencies: [
+            .target(Defaults.target),
             .target(Defaults.doublesTarget),
+            .target(Releases.target),
             .target(Releases.doublesTarget),
             .external(name: "FactoryKit"),
             .external(name: "FactoryTesting"),

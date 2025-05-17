@@ -28,7 +28,6 @@ struct SiteURLCellTests {
             #expect(actualCell.isWebViewPresented == false)
 
             let button = try inspectedCell
-                .implicitAnyView()
                 .button()
 
             try button.tap()

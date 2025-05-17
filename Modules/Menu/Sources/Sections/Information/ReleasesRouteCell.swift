@@ -24,7 +24,7 @@ struct ReleasesRouteCell: View {
             image: Image(decorative: Asset.releases),
             path: path
         ).task {
-            isBadged = await isNewReleaseAvailable
+            isBadged = await newReleaseDecider.shouldShowNewReleaseBadge()
             if let currentVersion = versionProvider.version {
                 await defaultsProvider.set(currentVersion, for: Keys.lastSeenVersion)
             }
@@ -32,11 +32,7 @@ struct ReleasesRouteCell: View {
         .onReceive(inspection.notice) { self.inspection.visit(self, $0) }
     }
 
-    private var isNewReleaseAvailable: Bool {
-        get async {
-            return await NewReleaseDecider().shouldShowNewReleaseBadge()
-        }
-    }
+    private let newReleaseDecider = NewReleaseDecider()
 
     private var subtitle: String? {
         guard let versionNumber = versionProvider.version else { return nil }

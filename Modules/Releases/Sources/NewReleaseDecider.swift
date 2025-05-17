@@ -5,7 +5,7 @@ import FactoryKit
 
 import BarcDefaults
 
-public struct NewReleaseDecider {
+public struct NewReleaseDecider: Sendable {
     public init() {}
 
     @Injected(\.defaultsProvider) private var defaultsProvider

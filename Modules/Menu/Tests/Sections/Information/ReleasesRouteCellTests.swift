@@ -52,9 +52,6 @@ struct ReleasesRouteCellTests {
         ViewHosting.host(view: cell)
         defer { ViewHosting.expel() }
 
-        let shouldBeBadged = await NewReleaseDecider().shouldShowNewReleaseBadge()
-        #expect(shouldBeBadged == true)
-
         try await cell.inspection.inspect { inspectedCell in
             let badgeCount =  inspectedCell.findAll(NewReleaseBadge.self).count
 
