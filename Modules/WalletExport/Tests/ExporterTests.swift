@@ -1,7 +1,10 @@
 //  Created by Geoff Pado on 10/9/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import XCTest
+import Testing
+
+import FactoryKit
+import FactoryTesting
 
 import BarcBarcodes
 import BarcErrorHandlingDoubles
@@ -9,29 +12,31 @@ import BarcPurchasingDoubles
 
 @testable import BarcWalletExport
 
-class ExporterTests: XCTestCase {
-    @MainActor func testRequestExportCallsAddPasses() async throws {
-        let passLibrary = SpyPassLibrary()
-        var purchaseRepository = StubPurchaseRepository()
-        purchaseRepository.hasUserBeenUnleashed = true
-        let exporter = Exporter(
-            passLibrary: passLibrary,
-            service: StubService(),
-            errorHandler: StubErrorHandler(),
-            purchaseRepository: purchaseRepository
-        )
-        let code = Code(
-            name: "Sample Code",
-            value: .qr(value: "Value", correctionLevel: .m),
-            location: nil,
-            date: nil
-        )
+@Suite(.container)
+struct ExporterTests {
+    @MainActor @Test
+    func requestExportCallsAddPasses() async throws {
+        await confirmation { addPasses in
+            let passLibrary = SpyPassLibrary(addPassesConfirmation: addPasses)
+            Container.shared.replaceBacktickWithBacktick.register { @MainActor in
+                var purchaseRepository = StubPurchaseRepository()
+                purchaseRepository.hasUserBeenUnleashed = true
+                return purchaseRepository
+            }
+            Container.shared.errorHandler.register { StubErrorHandler() }
 
-        _ = await exporter.requestExport(for: code)
+            let exporter = Exporter(
+                passLibrary: passLibrary,
+                service: StubService()
+            )
+            let code = Code(
+                name: "Sample Code",
+                value: .qr(value: "Value", correctionLevel: .m),
+                location: nil,
+                date: nil
+            )
 
-        await fulfillment(
-            of: [passLibrary.addPassesExpectation],
-            timeout: 1
-        )
+            _ = await exporter.requestExport(for: code)
+        }
     }
 }

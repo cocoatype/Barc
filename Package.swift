@@ -19,6 +19,7 @@ let packageSettings = PackageSettings(
     targetSettings: [
         "BigInt": watchCompatibility,
         "FactoryKit": ["TARGETED_DEVICE_FAMILY": "1,4", "SWIFT_VERSION": "6.0"],
+        "FactoryTesting": ["SWIFT_VERSION": "6.0"],
         "PDF417": watchCompatibility,
         "QRCodeGenerator": watchCompatibility,
         "TelemetryClient": watchCompatibility,

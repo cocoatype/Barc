@@ -28,6 +28,7 @@ struct SettingsButton: View {
             isBadged = await NewReleaseDecider().shouldShowNewReleaseBadge()
         }
         .onReceive(inspection.notice) { self.inspection.visit(self, $0) }
+        .accessibilityIdentifier("SettingsButton")
     }
 
     let inspection = Inspection<Self>()

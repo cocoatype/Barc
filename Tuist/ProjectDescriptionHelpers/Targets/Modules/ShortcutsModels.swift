@@ -19,6 +19,8 @@ public enum ShortcutsModels {
         dependencies: [
             .target(Barcodes.target),
             .target(ErrorHandling.doublesTarget),
+            .external(name: "FactoryKit"),
+            .external(name: "FactoryTesting"),
         ]
     )
 }

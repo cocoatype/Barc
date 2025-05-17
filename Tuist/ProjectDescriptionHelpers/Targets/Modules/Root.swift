@@ -35,6 +35,8 @@ public enum Root {
             .target(ErrorHandling.doublesTarget),
             .target(Persistence.doublesTarget),
             .target(Releases.doublesTarget),
+            .external(name: "FactoryKit"),
+            .external(name: "FactoryTesting"),
             .external(name: "ViewInspector"),
         ]
     )

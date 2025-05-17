@@ -23,6 +23,8 @@ public enum Menu {
         dependencies: [
             .target(Defaults.doublesTarget),
             .target(Releases.doublesTarget),
+            .external(name: "FactoryKit"),
+            .external(name: "FactoryTesting"),
             .external(name: "ViewInspector"),
         ]
     )

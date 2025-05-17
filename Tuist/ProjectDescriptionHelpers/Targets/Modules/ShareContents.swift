@@ -22,6 +22,8 @@ public enum ShareContents {
         dependencies: [
             .target(Persistence.doublesTarget),
             .target(Purchasing.doublesTarget),
+            .external(name: "FactoryKit"),
+            .external(name: "FactoryTesting"),
         ]
     )
 }

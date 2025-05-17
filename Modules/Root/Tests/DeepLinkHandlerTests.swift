@@ -1,58 +1,72 @@
 //  Created by Geoff Pado on 12/15/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import XCTest
+import Foundation
+import Testing
+
+import FactoryKit
+import FactoryTesting
 
 import BarcErrorHandlingDoubles
 import BarcPersistenceDoubles
 
 @testable import BarcRoot
 
-@MainActor class DeepLinkHandlerTests: XCTestCase {
-    func testDetailsURL() throws {
+@MainActor
+@Suite(.container)
+struct DeepLinkHandlerTests {
+    @Test func detailsURL() throws {
         let repository = StubBarcodeRepository()
-        let id = try XCTUnwrap(repository.codes.first?.id as? String)
-        let base64 = try XCTUnwrap(id.data(using: .utf8)?.base64EncodedString())
-        let url = try XCTUnwrap(URL(string: "barc:///details?codeValue=\(base64)"))
-        let handler = DeepLinkHandler(repository: repository, errorHandler: StubErrorHandler())
+        Container.shared.guardLetNotIsScrollingDoesNotEqual.register { @MainActor in repository }
+        Container.shared.errorHandler.register { StubErrorHandler() }
+        let id = try #require(repository.codes.first?.id as? String)
+        let base64 = try #require(id.data(using: .utf8)?.base64EncodedString())
+        let url = try #require(URL(string: "barc:///details?codeValue=\(base64)"))
+        let handler = DeepLinkHandler()
 
-        let route = try XCTUnwrap(handler.route(for: url))
+        let route = try #require(handler.route(for: url))
 
         guard case .barcodeDetails(let code) = route else {
-            return XCTFail("Expected .barcodeDetails")
+            Issue.record("Expected .barcodeDetails")
+            return
         }
 
-        XCTAssertEqual(code, repository.codes.first)
+        #expect(code == repository.codes.first)
     }
 
-    func testPaywallURL() throws {
-        let url = try XCTUnwrap(URL(string: "barc:///purchase"))
-        let handler = DeepLinkHandler(repository: StubBarcodeRepository(), errorHandler: StubErrorHandler())
+    @Test func paywallURL() throws {
+        Container.shared.guardLetNotIsScrollingDoesNotEqual.register { @MainActor in StubBarcodeRepository() }
+        Container.shared.errorHandler.register { StubErrorHandler() }
+        let url = try #require(URL(string: "barc:///purchase"))
+        let handler = DeepLinkHandler()
 
-        let route = try XCTUnwrap(handler.route(for: url))
-        XCTAssertEqual(route, .paywall)
+        let route = try #require(handler.route(for: url))
+        #expect(route == .paywall)
     }
 
-    func testScannerURL() throws {
-        let url = try XCTUnwrap(URL(string: "barc:///scanner"))
-        let handler = DeepLinkHandler(repository: StubBarcodeRepository(), errorHandler: StubErrorHandler())
+    @Test func scannerURL() throws {
+        Container.shared.guardLetNotIsScrollingDoesNotEqual.register { @MainActor in StubBarcodeRepository() }
+        Container.shared.errorHandler.register { StubErrorHandler() }
+        let url = try #require(URL(string: "barc:///scanner"))
+        let handler = DeepLinkHandler()
 
-        let route = try XCTUnwrap(handler.route(for: url))
-        XCTAssertEqual(route, .scanner)
+        let route = try #require(handler.route(for: url))
+        #expect(route == .scanner)
     }
 
-    func testWebsiteURL() throws {
-        let repository = StubBarcodeRepository()
-        let url = try XCTUnwrap(URL(string: "barc:///event/releases"))
-        let handler = DeepLinkHandler(repository: repository, errorHandler: StubErrorHandler())
-        let expectedWebsiteURL = try XCTUnwrap(URL(websitePath: "releases"))
+    @Test func websiteURL() throws {
+        Container.shared.guardLetNotIsScrollingDoesNotEqual.register { @MainActor in StubBarcodeRepository() }
+        Container.shared.errorHandler.register { StubErrorHandler() }
+        let url = try #require(URL(string: "barc:///event/releases"))
+        let handler = DeepLinkHandler()
+        let expectedWebsiteURL = URL(websitePath: "releases")
 
-        let route = try XCTUnwrap(handler.route(for: url))
+        let route = try #require(handler.route(for: url))
 
         guard case .website(let actualWebsiteURL) = route else {
-            return XCTFail("Expected .websiteURL")
+            Issue.record("Expected .websiteURL"); return
         }
 
-        XCTAssertEqual(actualWebsiteURL, expectedWebsiteURL)
+        #expect(actualWebsiteURL == expectedWebsiteURL)
     }
 }

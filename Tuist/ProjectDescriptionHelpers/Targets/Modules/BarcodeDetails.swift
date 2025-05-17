@@ -13,6 +13,7 @@ public enum BarcodeDetails {
             .target(Persistence.target),
             .target(Purchasing.target),
             .target(WalletExport.target),
+            .external(name: "FactoryKit"),
         ]
     )
 

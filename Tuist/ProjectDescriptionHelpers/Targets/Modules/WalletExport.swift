@@ -20,6 +20,8 @@ public enum WalletExport {
             .target(Barcodes.target),
             .target(ErrorHandling.doublesTarget),
             .target(Purchasing.doublesTarget),
+            .external(name: "FactoryKit"),
+            .external(name: "FactoryTesting"),
         ]
     )
 }

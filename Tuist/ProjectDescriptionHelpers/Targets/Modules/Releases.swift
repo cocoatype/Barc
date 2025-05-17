@@ -15,6 +15,8 @@ public enum Releases {
             .target(Defaults.target),
             .target(Defaults.doublesTarget),
             .target(Releases.doublesTarget),
+            .external(name: "FactoryKit"),
+            .external(name: "FactoryTesting"),
         ]
     )
 

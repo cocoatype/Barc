@@ -16,6 +16,8 @@ public enum ReviewRequest {
             .target(Barcodes.target),
             .target(Persistence.doublesTarget),
             .target(TestHelpers.interfaceTarget),
+            .external(name: "FactoryKit"),
+            .external(name: "FactoryTesting"),
         ]
     )
 }
