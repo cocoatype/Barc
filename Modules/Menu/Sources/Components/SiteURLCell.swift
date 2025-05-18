@@ -2,8 +2,8 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import SwiftUI
-import TestHelpersInterface
 
+import BarcTestHelpersInterface
 import BarcWeb
 
 struct SiteURLCell: View {

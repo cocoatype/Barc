@@ -2,9 +2,9 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import Synchronization
-import TestHelpersInterface
 
 import BarcLogging
+import BarcTestHelpersInterface
 
 @available(iOS 18.0, *)
 public final class SpyLogger: Logger {

@@ -1,9 +1,8 @@
 //  Created by Geoff Pado on 9/17/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import TestHelpersInterface
-
 import BarcPurchasing
+import BarcTestHelpersInterface
 
 public struct StubPurchaseRepository: PurchaseRepository {
     public init() {}

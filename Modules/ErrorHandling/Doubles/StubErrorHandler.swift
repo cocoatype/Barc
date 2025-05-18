@@ -2,9 +2,9 @@
 //  Copyright © 2023 Cocoatype, LLC. All rights reserved.
 
 import Foundation
-import TestHelpersInterface
 
 import BarcErrorHandling
+import BarcTestHelpersInterface
 
 public struct StubErrorHandler: ErrorHandler {
     public init(

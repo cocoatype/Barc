@@ -2,10 +2,10 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import SwiftUI
-import TestHelpersInterface
 
 import BarcReleases
 import BarcRouting
+import BarcTestHelpersInterface
 
 struct SettingsButton: View {
     @Binding private var sheetRoute: Route?

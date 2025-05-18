@@ -2,8 +2,9 @@
 //  Copyright © 2025 Cocoatype, LLC. All rights reserved.
 
 import Foundation
-import TestHelpers
 import Testing
+
+import BarcTestHelpers
 
 @testable import BarcDefaults
 
