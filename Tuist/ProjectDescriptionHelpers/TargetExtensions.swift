@@ -68,7 +68,10 @@ extension Target {
             ] + dependencies,
             settings: .settings(
                 base: [
+                    "CODE_SIGN_IDENTITY": "",
                     "DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER": false,
+                    "ENABLE_MODULE_VERIFIER": true,
+                    "MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS": ["gnu11", "gnu++14"],
                     "SWIFT_VERSION": "$(SWIFT_MAX_VERSION)",
                 ],
                 defaultSettings: .recommended(excluding: [
