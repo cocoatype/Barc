@@ -24,8 +24,17 @@ public final class SpyLogger: Logger {
         }
     }
 
-    public let logExpectation: Expectation?
+    private let expectationMutex = Mutex<Expectation?>(nil)
+    public var logExpectation: Expectation? {
+        get {
+            return expectationMutex.withLock { $0 }
+        }
+        set {
+            expectationMutex.withLock { $0 = newValue }
+        }
+    }
     public func log(_ event: Event) {
         loggedEvents.append(event)
+        logExpectation?.fulfill()
     }
 }

@@ -2,10 +2,10 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import Testing
-import ViewInspector
 
 import FactoryKit
 import FactoryTesting
+import ViewInspector
 
 import BarcLogging
 import BarcLoggingDoubles

@@ -19,6 +19,8 @@ public enum Paywall {
         dependencies: [
             .target(Logging.target),
             .target(Logging.doublesTarget),
+            .target(Purchasing.target),
+            .target(Purchasing.doublesTarget),
             .external(name: "FactoryKit"),
             .external(name: "FactoryTesting"),
             .external(name: "ViewInspector"),
