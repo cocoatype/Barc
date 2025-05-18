@@ -1,28 +1,28 @@
 //  Created by Geoff Pado on 08/14/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import XCTest
+import Testing
 
 @testable import BarcLibrary
 
-class ArrayExtensionsTests: XCTestCase {
-    func testMinIndexWithMixedValues() {
+struct ArrayExtensionsTests {
+    @Test func minIndexWithMixedValues() {
         let array: [Double] = [1, 0, 3]
-        XCTAssertEqual(array.minIndex, 1)
+        #expect(array.minIndex == 1)
     }
 
-    func testMinIndexWithEqualValues() {
+    @Test func minIndexWithEqualValues() {
         let array: [Double] = [1, 0, 0]
-        XCTAssertEqual(array.minIndex, 1)
+        #expect(array.minIndex == 1)
     }
 
-    func testMinIndexWithRisingValues() {
+    @Test func minIndexWithRisingValues() {
         let array: [Double] = [1, 2, 3]
-        XCTAssertEqual(array.minIndex, 0)
+        #expect(array.minIndex == 0)
     }
 
-    func testMinIndexWithEmptyValues() {
+    @Test func minIndexWithEmptyValues() {
         let array: [Double] = []
-        XCTAssertEqual(array.minIndex, array.startIndex)
+        #expect(array.minIndex == array.startIndex)
     }
 }

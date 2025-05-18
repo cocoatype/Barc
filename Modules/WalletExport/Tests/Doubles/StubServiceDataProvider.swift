@@ -2,13 +2,13 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import Foundation
-import XCTest
+import Testing
 
 @testable import BarcWalletExport
 
 struct StubServiceDataProvider: ServiceDataProvider {
     func data(for request: URLRequest) async throws -> (Data, URLResponse) {
-        let data = try XCTUnwrap(Data(base64Encoded: Self.validData))
+        let data = try #require(Data(base64Encoded: Self.validData))
         let response = URLResponse()
 
         return (data, response)

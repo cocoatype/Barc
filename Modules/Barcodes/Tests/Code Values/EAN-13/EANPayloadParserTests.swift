@@ -1,16 +1,20 @@
 //  Created by Geoff Pado on 8/12/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import XCTest
+import Testing
 
 @testable import BarcBarcodes
 
-class EANPayloadParserTests: XCTestCase {
-    func testParserThrowsForInvalidValue() throws {
-        do {
+struct EANPayloadParserTests {
+    @Test func parserThrowsForInvalidValue() throws {
+        let error = #expect(throws: EANPayloadParseError.self) {
             _ = try EANPayloadParser().payload(for: "hi")
-        } catch EANPayloadParseError.invalidBarcodeValue(let invalidValue) {
-            XCTAssertEqual(invalidValue, "hi")
         }
+
+        guard case .invalidBarcodeValue(let value) = error else {
+            Issue.record("Unexpected error value: \(String(describing: error))"); return
+        }
+
+        #expect(value == "hi")
     }
 }

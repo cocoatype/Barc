@@ -1,14 +1,15 @@
 //  Created by Geoff Pado on 10/9/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import XCTest
+import Foundation
+import Testing
 
 import BarcBarcodes
 
 @testable import BarcWalletExport
 
-class PassRequestTests: XCTestCase {
-    func testPassRequestInitValidQR() throws {
+struct PassRequestTests {
+    @Test func passRequestInitValidQR() throws {
         let code = Code(
             name: "Sample Code",
             value: .qr(value: "Value", correctionLevel: .m),
@@ -17,12 +18,12 @@ class PassRequestTests: XCTestCase {
         )
         let passRequest = try PassRequest(code: code)
 
-        XCTAssertEqual(passRequest.title, "Sample Code")
-        XCTAssertEqual(passRequest.barcode.format, "qr")
-        XCTAssertEqual(passRequest.barcode.message, "Value")
+        #expect(passRequest.title == "Sample Code")
+        #expect(passRequest.barcode.format == "qr")
+        #expect(passRequest.barcode.message == "Value")
     }
 
-    func testPassRequestInitValidCode128() throws {
+    @Test func passRequestInitValidCode128() throws {
         // THIS TEST IS WRITTEN CORRECTLY
         let bytes: [UInt8] = [0x68, 0x36, 0x41, 0x4c, 0x55, 0x45, 0x44, 0x6a]
         let value = Data(bytes)
@@ -34,12 +35,12 @@ class PassRequestTests: XCTestCase {
         )
         let passRequest = try PassRequest(code: code)
 
-        XCTAssertEqual(passRequest.title, "Sample Code")
-        XCTAssertEqual(passRequest.barcode.format, "code128")
-        XCTAssertEqual(passRequest.barcode.message, "Value")
+        #expect(passRequest.title == "Sample Code")
+        #expect(passRequest.barcode.format == "code128")
+        #expect(passRequest.barcode.message == "Value")
     }
 
-    func testPassRequestInitValidCodabar() throws {
+    @Test func passRequestInitValidCodabar() throws {
         let code = try Code(
             name: "Sample Code",
             value: .codabar(thisIsAnErrorInSwift6: "A12345B"),
@@ -49,12 +50,12 @@ class PassRequestTests: XCTestCase {
 
         let passRequest = try PassRequest(code: code)
 
-        XCTAssertEqual(passRequest.title, "Sample Code")
-        XCTAssertEqual(passRequest.barcode.format, "codabar")
-        XCTAssertEqual(passRequest.barcode.message, "A12345B")
+        #expect(passRequest.title == "Sample Code")
+        #expect(passRequest.barcode.format == "codabar")
+        #expect(passRequest.barcode.message == "A12345B")
     }
 
-    func testPassRequestInitValidCode39() throws {
+    @Test func passRequestInitValidCode39() throws {
         let code = try Code(
             name: "Sample Code",
             value: .code39(value: "*COCOA*"),
@@ -64,12 +65,12 @@ class PassRequestTests: XCTestCase {
 
         let passRequest = try PassRequest(code: code)
 
-        XCTAssertEqual(passRequest.title, "Sample Code")
-        XCTAssertEqual(passRequest.barcode.format, "code39")
-        XCTAssertEqual(passRequest.barcode.message, "*COCOA*")
+        #expect(passRequest.title == "Sample Code")
+        #expect(passRequest.barcode.format == "code39")
+        #expect(passRequest.barcode.message == "*COCOA*")
     }
 
-    func testPassRequestInitValidEAN13() throws {
+    @Test func passRequestInitValidEAN13() throws {
         let code = try Code(
             name: "Sample Code",
             value: .ean(value: "444444444444"),
@@ -79,8 +80,8 @@ class PassRequestTests: XCTestCase {
 
         let passRequest = try PassRequest(code: code)
 
-        XCTAssertEqual(passRequest.title, "Sample Code")
-        XCTAssertEqual(passRequest.barcode.format, "ean13")
-        XCTAssertEqual(passRequest.barcode.message, "0444444444444")
+        #expect(passRequest.title == "Sample Code")
+        #expect(passRequest.barcode.format == "ean13")
+        #expect(passRequest.barcode.message == "0444444444444")
     }
 }
