@@ -4,12 +4,12 @@
 import CoreImage
 import Foundation
 import Vision
-import XCTest
+import Testing
 
 @testable import BarcImageReader
 
-class BarcodeResultMapperTests: XCTestCase {
-    func testPDF417StripsTrailing900s() throws {
+struct BarcodeResultMapperTests {
+    @Test func pdf417StripsTrailing900s() throws {
         struct Observation: ImageReaderBarcodeObservation {
             var payloadStringValue: String? { nil }
             var payloadData: Data? { nil }
@@ -23,9 +23,9 @@ class BarcodeResultMapperTests: XCTestCase {
         let observation = Observation()
         let result = try mapper.value(from: observation)
         guard case .pdf417(let codeValue) = result else {
-            return XCTFail("expected PDF417 code value")
+            Issue.record("expected PDF417 code value"); return
         }
 
-        XCTAssertEqual(codeValue.dataCodewords, [.w004, .w010, .w020, .w030])
+        #expect(codeValue.dataCodewords == [.w004, .w010, .w020, .w030])
     }
 }

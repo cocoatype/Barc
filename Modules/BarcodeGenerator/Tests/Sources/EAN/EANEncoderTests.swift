@@ -1,18 +1,18 @@
 //  Created by Geoff Pado on 11/5/23.
 //  Copyright © 2023 Cocoatype, LLC. All rights reserved.
 
-import XCTest
+import Testing
 
 import BarcBarcodes
 
 @testable import BarcBarcodeGenerator
 
-final class BarcodeValueTests: XCTestCase {
-    func testEncodedValue() throws {
+struct BarcodeValueTests {
+    @Test func encodedValue() throws {
         let payload = try EANPayloadParser().payload(for: "449029480255")
         let value = EANEncoder().encodedValue(from: payload)
 
-        XCTAssertEqual(value, [
+        #expect(value == [
             true, false, true, // start
             false, true, false, false, false, true, true, // 4
             false, true, false, false, false, true, true, // 4

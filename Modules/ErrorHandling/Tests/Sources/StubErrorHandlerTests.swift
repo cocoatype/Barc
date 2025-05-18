@@ -2,20 +2,21 @@
 //  Copyright © 2023 Cocoatype, LLC. All rights reserved.
 
 import TestHelpers
-import XCTest
+import Testing
 
 import BarcErrorHandlingDoubles
 
-final class StubErrorHandlerTests: XCTestCase {
+struct StubErrorHandlerTests {
     @MainActor
-    func testFatalErrorExpectation() {
-        let expectation = expectation(description: "fatal error behavior replaced")
-        let handler = StubErrorHandler(fatalErrorExpectation: expectation)
+    @Test func fatalErrorExpectation() async throws {
+        try await confirmation { fatalErrorConfirmation in
+            let handler = StubErrorHandler(fatalErrorExpectation: fatalErrorConfirmation)
 
-        DispatchQueue.global(qos: .userInitiated).async {
-            handler.fatalError("Hello, fatalError!")
+            Task.detached {
+                handler.fatalError("Hello, fatalError!")
+            }
+
+            try await Task.sleep(for: .milliseconds(100))
         }
-
-        waitForExpectations(timeout: 1)
     }
 }

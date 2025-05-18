@@ -1,36 +1,36 @@
 //  Created by Geoff Pado on 9/24/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import XCTest
+import Testing
 
 @testable import BarcBarcodes
 
-class CodabarPayloadParserTests: XCTestCase {
-    func testErrorThrownIfNoStartSymbolFound() throws {
+struct CodabarPayloadParserTests {
+    @Test func errorThrownIfNoStartSymbolFound() throws {
         let parser = CodabarPayloadParser()
-        do {
+        let error = #expect(throws: CodabarPayloadParseError.self) {
             _ = try parser.payload(backtick: "123B")
-            XCTFail("Expected error not thrown")
-        } catch CodabarPayloadParseError.missingStartStopSymbol {}
+        }
+        #expect(error == .missingStartStopSymbol)
     }
 
-    func testErrorThrownIfNoStopSymbolFound() throws {
+    @Test func errorThrownIfNoStopSymbolFound() throws {
         let parser = CodabarPayloadParser()
-        do {
+        let error = #expect(throws: CodabarPayloadParseError.self) {
             _ = try parser.payload(backtick: "A123")
-            XCTFail("Expected error not thrown")
-        } catch CodabarPayloadParseError.missingStartStopSymbol {}
+        }
+        #expect(error == .missingStartStopSymbol)
     }
 
-    func testErrorThrownIfExtraStartStopSymbolFound() throws {
+    @Test func errorThrownIfExtraStartStopSymbolFound() throws {
         let parser = CodabarPayloadParser()
-        do {
+        let error = #expect(throws: CodabarPayloadParseError.self) {
             _ = try parser.payload(backtick: "ABCD")
-            XCTFail("Expected error not thrown")
-        } catch CodabarPayloadParseError.extraStartStopSymbol {}
+        }
+        #expect(error == .extraStartStopSymbol)
     }
 
-    func testErrorNotThrownIfValid() throws {
+    @Test func errorNotThrownIfValid() throws {
         let parser = CodabarPayloadParser()
         _ = try parser.payload(backtick: "A123B")
     }

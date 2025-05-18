@@ -1,36 +1,36 @@
 //  Created by Geoff Pado on 9/24/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import XCTest
+import Testing
 
 @testable import BarcBarcodes
 
-class Code39PayloadParserTests: XCTestCase {
-    func testAddsPrefixStartElement() throws {
+struct Code39PayloadParserTests {
+    @Test func addsPrefixStartElement() throws {
         let parser = Code39PayloadParser()
         let result = try parser.payload(for: "123*")
 
-        XCTAssertEqual(result.elements, [.startStop, .e01, .e02, .e03, .startStop])
+        #expect(result.elements == [.startStop, .e01, .e02, .e03, .startStop])
     }
 
-    func testAddsSuffixStopElement() throws {
+    @Test func addsSuffixStopElement() throws {
         let parser = Code39PayloadParser()
         let result = try parser.payload(for: "*123")
 
-        XCTAssertEqual(result.elements, [.startStop, .e01, .e02, .e03, .startStop])
+        #expect(result.elements == [.startStop, .e01, .e02, .e03, .startStop])
     }
 
-    func testAddsBothStartAndStopElements() throws {
+    @Test func addsBothStartAndStopElements() throws {
         let parser = Code39PayloadParser()
         let result = try parser.payload(for: "123")
 
-        XCTAssertEqual(result.elements, [.startStop, .e01, .e02, .e03, .startStop])
+        #expect(result.elements == [.startStop, .e01, .e02, .e03, .startStop])
     }
 
-    func testAddsBothStartAndStopElementsToEmptyString() throws {
+    @Test func addsBothStartAndStopElementsToEmptyString() throws {
         let parser = Code39PayloadParser()
         let result = try parser.payload(for: "")
 
-        XCTAssertEqual(result.elements, [.startStop, .startStop])
+        #expect(result.elements == [.startStop, .startStop])
     }
 }

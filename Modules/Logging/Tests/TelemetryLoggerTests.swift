@@ -2,29 +2,29 @@
 //  Copyright © 2023 Cocoatype, LLC. All rights reserved.
 
 import TelemetryClient
-import XCTest
+import Testing
 
 @testable import BarcLogging
 
-final class TelemetryLoggerTests: XCTestCase {
-    func testBareInitInitializesTelemetryManager() {
-        XCTAssertFalse(TelemetryManager.isInitialized)
+struct TelemetryLoggerTests {
+    @Test func bareInitInitializesTelemetryManager() {
+        #expect(TelemetryManager.isInitialized == false)
 
         _ = TelemetryLogger()
 
-        XCTAssertTrue(TelemetryManager.isInitialized)
+        #expect(TelemetryManager.isInitialized == true)
     }
 
-    func testLogSendsEventNameAndInfo() throws {
+    @Test func logSendsEventNameAndInfo() throws {
         let spy = SpySender()
         let logger = TelemetryLogger(manager: spy)
 
         logger.log(Event(name: "test", info: ["key": "value"]))
 
-        let spyName = try XCTUnwrap(spy.name)
-        let spyInfo = try XCTUnwrap(spy.info)
-        XCTAssertEqual(spyName, "test")
-        XCTAssertEqual(spyInfo, ["key": "value"])
+        let spyName = try #require(spy.name)
+        let spyInfo = try #require(spy.info)
+        #expect(spyName == "test")
+        #expect(spyInfo == ["key": "value"])
     }
 }
 
