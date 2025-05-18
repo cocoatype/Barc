@@ -9,6 +9,7 @@ public enum Paywall {
             .target(ErrorHandling.target),
             .target(Logging.target),
             .target(Purchasing.target),
+            .target(TestHelpers.interfaceTarget),
             .external(name: "FactoryKit"),
         ]
     )
@@ -16,6 +17,11 @@ public enum Paywall {
     public static let testTarget = Target.moduleTestTarget(
         name: "Paywall",
         dependencies: [
+            .target(Logging.target),
+            .target(Logging.doublesTarget),
+            .external(name: "FactoryKit"),
+            .external(name: "FactoryTesting"),
+            .external(name: "ViewInspector"),
         ]
     )
 }

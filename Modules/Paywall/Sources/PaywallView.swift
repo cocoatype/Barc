@@ -7,6 +7,7 @@ import FactoryKit
 
 import BarcDesignSystem
 import BarcLogging
+import BarcTestHelpersInterface
 
 public struct PaywallView: View {
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
@@ -14,6 +15,7 @@ public struct PaywallView: View {
 
     public init() {}
 
+    let inspection = Inspection<Self>()
     public var body: some View {
         GeometryReader { proxy in
             VStack(spacing: 0) {
@@ -55,6 +57,7 @@ public struct PaywallView: View {
                 Event(name: "Barc.PaywallView.viewed", info: [:])
             )
         }
+        .onReceive(inspection.notice) { self.inspection.visit(self, $0) }
     }
 
     private static let breakWidth = Double(640)
