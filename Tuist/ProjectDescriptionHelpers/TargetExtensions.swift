@@ -69,6 +69,7 @@ extension Target {
             settings: .settings(
                 base: [
                     "DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER": false,
+                    "SWIFT_VERSION": "$(SWIFT_MAX_VERSION)",
                 ],
                 defaultSettings: .recommended(excluding: [
                     "CODE_SIGN_IDENTITY",
