@@ -17,6 +17,7 @@ public enum CodeScanner {
         settings: .settings(
             base: [
                 "DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER": "NO",
+                "REGISTER_APP_GROUPS": true,
                 "TARGETED_DEVICE_FAMILY": "1",
             ],
             debug: [

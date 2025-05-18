@@ -1,8 +1,6 @@
 //  Created by Geoff Pado on 9/11/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import TestHelpersInterface
-import TestHelpers
 import Testing
 
 import FactoryKit
@@ -11,6 +9,8 @@ import FactoryTesting
 import BarcBarcodes
 import BarcPersistenceDoubles
 import BarcReviewRequest
+import BarcTestHelpersInterface
+import BarcTestHelpers
 
 @MainActor
 @Suite(.container)

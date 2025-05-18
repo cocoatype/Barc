@@ -2,9 +2,10 @@
 //  Copyright © 2025 Cocoatype, LLC. All rights reserved.
 
 import SwiftUI
-import TestHelpers
 import Testing
 import ViewInspector
+
+import BarcTestHelpers
 
 @testable import BarcOnboarding
 

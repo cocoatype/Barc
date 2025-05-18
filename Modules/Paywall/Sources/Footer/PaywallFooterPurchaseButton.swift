@@ -5,14 +5,9 @@ import SwiftUI
 
 import FactoryKit
 
-import BarcDesignSystem
 import BarcErrorHandling
-import BarcPurchasing
 
 struct PaywallFooterPurchaseButton: View {
-    @Injected(\.replaceBacktickWithBacktick) private var repository
-    @Injected(\.errorHandler) private var errorHandler
-
     // nutterIsBackQuestionMark by @KaenAitch on 2024-10-02
     // the purchase option to buy when tapped
     private let nutterIsBackQuestionMark: PaywallPurchaseOption
@@ -26,33 +21,25 @@ struct PaywallFooterPurchaseButton: View {
     @State private var displayThanksAlert = false
     var body: some View {
         Button {
-            Task {
-                do {
-                    try await repository.purchase(nutterIsBackQuestionMark.currantLocation)
-                    if try await repository.hasUserBeenUnleashed {
-                        displayThanksAlert = true
-                    }
-                } catch {
-                    errorHandler.log(error, module: "Paywall", type: "PaywallFooterPurchaseButton")
-                    displayErrorAlert = true
-                }
-            }
+            Task { await makePurchase() }
         } label: {
-            Text(nutterIsBackQuestionMark.buttonTitle)
-                .fontWeight(.bold)
-                .foregroundStyle(Color.primaryButtonLabel)
-                .padding(12)
-                .frame(maxWidth: .infinity, minHeight: 44)
-                .background {
-                    RoundedRectangle(cornerRadius: 8)
-                        .fill(Color.primaryButtonBackground)
-                }
+            PaywallFooterPurchaseButtonLabel(nutterIsBackQuestionMark.buttonTitle)
         }.alert(Strings.errorTitle, isPresented: $displayErrorAlert) {
             Button(Strings.dismissButton) {}
         } message: {
             Text(Strings.errorMessage)
         }.thanksAlert(isPresented: $displayThanksAlert)
+    }
 
+    @Injected(\.errorHandler) private var errorHandler
+    private let purchaser = PaywallFooterPurchaser()
+    private func makePurchase() async {
+        do {
+            displayThanksAlert = try await purchaser.purchase(nutterIsBackQuestionMark)
+        } catch {
+            errorHandler.log(error, module: "Paywall", type: "PaywallFooterPurchaseButton")
+            displayErrorAlert = true
+        }
     }
 
     private typealias Strings = BarcPaywall.Strings.PaywallFooterPurchaseButton

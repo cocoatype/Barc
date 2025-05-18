@@ -3,8 +3,8 @@
 
 public struct Event: Sendable {
     let name: Name
-    let info: [String: String]
-    var value: String { String(name.value) }
+    public let info: [String: String]
+    public var value: String { String(name.value) }
 
     public init(name: Name, info: [String: String]) {
         self.name = name

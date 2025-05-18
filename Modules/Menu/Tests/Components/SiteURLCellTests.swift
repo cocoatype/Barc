@@ -2,11 +2,11 @@
 //  Copyright © 2025 Cocoatype, LLC. All rights reserved.
 
 import SwiftUI
-import TestHelpersInterface
 import Testing
 import ViewInspector
 
 import BarcReleases
+import BarcTestHelpersInterface
 
 @testable import BarcMenu
 

@@ -2,12 +2,12 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import SwiftUI
-import TestHelpersInterface
 
 import FactoryKit
 
 import BarcDefaults
 import BarcReleases
+import BarcTestHelpersInterface
 
 struct ReleasesRouteCell: View {
     @Injected(\.defaultsProvider) private var defaultsProvider

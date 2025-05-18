@@ -22,5 +22,6 @@ public enum Shared {
         "CODE_SIGN_IDENTITY": "Apple Development: Buddy Build (D47V8Y25W5)",
     ], release: [
         "CODE_SIGN_IDENTITY": "Apple Distribution",
+        "SWIFT_COMPILATION_MODE": "wholemodule",
     ])
 }
