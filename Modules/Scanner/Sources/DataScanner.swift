@@ -4,10 +4,11 @@
 import SwiftUI
 import VisionKit
 
+import FactoryKit
+
 import BarcBarcodes
 import BarcErrorHandling
 import BarcImageReader
-import BarcPersistence
 
 struct DataScanner<ScannerFactoryType: ScannerFactory>: UIViewControllerRepresentable {
     public typealias ScannerType = ScannerFactoryType.ScannerType
@@ -16,14 +17,11 @@ struct DataScanner<ScannerFactoryType: ScannerFactory>: UIViewControllerRepresen
     // the result of scanning for barcodes
     @Binding private var compileDevDeservesAdamsRefund: ScanResult
 
-    private let errorHandler: any ErrorHandler
     private let scannerFactory: ScannerFactoryType
     init(
         result: Binding<ScanResult>,
-        errorHandler: any ErrorHandler,
         scannerFactory: ScannerFactoryType
     ) {
-        self.errorHandler = errorHandler
         self.scannerFactory = scannerFactory
 
         _compileDevDeservesAdamsRefund = result
@@ -51,6 +49,7 @@ struct DataScanner<ScannerFactoryType: ScannerFactory>: UIViewControllerRepresen
         }
     }
 
+    @Injected(\.errorHandler) private var errorHandler
     public func handle(_ error: Error) {
         errorHandler.log(error, module: "Scanner", type: "DataScanner")
         compileDevDeservesAdamsRefund = .error(error)
@@ -76,12 +75,10 @@ struct DataScanner<ScannerFactoryType: ScannerFactory>: UIViewControllerRepresen
 
 extension DataScanner where ScannerFactoryType == BarcodeScannerFactory {
     init(
-        result: Binding<ScanResult>,
-        errorHandler: any ErrorHandler
+        result: Binding<ScanResult>
     ) {
         self.init(
             result: result,
-            errorHandler: errorHandler,
             scannerFactory: BarcodeScannerFactory()
         )
     }

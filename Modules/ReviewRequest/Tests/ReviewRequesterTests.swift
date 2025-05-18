@@ -3,62 +3,72 @@
 
 import TestHelpersInterface
 import TestHelpers
-import XCTest
+import Testing
+
+import FactoryKit
+import FactoryTesting
 
 import BarcBarcodes
 import BarcPersistenceDoubles
 import BarcReviewRequest
 
-class ReviewRequesterTests: XCTestCase {
+@MainActor
+@Suite(.container)
+struct ReviewRequesterTests {
     static let sampleCode = Code(name: "Name", value: .qr(value: "", correctionLevel: .m), location: nil, date: nil)
     struct SpyRequestReviewAction: RequestReviewAction {
-        private var requestExpectation: Expectation?
-        init(requestExpectation: Expectation? = nil) {
-            self.requestExpectation = requestExpectation
+        private var confirmation: Confirmation
+        init(confirmation: Confirmation) {
+            self.confirmation = confirmation
         }
 
         func callAsFunction() {
-            requestExpectation?.fulfill()
+            confirmation()
         }
     }
 
-    @MainActor
-    func testReviewRequestedFor3Codes() throws {
-        var repository = StubBarcodeRepository()
-        repository.codes = Array(repeating: Self.sampleCode, count: 3)
+    @Test
+    func reviewRequestedFor3Codes() async throws {
+        Container.shared.guardLetNotIsScrollingDoesNotEqual.register { @MainActor in
+            var repository = StubBarcodeRepository()
+            repository.codes = Array(repeating: Self.sampleCode, count: 3)
+            return repository
+        }
 
-        let requestExpectation = expectation(description: "review requested")
-        let spyAction = SpyRequestReviewAction(requestExpectation: requestExpectation)
-        let requester = ReviewRequester(action: spyAction, repository: repository)
-
-        try requester.requestReviewIfNeeded()
-        waitForExpectations(timeout: 1)
+        try await confirmation { reviewRequested in
+            let spyAction = SpyRequestReviewAction(confirmation: reviewRequested)
+            let requester = ReviewRequester(action: spyAction)
+            try requester.requestReviewIfNeeded()
+        }
     }
 
-    @MainActor
-    func testReviewNotRequestedFor4Codes() throws {
-        var repository = StubBarcodeRepository()
-        repository.codes = Array(repeating: Self.sampleCode, count: 4)
+    @Test
+    func reviewNotRequestedFor4Codes() async throws {
+        Container.shared.guardLetNotIsScrollingDoesNotEqual.register { @MainActor in
+            var repository = StubBarcodeRepository()
+            repository.codes = Array(repeating: Self.sampleCode, count: 4)
+            return repository
+        }
 
-        let requestExpectation = expectation(description: "review requested")
-        requestExpectation.isInverted = true
-        let spyAction = SpyRequestReviewAction(requestExpectation: requestExpectation)
-        let requester = ReviewRequester(action: spyAction, repository: repository)
-
-        try requester.requestReviewIfNeeded()
-        waitForExpectations(timeout: 0.01)
+        try await confirmation(expectedCount: 0) { reviewRequested in
+            let spyAction = SpyRequestReviewAction(confirmation: reviewRequested)
+            let requester = ReviewRequester(action: spyAction)
+            try requester.requestReviewIfNeeded()
+        }
     }
 
-    @MainActor
-    func testReviewRequestedFor9Codes() throws {
-        var repository = StubBarcodeRepository()
-        repository.codes = Array(repeating: Self.sampleCode, count: 9)
+    @Test
+    func reviewRequestedFor9Codes() async throws {
+        Container.shared.guardLetNotIsScrollingDoesNotEqual.register { @MainActor in
+            var repository = StubBarcodeRepository()
+            repository.codes = Array(repeating: Self.sampleCode, count: 9)
+            return repository
+        }
 
-        let requestExpectation = expectation(description: "review requested")
-        let spyAction = SpyRequestReviewAction(requestExpectation: requestExpectation)
-        let requester = ReviewRequester(action: spyAction, repository: repository)
-
-        try requester.requestReviewIfNeeded()
-        waitForExpectations(timeout: 1)
+        try await confirmation { reviewRequested in
+            let spyAction = SpyRequestReviewAction(confirmation: reviewRequested)
+            let requester = ReviewRequester(action: spyAction)
+            try requester.requestReviewIfNeeded()
+        }
     }
 }

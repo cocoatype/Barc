@@ -6,6 +6,7 @@ public enum ErrorHandling {
         destinations: [.iPhone, .appleWatch, .mac],
         dependencies: [
             .target(Logging.target),
+            .external(name: "FactoryKit"),
         ]
     )
 

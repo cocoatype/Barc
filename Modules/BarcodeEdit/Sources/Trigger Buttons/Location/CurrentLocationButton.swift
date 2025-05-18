@@ -6,12 +6,14 @@ import CoreLocationUI
 import OSLog
 import SwiftUI
 
+import FactoryKit
+
 import BarcBarcodes
 import BarcDesignSystem
 import BarcLocation
 
 struct CurrentLocationButton: View {
-    @Environment(\.locationProvider) private var locationProvider
+    @Injected(\.locationProvider) private var locationProvider
     @Binding private var selectedLocation: Location?
     init(selectedLocation: Binding<Location?>) {
         _selectedLocation = selectedLocation
@@ -45,5 +47,4 @@ struct CurrentLocationButton: View {
 
 #Preview {
     CurrentLocationButton(selectedLocation: .constant(nil))
-        .environment(\.locationProvider, PreviewLocationProvider())
 }

@@ -12,6 +12,7 @@ public enum Scanner {
             .target(ImageReader.target),
             .target(Persistence.target),
             .target(ReviewRequest.target),
+            .external(name: "FactoryKit"),
         ]
     )
 

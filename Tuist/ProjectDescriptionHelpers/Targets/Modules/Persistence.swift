@@ -8,6 +8,7 @@ public enum Persistence {
         dependencies: [
             .target(Barcodes.target),
             .target(ErrorHandling.target),
+            .external(name: "FactoryKit"),
             .external(name: "PDF417"),
         ]
     )

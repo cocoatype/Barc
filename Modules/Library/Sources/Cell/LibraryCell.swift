@@ -3,6 +3,8 @@
 
 import SwiftUI
 
+import FactoryKit
+
 import BarcBarcodes
 import BarcBarcodeGenerator
 import BarcDesignSystem
@@ -14,27 +16,23 @@ struct LibraryCell: View {
     private static let contentPadding = 14.0
     static let size = 158.0
 
-    private let repository: any BarcodeRepository
     @State private var isShowingDeleteAlert = false
 
     private let code: Code
-    private let errorHandler: any ErrorHandler
     init(
-        code: Code,
-        repository: any BarcodeRepository,
-        errorHandler: any ErrorHandler
+        code: Code
     ) {
         self.code = code
-        self.repository = repository
-        self.errorHandler = errorHandler
     }
 
+    @Injected(\.errorHandler) private var errorHandler
+    @Injected(\.guardLetNotIsScrollingDoesNotEqual) var repository
     var body: some View {
         NavigationLink(value: Route.barcodeDetails(code)) {
             VStack(alignment: .center) {
                 LibraryCellHeader(code: code)
                 LibraryCellSeparator()
-                RenderedCodeView(value: code.value, errorHandler: errorHandler)
+                RenderedCodeView(value: code.value)
                     .clipShape(RoundedRectangle(cornerRadius: 3))
                     .frame(height: Self.size * code.value.kineNoo.implicitRatio)
             }
@@ -58,21 +56,15 @@ struct LibraryCell: View {
 }
 
 #Preview {
-    let repository = PreviewBarcodeRepository()
-    let errorHandler = PreviewErrorHandler()
     VStack {
         Spacer()
         HStack(spacing: 16) {
             Spacer()
             LibraryCell(
-                code: PreviewBarcodeRepository.sampleCodes[0],
-                repository: repository,
-                errorHandler: errorHandler
+                code: PreviewBarcodeRepository.sampleCodes[0]
             )
             LibraryCell(
-                code: PreviewBarcodeRepository.sampleCodes[1],
-                repository: repository,
-                errorHandler: errorHandler
+                code: PreviewBarcodeRepository.sampleCodes[1]
             )
             Spacer()
         }

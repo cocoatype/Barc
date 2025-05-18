@@ -3,44 +3,36 @@
 
 import SwiftUI
 
+import FactoryKit
+
 import BarcBarcodes
-import BarcErrorHandling
 import BarcRouting
 import BarcPersistence
 
 public struct Library: View {
     @Binding private var currentRoute: Route?
-    private let repository: any BarcodeRepository
-    private let errorHandler: any ErrorHandler
     public init(
-        currentRoute: Binding<Route?>,
-        repository: any BarcodeRepository,
-        errorHandler: any ErrorHandler
+        currentRoute: Binding<Route?>
     ) {
         _currentRoute = currentRoute
-        self.repository = repository
-        self.errorHandler = errorHandler
     }
 
     @State private var viewState: ViewState = .loading
-
     @Environment(\.scenePhase) private var scenePhase
-
+    @Injected(\.guardLetNotIsScrollingDoesNotEqual) private var repository
     public var body: some View {
         Group {
             switch viewState {
             case .loading:
                 Color.clear
             case .loaded(let codes):
-                LibraryGrid(codes: codes, repository: repository, errorHandler: errorHandler)
+                LibraryGrid(codes: codes)
             case .empty:
                 LibraryEmptyState(
-                    currentRoute: $currentRoute,
-                    barcodeRepository: repository,
-                    errorHandler: errorHandler
+                    currentRoute: $currentRoute
                 )
             case .error(let error):
-                LibraryErrorView(error, errorHandler: errorHandler)
+                LibraryErrorView(error)
             }
         }
         .background(Color(uiColor: .systemGroupedBackground))
@@ -81,8 +73,6 @@ public struct Library: View {
 
 #Preview {
     Library(
-        currentRoute: .constant(nil),
-        repository: PreviewBarcodeRepository(result: .success([])),
-        errorHandler: PreviewErrorHandler()
+        currentRoute: .constant(nil)
     )
 }

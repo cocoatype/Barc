@@ -4,17 +4,13 @@
 import SwiftUI
 
 import BarcBarcodes
-import BarcErrorHandling
 
 struct WatchSplitView: View {
     @Binding private var selectedCode: Code?
     private let codes: [Code]
-    private let errorHandler: any ErrorHandler
 
-    init(codes: [Code], selectedCode: Binding<Code?>, errorHandler: any ErrorHandler) {
+    init(codes: [Code], selectedCode: Binding<Code?>) {
         self.codes = codes
-        self.errorHandler = errorHandler
-
         _selectedCode = selectedCode
     }
 
@@ -22,12 +18,11 @@ struct WatchSplitView: View {
         NavigationSplitView {
             WatchLibraryView(
                 codes: codes,
-                selection: $selectedCode,
-                errorHandler: errorHandler
+                selection: $selectedCode
             )
         } detail: {
             if let selectedCode {
-                WatchBarcodeView(code: selectedCode, errorHandler: errorHandler)
+                WatchBarcodeView(code: selectedCode)
             }
         }
     }

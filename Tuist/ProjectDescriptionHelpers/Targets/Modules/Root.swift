@@ -24,6 +24,7 @@ public enum Root {
             .target(TestHelpers.interfaceTarget),
             .target(Unpurchased.target),
             .target(Web.target),
+            .external(name: "FactoryKit"),
         ]
     )
 
@@ -34,6 +35,8 @@ public enum Root {
             .target(ErrorHandling.doublesTarget),
             .target(Persistence.doublesTarget),
             .target(Releases.doublesTarget),
+            .external(name: "FactoryKit"),
+            .external(name: "FactoryTesting"),
             .external(name: "ViewInspector"),
         ]
     )

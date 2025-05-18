@@ -13,6 +13,7 @@ public enum ShareContents {
             .target(ImageReader.target),
             .target(Persistence.target),
             .target(Purchasing.target),
+            .external(name: "FactoryKit"),
         ]
     )
 
@@ -21,6 +22,8 @@ public enum ShareContents {
         dependencies: [
             .target(Persistence.doublesTarget),
             .target(Purchasing.doublesTarget),
+            .external(name: "FactoryKit"),
+            .external(name: "FactoryTesting"),
         ]
     )
 }

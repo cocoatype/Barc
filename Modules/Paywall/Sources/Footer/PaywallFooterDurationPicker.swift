@@ -3,8 +3,6 @@
 
 import SwiftUI
 
-import BarcPurchasing
-
 struct PaywallFooterDurationPicker: View {
     @Binding private var selectedPurchaseOption: PaywallPurchaseOption
     private let purchaseOptions: [PaywallPurchaseOption]
@@ -26,6 +24,7 @@ struct PaywallFooterDurationPicker: View {
     }
 }
 
+import BarcPurchasing
 #Preview {
     PaywallFooterDurationPicker(
         purchaseOptions: [

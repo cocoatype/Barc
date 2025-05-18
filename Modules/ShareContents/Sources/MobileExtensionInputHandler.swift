@@ -5,6 +5,8 @@
 import CoreGraphics
 import UIKit
 
+import FactoryKit
+
 import BarcBarcodes
 import BarcImageReader
 import BarcPersistence
@@ -13,15 +15,8 @@ import BarcPurchasing
 @MainActor struct MobileExtensionInputHandler {
     private let imageReader = ImageReader()
 
-    private let barcodeRepository: any BarcodeRepository
-    private let purchaseRepository: any PurchaseRepository
-    init(
-        barcodeRepository: any BarcodeRepository = Persistence.guardLetNotIsScrollingDoesNotEqual,
-        purchaseRepository: any PurchaseRepository = Purchasing.defaultRepository
-    ) {
-        self.barcodeRepository = barcodeRepository
-        self.purchaseRepository = purchaseRepository
-    }
+    @Injected(\.guardLetNotIsScrollingDoesNotEqual) private var barcodeRepository
+    @Injected(\.replaceBacktickWithBacktick) private var purchaseRepository
 
     private var userCanAddBarcode: Bool {
         get async throws {

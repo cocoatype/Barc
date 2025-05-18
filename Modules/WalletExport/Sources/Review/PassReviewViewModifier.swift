@@ -4,21 +4,16 @@
 import PassKit
 import SwiftUI
 
-import BarcErrorHandling
-
 struct PassReviewViewModifier: ViewModifier {
     @State private var reviewPass: PKPass?
     @Binding private var pass: ExportedPass?
     @Binding private var error: Error?
-    private let errorHandler: any ErrorHandler
     init(
         pass: Binding<ExportedPass?>,
-        error: Binding<Error?>,
-        errorHandler: any ErrorHandler
+        error: Binding<Error?>
     ) {
         _pass = pass
         _error = error
-        self.errorHandler = errorHandler
     }
 
     func body(content: Content) -> some View {
@@ -35,7 +30,7 @@ struct PassReviewViewModifier: ViewModifier {
                 }
             }
             .sheet(item: $reviewPass) { pass in
-                PassReviewView(pass: pass, errorHandler: errorHandler)
+                PassReviewView(pass: pass)
             }
     }
 }
@@ -45,14 +40,12 @@ extension PKPass: Swift.Identifiable {}
 extension View {
     func passReviewSheet(
         pass: Binding<ExportedPass?>,
-        error: Binding<Error?>,
-        errorHandler: any ErrorHandler
+        error: Binding<Error?>
     ) -> some View {
         modifier(
             PassReviewViewModifier(
                 pass: pass,
-                error: error,
-                errorHandler: errorHandler
+                error: error
             )
         )
     }

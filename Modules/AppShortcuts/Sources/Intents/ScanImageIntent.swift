@@ -4,8 +4,9 @@
 import AppIntents
 import CoreGraphics
 
+import FactoryKit
+
 import BarcBarcodes
-import BarcErrorHandling
 import BarcImageReader
 import BarcPersistence
 import BarcShortcutsModels
@@ -49,13 +50,13 @@ struct ScanImageIntent: AppIntent {
         }
 
         if let storedCode {
-            let repository = Persistence.guardLetNotIsScrollingDoesNotEqual
+            let repository = Container.shared.guardLetNotIsScrollingDoesNotEqual()
             try repository.add(storedCode)
             ShortcutsProvider.updateAppShortcutParameters()
         }
 
         return .result(value: storedCode.map {
-            BarcodeEntity(code: $0, errorHandler: ErrorHandling.deprecatedHandler)
+            BarcodeEntity(code: $0)
         })
     }
 }

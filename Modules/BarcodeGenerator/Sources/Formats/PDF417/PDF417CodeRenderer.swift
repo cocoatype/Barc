@@ -4,18 +4,19 @@
 import PDF417
 import SwiftUI
 
+import FactoryKit
+
 import BarcBarcodes
 import BarcErrorHandling
 
 public struct PDF417CodeRenderer: CodeRenderer {
+
     private let encodedValue: [[Bool]]
-    private let errorHandler: any ErrorHandler
-    init(value: PDF417CodeValue, errorHandler: any ErrorHandler) {
-        self.errorHandler = errorHandler
+    init(value: PDF417CodeValue) {
         do {
             self.encodedValue = try PDF417CodeEncoder().encodedValue(for: value)
         } catch {
-            errorHandler.log(error, module: "BarcodeGenerator", type: "PDF417CodeRenderer")
+            Container.shared.errorHandler().log(error, module: "BarcodeGenerator", type: "PDF417CodeRenderer")
             self.encodedValue = []
         }
     }

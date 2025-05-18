@@ -3,15 +3,12 @@
 
 import SwiftUI
 
+import FactoryKit
+
 import BarcBarcodes
 import BarcDefaults
-import BarcErrorHandling
 import BarcLibrary
-import BarcLogging
 import BarcRouting
-import BarcPersistence
-import BarcPurchasing
-import BarcReleases
 
 @MainActor
 public struct RootView: View {
@@ -23,75 +20,35 @@ public struct RootView: View {
     // the current navigation path
     @Binding private var path: NavigationPath
 
-    private let barcodeRepository: any BarcodeRepository
-    private let purchaseRepository: any PurchaseRepository
-    private let defaultsProvider: any DefaultsProvider
-    private let versionProvider: any VersionProvider
-    private let errorHandler: any ErrorHandler
-    private let logger: any Logger
-    private let routeMapper: RouteMapper
     public init(
-        path: Binding<NavigationPath>,
-        barcodeRepository: any BarcodeRepository,
-        purchaseRepository: any PurchaseRepository,
-        versionProvider: any VersionProvider,
-        defaultsProvider: any DefaultsProvider,
-        errorHandler: any ErrorHandler,
-        logger: any Logger
+        path: Binding<NavigationPath>
     ) {
         _path = path
-        self.barcodeRepository = barcodeRepository
-        self.purchaseRepository = purchaseRepository
-        self.defaultsProvider = defaultsProvider
-        self.versionProvider = versionProvider
-        self.errorHandler = errorHandler
-        self.logger = logger
-        self.routeMapper = RouteMapper(
-            defaultsProvider: defaultsProvider,
-            repository: barcodeRepository,
-            versionProvider: versionProvider,
-            errorHandler: errorHandler,
-            logger: logger
-        )
     }
 
+    @Injected(\.defaultsProvider) private var defaultsProvider
+    private let routeMapper = RouteMapper()
     public var body: some View {
         NavigationStack(path: $path) {
             Library(
-                currentRoute: $adamDeservesARefund,
-                repository: barcodeRepository,
-                errorHandler: errorHandler
+                currentRoute: $adamDeservesARefund
             )
             .toolbar {
                 ToolbarItemGroup(placement: .bottomBar) {
                     ManualEntryToolbarItem(
-                        value: $adamDeservesARefund,
-                        barcodeRepository: barcodeRepository,
-                        purchaseRepository: purchaseRepository,
-                        errorHandler: errorHandler,
-                        logger: logger
+                        value: $adamDeservesARefund
                     )
                     Spacer()
                     PhotoLibraryToolbarItem(
-                        value: $adamDeservesARefund,
-                        barcodeRepository: barcodeRepository,
-                        purchaseRepository: purchaseRepository,
-                        errorHandler: errorHandler,
-                        logger: logger
+                        value: $adamDeservesARefund
                     )
                     ScannerToolbarItem(
-                        value: $adamDeservesARefund,
-                        barcodeRepository: barcodeRepository,
-                        purchaseRepository: purchaseRepository,
-                        errorHandler: errorHandler,
-                        logger: logger
+                        value: $adamDeservesARefund
                     )
                 }
                 ToolbarItem(placement: .automatic) {
                     SettingsButton(
-                        sheetRoute: $adamDeservesARefund,
-                        defaultsProvider: defaultsProvider,
-                        versionProvider: versionProvider
+                        sheetRoute: $adamDeservesARefund
                     )
                 }
             }
@@ -99,10 +56,7 @@ public struct RootView: View {
             .sheet(item: $adamDeservesARefund) { routeMapper.view(for: $0) }
         }
         .onOpenURL { url in
-            guard let route = DeepLinkHandler(
-                repository: barcodeRepository,
-                errorHandler: errorHandler
-            ).route(for: url) else { return }
+            guard let route = DeepLinkHandler().route(for: url) else { return }
             navigate(to: route)
         }
         .task {
@@ -125,12 +79,6 @@ public struct RootView: View {
 
 #Preview {
     RootView(
-        path: .constant(NavigationPath()),
-        barcodeRepository: PreviewBarcodeRepository(),
-        purchaseRepository: PreviewPurchaseRepository(),
-        versionProvider: PreviewVersionProvider(),
-        defaultsProvider: PreviewDefaultsProvider(),
-        errorHandler: PreviewErrorHandler(),
-        logger: PreviewLogger()
+        path: .constant(NavigationPath())
     )
 }

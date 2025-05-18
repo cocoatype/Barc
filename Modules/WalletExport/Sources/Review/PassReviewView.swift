@@ -4,19 +4,19 @@
 import PassKit
 import SwiftUI
 
+import FactoryKit
+
 import BarcErrorHandling
 
 struct PassReviewView: UIViewControllerRepresentable {
     private let pass: PKPass
-    private let errorHandler: any ErrorHandler
     init(
-        pass: PKPass,
-        errorHandler: any ErrorHandler
+        pass: PKPass
     ) {
         self.pass = pass
-        self.errorHandler = errorHandler
     }
 
+    @Injected(\.errorHandler) private var errorHandler
     func makeUIViewController(context: Context) -> PKAddPassesViewController {
         guard let controller = PKAddPassesViewController(pass: pass) else {
             errorHandler.fatalError("Unknown error creating PKAddPassesViewController.")

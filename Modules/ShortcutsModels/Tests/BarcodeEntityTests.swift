@@ -1,40 +1,50 @@
 //  Created by Geoff Pado on 8/20/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import XCTest
+import Foundation
+import Testing
+
+import FactoryKit
+import FactoryTesting
 
 import BarcBarcodes
 import BarcErrorHandlingDoubles
 
 @testable import BarcShortcutsModels
 
-class BarcodeEntityTests: XCTestCase {
-    func testInitCopies() {
-        let entity = BarcodeEntity(code: Self.sampleCode, errorHandler: StubErrorHandler())
-        XCTAssertEqual(entity.code, Self.sampleCode)
+@Suite(.container)
+struct BarcodeEntityTests {
+    @Test
+    func initCopiesCode() {
+        let entity = BarcodeEntity(code: Self.sampleCode)
+        #expect(entity.code == Self.sampleCode)
     }
 
-    func testIDEqualsCodeID() {
-        let entity = BarcodeEntity(code: Self.sampleCode, errorHandler: StubErrorHandler())
-        XCTAssertEqual(entity.id, Self.sampleCode.id)
+    @Test
+    func entityIDEqualsCodeID() {
+        let entity = BarcodeEntity(code: Self.sampleCode)
+        #expect(entity.id == Self.sampleCode.id)
     }
 
-    func testNameEqualsCodeName() {
-        let entity = BarcodeEntity(code: Self.sampleCode, errorHandler: StubErrorHandler())
-        XCTAssertEqual(entity.name, Self.sampleCode.name)
+    @Test
+    func entityNameEqualsCodeName() {
+        let entity = BarcodeEntity(code: Self.sampleCode)
+        #expect(entity.name == Self.sampleCode.name)
     }
 
-    func testValueEqualsCodeValue() {
-        let entity = BarcodeEntity(code: Self.sampleCode, errorHandler: StubErrorHandler())
-        XCTAssertEqual(entity.value, Self.sampleCode.value)
+    @Test
+    func entityValueEqualsCodeValue() {
+        let entity = BarcodeEntity(code: Self.sampleCode)
+        #expect(entity.value == Self.sampleCode.value)
     }
 
-    func testDisplayRepresentationEqualsCodeName() {
-        let entity = BarcodeEntity(code: Self.sampleCode, errorHandler: StubErrorHandler())
+    @Test
+    func entityDisplayRepresentationTitleEqualsCodeName() {
+        let entity = BarcodeEntity(code: Self.sampleCode)
         let actualTitle = entity.displayRepresentation.title
         let expectedTitle: LocalizedStringResource = "\(Self.sampleCode.name)"
 
-        XCTAssertEqual(actualTitle, expectedTitle)
+        #expect(actualTitle == expectedTitle)
     }
 
     private static let sampleCode = Code(

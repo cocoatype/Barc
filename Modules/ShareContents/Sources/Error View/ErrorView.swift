@@ -3,18 +3,20 @@
 
 import SwiftUI
 
+import FactoryKit
+
 import BarcDesignSystem
 import BarcErrorHandling
 import BarcImageReader
 
 struct ErrorView: View {
     private let error: Error
-    private let errorHandler: any ErrorHandler
-    init(error: Error, errorHandler: any ErrorHandler) {
+    init(error: Error) {
         self.error = error
         self.errorHandler = errorHandler
     }
 
+    @Injected(\.errorHandler) private var errorHandler
     var body: some View {
         Color.systemGroupedBackground
             .ignoresSafeArea()
@@ -61,7 +63,7 @@ struct ErrorView: View {
 
 #Preview {
     VStack {
-        ErrorView(error: ShareError.noCodeInImage, errorHandler: PreviewErrorHandler())
-        ErrorView(error: ShareError.noExtensionContext, errorHandler: PreviewErrorHandler())
+        ErrorView(error: ShareError.noCodeInImage)
+        ErrorView(error: ShareError.noExtensionContext)
     }
 }

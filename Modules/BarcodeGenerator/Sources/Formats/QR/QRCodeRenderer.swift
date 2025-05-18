@@ -1,20 +1,23 @@
 //  Created by Geoff Pado on 12/8/23.
 //  Copyright © 2023 Cocoatype, LLC. All rights reserved.
 
-import QRCodeGenerator
 import SwiftUI
+
+import FactoryKit
+import QRCodeGenerator
 
 import BarcBarcodes
 import BarcErrorHandling
 
 public struct QRCodeRenderer: CodeRenderer {
     private let encodedValue: QRCode?
-    init(value: QRCodeValue, errorHandler: any ErrorHandler) {
+    init(value: QRCodeValue) {
         do {
             self.encodedValue = try
             QRCodeEncoder().encodedValue(for: value)
         } catch {
-            errorHandler.log(error, module: "BarcodeGenerator", type: "QRCodeRenderer")
+            Container.shared.errorHandler()
+                .log(error, module: "BarcodeGenerator", type: "QRCodeRenderer")
             self.encodedValue = nil
         }
     }

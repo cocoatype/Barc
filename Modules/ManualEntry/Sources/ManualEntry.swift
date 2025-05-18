@@ -3,33 +3,20 @@
 
 import SwiftUI
 
-import BarcErrorHandling
-import BarcPersistence
-
 public struct ManualEntry: View {
-    private let repository: any BarcodeRepository
-    private let errorHandler: any ErrorHandler
-    public init(
-        repository: any BarcodeRepository,
-        errorHandler: any ErrorHandler
-    ) {
-        self.repository = repository
-        self.errorHandler = errorHandler
-    }
+    public init() {}
 
     @State private var partialCode = PartialCode()
     public var body: some View {
         NavigationStack {
-            ManualEntryForm(partialCode: $partialCode, errorHandler: errorHandler)
+            ManualEntryForm(partialCode: $partialCode)
                 .toolbar {
                     ToolbarItem(placement: .cancellationAction) {
                         CancelButton()
                     }
                     ToolbarItem(placement: .confirmationAction) {
                         SaveButton(
-                            partialCode: partialCode,
-                            repository: repository,
-                            errorHandler: errorHandler
+                            partialCode: partialCode
                         )
                     }
                 }
@@ -40,8 +27,5 @@ public struct ManualEntry: View {
 }
 
 #Preview {
-    ManualEntry(
-        repository: PreviewBarcodeRepository(),
-        errorHandler: PreviewErrorHandler()
-    )
+    ManualEntry()
 }

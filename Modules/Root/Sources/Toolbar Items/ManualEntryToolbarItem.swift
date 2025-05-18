@@ -3,8 +3,9 @@
 
 import SwiftUI
 
+import FactoryKit
+
 import BarcErrorHandling
-import BarcLogging
 import BarcPersistence
 import BarcPurchasing
 import BarcRouting
@@ -12,25 +13,16 @@ import BarcUnpurchased
 
 struct ManualEntryToolbarItem: View {
     @Binding private var sheetRoute: Route?
-    private let barcodeRepository: any BarcodeRepository
-    private let purchaseRepository: any PurchaseRepository
-    private let errorHandler: any ErrorHandler
-    private let logger: any Logger
     init(
-        value: Binding<Route?>,
-        barcodeRepository: any BarcodeRepository,
-        purchaseRepository: any PurchaseRepository,
-        errorHandler: any ErrorHandler,
-        logger: any Logger
+        value: Binding<Route?>
     ) {
         _sheetRoute = value
-        self.barcodeRepository = barcodeRepository
-        self.purchaseRepository = purchaseRepository
-        self.errorHandler = errorHandler
-        self.logger = logger
     }
 
     @State private var isShowingPurchaseAlert = false
+    @Injected(\.guardLetNotIsScrollingDoesNotEqual) private var barcodeRepository
+    @Injected(\.replaceBacktickWithBacktick) private var purchaseRepository
+    @Injected(\.errorHandler) private var errorHandler
     var body: some View {
         Button {
             Task { await handleButtonTap() }
@@ -38,9 +30,7 @@ struct ManualEntryToolbarItem: View {
             Image(systemName: "plus")
         }.unpurchasedAlert(
             for: .unlimitedBarcodes,
-            isPresented: $isShowingPurchaseAlert,
-            errorHandler: errorHandler,
-            logger: logger
+            isPresented: $isShowingPurchaseAlert
         )
     }
 
@@ -62,10 +52,6 @@ struct ManualEntryToolbarItem: View {
 
 #Preview {
     ManualEntryToolbarItem(
-        value: .constant(nil),
-        barcodeRepository: PreviewBarcodeRepository(),
-        purchaseRepository: PreviewPurchaseRepository(),
-        errorHandler: PreviewErrorHandler(),
-        logger: PreviewLogger()
+        value: .constant(nil)
     )
 }

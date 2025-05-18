@@ -5,6 +5,7 @@ public enum Releases {
         name: "Releases",
         dependencies: [
             .target(Defaults.target),
+            .external(name: "FactoryKit"),
         ]
     )
 
@@ -14,6 +15,8 @@ public enum Releases {
             .target(Defaults.target),
             .target(Defaults.doublesTarget),
             .target(Releases.doublesTarget),
+            .external(name: "FactoryKit"),
+            .external(name: "FactoryTesting"),
         ]
     )
 

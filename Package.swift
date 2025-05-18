@@ -10,6 +10,7 @@ let watchCompatibility: SettingsDictionary = ["TARGETED_DEVICE_FAMILY": "1,4"]
 let packageSettings = PackageSettings(
     productTypes: [
         "BigInt": .framework,
+        "FactoryKit": .framework,
         "PDF417": .framework,
         "TelemetryClient": .framework,
         "SwiftUIIntrospect": .framework,
@@ -17,6 +18,8 @@ let packageSettings = PackageSettings(
     baseSettings: Shared.settings,
     targetSettings: [
         "BigInt": watchCompatibility,
+        "FactoryKit": ["TARGETED_DEVICE_FAMILY": "1,4", "SWIFT_VERSION": "6.0"],
+        "FactoryTesting": ["SWIFT_VERSION": "6.0"],
         "PDF417": watchCompatibility,
         "QRCodeGenerator": watchCompatibility,
         "TelemetryClient": watchCompatibility,
@@ -29,6 +32,7 @@ let package = Package(
     dependencies: [
         .package(url: "git@github.com:cocoatype/PDF417.git", branch: "trunk"),
         .package(url: "git@github.com:fwcd/swift-qrcode-generator.git", from: "2.0.2"),
+        .package(url: "git@github.com:hmlongco/Factory.git", from: "2.5.0"),
         .package(url: "git@github.com:nalexn/ViewInspector.git", from: "0.10.1"),
         .package(url: "git@github.com:RevenueCat/purchases-ios-spm.git", from: "5.0.0"),
         .package(url: "git@github.com:siteline/swiftui-introspect.git", from: "1.3.0"),

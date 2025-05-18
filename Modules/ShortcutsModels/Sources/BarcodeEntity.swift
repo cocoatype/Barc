@@ -5,16 +5,13 @@ import AppIntents
 
 import BarcBarcodes
 import BarcBarcodeGenerator
-import BarcErrorHandling
 
 public struct BarcodeEntity: AppEntity, Identifiable {
     public static let typeDisplayRepresentation: TypeDisplayRepresentation = "BarcodeEntity.typeDisplayRepresentation"
 
     public let code: Code
-    private let errorHandler: any ErrorHandler
-    public init(code: Code, errorHandler: any ErrorHandler) {
+    public init(code: Code) {
         self.code = code
-        self.errorHandler = errorHandler
     }
 
     public var id: Code.ID { code.id }
@@ -24,7 +21,7 @@ public struct BarcodeEntity: AppEntity, Identifiable {
     var date: Date? { code.date }
 
     public var displayRepresentation: DisplayRepresentation {
-        let renderer = CodeImageRenderer(errorHandler: errorHandler)
+        let renderer = CodeImageRenderer()
         let imageData = try? renderer.pngData(from: code.value, withBackground: true)
         let image = imageData.map {
             DisplayRepresentation.Image(data: $0)

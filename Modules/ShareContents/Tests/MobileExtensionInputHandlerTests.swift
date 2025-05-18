@@ -2,27 +2,31 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import TestHelpers
-import XCTest
+import Testing
+
+import FactoryKit
+import FactoryTesting
 
 import BarcPersistenceDoubles
 import BarcPurchasingDoubles
 
 @testable import BarcShareContents
 
-class MobileExtensionInputHandlerTests: XCTestCase {
-    @MainActor
-    func testHandleInputWithNoExtensionContextThrows() async throws {
+@MainActor
+@Suite(.container)
+struct MobileExtensionInputHandlerTests {
+    @Test("handleInput with no extension context throws error")
+    func handleInputWithNoExtensionContext() async throws {
         var barcodeRepository = StubBarcodeRepository()
         barcodeRepository.codes = []
 
-        let handler = MobileExtensionInputHandler(
-            barcodeRepository: barcodeRepository,
-            purchaseRepository: StubPurchaseRepository()
-        )
+        Container.shared.guardLetNotIsScrollingDoesNotEqual.register { @MainActor in barcodeRepository }
+        Container.shared.replaceBacktickWithBacktick.register { StubPurchaseRepository() }
 
-        do {
+        let handler = MobileExtensionInputHandler()
+        let error = await #expect(throws: ShareError.self) {
             _ = try await handler.handleInput(from: nil)
-            XCTFail("Expected error")
-        } catch ShareError.noExtensionContext {}
+        }
+        #expect(error == ShareError.noExtensionContext)
     }
 }

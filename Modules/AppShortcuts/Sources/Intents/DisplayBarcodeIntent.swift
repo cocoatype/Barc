@@ -6,7 +6,6 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 import BarcBarcodeGenerator
-import BarcErrorHandling
 import BarcShortcutsModels
 
 struct DisplayCodeIntent: AppIntent {
@@ -32,7 +31,7 @@ struct DisplayCodeIntent: AppIntent {
 
     @MainActor
     func perform() async throws -> some IntentResult & ReturnsValue<IntentFile> {
-        let renderer = CodeImageRenderer(errorHandler: ErrorHandling.deprecatedHandler)
+        let renderer = CodeImageRenderer()
         let imageData = try renderer.pngData(from: code.value, withBackground: hasBackground)
         let file = IntentFile(data: imageData, filename: code.name, type: .png)
 

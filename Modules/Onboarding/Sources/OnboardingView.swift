@@ -3,30 +3,18 @@
 
 import SwiftUI
 
-import BarcErrorHandling
-import BarcLogging
 import BarcPaywall
 
 public struct OnboardingView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var currentPageIndex = 0
 
-    private let errorHandler: any ErrorHandler
-    private let logger: any Logger
-    public init(
-        errorHandler: any ErrorHandler,
-        logger: any Logger
-    ) {
-        self.errorHandler = errorHandler
-        self.logger = logger
-    }
+    public init() {}
 
     public var body: some View {
         currentPage
             .pageView(
-                currentPage: $currentPageIndex,
-                errorHandler: errorHandler,
-                logger: logger
+                currentPage: $currentPageIndex
             )
             .environment(\.advance, AdvanceAction {
                 currentPageIndex = (currentPageIndex + 1) % OnboardingPage.allCases.count
@@ -39,8 +27,5 @@ public struct OnboardingView: View {
 }
 
 #Preview {
-    OnboardingView(
-        errorHandler: PreviewErrorHandler(),
-        logger: PreviewLogger()
-    )
+    OnboardingView()
 }

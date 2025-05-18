@@ -4,7 +4,6 @@
 import AppIntents
 
 import BarcBarcodes
-import BarcErrorHandling
 
 public struct ComplicationIntent: WidgetConfigurationIntent {
     public static let title: LocalizedStringResource = "DisplayCodeIntent.title"

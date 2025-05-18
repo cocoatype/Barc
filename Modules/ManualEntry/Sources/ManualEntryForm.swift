@@ -4,15 +4,11 @@
 import SwiftUI
 
 import BarcBarcodes
-import BarcErrorHandling
-import BarcPersistence
 
 struct ManualEntryForm: View {
     @Binding private var partialCode: PartialCode
-    private let errorHandler: any ErrorHandler
-    init(partialCode: Binding<PartialCode>, errorHandler: any ErrorHandler) {
+    init(partialCode: Binding<PartialCode>) {
         _partialCode = partialCode
-        self.errorHandler = errorHandler
     }
 
     var body: some View {
@@ -32,7 +28,6 @@ struct ManualEntryForm: View {
 
 #Preview {
     ManualEntryForm(
-        partialCode: .constant(PartialCode()),
-        errorHandler: PreviewErrorHandler()
+        partialCode: .constant(PartialCode())
     )
 }

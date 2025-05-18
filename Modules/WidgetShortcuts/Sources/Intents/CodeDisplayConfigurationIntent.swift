@@ -4,7 +4,6 @@
 import AppIntents
 
 import BarcBarcodes
-import BarcErrorHandling
 import BarcShortcutsModels
 
 public struct CodeDisplayConfigurationIntent: WidgetConfigurationIntent {
@@ -14,7 +13,7 @@ public struct CodeDisplayConfigurationIntent: WidgetConfigurationIntent {
     public init() {}
 
     public init(code: Code) {
-        self.code = BarcodeEntity(code: code, errorHandler: ErrorHandling.deprecatedHandler)
+        self.code = BarcodeEntity(code: code)
     }
 
     @Parameter(

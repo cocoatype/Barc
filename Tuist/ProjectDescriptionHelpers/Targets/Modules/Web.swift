@@ -5,6 +5,7 @@ public enum Web {
         name: "Web",
         dependencies: [
             .target(ErrorHandling.target),
+            .external(name: "FactoryKit"),
         ]
     )
 

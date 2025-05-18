@@ -3,17 +3,16 @@
 
 import Foundation
 
+import FactoryKit
+
 import BarcBarcodes
 import BarcErrorHandling
 
 struct ProductionURLRequestFactory: URLRequestFactory {
-    private let errorHandler: ErrorHandler
     private let generateURL: URL
-    init(errorHandler: any ErrorHandler) {
-        self.errorHandler = errorHandler
-
+    init() {
         guard let url = URL(string: "https://pass.getbarc.app/generate") else {
-            errorHandler.fatalError("Error creating pass generate URL")
+            Container.shared.errorHandler().fatalError("Error creating pass generate URL")
         }
         self.generateURL = url
     }

@@ -2,7 +2,6 @@
 //  Copyright © 2023 Cocoatype, LLC. All rights reserved.
 
 import BarcBarcodes
-import BarcErrorHandling
 
 struct EANCodeRenderer: CodeRenderer {
     private let encodedValue: [Bool]

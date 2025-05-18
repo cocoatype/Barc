@@ -4,19 +4,16 @@
 import SwiftUI
 import TestHelpersInterface
 
+import FactoryKit
+
 import BarcDefaults
 import BarcReleases
 
 struct ReleasesRouteCell: View {
-    private let defaultsProvider: any DefaultsProvider
-    private let versionProvider: any VersionProvider
-    init(
-        defaultsProvider: any DefaultsProvider,
-        versionProvider: any VersionProvider
-    ) {
-        self.defaultsProvider = defaultsProvider
-        self.versionProvider = versionProvider
-    }
+    @Injected(\.defaultsProvider) private var defaultsProvider
+    @Injected(\.versionProvider) private var versionProvider
+
+    public init() {}
 
     @State private var isBadged = false
     var body: some View {
@@ -27,7 +24,7 @@ struct ReleasesRouteCell: View {
             image: Image(decorative: Asset.releases),
             path: path
         ).task {
-            isBadged = await isNewReleaseAvailable
+            isBadged = await newReleaseDecider.shouldShowNewReleaseBadge()
             if let currentVersion = versionProvider.version {
                 await defaultsProvider.set(currentVersion, for: Keys.lastSeenVersion)
             }
@@ -35,15 +32,7 @@ struct ReleasesRouteCell: View {
         .onReceive(inspection.notice) { self.inspection.visit(self, $0) }
     }
 
-    private var isNewReleaseAvailable: Bool {
-        get async {
-            let decider = NewReleaseDecider(
-                defaultsProvider: defaultsProvider,
-                versionProvider: versionProvider
-            )
-            return await decider.shouldShowNewReleaseBadge()
-        }
-    }
+    private let newReleaseDecider = NewReleaseDecider()
 
     private var subtitle: String? {
         guard let versionNumber = versionProvider.version else { return nil }
@@ -60,8 +49,5 @@ struct ReleasesRouteCell: View {
 }
 
 #Preview {
-    ReleasesRouteCell(
-        defaultsProvider: PreviewDefaultsProvider(),
-        versionProvider: PreviewVersionProvider()
-    )
+    ReleasesRouteCell()
 }

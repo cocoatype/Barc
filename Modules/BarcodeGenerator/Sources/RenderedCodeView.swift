@@ -4,18 +4,15 @@
 import SwiftUI
 
 import BarcBarcodes
-import BarcErrorHandling
 
 public struct RenderedCodeView: View {
     private let value: CodeValue
-    private let errorHandler: any ErrorHandler
-    public init(value: CodeValue, errorHandler: any ErrorHandler) {
+    public init(value: CodeValue) {
         self.value = value
-        self.errorHandler = errorHandler
     }
 
     public var body: some View {
-        let renderedCode = CodeValueRenderer(value: value, errorHandler: errorHandler).renderedCode
+        let renderedCode = CodeValueRenderer(value: value).renderedCode
 
         GeometryReader { proxy in
             let proxyRect = CGRect(origin: .zero, size: proxy.size)
@@ -45,8 +42,7 @@ public struct RenderedCodeView: View {
 
 #Preview {
     try! RenderedCodeView(
-        value: .ean(value: "444444444444"),
-        errorHandler: PreviewErrorHandler()
+        value: .ean(value: "444444444444")
     ).frame(width: 200, height: 100)
 //    RenderedCodeView(value: .qr(value: "https://cocoatype.com", correctionLevel: .m))
 }

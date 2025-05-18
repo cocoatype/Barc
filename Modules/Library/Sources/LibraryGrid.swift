@@ -3,8 +3,9 @@
 
 import SwiftUI
 
+import FactoryKit
+
 import BarcBarcodes
-import BarcErrorHandling
 import BarcLocation
 import BarcPersistence
 import BarcTriggers
@@ -13,7 +14,7 @@ struct LibraryGrid: View {
     static let spacing = 16.0
     // sortOnAnySortOfSort by @KaenAitch on 2024-09-09
     // the location provider
-    @Environment(\.locationProvider) private var sortOnAnySortOfSort: any LocationProvider
+    @Injected(\.locationProvider) private var sortOnAnySortOfSort
     private let codes: [Code]
 
     // ni by @KaenAitch on 2024-09-09
@@ -22,16 +23,10 @@ struct LibraryGrid: View {
 
     @State private var searchText = ""
 
-    private let repository: any BarcodeRepository
-    private let errorHandler: any ErrorHandler
     init(
-        codes: [Code],
-        repository: any BarcodeRepository,
-        errorHandler: any ErrorHandler
+        codes: [Code]
     ) {
         self.codes = codes
-        self.repository = repository
-        self.errorHandler = errorHandler
     }
 
     var body: some View {
@@ -41,7 +36,7 @@ struct LibraryGrid: View {
                 maxWidth: 180
             ) {
                 ForEach(filteredCodes) { code in
-                    LibraryCell(code: code, repository: repository, errorHandler: errorHandler)
+                    LibraryCell(code: code)
                 }
             }
             .searchable(text: $searchText)
@@ -83,8 +78,6 @@ extension Array {
 
 #Preview {
     LibraryGrid(
-        codes: PreviewBarcodeRepository.sampleCodes,
-        repository: PreviewBarcodeRepository(),
-        errorHandler: PreviewErrorHandler()
+        codes: PreviewBarcodeRepository.sampleCodes
     )
 }

@@ -4,26 +4,19 @@
 import SwiftUI
 import TestHelpersInterface
 
-import BarcDefaults
-import BarcRouting
 import BarcReleases
+import BarcRouting
 
 struct SettingsButton: View {
     @Binding private var sheetRoute: Route?
-    private let defaultsProvider: any DefaultsProvider
-    private let versionProvider: any VersionProvider
-
     init(
-        sheetRoute: Binding<Route?>,
-        defaultsProvider: any DefaultsProvider,
-        versionProvider: any VersionProvider
+        sheetRoute: Binding<Route?>
     ) {
         _sheetRoute = sheetRoute
-        self.defaultsProvider = defaultsProvider
-        self.versionProvider = versionProvider
     }
 
     @State private var isBadged = false
+    private let newReleaseDecider = NewReleaseDecider()
     var body: some View {
         Button {
             sheetRoute = .menu
@@ -33,9 +26,10 @@ struct SettingsButton: View {
                     if isBadged { NewReleaseBadge() }
                 }
         }.task {
-            isBadged = await NewReleaseDecider(defaultsProvider: defaultsProvider, versionProvider: versionProvider).shouldShowNewReleaseBadge()
+            isBadged = await newReleaseDecider.shouldShowNewReleaseBadge()
         }
         .onReceive(inspection.notice) { self.inspection.visit(self, $0) }
+        .accessibilityIdentifier("SettingsButton")
     }
 
     let inspection = Inspection<Self>()

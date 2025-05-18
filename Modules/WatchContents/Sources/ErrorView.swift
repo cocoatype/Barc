@@ -3,12 +3,13 @@
 
 import SwiftUI
 
+import FactoryKit
+
 import BarcErrorHandling
 
 struct ErrorView: View {
-    private let error: Error
-    init(error: Error, errorHandler: any ErrorHandler) {
-        self.error = error
+    @Injected(\.errorHandler) private var errorHandler
+    init(error: Error) {
         errorHandler.log(error, module: "WatchContents", type: "ErrorView")
     }
 
@@ -23,5 +24,5 @@ struct ErrorView: View {
 }
 
 #Preview {
-    ErrorView(error: NSError(domain: "foo", code: 0), errorHandler: PreviewErrorHandler())
+    ErrorView(error: NSError(domain: "foo", code: 0))
 }

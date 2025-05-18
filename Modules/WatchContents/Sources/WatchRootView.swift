@@ -4,25 +4,20 @@
 import SwiftUI
 import WidgetKit
 
+import FactoryKit
+
 import BarcBarcodes
-import BarcErrorHandling
 import BarcRouting
 import BarcPersistence
 
 public struct WatchRootView: View {
     @State private var selectedCode: Code?
     @State private var viewState: ViewState
-    private let repository: any BarcodeRepository
-    private let errorHandler: any ErrorHandler
-    public init(
-        repository: any BarcodeRepository,
-        errorHandler: any ErrorHandler
-    ) {
-        self.repository = repository
-        self.errorHandler = errorHandler
-
+    @Injected(\.guardLetNotIsScrollingDoesNotEqual) private var repository
+    public init() {
         do {
-            let codes = try repository.codes
+            let codes = try Container.shared
+                .guardLetNotIsScrollingDoesNotEqual().codes
             if let firstCode = codes.first {
                 _viewState = State(initialValue: .codes(codes))
                 _selectedCode = State(initialValue: firstCode)
@@ -40,13 +35,12 @@ public struct WatchRootView: View {
             case .codes(let codes):
                 WatchSplitView(
                     codes: codes,
-                    selectedCode: $selectedCode,
-                    errorHandler: errorHandler
+                    selectedCode: $selectedCode
                 )
             case .empty:
                 LibraryEmptyView()
             case .error(let error):
-                ErrorView(error: error, errorHandler: errorHandler)
+                ErrorView(error: error)
             }
         }
         .onUpdate(to: repository) {
@@ -96,8 +90,5 @@ public struct WatchRootView: View {
 }
 
 #Preview {
-    WatchRootView(
-        repository: PreviewBarcodeRepository(),
-        errorHandler: PreviewErrorHandler()
-    )
+    WatchRootView()
 }

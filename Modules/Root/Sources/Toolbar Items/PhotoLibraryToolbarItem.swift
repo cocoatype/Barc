@@ -3,8 +3,9 @@
 
 import SwiftUI
 
+import FactoryKit
+
 import BarcErrorHandling
-import BarcLogging
 import BarcPersistence
 import BarcPhotoLibrary
 import BarcPurchasing
@@ -13,26 +14,17 @@ import BarcUnpurchased
 
 struct PhotoLibraryToolbarItem: View {
     @Binding private var sheetRoute: Route?
-    private let barcodeRepository: any BarcodeRepository
-    private let purchaseRepository: any PurchaseRepository
-    private let errorHandler: any ErrorHandler
-    private let logger: any Logger
     init(
-        value: Binding<Route?>,
-        barcodeRepository: any BarcodeRepository,
-        purchaseRepository: any PurchaseRepository,
-        errorHandler: any ErrorHandler,
-        logger: any Logger
+        value: Binding<Route?>
     ) {
         _sheetRoute = value
-        self.barcodeRepository = barcodeRepository
-        self.purchaseRepository = purchaseRepository
-        self.errorHandler = errorHandler
-        self.logger = logger
     }
 
     @State private var isShowingPurchaseAlert = false
     @State private var purchaseState = PurchaseState.undetermined
+    @Injected(\.guardLetNotIsScrollingDoesNotEqual) private var barcodeRepository
+    @Injected(\.replaceBacktickWithBacktick) private var purchaseRepository
+    @Injected(\.errorHandler) private var errorHandler
     var body: some View {
         Group {
             switch purchaseState {
@@ -42,7 +34,7 @@ struct PhotoLibraryToolbarItem: View {
                         .imageScale(.medium)
                 }
             case .purchased:
-                PhotoLibraryButton(barcodeRepository: barcodeRepository, errorHandler: errorHandler) {
+                PhotoLibraryButton {
                     Image(systemName: "photo.on.rectangle")
                         .imageScale(.medium)
                 }
@@ -69,9 +61,7 @@ struct PhotoLibraryToolbarItem: View {
             }
         }.unpurchasedAlert(
             for: .unlimitedBarcodes,
-            isPresented: $isShowingPurchaseAlert,
-            errorHandler: errorHandler,
-            logger: logger
+            isPresented: $isShowingPurchaseAlert
         )
     }
 

@@ -5,7 +5,6 @@ import SwiftUI
 import SwiftUIIntrospect
 
 import BarcBarcodes
-import BarcErrorHandling
 import BarcLocationEditor
 
 public struct BarcodeEdit: View {
@@ -18,14 +17,11 @@ public struct BarcodeEdit: View {
     @State private var code: Code
     @State private var isLocationPickerPresented = false
 
-    private let errorHandler: any ErrorHandler
-
     public init(
         name: String = "",
         value: CodeValue,
         location: Location? = nil,
         date: Date? = nil,
-        errorHandler: any ErrorHandler,
         resultAction: @escaping ResultAction,
         deleteAction: DeleteAction? = nil
     ) {
@@ -37,12 +33,10 @@ public struct BarcodeEdit: View {
         )
         self.resultAction = resultAction
         self.deleteAction = deleteAction
-        self.errorHandler = errorHandler
     }
 
     public init(
         code: Code,
-        errorHandler: any ErrorHandler,
         resultAction: @escaping ResultAction,
         deleteAction: DeleteAction? = nil
     ) {
@@ -51,7 +45,6 @@ public struct BarcodeEdit: View {
             value: code.value,
             location: code.location,
             date: code.date,
-            errorHandler: errorHandler,
             resultAction: resultAction,
             deleteAction: deleteAction
         )
@@ -60,7 +53,7 @@ public struct BarcodeEdit: View {
     public var body: some View {
         List {
             Section {
-                BarcodePreview(value: code.value, errorHandler: errorHandler)
+                BarcodePreview(value: code.value)
                     .listRowBackground(EmptyView())
                     .listRowSeparator(.hidden, edges: .all)
                     .introspect(.listCell, on: .iOS(.v17, .v18)) { cell in
@@ -102,8 +95,7 @@ public struct BarcodeEdit: View {
         name: "Code",
         value: .qr(value: "https://cocoatype.com", correctionLevel: .m),
         location: nil,
-        date: nil,
-        errorHandler: PreviewErrorHandler()
+        date: nil
     ) { _ in } deleteAction: { _ in }
         .tint(Color.primary)
 }

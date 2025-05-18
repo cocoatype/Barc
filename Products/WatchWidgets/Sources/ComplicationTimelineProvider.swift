@@ -5,7 +5,6 @@ import OSLog
 import WidgetKit
 
 import BarcBarcodes
-import BarcErrorHandling
 
 struct ComplicationTimelineProvider: AppIntentTimelineProvider {
     let codes: [Code]

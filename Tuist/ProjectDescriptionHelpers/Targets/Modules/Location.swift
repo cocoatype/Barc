@@ -7,6 +7,7 @@ public enum Location {
         dependencies: [
             .target(Barcodes.target),
             .target(ErrorHandling.target),
+            .external(name: "FactoryKit"),
         ]
     )
 

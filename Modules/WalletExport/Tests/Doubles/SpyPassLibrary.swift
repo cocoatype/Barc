@@ -2,14 +2,14 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import PassKit
-import XCTest
+import Testing
 
 @testable import BarcWalletExport
 
 struct SpyPassLibrary: PassLibrary {
-    let addPassesExpectation = XCTestExpectation(description: "addPasses called")
+    let addPassesConfirmation: Confirmation
     func add(_ exportedPass: ExportedPass, isolation: isolated (any Actor)) async throws -> PKPassLibraryAddPassesStatus {
-        addPassesExpectation.fulfill()
+        addPassesConfirmation()
         return .didAddPasses
     }
 }

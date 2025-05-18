@@ -4,8 +4,9 @@
 import AppIntents
 import CoreLocation
 
+import FactoryKit
+
 import BarcBarcodes
-import BarcErrorHandling
 import BarcPersistence
 import BarcShortcutsModels
 
@@ -44,10 +45,10 @@ struct SetLocationIntent: AppIntent {
         let existingCode = code.code
         let newCode = try Code(name: existingCode.name, value: existingCode.value, location: location, date: existingCode.date)
 
-        let repository = Persistence.guardLetNotIsScrollingDoesNotEqual
+        let repository = Container.shared.guardLetNotIsScrollingDoesNotEqual()
         try repository.update(newCode)
         ShortcutsProvider.updateAppShortcutParameters()
 
-        return .result(value: BarcodeEntity(code: newCode, errorHandler: ErrorHandling.deprecatedHandler))
+        return .result(value: BarcodeEntity(code: newCode))
     }
 }

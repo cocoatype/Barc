@@ -3,8 +3,9 @@
 
 import SwiftUI
 
+import FactoryKit
+
 import BarcErrorHandling
-import BarcLogging
 import BarcPersistence
 import BarcPurchasing
 import BarcRouting
@@ -14,25 +15,16 @@ struct ScannerToolbarItem: View {
     // superViewDidLoad by @nutterfi on 2024-08-02
     // whether to show the scanner
     @Binding private var superViewDidLoad: Route?
-    private let barcodeRepository: any BarcodeRepository
-    private let purchaseRepository: any PurchaseRepository
-    private let errorHandler: any ErrorHandler
-    private let logger: any Logger
     init(
-        value: Binding<Route?>,
-        barcodeRepository: any BarcodeRepository,
-        purchaseRepository: any PurchaseRepository,
-        errorHandler: any ErrorHandler,
-        logger: any Logger
+        value: Binding<Route?>
     ) {
         _superViewDidLoad = value
-        self.barcodeRepository = barcodeRepository
-        self.purchaseRepository = purchaseRepository
-        self.errorHandler = errorHandler
-        self.logger = logger
     }
 
     @State private var isShowingPurchaseAlert = false
+    @Injected(\.guardLetNotIsScrollingDoesNotEqual) private var barcodeRepository
+    @Injected(\.replaceBacktickWithBacktick) private var purchaseRepository
+    @Injected(\.errorHandler) private var errorHandler
     var body: some View {
         Button {
             Task { await handleButtonTap() }
@@ -40,9 +32,7 @@ struct ScannerToolbarItem: View {
             Image(systemName: "barcode.viewfinder")
         }.unpurchasedAlert(
             for: .unlimitedBarcodes,
-            isPresented: $isShowingPurchaseAlert,
-            errorHandler: errorHandler,
-            logger: logger
+            isPresented: $isShowingPurchaseAlert
         )
     }
 
@@ -64,10 +54,6 @@ struct ScannerToolbarItem: View {
 
 #Preview {
     ScannerToolbarItem(
-        value: .constant(nil),
-        barcodeRepository: PreviewBarcodeRepository(),
-        purchaseRepository: PreviewPurchaseRepository(),
-        errorHandler: PreviewErrorHandler(),
-        logger: PreviewLogger()
+        value: .constant(nil)
     )
 }

@@ -3,11 +3,16 @@
 
 import Testing
 
+import FactoryKit
+import FactoryTesting
+
 @testable import BarcReleases
 
+@Suite(.container)
 struct ReleasesTests {
     @Test("versionProvider is an InfoVersionProvider")
     func correctVersionProviderType() throws {
-        #expect(Releases.versionProvider is InfoVersionProvider)
+        let versionProvider = Container.shared.versionProvider()
+        #expect(versionProvider is InfoVersionProvider)
     }
 }

@@ -5,6 +5,9 @@ import SwiftUI
 import Testing
 import ViewInspector
 
+import FactoryKit
+import FactoryTesting
+
 import BarcDefaults
 import BarcDefaultsDoubles
 import BarcReleases
@@ -12,14 +15,13 @@ import BarcReleasesDoubles
 
 @testable import BarcMenu
 
-@MainActor
+@MainActor @Suite(.container)
 struct ReleasesRouteCellTests {
     @Test("Uses correct subtitle for version")
     func subtitleForVersion() throws {
-        let cell = ReleasesRouteCell(
-            defaultsProvider: StubDefaultsProvider(),
-            versionProvider: StubVersionProvider(version: "99.0")
-        )
+        Container.shared.defaultsProvider.register { StubDefaultsProvider() }
+        Container.shared.versionProvider.register { StubVersionProvider(version: "99.0") }
+        let cell = ReleasesRouteCell()
 
         let inspectedCell = try cell.inspect()
         _ = try inspectedCell.find(text: "Version 99.0")
@@ -29,10 +31,9 @@ struct ReleasesRouteCellTests {
 
     @Test("Uses correct subtitle for nil version")
     func subtitleForNilVersion() throws {
-        let cell = ReleasesRouteCell(
-            defaultsProvider: StubDefaultsProvider(),
-            versionProvider: StubVersionProvider(version: nil)
-        )
+        Container.shared.defaultsProvider.register { StubDefaultsProvider() }
+        Container.shared.versionProvider.register { StubVersionProvider(version: nil) }
+        let cell = ReleasesRouteCell()
 
         let inspectedCell = try cell.inspect()
         let cellLabel = try inspectedCell.find(CellLabel.self)
@@ -44,10 +45,9 @@ struct ReleasesRouteCellTests {
 
     @Test("Shows badge if new release available")
     func showsBadgeIfNewReleaseAvailable() async throws {
-        let cell = ReleasesRouteCell(
-            defaultsProvider: StubDefaultsProvider(lastSeenVersion: "99.0"),
-            versionProvider: StubVersionProvider(version: "100.0")
-        )
+        Container.shared.defaultsProvider.register { StubDefaultsProvider(lastSeenVersion: "99.0") }
+        Container.shared.versionProvider.register { StubVersionProvider(version: "100.0") }
+        let cell = ReleasesRouteCell()
 
         ViewHosting.host(view: cell)
         defer { ViewHosting.expel() }
@@ -61,10 +61,9 @@ struct ReleasesRouteCellTests {
 
     @Test("Hides badge if no new release")
     func hidesBadgeIfNoNewRelease() async throws {
-        let cell = ReleasesRouteCell(
-            defaultsProvider: StubDefaultsProvider(lastSeenVersion: "99.0"),
-            versionProvider: StubVersionProvider(version: "99.0")
-        )
+        Container.shared.defaultsProvider.register { StubDefaultsProvider(lastSeenVersion: "99.0") }
+        Container.shared.versionProvider.register { StubVersionProvider(version: "99.0") }
+        let cell = ReleasesRouteCell()
 
         ViewHosting.host(view: cell)
         defer { ViewHosting.expel() }
@@ -78,12 +77,10 @@ struct ReleasesRouteCellTests {
 
     @Test("Updates last seen version number on appearance")
     func updatesLastSeenVersionNumberOnAppearance() async throws {
+        Container.shared.versionProvider.register { StubVersionProvider(version: "99.0") }
         let defaultsProvider = StubDefaultsProvider(lastSeenVersion: "1.0")
-        let versionProvider = StubVersionProvider(version: "99.0")
-        let cell = ReleasesRouteCell(
-            defaultsProvider: defaultsProvider,
-            versionProvider: versionProvider
-        )
+        Container.shared.defaultsProvider.register { defaultsProvider }
+        let cell = ReleasesRouteCell()
 
         ViewHosting.host(view: cell)
         defer { ViewHosting.expel() }

@@ -5,14 +5,11 @@ import SwiftUI
 
 import BarcBarcodeGenerator
 import BarcBarcodes
-import BarcErrorHandling
 
 struct LargeBarcode: View {
     private let value: CodeValue
-    private let errorHandler: any ErrorHandler
-    init(value: CodeValue, errorHandler: any ErrorHandler) {
+    init(value: CodeValue) {
         self.value = value
-        self.errorHandler = errorHandler
     }
 
     static let width = 280.0
@@ -20,7 +17,7 @@ struct LargeBarcode: View {
     var body: some View {
         ZStack {
             Color.clear
-            RenderedCodeView(value: value, errorHandler: errorHandler)
+            RenderedCodeView(value: value)
                 .clipShape(RoundedRectangle(cornerRadius: 7))
                 .frame(width: Self.width, height: Self.width * value.kineNoo.implicitRatio)
                 .padding(Self.padding)
@@ -31,7 +28,6 @@ struct LargeBarcode: View {
 
 #Preview {
     LargeBarcode(
-        value: .qr(value: "https://cocoatype.com", correctionLevel: .m),
-        errorHandler: PreviewErrorHandler()
+        value: .qr(value: "https://cocoatype.com", correctionLevel: .m)
     )
 }

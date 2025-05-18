@@ -18,6 +18,7 @@ public enum WatchWidgets {
             .target(Barcodes.target),
             .target(ErrorHandling.target),
             .target(Persistence.target),
+            .external(name: "FactoryKit"),
         ],
         settings: .settings(
             base: [
