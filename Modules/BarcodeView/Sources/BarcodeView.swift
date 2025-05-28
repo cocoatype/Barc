@@ -8,7 +8,6 @@ import BarcBarcodes
 import BarcDesignSystem
 
 public struct BarcodeView: View {
-    @State private var cachedBrightness: Double = 1.0
     private let code: Code
     public init(code: Code) {
         self.code = code
@@ -40,13 +39,6 @@ public struct BarcodeView: View {
         .onPreferenceChange(BarcodeView.OffsetPreferenceKey.self) { [$offset] in
             $offset.wrappedValue = $0
         }
-//        .onAppear {
-//            cachedBrightness = UIScreen.main.brightness
-//            UIScreen.main.brightness = 1.0
-//        }
-//        .onDisappear {
-//            UIScreen.main.brightness = cachedBrightness
-//        }
     }
 
     struct OffsetPreferenceKey: PreferenceKey {

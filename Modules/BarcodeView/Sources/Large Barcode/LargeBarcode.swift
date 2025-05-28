@@ -14,7 +14,24 @@ struct LargeBarcode: View {
         self.value = value
     }
 
-    var body: some View {
+    @ViewBuilder private var barcodeView: some View {
         HDRLargeBarcode(value: value)
+    }
+
+    @State private var cachedBrightness: Double?
+    @Environment(\.scenePhase) private var scenePhase
+    var body: some View {
+        barcodeView
+            .onAppear { toggleBrightness(true) }
+            .onDisappear { toggleBrightness(false) }
+    }
+
+    private func toggleBrightness(_ isBright: Bool) {
+        if isBright {
+            cachedBrightness = UIScreen.main.brightness
+            UIScreen.main.brightness = 1.0
+        } else if let cachedBrightness {
+            UIScreen.main.brightness = cachedBrightness
+        }
     }
 }

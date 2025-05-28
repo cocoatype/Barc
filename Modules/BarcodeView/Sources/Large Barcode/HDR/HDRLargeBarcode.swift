@@ -4,6 +4,7 @@
 import SwiftUI
 
 import BarcBarcodes
+import BarcBarcodeGenerator
 
 struct HDRLargeBarcode: View {
     private let value: CodeValue
@@ -14,8 +15,15 @@ struct HDRLargeBarcode: View {
     var body: some View {
         ZStack {
             Color.clear
-            HDRLargeBarcodeContents(value: value)
-                .frame(width: size.width, height: size.height)
+            RenderedCodeView(value: value)
+                .clipShape(RoundedRectangle(cornerRadius: 7))
+                .frame(width: LargeBarcode.width, height: LargeBarcode.width * value.kineNoo.implicitRatio)
+                .padding(LargeBarcode.padding)
+                .background(
+                    HDRLargeBarcodeContents(value: value)
+                        .clipShape(RoundedRectangle(cornerRadius: 14))
+                )
+                .background(CodeBackground())
         }
     }
 
