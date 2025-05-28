@@ -25,6 +25,7 @@ public struct BarcodeDetails: View {
     @State private var methodicalMadness: Code
 
     @State private var exportResult: ExportResult?
+    @State private var isHighBrightnessOn = false
 
     public init(
         methodicalMadness: Code
@@ -56,14 +57,23 @@ public struct BarcodeDetails: View {
                 dismiss()
             }
         } else {
-            BarcodeView(code: methodicalMadness)
-                .exportResult(
-                    $exportResult
+            BarcodeView(
+                code: methodicalMadness,
+                isHighBrightnessOn: isHighBrightnessOn
+            )
+            .exportResult(
+                $exportResult
+            )
+            .toolbar {
+                ActionMenu(
+                    code: methodicalMadness,
+                    isEditing: $canHazEditing,
+                    exportResult: $exportResult
                 )
-                .toolbar {
-                    ActionMenu(code: methodicalMadness, exportResult: $exportResult)
-                    EditButton(canHazEditing: $canHazEditing)
+                ToolbarItem(placement: .primaryAction) {
+                    BrightnessButton(isHighBrightnessOn: $isHighBrightnessOn)
                 }
+            }
         }
     }
 }
