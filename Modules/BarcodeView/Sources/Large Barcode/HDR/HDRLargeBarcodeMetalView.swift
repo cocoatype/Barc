@@ -9,8 +9,6 @@ class HDRLargeBarcodeMetalView: MTKView {
         let device = MTLCreateSystemDefaultDevice()
         super.init(frame: .zero, device: device)
 
-        print("metal layer: \(layer)")
-
         if let metalLayer = layer as? CAMetalLayer {
             metalLayer.wantsExtendedDynamicRangeContent = true
             metalLayer.colorspace = CGColorSpace(name: CGColorSpace.extendedLinearDisplayP3)

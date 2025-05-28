@@ -9,20 +9,27 @@ import BarcDesignSystem
 
 public struct BarcodeView: View {
     private let code: Code
-    public init(code: Code) {
+    private let isHighBrightnessOn: Bool
+    public init(code: Code, isHighBrightnessOn: Bool) {
         self.code = code
+        self.isHighBrightnessOn = isHighBrightnessOn
     }
 
+    @State private var cachedBrightness: CGFloat?
     @State private var offset = 0.0
+    @State private var screen: UIScreen?
     private let coordinateSpace = NamedCoordinateSpace.named("frameLayer")
     public var body: some View {
         List {
-            LargeBarcode(value: code.value)
-                .listRowBackground(EmptyView())
-                .background(PreferenceReader(key: OffsetPreferenceKey.self, calculator: { $0.frame(in: coordinateSpace).minY }))
-                .introspect(.listCell, on: .iOS(.v17, .v18)) { cell in
-                    cell.clipsToBounds = false
-                }
+            LargeBarcode(
+                value: code.value,
+                isHighBrightnessOn: isHighBrightnessOn
+            )
+            .listRowBackground(EmptyView())
+            .background(PreferenceReader(key: OffsetPreferenceKey.self, calculator: { $0.frame(in: coordinateSpace).minY }))
+            .introspect(.listCell, on: .iOS(.v17, .v18)) { cell in
+                cell.clipsToBounds = false
+            }
 
             BarcodeTriggersSection(
                 selectedLocation: code.location,
@@ -38,6 +45,17 @@ public struct BarcodeView: View {
         .navigationTitle(code.name)
         .onPreferenceChange(BarcodeView.OffsetPreferenceKey.self) { [$offset] in
             $offset.wrappedValue = $0
+        }
+        .introspect(.window, on: .iOS(.v17, .v18)) { window in
+            screen = window.screen
+        }
+        .onChange(of: isHighBrightnessOn) {
+            if isHighBrightnessOn {
+                cachedBrightness = screen?.brightness
+                screen?.brightness = 1
+            } else if let cachedBrightness {
+                screen?.brightness = cachedBrightness
+            }
         }
     }
 
@@ -57,7 +75,8 @@ public struct BarcodeView: View {
                 value: .ean(value: "444444444444"),
                 location: nil,
                 date: nil
-            )
+            ),
+            isHighBrightnessOn: false
         )
     }
 }

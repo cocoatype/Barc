@@ -1,8 +1,17 @@
 // The accessibility title for the barcode details action menu
 "ActionMenu.title" = "Actions";
 
+// The accessibility value for the high brightness button when off
+"BrightnessButton.accessibilityValueOff" = "Off";
+
+// The accessibility value for the high brightness button when on
+"BrightnessButton.accessibilityValueOn" = "On";
+
+// The accessibility title for the high brightness button
+"BrightnessButton.title" = "Toggle High Brightness";
+
 // The title for the edit button when viewing barcode details
-"EditButton.title" = "Edit";
+"EditButton.title" = "Edit Barcode";
 
 // The title for the button to export a pass to Apple Wallet
 "WalletExportButton.title" = "Add to Apple Wallet…";

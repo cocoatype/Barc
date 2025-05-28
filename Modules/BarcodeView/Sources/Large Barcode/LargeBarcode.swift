@@ -10,28 +10,19 @@ struct LargeBarcode: View {
     static let padding = 14.0
 
     private let value: CodeValue
-    init(value: CodeValue) {
+    private let isHighBrightnessOn: Bool
+    init(value: CodeValue, isHighBrightnessOn: Bool) {
         self.value = value
-    }
-
-    @ViewBuilder private var barcodeView: some View {
-        HDRLargeBarcode(value: value)
+        self.isHighBrightnessOn = isHighBrightnessOn
     }
 
     @State private var cachedBrightness: Double?
     @Environment(\.scenePhase) private var scenePhase
     var body: some View {
-        barcodeView
-            .onAppear { toggleBrightness(true) }
-            .onDisappear { toggleBrightness(false) }
-    }
-
-    private func toggleBrightness(_ isBright: Bool) {
-        if isBright {
-            cachedBrightness = UIScreen.main.brightness
-            UIScreen.main.brightness = 1.0
-        } else if let cachedBrightness {
-            UIScreen.main.brightness = cachedBrightness
+        if isHighBrightnessOn {
+            HDRLargeBarcode(value: value)
+        } else {
+            SDRLargeBarcode(value: value)
         }
     }
 }
