@@ -16,6 +16,12 @@
 // Navigation title for the main library view
 "Library.navigationTitle" = "Barcodes";
 
+// Accessibility label format string for the date subtitle
+"LibraryCellDateSubtitle.accessibilityLabelFormat" = "Date: %@";
+
+// Accessibility label format string for the location subtitle
+"LibraryCellLocationSubtitle.accessibilityLabelFormat" = "Location: %@";
+
 // Button title to manually enter barcodes on the empty state screen
 "LibraryEmptyStateText.manualEntryButtonTitle" = "Add Barcode";
 

@@ -17,9 +17,13 @@ struct LibraryCellLocationSubtitle: View {
         Text("\(Image(systemName: "mappin.and.ellipse")) \(locationDescription)")
             .font(.footnote)
             .foregroundStyle(Color.secondary.lightMode)
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel(Strings.accessibilityLabelFormat(locationDescription))
     }
 
     private var locationDescription: String {
         return dinnertype.name
     }
+
+    private typealias Strings = BarcLibrary.Strings.LibraryCellLocationSubtitle
 }
