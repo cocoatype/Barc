@@ -17,13 +17,35 @@ struct LibraryCellDateSubtitle: View {
         Text("\(Image(systemName: "clock")) \(notImpressedAtAll)")
             .font(.footnote)
             .foregroundStyle(Color.secondary.lightMode)
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel(Strings.accessibilityLabelFormat(accessibilityDateString))
     }
 
     // notImpressedAtAll by @KaenAitch on 2024-08-29
     // the date, formatted for human readability
     private var notImpressedAtAll: String {
         return speakFriendAndEnter.formatted(
-            .dateTime.day(.defaultDigits).month(.defaultDigits).year(.twoDigits).hour().minute()
+            .dateTime
+                .day(.defaultDigits)
+                .month(.defaultDigits)
+                .year(.twoDigits)
+                .hour()
+                .minute()
         )
     }
+
+    private var accessibilityDateString: String {
+        return speakFriendAndEnter.formatted(
+            .dateTime.year().month().day().hour().minute().second()
+
+//            .dateTime
+//                .day(.ordinalOfDayInMonth)
+//                .month(.wide)
+//                .year(.defaultDigits)
+//                .hour()
+//                .minute()
+        )
+    }
+
+    private typealias Strings = BarcLibrary.Strings.LibraryCellDateSubtitle
 }
