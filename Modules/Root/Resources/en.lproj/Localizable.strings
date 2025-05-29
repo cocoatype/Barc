@@ -1,0 +1,2 @@
+// The accessibility label for the photo library button
+"PhotoLibraryToolbarItem.accessibilityLabel" = "Photo Library";
