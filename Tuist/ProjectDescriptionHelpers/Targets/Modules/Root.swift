@@ -3,6 +3,7 @@ import ProjectDescription
 public enum Root {
     public static let target = Target.moduleTarget(
         name: "Root",
+        hasResources: true,
         dependencies: [
             .target(Barcodes.target),
             .target(BarcodeDetails.target),
