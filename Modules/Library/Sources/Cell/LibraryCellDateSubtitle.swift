@@ -37,13 +37,6 @@ struct LibraryCellDateSubtitle: View {
     private var accessibilityDateString: String {
         return speakFriendAndEnter.formatted(
             .dateTime.year().month().day().hour().minute().second()
-
-//            .dateTime
-//                .day(.ordinalOfDayInMonth)
-//                .month(.wide)
-//                .year(.defaultDigits)
-//                .hour()
-//                .minute()
         )
     }
 
