@@ -11,5 +11,6 @@ enum ShareError: Error {
     case noImageProviders
     case noInputProviders
     case notImplementedOnPlatform
+    case unexpectedContentType
     case userIsNotUnleashed
 }
