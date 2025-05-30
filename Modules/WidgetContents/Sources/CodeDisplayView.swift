@@ -32,7 +32,6 @@ struct CodeDisplayView: View {
 
     @ViewBuilder
     private var codeShape: some View {
-        let _ = print("code \(code.name) has value: \(String(describing: code.value))")
         switch code.value {
         case .code128, .code39, .codabar, .ean:
             BarcodeShape()

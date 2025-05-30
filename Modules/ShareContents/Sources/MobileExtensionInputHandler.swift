@@ -43,19 +43,29 @@ import BarcPurchasing
             throw ShareError.noInputProviders
         }
 
-        let imageProviders = inputProviders.filter { inputProvider in
-            inputProvider.registeredContentTypes.contains { type in
-                type.conforms(to: .image)
-            }
-        }
-        guard let imageProvider = imageProviders.first else {
+        guard let imageProvider = inputProviders.first(where: { inputProvider in
+            inputProvider.contains(.image) || inputProvider.contains(.url)
+        }) else {
             throw ShareError.noImageProviders
         }
 
-        let data = try await imageProvider.loadData(for: .image)
-        let cgImage = try CGImage.image(from: data)
+        let cgImage = try await loadImage(from: imageProvider)
         guard let codeValue = try await imageReader.codeValue(in: cgImage) else { throw ShareError.noCodeInImage }
         return codeValue
+    }
+
+    private func loadImage(from imageProvider: NSItemProvider) async throws -> CGImage {
+        let data: Data
+        if imageProvider.contains(.image) {
+            data = try await imageProvider.loadData(for: .image)
+        } else if imageProvider.contains(.url) {
+            let url: NSURL = try await imageProvider.loadItem(for: .url)
+            (data, _) = try await URLSession.shared.data(from: url as URL)
+        } else {
+            throw ShareError.unexpectedContentType
+        }
+
+        return try CGImage.image(from: data)
     }
 }
 #endif
