@@ -19,6 +19,6 @@ public extension Container {
                 return FileBarcodeRepository()
             }
             #endif
-        }
+        }.singleton
     }
 }
