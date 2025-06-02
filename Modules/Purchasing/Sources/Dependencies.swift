@@ -15,6 +15,6 @@ public extension Container {
             } else {
                 RevenueCatPurchaseRepository()
             }
-        }
+        }.singleton
     }
 }
