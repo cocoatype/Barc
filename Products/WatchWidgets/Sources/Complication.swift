@@ -27,6 +27,7 @@ public struct Complication: Widget {
         }
         .supportedFamilies([
             .accessoryCircular,
+            .accessoryCorner,
         ])
         .contentMarginsDisabled()
     }
@@ -65,6 +66,13 @@ let previewQRCode = Code(
 #Preview(
     "QR Rectangular",
     as: .accessoryRectangular,
+    using: ComplicationIntent(code: previewQRCode),
+    widget: { previewWidget },
+    timelineProvider: { previewTimelineProvider }
+)
+#Preview(
+    "QR Corner",
+    as: .accessoryCorner,
     using: ComplicationIntent(code: previewQRCode),
     widget: { previewWidget },
     timelineProvider: { previewTimelineProvider }
