@@ -19,6 +19,18 @@
 // Title for the "create code" intent
 "CreateBarcodeIntent.title" = "Create Barcode";
 
+// The title for the code parameter in the "delete code" intent
+"DeleteBarcodeIntent.code.title" = "Barcode";
+
+// Description for the "delete code" intent
+"DeleteBarcodeIntent.description" = "Deletes an existing barcode.";
+
+// Parameter summary for the "delete code" intent
+"DeleteBarcodeIntent.parameterSummary${code}" = "Delete ${code}";
+
+// Title for the "delete code" intent
+"DeleteBarcodeIntent.title" = "Delete Barcode";
+
 // Description for the "display code" intent
 "DisplayCodeIntent.description" = "Displays an image of a barcode.";
 
