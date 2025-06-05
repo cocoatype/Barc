@@ -19,6 +19,8 @@ struct ManualEntryFormPicker: View {
                 .tag(PartialCode.BarcodeType.code128)
             Text(Strings.eanType)
                 .tag(PartialCode.BarcodeType.ean)
+            Text(Strings.itfType)
+                .tag(PartialCode.BarcodeType.itf)
             Text(Strings.pdf417Type)
                 .tag(PartialCode.BarcodeType.pdf417)
             Text(Strings.qrType)

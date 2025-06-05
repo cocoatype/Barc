@@ -31,6 +31,10 @@ public enum CodeValue: Hashable, Identifiable, Sendable {
         return try .ean(EANCodeValue(payload: EANPayloadParser().payload(for: value)))
     }
 
+    public static func itf(value: String) throws -> CodeValue {
+        return try .itf(ITFCodeValue(payload: ITFPayloadParser().payload(for: value)))
+    }
+
     public static func pdf417<IntType: BinaryInteger>(value: any Sequence<IntType>) throws -> CodeValue {
         let intConverter = IntToCodewordConverter()
         let codewords = try value
