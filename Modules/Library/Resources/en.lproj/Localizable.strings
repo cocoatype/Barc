@@ -16,6 +16,9 @@
 // Navigation title for the main library view
 "Library.navigationTitle" = "Barcodes";
 
+// Delete accessibility action for the library cell.
+"LibraryCell.deleteAccessibilityAction" = "Delete Barcode";
+
 // Accessibility label format string for the date subtitle
 "LibraryCellDateSubtitle.accessibilityLabelFormat" = "Date: %@";
 

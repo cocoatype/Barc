@@ -44,6 +44,9 @@ struct LibraryCell: View {
         .contextMenu {
             DeleteMenuItem(isShowingDeleteAlert: $isShowingDeleteAlert)
         }
+        .accessibilityAction(named: Strings.LibraryCell.deleteAccessibilityAction) {
+            isShowingDeleteAlert = true
+        }
         .deleteAlert(code: code, isPresented: $isShowingDeleteAlert) { deleteCode in
             do {
                 try repository.delete(deleteCode)

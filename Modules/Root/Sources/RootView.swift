@@ -65,7 +65,6 @@ public struct RootView: View {
                 await defaultsProvider.set(true, for: Keys.hasSeenOnboarding)
             }
         }
-        .tint(.primary)
     }
 
     public func navigate(to route: Route) {
