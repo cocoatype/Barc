@@ -16,6 +16,9 @@
 // Name of the EAN-13 format
 "BarcodeFormatEntity.ean13" = "UPC/EAN-13";
 
+// Name of the EAN-13 format
+"BarcodeFormatEntity.itf" = "Interleaved 2 of 5 (ITF)";
+
 // Name of the PDF417 format
 "BarcodeFormatEntity.pdf417" = "PDF417";
 

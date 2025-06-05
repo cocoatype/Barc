@@ -16,6 +16,8 @@ struct BarcodeModelMapper {
             BarcodeModelType.code128(code128Mapper.barcodeModel(from: value))
         case .ean(let value):
             BarcodeModelType.ean(eanMapper.barcodeModel(from: value))
+        case .itf(let value):
+            BarcodeModelType.itf(itfMapper.barcodeModel(from: value))
         case .pdf417(let value):
             BarcodeModelType.pdf417(pdf417Mapper.barcodeModel(from: value))
         case .qr(let value):
@@ -41,6 +43,8 @@ struct BarcodeModelMapper {
             try CodeValue.code128(code128Mapper.value(from: model))
         case .ean(let model):
             try CodeValue.ean(eanMapper.value(from: model))
+        case .itf(let model):
+            try CodeValue.itf(itfMapper.value(from: model))
         case .pdf417(let model):
             try CodeValue.pdf417(pdf417Mapper.value(from: model))
         case .qr(let model):
@@ -76,6 +80,7 @@ struct BarcodeModelMapper {
     private let code39Mapper = Code39BarcodeModelMapper()
     private let code128Mapper = Code128BarcodeModelMapper()
     private let eanMapper = EANBarcodeModelMapper()
+    private let itfMapper = ITFBarcodeModelMapper()
     private let pdf417Mapper = PDF417BarcodeModelMapper()
     private let qrMapper = QRBarcodeModelMapper()
 

@@ -6,8 +6,8 @@ import AppIntents
 import BarcBarcodes
 
 public enum BarcodeFormatEntity: AppEntity, CaseIterable, Identifiable {
-    case codabar, code39, code128, ean13, pdf417, qr
-    
+    case codabar, code39, code128, ean13, itf, pdf417, qr
+
     public static let defaultQuery = BarcodeFormatQuery()
     
     public static let typeDisplayRepresentation: TypeDisplayRepresentation = "BarcodeFormatEntity.typeDisplayRepresentation"
@@ -19,6 +19,7 @@ public enum BarcodeFormatEntity: AppEntity, CaseIterable, Identifiable {
         case .code39: self = .code39
         case .code128: self = .code128
         case .ean: self = .ean13
+        case .itf: self = .itf
         case .pdf417: self = .pdf417
         case .qr: self = .qr
         }
@@ -30,6 +31,7 @@ public enum BarcodeFormatEntity: AppEntity, CaseIterable, Identifiable {
         case .code39: "code39"
         case .code128: "code128"
         case .ean13: "ean13"
+        case .itf: "itf"
         case .pdf417: "pdf417"
         case .qr: "qr"
         }
@@ -42,6 +44,7 @@ public enum BarcodeFormatEntity: AppEntity, CaseIterable, Identifiable {
         case .code39: StringResources.code39
         case .code128: StringResources.code128
         case .ean13: StringResources.ean13
+        case .itf: StringResources.itf
         case .pdf417: StringResources.pdf417
         case .qr: StringResources.qr
         }

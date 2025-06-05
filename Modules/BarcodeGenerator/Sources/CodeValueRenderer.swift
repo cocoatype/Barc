@@ -19,6 +19,8 @@ struct CodeValueRenderer: CodeRenderer {
             Code128CodeRenderer(value: value).renderedCode
         case .ean(let value):
             EANCodeRenderer(value: value).renderedCode
+        case .itf(let value):
+            ITFCodeRenderer(value: value).renderedCode
         case .pdf417(let value):
             PDF417CodeRenderer(value: value).renderedCode
         case .qr(let value):

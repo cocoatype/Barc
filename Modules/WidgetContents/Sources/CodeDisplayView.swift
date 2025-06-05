@@ -33,7 +33,7 @@ struct CodeDisplayView: View {
     @ViewBuilder
     private var codeShape: some View {
         switch code.value {
-        case .code128, .code39, .codabar, .ean:
+        case .code128, .code39, .codabar, .ean, .itf:
             BarcodeShape()
         case .pdf417, .qr:
             QRCodeShape()

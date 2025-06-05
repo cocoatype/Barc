@@ -32,6 +32,10 @@ struct PassRequestBarcode: Encodable {
             let converter = EANDigitToCharacterConverter()
             let characters = value.payload.digits.map(converter.character(for:))
             self.init(format: "ean13", message: String(characters))
+        case .itf(let value):
+            let converter = ITFElementToCharacterConverter()
+            let characters = value.payload.elements.map(converter.character(for:))
+            self.init(format: "itf", message: String(characters))
         case .pdf417(let value):
             let codewordConverter = CodewordToIntConverter()
             let bytes = value.dataCodewords
