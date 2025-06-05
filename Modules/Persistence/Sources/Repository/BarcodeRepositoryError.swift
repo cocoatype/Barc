@@ -6,11 +6,11 @@ import Foundation
 import BarcBarcodes
 
 public enum BarcodeRepositoryError: Error, CustomLocalizedStringResourceConvertible {
-    case duplicateCode(named: String)
+    case duplicateCode(original: Code)
 
     public var localizedStringResource: LocalizedStringResource {
         switch self {
-        case .duplicateCode(let name): StringResources.BarcodeRepositoryError.duplicateCode(name)
+        case .duplicateCode(let code): StringResources.BarcodeRepositoryError.duplicateCode(code.name)
         }
     }
 }

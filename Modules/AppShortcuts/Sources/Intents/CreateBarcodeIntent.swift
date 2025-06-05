@@ -18,6 +18,7 @@ struct CreateBarcodeIntent: AppIntent {
     static var parameterSummary: some ParameterSummary {
         Summary("CreateBarcodeIntent.parameterSummary\(\.$format)\(\.$value)") {
             \.$name
+            \.$duplicateHandling
         }
     }
 
@@ -36,6 +37,12 @@ struct CreateBarcodeIntent: AppIntent {
     )
     var name: String?
 
+    @Parameter(
+        title: "CreateBarcodeIntent.duplicateHandling",
+        default: .showError
+    )
+    var duplicateHandling: DuplicateHandling
+
     private var codeName: String {
         guard let name, name.isEmpty == false
         else { return Strings.CreateBarcodeIntent.defaultName }
@@ -47,9 +54,18 @@ struct CreateBarcodeIntent: AppIntent {
     func perform() async throws -> some IntentResult & ReturnsValue<BarcodeEntity> {
         let storedCode = try Code(name: codeName, value: codeValue, location: nil, date: nil)
 
-        let repository = Container.shared.guardLetNotIsScrollingDoesNotEqual()
-        try repository.add(storedCode)
-        ShortcutsProvider.updateAppShortcutParameters()
+        do {
+            let repository = Container.shared.guardLetNotIsScrollingDoesNotEqual()
+            try repository.add(storedCode)
+            ShortcutsProvider.updateAppShortcutParameters()
+        } catch let BarcodeRepositoryError.duplicateCode(original: duplicateCode) {
+            switch duplicateHandling {
+            case .returnOriginal:
+                return .result(value: BarcodeEntity(code: duplicateCode))
+            case .showError:
+                throw BarcodeRepositoryError.duplicateCode(original: duplicateCode)
+            }
+        }
 
         return .result(value: BarcodeEntity(code: storedCode))
     }
@@ -71,5 +87,17 @@ struct CreateBarcodeIntent: AppIntent {
                     .qr(value: value, correctionLevel: .m)
             }
         }
+    }
+
+    enum DuplicateHandling: String, AppEnum {
+        case returnOriginal
+        case showError
+
+        static let typeDisplayRepresentation: TypeDisplayRepresentation = "CreateBarcodeIntent.DuplicateHandling.typeDisplayRepresentation"
+
+        static let caseDisplayRepresentations: [CreateBarcodeIntent.DuplicateHandling : DisplayRepresentation] = [
+            .returnOriginal: "CreateBarcodeIntent.DuplicateHandling.returnOriginal",
+            .showError: "CreateBarcodeIntent.DuplicateHandling.showError",
+        ]
     }
 }

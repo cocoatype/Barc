@@ -9,6 +9,12 @@ public final class SpyBarcodeRepository: BarcodeRepository {
     public var codes = [Code]()
 
     public func add(_ code: Code) throws {
+        if let existingCode = codes.first(where: {
+            $0.value == code.value
+        }) {
+            throw BarcodeRepositoryError.duplicateCode(original: existingCode)
+        }
+
         codes.append(code)
     }
 
