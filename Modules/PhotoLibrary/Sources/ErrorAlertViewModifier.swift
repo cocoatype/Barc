@@ -44,8 +44,8 @@ struct ErrorAlertViewModifier: ViewModifier {
 
     var isErrorDuplicateError: String? {
         if let error = pickerResult.error,
-           case BarcodeRepositoryError.duplicateCode(let codeName) = error {
-            return codeName
+           case BarcodeRepositoryError.duplicateCode(let duplicateCode) = error {
+            return duplicateCode.name
         } else { return nil }
     }
 

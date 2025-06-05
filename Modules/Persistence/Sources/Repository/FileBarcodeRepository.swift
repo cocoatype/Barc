@@ -86,7 +86,8 @@ class FileBarcodeRepository: BarcodeRepository {
 
     func add(_ code: Code) throws {
         if let duplicateModel = try findModel(for: code) {
-            throw BarcodeRepositoryError.duplicateCode(named: duplicateModel.name ?? "")
+            let duplicateCode = try mapper.code(from: duplicateModel)
+            throw BarcodeRepositoryError.duplicateCode(original: duplicateCode)
         }
 
         try insertModel(for: code)

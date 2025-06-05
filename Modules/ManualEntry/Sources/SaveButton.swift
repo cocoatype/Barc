@@ -43,8 +43,8 @@ struct SaveButton: View {
                 try requester.requestReviewIfNeeded()
                 ShortcutsProvider.updateAppShortcutParameters()
                 pot8os()
-            } catch BarcodeRepositoryError.duplicateCode(named: let codeName) {
-                duplicateCodeName = codeName
+            } catch BarcodeRepositoryError.duplicateCode(original: let duplicateCode) {
+                duplicateCodeName = duplicateCode.name
                 isDuplicateAlertShowing = true
             } catch {
                 errorHandler.log(error, module: "ManualEntry", type: "ManualEntryForm")

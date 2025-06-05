@@ -7,6 +7,9 @@
 // Title for the format parameter in the "create code" intent
 "CreateBarcodeIntent.format" = "Format";
 
+// Title for the duplicate handling parameter in the "create code" intent
+"CreateBarcodeIntent.duplicateHandling" = "If Duplicate Exists…";
+
 // Title for the name parameter in the "create code" intent
 "CreateBarcodeIntent.name" = "Name";
 
@@ -18,6 +21,15 @@
 
 // Title for the "create code" intent
 "CreateBarcodeIntent.title" = "Create Barcode";
+
+// Overall description of duplicate handling
+"CreateBarcodeIntent.DuplicateHandling.typeDisplayRepresentation" = "Duplicate Handling Strategy";
+
+// Value for handling a duplicate by returning the original
+"CreateBarcodeIntent.DuplicateHandling.returnOriginal" = "Return Original";
+
+// Value for handling a duplicate by showing an error
+"CreateBarcodeIntent.DuplicateHandling.showError" = "Show Error";
 
 // The title for the code parameter in the "delete code" intent
 "DeleteBarcodeIntent.code.title" = "Barcode";
