@@ -37,10 +37,10 @@ struct CreateBarcodeIntent: AppIntent {
     var name: String?
 
     private var codeName: String {
-        guard let name else { return Strings.CreateBarcodeIntent.defaultName }
+        guard let name, name.isEmpty == false
+        else { return Strings.CreateBarcodeIntent.defaultName }
 
-        if name.isEmpty { return Strings.CreateBarcodeIntent.defaultName }
-        else { return name }
+        return name
     }
 
     @MainActor

@@ -20,7 +20,11 @@ public enum AppShortcuts {
     public static let testTarget = Target.moduleTestTarget(
         name: "AppShortcuts",
         dependencies: [
+            .target(Barcodes.target),
+            .target(Persistence.doublesTarget),
             .target(ShortcutsModels.target),
+            .external(name: "FactoryKit"),
+            .external(name: "FactoryTesting"),
         ]
     )
 }
