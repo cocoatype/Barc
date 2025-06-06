@@ -19,6 +19,9 @@
 // The value for the EAN-13/UPC type
 "ManualEntryFormPicker.eanType" = "UPC/EAN-13";
 
+// The value for the ITF type
+"ManualEntryFormPicker.itfType" = "ITF";
+
 // The value for the PDF417 type
 "ManualEntryFormPicker.pdf417Type" = "PDF417";
 

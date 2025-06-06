@@ -81,6 +81,8 @@ struct CreateBarcodeIntent: AppIntent {
                 try .code128(Code128CodeValue(payload: Code128PayloadParser().payload(for: value)))
             case .ean13:
                 try .ean(EANCodeValue(payload: EANPayloadParser().payload(for: value)))
+            case .itf:
+                try .itf(ITFCodeValue(payload: ITFPayloadParser().payload(for: value)))
             case .pdf417:
                 try .pdf417(PDF417CodeValue(dataCodewords: CodewordsEncoder().dataCodewords(for: value)))
             case .qr:

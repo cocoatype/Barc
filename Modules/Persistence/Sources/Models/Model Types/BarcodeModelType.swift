@@ -6,6 +6,7 @@ enum BarcodeModelType: Codable, Sendable {
     case code39(Code39BarcodeModel)
     case code128(Code128BarcodeModel)
     case ean(EANBarcodeModel)
+    case itf(ITFBarcodeModel)
     case pdf417(PDF417BarcodeModel)
     case qr(QRBarcodeModel)
 }
