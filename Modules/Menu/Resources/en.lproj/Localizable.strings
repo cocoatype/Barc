@@ -4,6 +4,10 @@
 // The navigation bar title for the menu
 "MenuList.navigationTitle" = "Settings";
 
+/*
+ * Paywall
+ */
+
 // The title for the cell that takes you to the paywall
 "PaywallRouteCell.title" = "Barc Unleashed";
 
@@ -13,8 +17,16 @@
 // The subtitle for the cell that takes you to the paywall when purchased
 "PaywallRouteCell.purchasedSubtitle" = "Thank you for supporting Barc!";
 
-// The title for the cell that takes you to the onboarding
-"OnboardingRouteCell.title" = "Introduction Tour";
+/*
+ * Features
+ */
+
+// The title for the cell that takes you to the alternate icon selector
+"IconsRouteCell.title" = "App Icon";
+
+/*
+ * Information
+ */
 
 // The section title for the information section
 "InformationSection.title" = "Important Information";
@@ -33,6 +45,13 @@
 
 // The title for the cell that takes you to the acknowledgements
 "AcknowledgementsRouteCell.title" = "Acknowledgements";
+
+// The title for the cell that takes you to the onboarding
+"OnboardingRouteCell.title" = "Introduction Tour";
+
+/*
+ * Contact
+ */
 
 // The section title for the information section
 "ContactSection.title" = "Contact the Developer";
@@ -72,6 +91,10 @@
 
 // The subtitle for the cell that takes you to the X account
 "XRouteCell.subtitle" = "@barccodes";
+
+/*
+ * Other Apps
+ */
 
 // The section title for the other apps section
 "OtherAppsSection.title" = "Other Apps by Cocoatype";

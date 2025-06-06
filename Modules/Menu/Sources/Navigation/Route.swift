@@ -6,4 +6,5 @@ import SwiftUI
 enum Route: Hashable {
     case paywall
     case onboarding
+    case icons
 }
