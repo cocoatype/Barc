@@ -11,9 +11,9 @@ struct PhotoLibraryAlertButton: View {
 
     var body: some View {
         Button {
-            Task { isShowingPurchaseAlert = true }
+            isShowingPurchaseAlert = true
         } label: {
-            Image(systemName: "photo.on.rectangle")
+            Image(systemName: PhotoLibraryToolbarItem.systemImage)
                 .imageScale(.medium)
         }
     }
