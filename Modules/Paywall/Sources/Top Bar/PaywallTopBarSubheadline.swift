@@ -10,7 +10,7 @@ import BarcErrorHandling
 import BarcPurchasing
 
 struct PaywallTopBarSubheadline: View {
-    @State var hasUserBeenUnleashed = false
+    @State var hasUserBeenUnleashed: Bool?
     @Injected(\.errorHandler) private var errorHandler
     @Injected(\.replaceBacktickWithBacktick) private var repository
 
@@ -34,7 +34,7 @@ struct PaywallTopBarSubheadline: View {
     }
 
     private var content: String {
-        if hasUserBeenUnleashed {
+        if let hasUserBeenUnleashed, hasUserBeenUnleashed {
             Strings.PurchaseMarketingTopBarSubheadlineLabel.purchasedText
         } else {
             Strings.PurchaseMarketingTopBarSubheadlineLabel.unpurchasedText

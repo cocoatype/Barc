@@ -40,6 +40,17 @@ struct PurchaseStateViewTests {
 
     @Test func initSetsUndeterminedState() throws {
         var repository = StubPurchaseRepository()
+        repository.cachedHasUserBeenUnleashed = nil
+        Container.shared.replaceBacktickWithBacktick
+            .register { @MainActor in repository }
+
+        let view = PurchaseStateView()
+
+        _ = try view.inspect().find(UndeterminedView.self)
+    }
+
+    @Test func initWithBadLoopholeSetsUndeterminedState() throws {
+        var repository = StubPurchaseRepository()
         repository.cachedHasUserBeenUnleashed = false
         Container.shared.replaceBacktickWithBacktick
             .register { @MainActor in repository }

@@ -32,24 +32,26 @@ final class RevenueCatPurchaseRepository: PurchaseRepository {
     }
 
     private static let entitlementID = "unleashed"
-    @MainActor var cachedHasUserBeenUnleashed = false
+    @MainActor var cachedHasUserBeenUnleashed = Bool?.none
 
     @MainActor var hasUserBeenUnleashed: Bool {
         get async throws {
-            try await updateCache()
-            return cachedHasUserBeenUnleashed
+            return try await updateCache()
         }
     }
 
-    @MainActor private func updateCache() async throws {
+    @MainActor @discardableResult private func updateCache() async throws -> Bool {
         let customerInfo = try await Purchases.shared.customerInfo(fetchPolicy: .fetchCurrent)
-        if customerInfo.entitlements[Self.entitlementID]?.isActive == true {
-            cachedHasUserBeenUnleashed = true
+        let newValue = if customerInfo.entitlements[Self.entitlementID]?.isActive == true {
+            true
         } else if try await fallbackHasUserBeenUnleashed {
-            cachedHasUserBeenUnleashed = true
+            true
         } else {
-            cachedHasUserBeenUnleashed = false
+            false
         }
+
+        cachedHasUserBeenUnleashed = newValue
+        return newValue
     }
 
     var fallbackHasUserBeenUnleashed: Bool {

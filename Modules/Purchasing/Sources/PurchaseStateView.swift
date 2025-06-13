@@ -70,13 +70,15 @@ public struct PurchaseStateView<
     // MARK: Purchase State
 
     private static func purchaseState(
-        isUnleashed: Bool,
+        isUnleashed: Bool?,
         loophole: @escaping @MainActor () throws -> Bool
     ) throws -> PurchaseState {
-        if try isUnleashed || loophole() {
+        if try isUnleashed == true || loophole() {
             return .purchased
-        } else {
+        } else if isUnleashed == false {
             return .unpurchased
+        } else {
+            return .undetermined
         }
     }
 

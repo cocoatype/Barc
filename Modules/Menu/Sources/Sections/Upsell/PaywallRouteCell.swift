@@ -9,7 +9,7 @@ import BarcErrorHandling
 import BarcPurchasing
 
 struct PaywallRouteCell: View {
-    @State var hasUserBeenUnleashed = false
+    @State var hasUserBeenUnleashed: Bool?
     @Injected(\.replaceBacktickWithBacktick) private var repository
     @Injected(\.errorHandler) private var errorHandler
 
@@ -36,7 +36,7 @@ struct PaywallRouteCell: View {
     }
 
     private var subtitle: String {
-        if hasUserBeenUnleashed {
+        if let hasUserBeenUnleashed, hasUserBeenUnleashed {
             Strings.PaywallRouteCell.purchasedSubtitle
         } else {
             Strings.PaywallRouteCell.unpurchasedSubtitle

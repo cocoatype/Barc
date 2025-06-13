@@ -7,7 +7,7 @@ import BarcTestHelpersInterface
 public struct StubPurchaseRepository: PurchaseRepository {
     public init() {}
 
-    public var cachedHasUserBeenUnleashed = false
+    public var cachedHasUserBeenUnleashed: Bool? = false
 
     public var hasUserBeenUnleashedResult = Result<Bool, Error>.success(false)
     public var hasUserBeenUnleashed: Bool {
