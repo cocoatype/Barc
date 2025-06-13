@@ -20,7 +20,7 @@ struct ExporterTests {
             let passLibrary = SpyPassLibrary(addPassesConfirmation: addPasses)
             Container.shared.replaceBacktickWithBacktick.register { @MainActor in
                 var purchaseRepository = StubPurchaseRepository()
-                purchaseRepository.hasUserBeenUnleashed = true
+                purchaseRepository.hasUserBeenUnleashedResult = .success(true)
                 return purchaseRepository
             }
             Container.shared.errorHandler.register { StubErrorHandler() }

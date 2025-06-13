@@ -9,7 +9,12 @@ public struct StubPurchaseRepository: PurchaseRepository {
 
     public var cachedHasUserBeenUnleashed = false
 
-    public var hasUserBeenUnleashed = false
+    public var hasUserBeenUnleashedResult = Result<Bool, Error>.success(false)
+    public var hasUserBeenUnleashed: Bool {
+        get throws {
+            return try hasUserBeenUnleashedResult.get()
+        }
+    }
 
     public var purchaseOptions = [PurchaseOption]()
 

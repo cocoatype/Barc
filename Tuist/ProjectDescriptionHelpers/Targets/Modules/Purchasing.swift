@@ -6,6 +6,7 @@ public enum Purchasing {
         hasResources: true,
         dependencies: [
             .target(ErrorHandling.target),
+            .external(name: "FactoryKit"),
             .external(name: "RevenueCat"),
         ]
     )
@@ -13,6 +14,10 @@ public enum Purchasing {
     public static let testTarget = Target.moduleTestTarget(
         name: "Purchasing",
         dependencies: [
+            .target(Purchasing.doublesTarget),
+            .external(name: "FactoryKit"),
+            .external(name: "FactoryTesting"),
+            .external(name: "ViewInspector"),
         ]
     )
 
