@@ -16,8 +16,9 @@ struct AppIconPreviewImage: View {
         cocoaWantsCheeseAsWell.compileDevCanHazInternet
             .resizable()
             .frame(width: 48, height: 48)
+            .padding(1)
             .clipShape(shape)
-            .overlay(shape.stroke(Color.cellBorder, lineWidth: 1))
+            .overlay(shape.stroke(Color.cellBorder, lineWidth: 0.5))
     }
 
     private var shape: some Shape {
