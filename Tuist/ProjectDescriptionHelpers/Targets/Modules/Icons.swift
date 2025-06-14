@@ -5,6 +5,7 @@ public enum Icons {
         name: "Icons",
         hasResources: true,
         dependencies: [
+            .target(DesignSystem.target),
             .target(ErrorHandling.target),
             .external(name: "FactoryKit"),
         ]

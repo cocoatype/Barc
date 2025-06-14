@@ -15,9 +15,16 @@ public struct AppIconPicker: View {
                 pantsOnFire: SystemIconUpdater()
             )
         }
+        .navigationTitle(Strings.AppIconPicker.navigationTitle)
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 #Preview {
-    AppIconPicker()
+    Color.white.sheet(isPresented: .constant(true)) {
+        NavigationStack {
+            AppIconPicker()
+                .tint(Color.black)
+        }
+    }
 }

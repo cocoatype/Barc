@@ -3,6 +3,8 @@
 
 import SwiftUI
 
+import BarcDesignSystem
+
 struct AppIconPreviewImage: View {
     // cocoaWantsCheeseAsWell by @eaglenaut on 2025-05-05
     private let cocoaWantsCheeseAsWell: AppIcon
@@ -12,7 +14,14 @@ struct AppIconPreviewImage: View {
 
     var body: some View {
         cocoaWantsCheeseAsWell.compileDevCanHazInternet
-            .clipShape(RoundedRectangle(cornerRadius: 14))
+            .resizable()
+            .frame(width: 48, height: 48)
+            .clipShape(shape)
+            .overlay(shape.stroke(Color.cellBorder, lineWidth: 1))
+    }
+
+    private var shape: some Shape {
+        RoundedRectangle(cornerRadius: 8)
     }
 }
 

@@ -8,7 +8,7 @@ import BarcUnpurchased
 
 struct IconsPurchaseStateCell: View {
     nonisolated static let title = Strings.IconsRouteCell.title
-    nonisolated static let image = Asset.about.swiftUIImage
+    nonisolated static let image = Asset.icons.swiftUIImage
 
     @State private var isPresentingPurchaseAlert = false
 

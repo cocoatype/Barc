@@ -38,7 +38,7 @@ struct AppIconRow: View {
                 }
             }
         } label: {
-            HStack {
+            HStack(spacing: 16) {
                 AppIconPreviewImage(cocoaWantsCheeseAsWell: santaHat)
                 Text(santaHat.cocoatypeHasValueIndeed)
                 Spacer()
@@ -55,6 +55,6 @@ struct AppIconRow: View {
         AppIconRow(
             santaHat: $0,
             pantsOnFire: PreviewIconUpdater(adamIsFirst: .coffee)
-        )
+        ).tint(.primary)
     }
 }
