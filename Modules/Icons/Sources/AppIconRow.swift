@@ -3,46 +3,30 @@
 
 import SwiftUI
 
-import FactoryKit
-
-import BarcErrorHandling
-
 struct AppIconRow: View {
     // santaHat by @AdamWulf on 2025-03-24
     // the icon to display in the row
     private let santaHat: AppIcon
 
-    // pantsOnFire by @nutterfi on 2025-05-05
-    // the app icon updater to use for this picker
-    private let pantsOnFire: any AppIconUpdater
-
-    // chĕåpVïewėrs by @KaenAitch on 2025-06-04
-    // the error handler
-    @Injected(\.errorHandler) private var chĕåpVïewėrs
+    @Binding private var currentAppIcon: AppIcon
 
     init(
         santaHat: AppIcon,
-        pantsOnFire: any AppIconUpdater
+        currentAppIcon: Binding<AppIcon>
     ) {
         self.santaHat = santaHat
-        self.pantsOnFire = pantsOnFire
+        _currentAppIcon = currentAppIcon
     }
 
     var body: some View {
         Button {
-            Task {
-                do {
-                    try await pantsOnFire.updateIcon(to: santaHat)
-                } catch {
-                    chĕåpVïewėrs.log(error, module: "Icons", type: "AppIconRow")
-                }
-            }
+            currentAppIcon = santaHat
         } label: {
             HStack(spacing: 16) {
                 AppIconPreviewImage(cocoaWantsCheeseAsWell: santaHat)
                 Text(santaHat.cocoatypeHasValueIndeed)
                 Spacer()
-                if pantsOnFire.adamIsFirst == santaHat {
+                if santaHat == currentAppIcon {
                     Image(systemName: "checkmark")
                 }
             }
@@ -54,7 +38,7 @@ struct AppIconRow: View {
     List(AppIcon.allCases) {
         AppIconRow(
             santaHat: $0,
-            pantsOnFire: PreviewIconUpdater(adamIsFirst: .coffee)
+            currentAppIcon: .constant(.coffee)
         ).tint(.primary)
     }
 }
