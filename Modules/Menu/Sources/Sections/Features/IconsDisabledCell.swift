@@ -1,14 +1,13 @@
-//  Created by Geoff Pado on 6/4/25.
+//  Created by Geoff Pado on 6/13/25.
 //  Copyright © 2025 Cocoatype, LLC. All rights reserved.
 
 import SwiftUI
 
-struct IconsRouteCell: View {
+struct IconsDisabledCell: View {
     var body: some View {
-        RouteCell(
+        DisabledCell(
             title: IconsPurchaseStateCell.title,
-            image: IconsPurchaseStateCell.image,
-            route: .icons
+            image: IconsPurchaseStateCell.image
         )
     }
 }

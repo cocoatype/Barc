@@ -4,6 +4,10 @@
 import Foundation
 
 public struct UnpurchasedFeature: Sendable {
+    public static let alternateIcons = UnpurchasedFeature(
+        message: Strings.AlternateIcons.message
+    )
+
     public static let unlimitedBarcodes = UnpurchasedFeature(
         message: Strings.UnlimitedBarcodes.message
     )

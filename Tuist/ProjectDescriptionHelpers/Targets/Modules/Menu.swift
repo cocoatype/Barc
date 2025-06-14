@@ -14,6 +14,7 @@ public enum Menu {
             .target(Purchasing.target),
             .target(Releases.target),
             .target(TestHelpers.interfaceTarget),
+            .target(Unpurchased.target),
             .target(Web.target),
             .external(name: "FactoryKit"),
         ]

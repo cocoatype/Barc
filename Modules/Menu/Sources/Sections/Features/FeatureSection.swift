@@ -6,7 +6,7 @@ import SwiftUI
 struct FeatureSection: View {
     var body: some View {
         Section {
-            IconsRouteCell()
+            IconsPurchaseStateCell()
         }
     }
 }
