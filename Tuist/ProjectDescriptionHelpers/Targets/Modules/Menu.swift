@@ -7,12 +7,14 @@ public enum Menu {
         dependencies: [
             .target(Defaults.target),
             .target(ErrorHandling.target),
+            .target(Icons.target),
             .target(Logging.target),
             .target(Onboarding.target),
             .target(Paywall.target),
             .target(Purchasing.target),
             .target(Releases.target),
             .target(TestHelpers.interfaceTarget),
+            .target(Unpurchased.target),
             .target(Web.target),
             .external(name: "FactoryKit"),
         ]
@@ -23,6 +25,7 @@ public enum Menu {
         dependencies: [
             .target(Defaults.target),
             .target(Defaults.doublesTarget),
+            .target(Purchasing.doublesTarget),
             .target(Releases.target),
             .target(Releases.doublesTarget),
             .external(name: "FactoryKit"),

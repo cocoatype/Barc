@@ -7,6 +7,7 @@ struct MenuList: View {
     var body: some View {
         List {
             UpsellSection()
+            FeatureSection()
             InformationSection()
             ContactSection()
             OtherAppsSection()

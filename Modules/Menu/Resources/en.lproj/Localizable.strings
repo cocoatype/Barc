@@ -4,6 +4,10 @@
 // The navigation bar title for the menu
 "MenuList.navigationTitle" = "Settings";
 
+/*
+ * Paywall
+ */
+
 // The title for the cell that takes you to the paywall
 "PaywallRouteCell.title" = "Barc Unleashed";
 
@@ -13,14 +17,22 @@
 // The subtitle for the cell that takes you to the paywall when purchased
 "PaywallRouteCell.purchasedSubtitle" = "Thank you for supporting Barc!";
 
-// The title for the cell that takes you to the onboarding
-"OnboardingRouteCell.title" = "Introduction Tour";
+/*
+ * Features
+ */
+
+// The title for the cell that takes you to the alternate icon selector
+"IconsRouteCell.title" = "App Icon";
+
+/*
+ * Information
+ */
 
 // The section title for the information section
 "InformationSection.title" = "Important Information";
 
 // The title for the cell that takes you to the about page
-"AboutRouteCell.title" = "About Barc";
+"AboutSiteURLCell.title" = "About Barc";
 
 // The title for the cell that takes you to the release notes
 "ReleasesRouteCell.title" = "What’s New";
@@ -29,49 +41,60 @@
 "ReleasesRouteCell.subtitle" = "Version %@";
 
 // The title for the cell that takes you to the privacy policy
-"PrivacyRouteCell.title" = "Privacy Policy";
+"PrivacySiteURLCell.title" = "Privacy Policy";
 
 // The title for the cell that takes you to the acknowledgements
-"AcknowledgementsRouteCell.title" = "Acknowledgements";
+"AcknowledgementsSiteURLCell.title" = "Acknowledgements";
+
+// The title for the cell that takes you to the onboarding
+"OnboardingPresentationCell.title" = "Introduction Tour";
+
+/*
+ * Contact
+ */
 
 // The section title for the information section
 "ContactSection.title" = "Contact the Developer";
 
 // The title for the cell that takes you to the e-mail composer
-"MailRouteCell.title" = "E-mail";
+"MailPresentationCell.title" = "E-mail";
 
 // The subtitle for the cell that takes you to the e-mail composer
-"MailRouteCell.subtitle" = "hello@cocoatype.com";
+"MailPresentationCell.subtitle" = "hello@cocoatype.com";
 
 // The title for the cell that takes you to the App Store reviews page
-"ReviewRouteCell.title" = "App Store";
+"ReviewExternalURLCell.title" = "App Store";
 
 // The subtitle for the cell that takes you to the App Store reviews page
-"ReviewRouteCell.subtitle" = "Please leave a review!";
+"ReviewExternalURLCell.subtitle" = "Please leave a review!";
 
 // The title for the cell that takes you to the Bluesky account
-"BlueskyRouteCell.title" = "Bluesky";
+"BlueskyExternalURLCell.title" = "Bluesky";
 
 // The subtitle for the cell that takes you to the Bluesky account
-"BlueskyRouteCell.subtitle" = "@getbarc.app";
+"BlueskyExternalURLCell.subtitle" = "@getbarc.app";
 
 // The title for the cell that takes you to the Facebook page
-"FacebookRouteCell.title" = "Facebook";
+"FacebookExternalURLCell.title" = "Facebook";
 
 // The subtitle for the cell that takes you to the Facebook page
-"FacebookRouteCell.subtitle" = "Barc";
+"FacebookExternalURLCell.subtitle" = "Barc";
 
 // The title for the cell that takes you to the Threads account
-"ThreadsRouteCell.title" = "Threads";
+"ThreadsExternalURLCell.title" = "Threads";
 
 // The subtitle for the cell that takes you to the Threads account
-"ThreadsRouteCell.subtitle" = "@barc.app";
+"ThreadsExternalURLCell.subtitle" = "@barc.app";
 
 // The title for the cell that takes you to the X account
-"XRouteCell.title" = "X";
+"XExternalURLCell.title" = "X";
 
 // The subtitle for the cell that takes you to the X account
-"XRouteCell.subtitle" = "@barccodes";
+"XExternalURLCell.subtitle" = "@barccodes";
+
+/*
+ * Other Apps
+ */
 
 // The section title for the other apps section
 "OtherAppsSection.title" = "Other Apps by Cocoatype";

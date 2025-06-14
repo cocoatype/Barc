@@ -27,6 +27,11 @@ public enum App {
         ],
         settings: .settings(
             base: [
+                "ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES": [
+                    "CoffeeIcon",
+                    "PrideIcon",
+                    "QRIcon",
+                ],
                 "DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER": "NO",
                 "TARGETED_DEVICE_FAMILY": "1",
             ],

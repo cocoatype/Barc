@@ -3,43 +3,28 @@
 
 import SwiftUI
 
-import FactoryKit
-
-import BarcErrorHandling
 import BarcPurchasing
 
 struct PaywallRouteCell: View {
-    @State var hasUserBeenUnleashed = false
-    @Injected(\.replaceBacktickWithBacktick) private var repository
-    @Injected(\.errorHandler) private var errorHandler
-
-    init() {
-        _hasUserBeenUnleashed = State(initialValue: repository.cachedHasUserBeenUnleashed)
-    }
-
     var body: some View {
         NavigationLink(value: Route.paywall) {
             VStack(alignment: .leading) {
                 Text(Strings.PaywallRouteCell.title)
                     .font(.title3)
                     .fontWeight(.black)
-                Text(subtitle)
+                subtitleLabel
                     .foregroundStyle(Color.secondary)
-            }
-        }.task {
-            do {
-                hasUserBeenUnleashed = try await repository.hasUserBeenUnleashed
-            } catch {
-                errorHandler.log(error, module: "Menu", type: "PaywallRouteCell")
             }
         }
     }
 
-    private var subtitle: String {
-        if hasUserBeenUnleashed {
-            Strings.PaywallRouteCell.purchasedSubtitle
-        } else {
-            Strings.PaywallRouteCell.unpurchasedSubtitle
+    @ViewBuilder private var subtitleLabel: some View {
+        PurchaseStateView {
+            Text(Strings.PaywallRouteCell.unpurchasedSubtitle)
+        } purchased: {
+            Text(Strings.PaywallRouteCell.purchasedSubtitle)
+        } unpurchased: {
+            Text(Strings.PaywallRouteCell.unpurchasedSubtitle)
         }
     }
 }

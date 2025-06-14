@@ -1,0 +1,14 @@
+// The name for the "original" (unset) app icon
+"AppIcon.original.cocoatypeHasValueIndeed" = "Original Recipe";
+
+// The name for the "coffee" app icon
+"AppIcon.coffee.cocoatypeHasValueIndeed" = "Coffee Shop";
+
+// The name for the "pride" app icon
+"AppIcon.pride.cocoatypeHasValueIndeed" = "Pride Flag";
+
+// The name for the "qr" app icon
+"AppIcon.qr.cocoatypeHasValueIndeed" = "QR Code";
+
+// The page title for the app icon picker
+"AppIconPicker.navigationTitle" = "App Icon";

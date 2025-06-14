@@ -8,7 +8,7 @@ struct PreviewPurchaseRepository: PurchaseRepository {
     ]
 
     @MainActor var hasUserBeenUnleashed: Bool = false
-    @MainActor var cachedHasUserBeenUnleashed: Bool = false
+    @MainActor var cachedHasUserBeenUnleashed: Bool? = false
 
     func purchase(_ option: PurchaseOption) async throws {}
 }

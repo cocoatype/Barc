@@ -10,6 +10,9 @@
 // The title of the alert shown when the user has not purchased Barc.
 "UnpurchasedAlertViewModifier.title" = "Requires Barc Unleashed";
 
+// The message of the alert shown if a user tries to use an alternate icon without purchasing Barc.
+"UnpurchasedFeature.alternateIcons.message" = "Customizing your app icon requires Barc Unleashed.";
+
 // The message of the alert shown if a user tries to add more barcodes than allowed without purchasing Barc.
 "UnpurchasedFeature.unlimitedBarcodes.message" = "Adding more barcodes requires Barc Unleashed.";
 

@@ -3,6 +3,7 @@
 
 import SwiftUI
 
+import BarcIcons
 import BarcOnboarding
 import BarcPaywall
 
@@ -14,6 +15,7 @@ public struct MenuView: View {
             MenuList()
                 .navigationDestination(for: Route.self) {
                     switch $0 {
+                    case .icons: AppIconPicker()
                     case .paywall: PaywallView()
                     case .onboarding: OnboardingView()
                     }
