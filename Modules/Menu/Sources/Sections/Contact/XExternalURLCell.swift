@@ -3,11 +3,11 @@
 
 import SwiftUI
 
-struct XRouteCell: View {
+struct XExternalURLCell: View {
     var body: some View {
         ExternalURLCell(
-            title: Strings.XRouteCell.title,
-            subtitle: Strings.XRouteCell.subtitle,
+            title: Strings.XExternalURLCell.title,
+            subtitle: Strings.XExternalURLCell.subtitle,
             image: Asset.x.swiftUIImage,
             urlString: "https://getbarc.app/contact/x/"
         )
@@ -15,5 +15,5 @@ struct XRouteCell: View {
 }
 
 #Preview {
-    XRouteCell()
+    XExternalURLCell()
 }

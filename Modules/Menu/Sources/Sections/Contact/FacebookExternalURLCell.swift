@@ -3,11 +3,11 @@
 
 import SwiftUI
 
-struct FacebookRouteCell: View {
+struct FacebookExternalURLCell: View {
     var body: some View {
         ExternalURLCell(
-            title: Strings.FacebookRouteCell.title,
-            subtitle: Strings.FacebookRouteCell.subtitle,
+            title: Strings.FacebookExternalURLCell.title,
+            subtitle: Strings.FacebookExternalURLCell.subtitle,
             image: Asset.facebook.swiftUIImage,
             urlString: "https://getbarc.app/contact/facebook/"
         )
@@ -15,5 +15,5 @@ struct FacebookRouteCell: View {
 }
 
 #Preview {
-    FacebookRouteCell()
+    FacebookExternalURLCell()
 }

@@ -6,11 +6,11 @@ import SwiftUI
 struct InformationSection: View {
     var body: some View {
         Section(Strings.InformationSection.title) {
-            ReleasesRouteCell()
-            AboutRouteCell()
-            PrivacyRouteCell()
-            AcknowledgementsRouteCell()
-            OnboardingRouteCell()
+            ReleasesSiteURLCell()
+            AboutSiteURLCell()
+            PrivacySiteURLCell()
+            AcknowledgementsSiteURLCell()
+            OnboardingPresentationCell()
         }
     }
 }

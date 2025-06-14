@@ -3,10 +3,10 @@
 
 import SwiftUI
 
-struct PrivacyRouteCell: View {
+struct PrivacySiteURLCell: View {
     var body: some View {
         SiteURLCell(
-            title: Strings.PrivacyRouteCell.title,
+            title: Strings.PrivacySiteURLCell.title,
             image: Asset.privacy.swiftUIImage,
             path: "/privacy/"
         )
@@ -14,5 +14,5 @@ struct PrivacyRouteCell: View {
 }
 
 #Preview {
-    PrivacyRouteCell()
+    PrivacySiteURLCell()
 }

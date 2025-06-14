@@ -3,11 +3,11 @@
 
 import SwiftUI
 
-struct BlueskyRouteCell: View {
+struct BlueskyExternalURLCell: View {
     var body: some View {
         ExternalURLCell(
-            title: Strings.BlueskyRouteCell.title,
-            subtitle: Strings.BlueskyRouteCell.subtitle,
+            title: Strings.BlueskyExternalURLCell.title,
+            subtitle: Strings.BlueskyExternalURLCell.subtitle,
             image: Asset.bluesky.swiftUIImage,
             urlString: "https://getbarc.app/contact/bluesky/"
         )
@@ -15,5 +15,5 @@ struct BlueskyRouteCell: View {
 }
 
 #Preview {
-    BlueskyRouteCell()
+    BlueskyExternalURLCell()
 }

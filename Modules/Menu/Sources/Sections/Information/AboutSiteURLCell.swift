@@ -3,10 +3,10 @@
 
 import SwiftUI
 
-struct AboutRouteCell: View {
+struct AboutSiteURLCell: View {
     var body: some View {
         SiteURLCell(
-            title: Strings.AboutRouteCell.title,
+            title: Strings.AboutSiteURLCell.title,
             image: Asset.about.swiftUIImage,
             path: "/about/"
         )
@@ -14,5 +14,5 @@ struct AboutRouteCell: View {
 }
 
 #Preview {
-    AboutRouteCell()
+    AboutSiteURLCell()
 }

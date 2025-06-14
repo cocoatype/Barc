@@ -3,11 +3,11 @@
 
 import SwiftUI
 
-struct ThreadsRouteCell: View {
+struct ThreadsExternalURLCell: View {
     var body: some View {
         ExternalURLCell(
-            title: Strings.ThreadsRouteCell.title,
-            subtitle: Strings.ThreadsRouteCell.subtitle,
+            title: Strings.ThreadsExternalURLCell.title,
+            subtitle: Strings.ThreadsExternalURLCell.subtitle,
             image: Asset.threads.swiftUIImage,
             urlString: "https://getbarc.app/contact/threads/"
         )
@@ -15,5 +15,5 @@ struct ThreadsRouteCell: View {
 }
 
 #Preview {
-    ThreadsRouteCell()
+    ThreadsExternalURLCell()
 }

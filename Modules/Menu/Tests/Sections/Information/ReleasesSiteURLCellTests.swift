@@ -16,12 +16,12 @@ import BarcReleasesDoubles
 @testable import BarcMenu
 
 @MainActor @Suite(.container)
-struct ReleasesRouteCellTests {
+struct ReleasesSiteURLCellTests {
     @Test("Uses correct subtitle for version")
     func subtitleForVersion() throws {
         Container.shared.defaultsProvider.register { StubDefaultsProvider() }
         Container.shared.versionProvider.register { StubVersionProvider(version: "99.0") }
-        let cell = ReleasesRouteCell()
+        let cell = ReleasesSiteURLCell()
 
         let inspectedCell = try cell.inspect()
         _ = try inspectedCell.find(text: "Version 99.0")
@@ -33,7 +33,7 @@ struct ReleasesRouteCellTests {
     func subtitleForNilVersion() throws {
         Container.shared.defaultsProvider.register { StubDefaultsProvider() }
         Container.shared.versionProvider.register { StubVersionProvider(version: nil) }
-        let cell = ReleasesRouteCell()
+        let cell = ReleasesSiteURLCell()
 
         let inspectedCell = try cell.inspect()
         let cellLabel = try inspectedCell.find(CellLabel.self)
@@ -47,7 +47,7 @@ struct ReleasesRouteCellTests {
     func showsBadgeIfNewReleaseAvailable() async throws {
         Container.shared.defaultsProvider.register { StubDefaultsProvider(lastSeenVersion: "99.0") }
         Container.shared.versionProvider.register { StubVersionProvider(version: "100.0") }
-        let cell = ReleasesRouteCell()
+        let cell = ReleasesSiteURLCell()
 
         ViewHosting.host(view: cell)
         defer { ViewHosting.expel() }
@@ -63,7 +63,7 @@ struct ReleasesRouteCellTests {
     func hidesBadgeIfNoNewRelease() async throws {
         Container.shared.defaultsProvider.register { StubDefaultsProvider(lastSeenVersion: "99.0") }
         Container.shared.versionProvider.register { StubVersionProvider(version: "99.0") }
-        let cell = ReleasesRouteCell()
+        let cell = ReleasesSiteURLCell()
 
         ViewHosting.host(view: cell)
         defer { ViewHosting.expel() }
@@ -80,7 +80,7 @@ struct ReleasesRouteCellTests {
         Container.shared.versionProvider.register { StubVersionProvider(version: "99.0") }
         let defaultsProvider = StubDefaultsProvider(lastSeenVersion: "1.0")
         Container.shared.defaultsProvider.register { defaultsProvider }
-        let cell = ReleasesRouteCell()
+        let cell = ReleasesSiteURLCell()
 
         ViewHosting.host(view: cell)
         defer { ViewHosting.expel() }

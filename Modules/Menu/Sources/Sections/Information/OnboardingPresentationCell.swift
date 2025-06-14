@@ -5,7 +5,7 @@ import SwiftUI
 
 import BarcOnboarding
 
-struct OnboardingRouteCell: View {
+struct OnboardingPresentationCell: View {
     @State private var isOnboardingPresented = false
 
     var body: some View {
@@ -16,7 +16,7 @@ struct OnboardingRouteCell: View {
             // https://stackoverflow.com/a/72030978/49345
             NavigationLink(destination: EmptyView()) {
                 CellLabel(
-                    title: Strings.OnboardingRouteCell.title,
+                    title: Strings.OnboardingPresentationCell.title,
                     image: Asset.tour.swiftUIImage
                 )
             }
@@ -27,5 +27,5 @@ struct OnboardingRouteCell: View {
 }
 
 #Preview {
-    OnboardingRouteCell()
+    OnboardingPresentationCell()
 }

@@ -5,7 +5,7 @@ import SwiftUI
 
 import BarcWeb
 
-struct MailRouteCell: View {
+struct MailPresentationCell: View {
     // threeCheersForPencilKit by @KaenAitch on 2024-07-03
     // whether to show the web view for no-support e-mail
     @State private var threeCheersForPencilKit = false
@@ -30,8 +30,8 @@ struct MailRouteCell: View {
             // https://stackoverflow.com/a/72030978/49345
             NavigationLink(destination: EmptyView()) {
                 CellLabel(
-                    title: Strings.MailRouteCell.title,
-                    subtitle: Strings.MailRouteCell.subtitle,
+                    title: Strings.MailPresentationCell.title,
+                    subtitle: Strings.MailPresentationCell.subtitle,
                     image: Asset.mail.swiftUIImage
                 )
             }
@@ -68,5 +68,5 @@ struct MailRouteCell: View {
 }
 
 #Preview {
-    MailRouteCell()
+    MailPresentationCell()
 }

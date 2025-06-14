@@ -6,12 +6,12 @@ import SwiftUI
 struct ContactSection: View {
     var body: some View {
         Section(Strings.ContactSection.title) {
-            MailRouteCell()
-            ReviewRouteCell()
-            BlueskyRouteCell()
-            FacebookRouteCell()
-            ThreadsRouteCell()
-            XRouteCell()
+            MailPresentationCell()
+            ReviewExternalURLCell()
+            BlueskyExternalURLCell()
+            FacebookExternalURLCell()
+            ThreadsExternalURLCell()
+            XExternalURLCell()
         }
     }
 }

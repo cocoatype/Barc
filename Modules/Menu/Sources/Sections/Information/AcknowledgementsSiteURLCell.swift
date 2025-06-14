@@ -3,10 +3,10 @@
 
 import SwiftUI
 
-struct AcknowledgementsRouteCell: View {
+struct AcknowledgementsSiteURLCell: View {
     var body: some View {
         SiteURLCell(
-            title: Strings.AcknowledgementsRouteCell.title,
+            title: Strings.AcknowledgementsSiteURLCell.title,
             image: Asset.acknowledgements.swiftUIImage,
             path: "/acknowledgements/"
         )
@@ -14,5 +14,5 @@ struct AcknowledgementsRouteCell: View {
 }
 
 #Preview {
-    AcknowledgementsRouteCell()
+    AcknowledgementsSiteURLCell()
 }

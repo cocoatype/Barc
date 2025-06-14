@@ -3,11 +3,11 @@
 
 import SwiftUI
 
-struct ReviewRouteCell: View {
+struct ReviewExternalURLCell: View {
     var body: some View {
         ExternalURLCell(
-            title: Strings.ReviewRouteCell.title,
-            subtitle: Strings.ReviewRouteCell.subtitle,
+            title: Strings.ReviewExternalURLCell.title,
+            subtitle: Strings.ReviewExternalURLCell.subtitle,
             image: Asset.appStore.swiftUIImage,
             urlString: "https://itunes.apple.com/us/app/barc/id6642707689?mt=8&action=write-review"
         )
@@ -15,5 +15,5 @@ struct ReviewRouteCell: View {
 }
 
 #Preview {
-    ReviewRouteCell()
+    ReviewExternalURLCell()
 }

@@ -9,7 +9,7 @@ import BarcDefaults
 import BarcReleases
 import BarcTestHelpersInterface
 
-struct ReleasesRouteCell: View {
+struct ReleasesSiteURLCell: View {
     @Injected(\.defaultsProvider) private var defaultsProvider
     @Injected(\.versionProvider) private var versionProvider
 
@@ -49,5 +49,5 @@ struct ReleasesRouteCell: View {
 }
 
 #Preview {
-    ReleasesRouteCell()
+    ReleasesSiteURLCell()
 }
