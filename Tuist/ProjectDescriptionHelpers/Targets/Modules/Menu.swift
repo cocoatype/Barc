@@ -24,6 +24,7 @@ public enum Menu {
         dependencies: [
             .target(Defaults.target),
             .target(Defaults.doublesTarget),
+            .target(Purchasing.doublesTarget),
             .target(Releases.target),
             .target(Releases.doublesTarget),
             .external(name: "FactoryKit"),
