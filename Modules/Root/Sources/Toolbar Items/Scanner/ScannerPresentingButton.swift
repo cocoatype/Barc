@@ -13,7 +13,7 @@ struct ScannerPresentingButton: View {
 
     var body: some View {
         Button {
-            sheetRoute = .manualEntry
+            sheetRoute = .scanner
         } label: {
             Image(systemName: ScannerToolbarItem.systemImage)
         }
