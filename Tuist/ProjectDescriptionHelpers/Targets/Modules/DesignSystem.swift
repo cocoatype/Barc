@@ -7,4 +7,10 @@ public enum DesignSystem {
         dependencies: [
         ]
     )
+
+    public static let testTarget = Target.moduleTestTarget(
+        name: "DesignSystem",
+        dependencies: [
+        ]
+    )
 }
