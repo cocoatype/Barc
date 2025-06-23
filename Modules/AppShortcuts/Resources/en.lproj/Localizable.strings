@@ -58,6 +58,30 @@
 // The title for the "display code" intent
 "DisplayCodeIntent.title" = "Show Barcode";
 
+// The title for the code parameter in the "get barcode date" intent
+"GetBarcodeDateIntent.code" = "Barcode";
+
+// Description for the "get barcode date" intent
+"GetBarcodeDateIntent.description" = "Gets the date of a barcode.";
+
+// Parameter summary for the "get barcode date" intent
+"GetBarcodeDateIntent.parameterSummary${code}" = "Get date of ${code}";
+
+// Title for the "get barcode date" intent
+"GetBarcodeDateIntent.title" = "Get Barcode Date";
+
+// The title for the code parameter in the "get barcode location" intent
+"GetBarcodeLocationIntent.code" = "Barcode";
+
+// Description for the "get barcode location" intent
+"GetBarcodeLocationIntent.description" = "Gets the location of a barcode.";
+
+// Parameter summary for the "get barcode location" intent
+"GetBarcodeLocationIntent.parameterSummary${code}" = "Get location of ${code}";
+
+// Title for the "get barcode location" intent
+"GetBarcodeLocationIntent.title" = "Get Barcode Location";
+
 // The title for the code parameter in the "get barcode value" intent
 "GetBarcodeValueIntent.code" = "Barcode";
 

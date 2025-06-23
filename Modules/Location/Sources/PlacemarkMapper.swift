@@ -2,11 +2,14 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import CoreLocation
+import MapKit
 
 import BarcBarcodes
 
-struct PlacemarkMapper {
-    func location(from placemark: CLPlacemark) throws -> Location {
+public struct PlacemarkMapper: Sendable {
+    public init() {}
+
+    public func location(from placemark: CLPlacemark) throws -> Location {
         return try Location(name: name(from: placemark), coordinate: coordinate(from: placemark))
     }
 
