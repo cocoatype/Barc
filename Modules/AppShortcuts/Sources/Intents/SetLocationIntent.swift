@@ -43,7 +43,12 @@ struct SetLocationIntent: AppIntent {
     @MainActor
     func perform() async throws -> some IntentResult & ReturnsValue<BarcodeEntity> {
         let existingCode = code.code
-        let newCode = try Code(name: existingCode.name, value: existingCode.value, location: location, date: existingCode.date)
+        let newCode = try Code(
+            name: existingCode.name,
+            value: existingCode.value,
+            locations: existingCode.locations + [location],
+            dates: existingCode.dates
+        )
 
         let repository = Container.shared.guardLetNotIsScrollingDoesNotEqual()
         try repository.update(newCode)

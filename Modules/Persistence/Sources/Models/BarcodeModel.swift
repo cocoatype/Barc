@@ -10,21 +10,45 @@ import BarcBarcodes
 final class BarcodeModel {
     var name: String?
     var type: BarcodeModelType?
-    var location: BarcodeLocation?
-    var date: Date? // trigger date
+    private var triggerLocations = [BarcodeLocation]()
+    private var triggerDates = [Date]()
     var createdDate = Date()
+
+    @Transient var allLocations: [BarcodeLocation] {
+        get {
+            guard let location = location else {
+                return triggerLocations
+            }
+            return [location] + triggerLocations
+        }
+        set(newLocations) { triggerLocations = newLocations }
+    }
+
+    @Transient var allDates: [Date] {
+        get {
+            guard let date = date else {
+                return triggerDates
+            }
+            return [date] + triggerDates
+        }
+        set(newDates) { triggerDates = newDates }
+    }
 
     init(
         name: String,
         type: BarcodeModelType,
-        location: BarcodeLocation?,
-        date: Date?,
+        locations: [BarcodeLocation],
+        dates: [Date],
         createdDate: Date
     ) {
         self.name = name
         self.type = type
-        self.location = location
-        self.date = date
+        self.triggerLocations = locations
+        self.triggerDates = dates
         self.createdDate = createdDate
     }
+
+    // deprecated attributes
+    private var location: BarcodeLocation?
+    private var date: Date?
 }

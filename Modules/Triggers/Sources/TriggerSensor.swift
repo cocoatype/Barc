@@ -23,14 +23,15 @@ public struct TriggerSensor {
 
     private static let locationSensitivity = 91.44 // 1 American Football Field 🇺🇸
     private func isCodeTriggered(_ code: Code, location: Location) -> Bool {
-        guard let codeLocation = code.location else { return false }
-
-        return codeLocation.distanceInMeters(to: location) < Self.locationSensitivity
+        return code.locations.contains { codeLocation in
+            codeLocation.distanceInMeters(to: location) < Self.locationSensitivity
+        }
     }
 
     private static let dateSensitivity: TimeInterval = 3600 // 1 hour
     private func isCodeTriggered(_ code: Code, date: Date) -> Bool {
-        guard let codeDate = code.date else { return false }
-        return abs(date.timeIntervalSince(codeDate)) < Self.dateSensitivity
+        return code.dates.contains { codeDate in
+            abs(date.timeIntervalSince(codeDate)) < Self.dateSensitivity
+        }
     }
 }

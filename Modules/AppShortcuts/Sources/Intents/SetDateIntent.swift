@@ -31,7 +31,12 @@ struct SetDateIntent: AppIntent {
     @MainActor
     func perform() async throws -> some IntentResult & ReturnsValue<BarcodeEntity> {
         let existingCode = code.code
-        let newCode = Code(name: existingCode.name, value: existingCode.value, location: existingCode.location, date: date)
+        let newCode = Code(
+            name: existingCode.name,
+            value: existingCode.value,
+            locations: existingCode.locations,
+            dates: existingCode.dates + [date]
+        )
 
         let repository = Container.shared.guardLetNotIsScrollingDoesNotEqual()
         try repository.update(newCode)
