@@ -14,7 +14,7 @@ struct ProductionServiceTests {
             requestFactory: StubRequestFactory(),
             serviceDataProvider: StubServiceDataProvider()
         )
-        let code = try Code(name: "", value: .code128(value: Data()), location: nil, date: nil)
+        let code = try Code(name: "", value: .code128(value: Data()))
 
         _ = try await service.fetchPass(for: code)
     }

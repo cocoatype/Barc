@@ -15,7 +15,7 @@ import BarcTestHelpers
 @MainActor
 @Suite(.container)
 struct ReviewRequesterTests {
-    static let sampleCode = Code(name: "Name", value: .qr(value: "", correctionLevel: .m), location: nil, date: nil)
+    static let sampleCode = Code(name: "Name", value: .qr(value: "", correctionLevel: .m))
     struct SpyRequestReviewAction: RequestReviewAction {
         private var confirmation: Confirmation
         init(confirmation: Confirmation) {

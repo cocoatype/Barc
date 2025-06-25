@@ -17,8 +17,6 @@ public struct BarcodeEntity: AppEntity, Identifiable {
     public var id: Code.ID { code.id }
     public var name: String { code.name }
     public var value: CodeValue { code.value }
-    var location: Location? { code.location }
-    var date: Date? { code.date }
 
     public var displayRepresentation: DisplayRepresentation {
         let renderer = CodeImageRenderer()

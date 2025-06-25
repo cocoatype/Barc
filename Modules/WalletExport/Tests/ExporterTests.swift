@@ -31,9 +31,7 @@ struct ExporterTests {
             )
             let code = Code(
                 name: "Sample Code",
-                value: .qr(value: "Value", correctionLevel: .m),
-                location: nil,
-                date: nil
+                value: .qr(value: "Value", correctionLevel: .m)
             )
 
             _ = await exporter.requestExport(for: code)

@@ -52,7 +52,7 @@ struct CreateBarcodeIntent: AppIntent {
 
     @MainActor
     func perform() async throws -> some IntentResult & ReturnsValue<BarcodeEntity> {
-        let storedCode = try Code(name: codeName, value: codeValue, location: nil, date: nil)
+        let storedCode = try Code(name: codeName, value: codeValue)
 
         do {
             let repository = Container.shared.guardLetNotIsScrollingDoesNotEqual()

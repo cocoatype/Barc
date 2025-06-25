@@ -15,16 +15,7 @@ struct PassRequest: Encodable {
         self.title = code.name
         self.barcode = try PassRequestBarcode(code: code)
 
-        if let date = code.date {
-            self.dates = [PassRequestDate(date: date)]
-        } else {
-            self.dates = []
-        }
-
-        if let location = code.location {
-            self.locations = [PassRequestLocation(location: location)]
-        } else {
-            self.locations = []
-        }
+        self.dates = code.dates.map(PassRequestDate.init)
+        self.locations = code.locations.map(PassRequestLocation.init)
     }
 }

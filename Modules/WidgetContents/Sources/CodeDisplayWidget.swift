@@ -60,9 +60,7 @@ public struct CodeDisplayWidget: Widget {
 #if DEBUG
 let previewQRCode = Code(
     name: "Website",
-    value: CodeDisplayTimelineEntry.qrCodeValue,
-    location: nil,
-    date: nil
+    value: CodeDisplayTimelineEntry.qrCodeValue
 )
 @MainActor let previewWidget = CodeDisplayWidget()
 @MainActor let previewTimelineProvider = CodeDisplayTimelineProvider(codes: PreviewBarcodeRepository.sampleCodes)
@@ -89,9 +87,7 @@ let previewQRCode = Code(
     using: CodeDisplayConfigurationIntent(
         code: Code(
             name: "EAN",
-            value: CodeDisplayTimelineEntry.eanCodeValue,
-            location: nil,
-            date: nil
+            value: CodeDisplayTimelineEntry.eanCodeValue
         )
     ),
     widget: { previewWidget },
@@ -104,9 +100,7 @@ let previewQRCode = Code(
     using: CodeDisplayConfigurationIntent(
         code: Code(
             name: "EAN",
-            value: CodeDisplayTimelineEntry.eanCodeValue,
-            location: nil,
-            date: nil
+            value: CodeDisplayTimelineEntry.eanCodeValue
         )
     ),
     widget: { previewWidget },

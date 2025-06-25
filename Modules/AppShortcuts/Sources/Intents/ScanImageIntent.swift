@@ -46,7 +46,7 @@ struct ScanImageIntent: AppIntent {
         let codeValue = try await imageReader.codeValue(in: image)
 
         let storedCode = codeValue.map {
-            Code(name: codeName, value: $0, location: nil, date: nil)
+            Code(name: codeName, value: $0)
         }
 
         if let storedCode {

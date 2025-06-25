@@ -31,9 +31,10 @@ public struct BarcodeView: View {
                 cell.clipsToBounds = false
             }
 
+            #warning("FIX ME: Handle multiple locations/dates")
             BarcodeTriggersSection(
-                selectedLocation: code.location,
-                selectedDate: code.date
+                selectedLocation: code.locations.first,
+                selectedDate: code.dates.first
             )
         }
         .coordinateSpace(coordinateSpace)
@@ -72,9 +73,7 @@ public struct BarcodeView: View {
         try! BarcodeView(
             code: Code(
                 name: "Cocoatype Website",
-                value: .ean(value: "444444444444"),
-                location: nil,
-                date: nil
+                value: .ean(value: "444444444444")
             ),
             isHighBrightnessOn: false
         )
