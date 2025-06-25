@@ -15,10 +15,11 @@ struct LibraryCellHeader: View {
         HStack {
             VStack(alignment: .leading) {
                 LibraryCellTitle(code.name)
-                if let location = code.location {
+                #warning("FIX ME: Handle multiple locations/dates")
+                if let location = code.locations.first {
                     LibraryCellLocationSubtitle(location)
                 }
-                if let date = code.date {
+                if let date = code.dates.first {
                     LibraryCellDateSubtitle(date)
                 }
             }
@@ -35,8 +36,7 @@ struct LibraryCellHeader: View {
                 value: "https://cocoatype.com",
                 correctionLevel: .m
             ),
-            location: Location(name: "The Internet", coordinate: .init()),
-            date: nil
+            locations: [Location(name: "The Internet", coordinate: .init())]
         )
     )
 }

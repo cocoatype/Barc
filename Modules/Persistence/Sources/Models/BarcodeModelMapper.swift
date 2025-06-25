@@ -27,10 +27,14 @@ struct BarcodeModelMapper {
         return BarcodeModel(
             name: code.name,
             type: type,
-            location: code.location.map(locationMapper.barcodeLocation(from:)),
-            date: code.date,
+            locations: barcodeLocations(from: code),
+            dates: code.dates,
             createdDate: Date()
         )
+    }
+
+    private func barcodeLocations(from code: Code) -> [BarcodeLocation] {
+        code.locations.map(locationMapper.barcodeLocation(from:))
     }
 
     func code(from model: BarcodeModel) throws -> Code {
@@ -59,8 +63,8 @@ struct BarcodeModelMapper {
         return Code(
             name: name,
             value: value,
-            location: model.location.map(locationMapper.location(from:)),
-            date: model.date
+            locations: model.allLocations.map(locationMapper.location(from:)),
+            dates: model.allDates
         )
     }
 
@@ -70,8 +74,8 @@ struct BarcodeModelMapper {
         let newModel = barcodeModel(from: code)
         model.name = newModel.name
         model.type = newModel.type
-        model.location = newModel.location
-        model.date = newModel.date
+        model.allLocations = newModel.allLocations
+        model.allDates = newModel.allDates
     }
 
     // MARK: Sub-mappers

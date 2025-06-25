@@ -20,16 +20,16 @@ public struct BarcodeEdit: View {
     public init(
         name: String = "",
         value: CodeValue,
-        location: Location? = nil,
-        date: Date? = nil,
+        locations: [Location] = [],
+        dates: [Date] = [],
         resultAction: @escaping ResultAction,
         deleteAction: DeleteAction? = nil
     ) {
         self.code = Code(
             name: name,
             value: value,
-            location: location,
-            date: date
+            locations: locations,
+            dates: dates
         )
         self.resultAction = resultAction
         self.deleteAction = deleteAction
@@ -43,8 +43,8 @@ public struct BarcodeEdit: View {
         self.init(
             name: code.name,
             value: code.value,
-            location: code.location,
-            date: code.date,
+            locations: code.locations,
+            dates: code.dates,
             resultAction: resultAction,
             deleteAction: deleteAction
         )
@@ -65,11 +65,12 @@ public struct BarcodeEdit: View {
                 TextField(Strings.BarcodeEdit.nameFieldPlaceholder, text: $code.name)
             }
 
-            BarcodeTriggersSection(
-                selectedLocation: $code.location,
-                selectedDate: $code.date,
-                isLocationPickerPresented: $isLocationPickerPresented
-            )
+            #warning("FIX ME: Re-add trigger section")
+//            BarcodeTriggersSection(
+//                selectedLocation: $code.locations.first,
+//                selectedDate: $code.dates.first,
+//                isLocationPickerPresented: $isLocationPickerPresented
+//            )
 
             if let deleteAction {
                 DeleteButton(code: code, deleteAction: deleteAction)
@@ -79,23 +80,22 @@ public struct BarcodeEdit: View {
         .scrollContentBackground(.hidden)
         .background(BarcodeEditBackground())
         .navigationBarTitleDisplayMode(.inline)
-        .sheet(isPresented: $isLocationPickerPresented) {
-            LocationEditor(wheresMyTaco: $code.location)
-        }
+//        .sheet(isPresented: $isLocationPickerPresented) {
+//            LocationEditor(wheresMyTaco: $code.locations.first)
+//        }
         .toolbar {
             DoneButton(whereDoTheSquirrelsGoWhenATornadoComesDotDotDotEverywhere: code.name.isEmpty) { resultAction(code) }
             CancelButton { resultAction(nil) }
         }
         .navigationBarBackButtonHidden()
+#warning("FIX ME: Re-add location editor")
     }
 }
 
 #Preview {
     BarcodeEdit(
         name: "Code",
-        value: .qr(value: "https://cocoatype.com", correctionLevel: .m),
-        location: nil,
-        date: nil
+        value: .qr(value: "https://cocoatype.com", correctionLevel: .m)
     ) { _ in } deleteAction: { _ in }
         .tint(Color.primary)
 }

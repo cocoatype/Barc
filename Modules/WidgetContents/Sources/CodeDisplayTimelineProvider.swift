@@ -22,9 +22,7 @@ struct CodeDisplayTimelineProvider: AppIntentTimelineProvider {
     func placeholder(in context: Context) -> CodeDisplayTimelineEntry {
         let placeholderCode = Code(
             name: "Placeholder",
-            value: .qr(value: "https://cocoatype.com", correctionLevel: .m),
-            location: nil,
-            date: nil
+            value: .qr(value: "https://cocoatype.com", correctionLevel: .m)
         )
         return CodeDisplayTimelineEntry(code: placeholderCode)
     }

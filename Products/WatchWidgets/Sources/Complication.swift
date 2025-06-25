@@ -49,9 +49,7 @@ public struct Complication: Widget {
 #if DEBUG
 let previewQRCode = Code(
     name: "Website",
-    value: ComplicationTimelineEntry.qrCodeValue,
-    location: nil,
-    date: nil
+    value: ComplicationTimelineEntry.qrCodeValue
 )
 @MainActor let previewWidget = Complication()
 @MainActor let previewTimelineProvider = ComplicationTimelineProvider(codes: PreviewBarcodeRepository.sampleCodes)

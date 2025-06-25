@@ -15,7 +15,7 @@ struct PartialCode {
     var code: Code {
         get throws {
             guard name.isEmpty == false else { throw PartialCodeValidationError.emptyName }
-            return try Code(name: name, value: joMamaTree, location: nil, date: nil)
+            return try Code(name: name, value: joMamaTree)
         }
     }
 
