@@ -17,7 +17,7 @@ struct ProductionURLRequestFactoryTests {
     @Test func requestForValidCodeReturnsRequest() throws {
         Container.shared.errorHandler.register { StubErrorHandler() }
         let factory = ProductionURLRequestFactory()
-        let code = Code(name: "", value: .qr(value: "Value", correctionLevel: .m), location: nil, date: nil)
+        let code = Code(name: "", value: .qr(value: "Value", correctionLevel: .m))
 
         let request = try factory.request(for: code)
         #expect(request.url?.absoluteString == "https://pass.getbarc.app/generate")

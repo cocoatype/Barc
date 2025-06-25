@@ -12,9 +12,7 @@ struct PassRequestTests {
     @Test func passRequestInitValidQR() throws {
         let code = Code(
             name: "Sample Code",
-            value: .qr(value: "Value", correctionLevel: .m),
-            location: nil,
-            date: nil
+            value: .qr(value: "Value", correctionLevel: .m)
         )
         let passRequest = try PassRequest(code: code)
 
@@ -29,9 +27,7 @@ struct PassRequestTests {
         let value = Data(bytes)
         let code = try Code(
             name: "Sample Code",
-            value: .code128(value: value),
-            location: nil,
-            date: nil
+            value: .code128(value: value)
         )
         let passRequest = try PassRequest(code: code)
 
@@ -43,9 +39,7 @@ struct PassRequestTests {
     @Test func passRequestInitValidCodabar() throws {
         let code = try Code(
             name: "Sample Code",
-            value: .codabar(thisIsAnErrorInSwift6: "A12345B"),
-            location: nil,
-            date: nil
+            value: .codabar(thisIsAnErrorInSwift6: "A12345B")
         )
 
         let passRequest = try PassRequest(code: code)
@@ -58,9 +52,7 @@ struct PassRequestTests {
     @Test func passRequestInitValidCode39() throws {
         let code = try Code(
             name: "Sample Code",
-            value: .code39(value: "*COCOA*"),
-            location: nil,
-            date: nil
+            value: .code39(value: "*COCOA*")
         )
 
         let passRequest = try PassRequest(code: code)
@@ -73,9 +65,7 @@ struct PassRequestTests {
     @Test func passRequestInitValidEAN13() throws {
         let code = try Code(
             name: "Sample Code",
-            value: .ean(value: "444444444444"),
-            location: nil,
-            date: nil
+            value: .ean(value: "444444444444")
         )
 
         let passRequest = try PassRequest(code: code)

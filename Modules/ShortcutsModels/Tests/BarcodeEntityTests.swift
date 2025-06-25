@@ -52,8 +52,6 @@ struct BarcodeEntityTests {
         value: .qr(
             value: "https://cocoatype.com",
             correctionLevel: .m
-        ),
-        location: nil,
-        date: nil
+        )
     )
 }

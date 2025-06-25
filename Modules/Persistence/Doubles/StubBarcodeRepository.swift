@@ -6,10 +6,10 @@ import BarcPersistence
 
 public struct StubBarcodeRepository: BarcodeRepository {
     public var codes: [Code] = [
-        Code(name: "Cocoatype", value: .qr(value: "https://cocoatype.com", correctionLevel: .m), location: nil, date: nil),
-        try! Code(name: "Fours", value: .ean(value: "4444444444444"), location: nil, date: nil),
-        Code(name: "Discord", value: .qr(value: "https://iosdev.club", correctionLevel: .m), location: nil, date: nil),
-        Code(name: "Black Highlighter", value: .qr(value: "https://blackhighlighter.app/appstore", correctionLevel: .m), location: nil, date: nil),
+        Code(name: "Cocoatype", value: .qr(value: "https://cocoatype.com", correctionLevel: .m)),
+        try! Code(name: "Fours", value: .ean(value: "4444444444444")),
+        Code(name: "Discord", value: .qr(value: "https://iosdev.club", correctionLevel: .m)),
+        Code(name: "Black Highlighter", value: .qr(value: "https://blackhighlighter.app/appstore", correctionLevel: .m)),
     ]
 
     public func add(_ code: Code) {}
