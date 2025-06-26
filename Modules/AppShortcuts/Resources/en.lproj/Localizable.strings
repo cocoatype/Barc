@@ -58,6 +58,30 @@
 // The title for the "display code" intent
 "DisplayCodeIntent.title" = "Show Barcode";
 
+// The title for the code parameter in the "get barcode date" intent
+"GetBarcodeDatesIntent.code" = "Barcode";
+
+// Description for the "get barcode date" intent
+"GetBarcodeDatesIntent.description" = "Returns a list of dates assigned to a barcode.";
+
+// Parameter summary for the "get barcode date" intent
+"GetBarcodeDatesIntent.parameterSummary${code}" = "Get dates of ${code}";
+
+// Title for the "get barcode date" intent
+"GetBarcodeDatesIntent.title" = "Get Dates of Barcode";
+
+// The title for the code parameter in the "get barcode location" intent
+"GetBarcodeLocationsIntent.code" = "Barcode";
+
+// Description for the "get barcode location" intent
+"GetBarcodeLocationsIntent.description" = "Returns a list of locations assigned to a barcode.";
+
+// Parameter summary for the "get barcode location" intent
+"GetBarcodeLocationsIntent.parameterSummary${code}" = "List locations of ${code}";
+
+// Title for the "get barcode location" intent
+"GetBarcodeLocationsIntent.title" = "Get Locations of Barcode";
+
 // The title for the code parameter in the "get barcode value" intent
 "GetBarcodeValueIntent.code" = "Barcode";
 
@@ -68,7 +92,7 @@
 "GetBarcodeValueIntent.parameterSummary${code}" = "Get value of ${code}";
 
 // Title for the "get barcode value" intent
-"GetBarcodeValueIntent.title" = "Get Barcode Value";
+"GetBarcodeValueIntent.title" = "Get Value of Barcode";
 
 // Error description for when we are unable to create a CGImage from the given image data
 "ImageError.cannotCreateImageFromData" = "Barc was unable to create an image from the given data.";

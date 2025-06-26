@@ -9,6 +9,7 @@ public enum AppShortcuts {
             .target(Barcodes.target),
             .target(ErrorHandling.target),
             .target(ImageReader.target),
+            .target(Location.target),
             .target(Persistence.target),
             .target(Routing.target),
             .target(ShortcutsModels.target),
