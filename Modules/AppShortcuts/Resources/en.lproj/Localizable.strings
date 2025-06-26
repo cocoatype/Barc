@@ -59,28 +59,28 @@
 "DisplayCodeIntent.title" = "Show Barcode";
 
 // The title for the code parameter in the "get barcode date" intent
-"GetBarcodeDateIntent.code" = "Barcode";
+"GetBarcodeDatesIntent.code" = "Barcode";
 
 // Description for the "get barcode date" intent
-"GetBarcodeDateIntent.description" = "Gets the date of a barcode.";
+"GetBarcodeDatesIntent.description" = "Returns a list of dates assigned to a barcode.";
 
 // Parameter summary for the "get barcode date" intent
-"GetBarcodeDateIntent.parameterSummary${code}" = "Get date of ${code}";
+"GetBarcodeDatesIntent.parameterSummary${code}" = "Get dates of ${code}";
 
 // Title for the "get barcode date" intent
-"GetBarcodeDateIntent.title" = "Get Barcode Date";
+"GetBarcodeDatesIntent.title" = "Get Dates of Barcode";
 
 // The title for the code parameter in the "get barcode location" intent
-"GetBarcodeLocationIntent.code" = "Barcode";
+"GetBarcodeLocationsIntent.code" = "Barcode";
 
 // Description for the "get barcode location" intent
-"GetBarcodeLocationIntent.description" = "Gets the location of a barcode.";
+"GetBarcodeLocationsIntent.description" = "Returns a list of locations assigned to a barcode.";
 
 // Parameter summary for the "get barcode location" intent
-"GetBarcodeLocationIntent.parameterSummary${code}" = "Get location of ${code}";
+"GetBarcodeLocationsIntent.parameterSummary${code}" = "List locations of ${code}";
 
 // Title for the "get barcode location" intent
-"GetBarcodeLocationIntent.title" = "Get Barcode Location";
+"GetBarcodeLocationsIntent.title" = "Get Locations of Barcode";
 
 // The title for the code parameter in the "get barcode value" intent
 "GetBarcodeValueIntent.code" = "Barcode";
@@ -92,7 +92,7 @@
 "GetBarcodeValueIntent.parameterSummary${code}" = "Get value of ${code}";
 
 // Title for the "get barcode value" intent
-"GetBarcodeValueIntent.title" = "Get Barcode Value";
+"GetBarcodeValueIntent.title" = "Get Value of Barcode";
 
 // Error description for when we are unable to create a CGImage from the given image data
 "ImageError.cannotCreateImageFromData" = "Barc was unable to create an image from the given data.";

@@ -10,27 +10,26 @@ import BarcBarcodes
 import BarcLocation
 import BarcShortcutsModels
 
-struct GetBarcodeLocationIntent: AppIntent {
-    static let title: LocalizedStringResource = "GetBarcodeLocationIntent.title"
+struct GetBarcodeLocationsIntent: AppIntent {
+    static let title: LocalizedStringResource = "GetBarcodeLocationsIntent.title"
 
-    static let description: IntentDescription = "GetBarcodeLocationIntent.description"
+    static let description: IntentDescription = "GetBarcodeLocationsIntent.description"
 
     static var parameterSummary: some ParameterSummary {
-        Summary("GetBarcodeLocationIntent.parameterSummary\(\.$code)")
+        Summary("GetBarcodeLocationsIntent.parameterSummary\(\.$code)")
     }
 
     @Parameter(
-        title: "GetBarcodeLocationIntent.code"
+        title: "GetBarcodeLocationsIntent.code"
     )
     var code: BarcodeEntity
 
-    func perform() async throws -> some IntentResult & ReturnsValue<CLPlacemark?> {
-        guard let location = code.code.location else {
-            return .result(value: nil)
-        }
-
-        let placemark = BarcodePlacemark(location: location)
-        return .result(value: CLPlacemark(placemark: placemark))
+    func perform() async throws -> some IntentResult & ReturnsValue<[CLPlacemark]> {
+        .result(
+            value: code.code.locations
+                .map(BarcodePlacemark.init)
+                .map(CLPlacemark.init)
+        )
     }
 
     @objc(BarcBarcodePlacemark) private class BarcodePlacemark: CLPlacemark, @unchecked Sendable {
