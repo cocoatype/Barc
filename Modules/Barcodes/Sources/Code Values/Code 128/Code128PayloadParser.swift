@@ -14,10 +14,30 @@ public struct Code128PayloadParser {
     }
 
     public func payload(for string: String) throws -> Code128CodeValue.Payload {
-        let converter = Code128CharacterToElementConverter()
-        let valueElements = try string.map(converter.element(for:))
+        let leadElements: [Code128Element]
+        if useTypeCEncoding(for: string) {
+            let converter = Code128TypeCCharacterToElementConverter()
+            let count = string.count
+            let valueElements = try stride(from: 0, to: count, by: 2).map { i in
+                let start = string.index(string.startIndex, offsetBy: i)
+                let first = string[start]
+                let second = string[string.index(after: start)]
+                return (first, second)
+            }.map(converter.element(for:))
+            leadElements = [.e69] + valueElements
+        } else {
+            let converter = Code128TypeBCharacterToElementConverter()
+            let valueElements = try string.map(converter.element(for:))
+            leadElements = [.e68] + valueElements
+        }
 
-        return try Code128CodeValue.Payload(elements: [.e68] + valueElements + [checkDigit(for: valueElements), .e6a])
+        return try Code128CodeValue.Payload(elements: leadElements + [checkDigit(for: leadElements), .e6a])
+    }
+
+    private func useTypeCEncoding(for string: String) -> Bool {
+        return string.count % 2 == 0 && string.allSatisfy({
+            Code128TypeCCharacterToElementConverter.isNumber($0)
+        })
     }
 
     private func checkDigit(for elements: [Code128Element]) throws -> Code128Element {
@@ -28,9 +48,9 @@ public struct Code128PayloadParser {
             .enumerated()
             .reduce(Int.zero) { result, next in
                 let (index, element) = next
-                let weighted = (index + 1) * Int(element)
+                let weighted = max(index, 1) * Int(element)
                 return result + weighted
-            } + 104 // <- start code B
+            }
         let checkByte = UInt8(toForAllToUsForToWatchToForYou % 103)
 
         return try Code128ByteToElementConverter().element(for: checkByte)

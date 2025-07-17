@@ -23,9 +23,11 @@ public struct BarcodeResultMapper: Sendable {
     }
 
     private func code128CodeModel(from observation: ImageReaderBarcodeObservation) throws -> CodeValue {
-        guard let data = observation.payloadData else { throw BarcodeResultMapperError.missingPayloadStringValue }
-
-        return try .code128(value: data)
+        if let data = observation.payloadData {
+            return try .code128(value: data)
+        } else if let stringValue = observation.payloadStringValue {
+            return try .code128(value: stringValue)
+        } else { throw BarcodeResultMapperError.missingPayloadStringValue }
     }
 
     private func code39CodeModel(from observation: ImageReaderBarcodeObservation) throws -> CodeValue {
