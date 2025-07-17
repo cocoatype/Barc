@@ -1,8 +1,10 @@
 //  Created by Geoff Pado on 9/22/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import BarcImageReader
 import SwiftUI
+
+import BarcBarcodes
+import BarcImageReader
 
 @main
 struct CodeScannerApp: App {
@@ -17,7 +19,8 @@ struct CodeScannerApp: App {
                     let image = CGImage.image(from: imageData)
                     Task {
                         do {
-                            try await dump(reader.codeValue(in: image))
+                            let value = try await reader.codeValue(in: image)
+                            try dump(description(for: value))
                         } catch {
                             print(String(describing: error))
                         }
@@ -26,6 +29,20 @@ struct CodeScannerApp: App {
                     return true
                 }
         }
+    }
+
+    private func description(for codeValue: CodeValue?) throws -> String {
+        guard let codeValue else { return "(null)" }
+        let barcodeType = switch codeValue {
+        case .code128: "Code 128"
+        case .code39: "Code 39"
+        case .codabar: "Codabar"
+        case .ean: "EAN-13"
+        case .itf: "IFT"
+        case .pdf417: "PDF 417"
+        case .qr: "QR"
+        }
+        return try "\(barcodeType): \(codeValue.stringRepresentation)"
     }
 
     private let reader = ImageReader()

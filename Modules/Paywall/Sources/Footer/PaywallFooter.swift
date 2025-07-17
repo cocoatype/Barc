@@ -42,3 +42,12 @@ struct PaywallFooter: View {
         case error(Error)
     }
 }
+
+#Preview {
+    Color.black
+        .ignoresSafeArea()
+        .safeAreaInset(edge: .bottom) {
+            PaywallFooter()
+                .background(ignoresSafeAreaEdges: .bottom)
+        }
+}
