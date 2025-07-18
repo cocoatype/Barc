@@ -5,6 +5,7 @@ import SwiftUI
 
 import FactoryKit
 
+import BarcBarcodes
 import BarcPersistence
 import BarcPurchasing
 import BarcRouting
@@ -14,8 +15,15 @@ struct ManualEntryToolbarItem: View {
     nonisolated static let systemImage = "plus"
 
     @Binding private var sheetRoute: Route?
+    private let barcodeRepository: any BarcodeRepository
     init(value: Binding<Route?>) {
         _sheetRoute = value
+        barcodeRepository = Container.shared.guardLetNotIsScrollingDoesNotEqual()
+        do {
+            codes = try barcodeRepository.codes
+        } catch {
+            codes = []
+        }
     }
 
     @State private var isShowingPurchaseAlert = false
@@ -27,17 +35,15 @@ struct ManualEntryToolbarItem: View {
             )
     }
 
-    @Injected(\.guardLetNotIsScrollingDoesNotEqual) private var barcodeRepository
+    @State private var codes: [Code]
     @ViewBuilder private var currentButton: some View {
-        PurchaseStateView {
+        PurchaseStateView(allowsLoophole: true) {
             ManualEntryDisabledButton()
         } purchased: {
             ManualEntryPresentingButton(presenting: $sheetRoute)
         } unpurchased: {
             ManualEntryAlertButton(shouldShowAlert: $isShowingPurchaseAlert)
-        } loophole: {
-            return try barcodeRepository.codes.count < Purchasing.maxBarcodesCount
-        }
+        }.onUpdate(to: barcodeRepository) { codes = $0 }
     }
 }
 
