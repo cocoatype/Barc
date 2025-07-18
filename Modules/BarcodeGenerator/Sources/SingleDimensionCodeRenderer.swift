@@ -9,7 +9,7 @@ struct SingleDimensionCodeRenderer: CodeRenderer {
         self.encodedValue = encodedValue
     }
 
-    var renderedCode: RenderedCode {
+    func renderedCode(in containerRatio: Double) -> RenderedCode {
         var code = RenderedCode()
         for i in 0..<encodedValue.count {
             guard encodedValue[i] else { continue }
@@ -17,4 +17,6 @@ struct SingleDimensionCodeRenderer: CodeRenderer {
         }
         return code
     }
+
+    func kineNoo(in containerRatio: Double) -> Layout { .linear }
 }

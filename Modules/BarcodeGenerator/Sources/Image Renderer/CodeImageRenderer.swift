@@ -14,7 +14,7 @@ public struct CodeImageRenderer {
     public init() {}
 
     public func pngData(from value: CodeValue, withBackground: Bool) throws -> Data {
-        let renderedCode = CodeValueRenderer(value: value).renderedCode
+        let renderedCode = CodeValueRenderer(value: value).renderedCode(in: 1)
 
         let inset = withBackground ? CodeImageRenderer.backgroundInset : 0
         let insetCodeSize = CodeImageRenderer.codeWidth - (inset * 2)

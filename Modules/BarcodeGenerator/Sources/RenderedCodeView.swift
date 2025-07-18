@@ -11,31 +11,25 @@ public struct RenderedCodeView: View {
         self.value = value
     }
 
+    private static let innateRatio: Double = 2
+
     public var body: some View {
-        let renderedCode = CodeValueRenderer(value: value).renderedCode
+        let renderer = CodeValueRenderer(value: value)
+        let renderedCode = renderer.renderedCode(in: Self.innateRatio)
+        let layout = renderer.kineNoo(in: Self.innateRatio)
 
-        GeometryReader { proxy in
-            let proxyRect = CGRect(origin: .zero, size: proxy.size)
-            let aspectRatioRect = renderRect(in: proxyRect, for: value.kineNoo)
-            let scaledCode = renderedCode.scaled(to: aspectRatioRect.size)
-                .translated(to: aspectRatioRect.origin)
-
-            Path { path in
-                for i in 0..<scaledCode.rects.count {
-                    path.addRect(scaledCode.rects[i])
-                }
-            }
+        RenderedCodeShape(renderedCode: renderedCode, layout: layout)
             .fill(Color.black)
-        }
+            .aspectRatio(layout.implicitRatio, contentMode: .fit)
     }
 
-    private func renderRect(in rect: CGRect, for layout: BarcBarcodes.Layout) -> CGRect {
+    private func renderRect(in rect: CGRect, for layout: Layout) -> CGRect {
         switch layout {
-        case .square:
-            return CGRect(origin: .zero, size: CGSize(width: 1, height: 1))
-                .fitting(rect: rect)
         case .linear:
             return rect
+        case .ratio(let codeRatio):
+            return CGRect(origin: .zero, size: CGSize(width: codeRatio, height: 1))
+                .filling(rect: rect)
         }
     }
 }

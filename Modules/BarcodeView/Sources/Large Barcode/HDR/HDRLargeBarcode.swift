@@ -17,7 +17,7 @@ struct HDRLargeBarcode: View {
             Color.clear
             RenderedCodeView(value: value)
                 .clipShape(RoundedRectangle(cornerRadius: 7))
-                .frame(width: LargeBarcode.width, height: LargeBarcode.width * value.kineNoo.implicitRatio)
+                .frame(width: size.width, height: size.height)
                 .padding(LargeBarcode.padding)
                 .background(
                     HDRLargeBarcodeContents(value: value)
@@ -28,11 +28,11 @@ struct HDRLargeBarcode: View {
     }
 
     private var size: CGSize {
-        let padding = LargeBarcode.padding * 2
-        let ratio = value.kineNoo.implicitRatio
+        let measurer = CodeValueMeasurer(value: value)
+        let ratio = measurer.ratio(in: 2)
         return CGSize(
-            width: LargeBarcode.width + padding,
-            height: (LargeBarcode.width * ratio) + padding
+            width: LargeBarcode.width,
+            height: (LargeBarcode.width / ratio)
         )
     }
 }

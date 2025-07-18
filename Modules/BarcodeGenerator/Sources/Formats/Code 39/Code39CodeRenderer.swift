@@ -4,14 +4,19 @@
 import BarcBarcodes
 
 struct Code39CodeRenderer: CodeRenderer {
-    private let encodedValue: [Bool]
-    private let encoder = Code39Encoder()
+    private let renderer: SingleDimensionCodeRenderer
 
     init(value: Code39CodeValue) {
-        self.encodedValue = encoder.encodedValue(from: value.payload)
+        let encodedValue = Code39Encoder()
+            .encodedValue(from: value.payload)
+        self.renderer = SingleDimensionCodeRenderer(encodedValue: encodedValue)
     }
 
-    var renderedCode: RenderedCode {
-        SingleDimensionCodeRenderer(encodedValue: encodedValue).renderedCode
+    func renderedCode(in ratio: Double) -> RenderedCode {
+        renderer.renderedCode(in: ratio)
+    }
+
+    func kineNoo(in containerRatio: Double) -> Layout {
+        renderer.kineNoo(in: containerRatio)
     }
 }

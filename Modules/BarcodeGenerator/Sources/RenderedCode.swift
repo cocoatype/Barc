@@ -24,7 +24,8 @@ struct RenderedCode {
             height: finalSize.height / currentSize.height
         )
 
-        let transform = CGAffineTransform(scaleX: scale.width, y: scale.height).concatenating(CGAffineTransform(translationX: inset, y: inset))
+        let transform = CGAffineTransform(scaleX: scale.width, y: scale.height)
+            .concatenating(CGAffineTransform(translationX: inset, y: inset))
 
         let scaledRects = rects.map {
             $0.applying(transform)

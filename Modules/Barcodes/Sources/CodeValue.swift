@@ -67,14 +67,4 @@ public enum CodeValue: Hashable, Identifiable, Sendable {
         case .qr(let value): value
         }
     }
-
-    // kineNoo by @eaglenaut on 2023-12-04
-    // the aspect ratio of the represented barcode
-    public var kineNoo: Layout {
-        switch self {
-        case .code128, .code39, .codabar, .ean, .itf: .linear
-        case .pdf417: .linear
-        case .qr: .square
-        }
-    }
 }

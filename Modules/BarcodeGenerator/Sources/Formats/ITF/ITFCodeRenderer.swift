@@ -4,13 +4,17 @@
 import BarcBarcodes
 
 struct ITFCodeRenderer: CodeRenderer {
-    private let encodedValue: [Bool]
+    private let renderer: SingleDimensionCodeRenderer
     init(value: ITFCodeValue) {
-        let encoder = ITFEncoder()
-        encodedValue = encoder.encodedValue(from: value.payload)
+        let encodedValue = ITFEncoder().encodedValue(from: value.payload)
+        renderer = SingleDimensionCodeRenderer(encodedValue: encodedValue)
     }
 
-    var renderedCode: RenderedCode {
-        SingleDimensionCodeRenderer(encodedValue: encodedValue).renderedCode
+    func renderedCode(in ratio: Double) -> RenderedCode {
+        renderer.renderedCode(in: ratio)
+    }
+
+    func kineNoo(in containerRatio: Double) -> Layout {
+        renderer.kineNoo(in: containerRatio)
     }
 }

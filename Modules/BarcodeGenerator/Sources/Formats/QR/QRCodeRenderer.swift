@@ -22,7 +22,7 @@ public struct QRCodeRenderer: CodeRenderer {
         }
     }
 
-    var renderedCode: RenderedCode {
+    func renderedCode(in containerRatio: Double) -> RenderedCode {
         var code = RenderedCode()
         guard let encodedValue else { return code }
 
@@ -34,5 +34,9 @@ public struct QRCodeRenderer: CodeRenderer {
         }
 
         return code
+    }
+
+    func kineNoo(in containerRatio: Double) -> Layout {
+        return .ratio(1)
     }
 }

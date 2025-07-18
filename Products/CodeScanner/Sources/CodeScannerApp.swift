@@ -23,6 +23,7 @@ struct CodeScannerApp: App {
                         do {
                             let value = try await reader.codeValue(in: image)
                             text = try description(for: value)
+                            try print(description(for: value).count)
                         } catch {
                             text = String(describing: error)
                         }

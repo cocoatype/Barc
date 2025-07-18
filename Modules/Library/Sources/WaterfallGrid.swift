@@ -12,33 +12,66 @@ struct WaterfallGrid: Layout {
         self.maxWidth = maxWidth
     }
 
-    func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
+    func sizeThatFits(
+        proposal: ProposedViewSize,
+        subviews: Subviews,
+        cache: inout ()
+    ) -> CGSize {
         let size = proposal.replacingUnspecifiedDimensions()
         let bounds = CGRect(origin: .zero, size: size)
-        let heights = calculateHeights(in: bounds, proposal: proposal, subviews: subviews, shouldPlaceSubviews: false)
+        let heights = calculateHeights(
+            in: bounds,
+            proposal: proposal,
+            subviews: subviews,
+            shouldPlaceSubviews: false
+        )
         return CGSize(width: size.width, height: heights.max() ?? size.height)
     }
 
-    func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {
-        calculateHeights(in: bounds, proposal: proposal, subviews: subviews, shouldPlaceSubviews: true)
+    func placeSubviews(
+        in bounds: CGRect,
+        proposal: ProposedViewSize,
+        subviews: Subviews,
+        cache: inout ()
+    ) {
+        calculateHeights(
+            in: bounds,
+            proposal: proposal,
+            subviews: subviews,
+            shouldPlaceSubviews: true
+        )
     }
 
     @discardableResult
-    func calculateHeights(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, shouldPlaceSubviews: Bool) -> [Double] {
+    func calculateHeights(
+        in bounds: CGRect,
+        proposal: ProposedViewSize,
+        subviews: Subviews,
+        shouldPlaceSubviews: Bool
+    ) -> [Double] {
         let columnWidth = optimalColumnWidth(in: bounds)
         let columnCount = floor(bounds.width / columnWidth)
         let totalColumnWidth = columnWidth * columnCount
         let leftoverWidth = bounds.width - totalColumnWidth
         let columnSpacing = leftoverWidth / (columnCount + 1)
 
+        var columnProposal = proposal
+        columnProposal.width = columnWidth
+
         var columnHeights = [Double](repeating: bounds.minY, count: 2)
         for subview in subviews {
             let columnIndex = columnHeights.minIndex
             let columnHeight = columnHeights[columnIndex]
-            let dimensions = subview.dimensions(in: proposal)
-            let subProposal = ProposedViewSize(width: columnWidth, height: dimensions.height)
+            let dimensions = subview.dimensions(in: columnProposal)
+            let subProposal = ProposedViewSize(
+                width: columnWidth,
+                height: dimensions.height
+            )
 
-            let position = CGPoint(x: bounds.minX + columnSpacing + (Double(columnIndex) * (columnWidth + columnSpacing)), y: columnHeight)
+            let position = CGPoint(
+                x: bounds.minX + columnSpacing + (Double(columnIndex) * (columnWidth + columnSpacing)),
+                y: columnHeight
+            )
             columnHeights[columnIndex] = columnHeight + dimensions.height + columnSpacing
 
             if shouldPlaceSubviews {
@@ -69,7 +102,10 @@ struct WaterfallGrid: Layout {
 
 extension Array<Double> {
     var minIndex: Index {
-        guard let min = self.min(), let minIndex = firstIndex(of: min) else { return startIndex }
+        guard let min = self.min(),
+              let minIndex = firstIndex(of: min)
+        else { return startIndex }
+
         return minIndex
     }
 }

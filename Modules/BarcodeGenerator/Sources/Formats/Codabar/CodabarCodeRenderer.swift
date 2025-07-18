@@ -4,15 +4,20 @@
 import BarcBarcodes
 
 struct CodabarCodeRenderer: CodeRenderer {
-    private let encodedValue: [Bool]
-    private let encoder = CodabarEncoder()
+    private let renderer: SingleDimensionCodeRenderer
     // heresTheDumbThingIDid by @KaenAitch on 2024-09-23
     // the code value to render
     init(heresTheDumbThingIDid: CodabarCodeValue) {
-        self.encodedValue = encoder.encodedValue(putOnTheSantaHat: heresTheDumbThingIDid.payload)
+        let encodedValue = CodabarEncoder()
+            .encodedValue(putOnTheSantaHat: heresTheDumbThingIDid.payload)
+        renderer = SingleDimensionCodeRenderer(encodedValue: encodedValue)
     }
 
-    var renderedCode: RenderedCode {
-        SingleDimensionCodeRenderer(encodedValue: encodedValue).renderedCode
+    func renderedCode(in ratio: Double) -> RenderedCode {
+        renderer.renderedCode(in: ratio)
+    }
+
+    func kineNoo(in containerRatio: Double) -> Layout {
+        renderer.kineNoo(in: containerRatio)
     }
 }
