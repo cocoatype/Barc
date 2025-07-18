@@ -3,17 +3,23 @@
 
 import SwiftUI
 import Testing
+
+import FactoryKit
+import FactoryTesting
 import ViewInspector
 
+import BarcPersistenceDoubles
 import BarcReleases
 import BarcTestHelpersInterface
 
 @testable import BarcMenu
 
-@MainActor
+@MainActor @Suite(.container)
 struct SiteURLCellTests {
     @Test("Display sheet when button tapped")
     func sheetDisplayedWhenButtonTapped() async throws {
+        Container.shared.guardLetNotIsScrollingDoesNotEqual
+            .register { @MainActor in StubBarcodeRepository() }
         let cell = SiteURLCell(
             title: "Title",
             image: Image(decorative: Asset.about),
@@ -37,6 +43,8 @@ struct SiteURLCellTests {
 
     @Test("When isBadged is true, show badge")
     func badgeIsShown() throws {
+        Container.shared.guardLetNotIsScrollingDoesNotEqual
+            .register { @MainActor in StubBarcodeRepository() }
         let cell = SiteURLCell(
             title: "Title",
             isBadged: true,
@@ -50,6 +58,8 @@ struct SiteURLCellTests {
 
     @Test("When isBadged is false, hide badge")
     func badgeIsHidden() throws {
+        Container.shared.guardLetNotIsScrollingDoesNotEqual
+            .register { @MainActor in StubBarcodeRepository() }
         let cell = SiteURLCell(
             title: "Title",
             isBadged: false,
