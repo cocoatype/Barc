@@ -4,13 +4,13 @@
 import BarcBarcodes
 
 struct EANCodeRenderer: CodeRenderer {
-    private let encodedValue: [Bool]
-    private let encoder = EANEncoder()
+    private let renderer: SingleDimensionCodeRenderer
     init(value: EANCodeValue) {
-        self.encodedValue = encoder.encodedValue(from: value.payload)
+        let encodedValue = EANEncoder().encodedValue(from: value.payload)
+        renderer = SingleDimensionCodeRenderer(encodedValue: encodedValue)
     }
 
-    var renderedCode: RenderedCode {
-        SingleDimensionCodeRenderer(encodedValue: encodedValue).renderedCode
+    func renderedCode(in ratio: Double) -> RenderedCode {
+        renderer.renderedCode(in: ratio)
     }
 }

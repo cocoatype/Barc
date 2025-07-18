@@ -1,14 +1,14 @@
 //  Created by Geoff Pado on 11/22/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-public enum Layout {
-    case square
+enum Layout {
     case linear
+    case ratio(Double)
 
     public var implicitRatio: Double {
         switch self {
-        case .square: 1 / 1
-        case .linear: 1 / 2
+        case .linear: 2 / 1
+        case .ratio(let ratio): ratio
         }
     }
 }

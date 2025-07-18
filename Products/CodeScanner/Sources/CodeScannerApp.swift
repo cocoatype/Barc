@@ -8,11 +8,13 @@ import BarcImageReader
 
 @main
 struct CodeScannerApp: App {
+    @State private var text = "Hello, world!"
+
     var body: some Scene {
         WindowGroup {
             ZStack {
-                Rectangle()
-                Text("Hello, world!")
+                Rectangle().fill(Color.clear)
+                Text(text)
             }
                 .dropDestination(for: Data.self) { items, location in
                     guard let imageData = items.first else { fatalError("No data") }
@@ -20,9 +22,10 @@ struct CodeScannerApp: App {
                     Task {
                         do {
                             let value = try await reader.codeValue(in: image)
-                            try dump(description(for: value))
+                            text = try description(for: value)
+                            try print(description(for: value).count)
                         } catch {
-                            print(String(describing: error))
+                            text = String(describing: error)
                         }
                     }
 
@@ -31,18 +34,22 @@ struct CodeScannerApp: App {
         }
     }
 
-    private func description(for codeValue: CodeValue?) throws -> String {
+    private func barcodeType(for codeValue: CodeValue?) -> String {
         guard let codeValue else { return "(null)" }
-        let barcodeType = switch codeValue {
+        return switch codeValue {
         case .code128: "Code 128"
         case .code39: "Code 39"
         case .codabar: "Codabar"
         case .ean: "EAN-13"
-        case .itf: "IFT"
+        case .itf: "ITF"
         case .pdf417: "PDF 417"
         case .qr: "QR"
         }
-        return try "\(barcodeType): \(codeValue.stringRepresentation)"
+    }
+
+    private func description(for codeValue: CodeValue?) throws -> String {
+        guard let codeValue else { return "(null)" }
+        return try "\(barcodeType(for: codeValue)): \(codeValue.stringRepresentation)"
     }
 
     private let reader = ImageReader()

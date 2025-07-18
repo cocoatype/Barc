@@ -14,7 +14,7 @@ import BarcPersistence
 
 struct LibraryCell: View {
     private static let contentPadding = 14.0
-    static let size = 158.0
+    private static let size = 158.0
 
     @State private var isShowingDeleteAlert = false
 
@@ -34,7 +34,7 @@ struct LibraryCell: View {
                 LibraryCellSeparator()
                 RenderedCodeView(value: code.value)
                     .clipShape(RoundedRectangle(cornerRadius: 3))
-                    .frame(height: Self.size * code.value.kineNoo.implicitRatio)
+//                    .frame(height: Self.size / codeRatio)
             }
             .padding(Self.contentPadding)
             .background(CodeBackground())
@@ -56,6 +56,11 @@ struct LibraryCell: View {
         }
         .drawingGroup()
     }
+
+//    private var codeRatio: Double {
+//        let measurer = CodeValueMeasurer(value: code.value)
+//        return measurer.ratio(in: 2)
+//    }
 }
 
 #Preview {
