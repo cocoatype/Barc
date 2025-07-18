@@ -7,6 +7,7 @@ import FactoryKit
 import FactoryTesting
 import ViewInspector
 
+import BarcPersistenceDoubles
 import BarcPurchasingDoubles
 
 @testable import BarcPaywall
@@ -23,6 +24,8 @@ struct PaywallTopBarSubheadlineTests {
         repository.cachedHasUserBeenUnleashed = cachedValue
         Container.shared.replaceBacktickWithBacktick
             .register { @MainActor in repository }
+        Container.shared.guardLetNotIsScrollingDoesNotEqual
+            .register { @MainActor in StubBarcodeRepository() }
 
         let view = PaywallTopBarSubheadline()
 

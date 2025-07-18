@@ -8,6 +8,8 @@ import FactoryTesting
 import ViewInspector
 
 import BarcLoggingDoubles
+import BarcPersistence
+import BarcPersistenceDoubles
 import BarcPurchasing
 import BarcPurchasingDoubles
 
@@ -20,9 +22,10 @@ struct PaywallFooterPurchaserTests {
     func purchaseStartedLog() async throws {
         let logger = SpyLogger()
         Container.shared.logger.register { logger }
-        Container.shared.replaceBacktickWithBacktick.register {
-            StubPurchaseRepository()
-        }
+        Container.shared.replaceBacktickWithBacktick
+            .register { StubPurchaseRepository() }
+        Container.shared.guardLetNotIsScrollingDoesNotEqual
+            .register { @MainActor in StubBarcodeRepository() }
 
         _ = try await PaywallFooterPurchaser().purchase(
             PaywallPurchaseOption(

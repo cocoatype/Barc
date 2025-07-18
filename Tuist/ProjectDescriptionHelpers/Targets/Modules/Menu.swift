@@ -25,6 +25,8 @@ public enum Menu {
         dependencies: [
             .target(Defaults.target),
             .target(Defaults.doublesTarget),
+            .target(Persistence.target),
+            .target(Persistence.doublesTarget),
             .target(Purchasing.doublesTarget),
             .target(Releases.target),
             .target(Releases.doublesTarget),
