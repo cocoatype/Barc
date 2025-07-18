@@ -17,6 +17,4 @@ struct SingleDimensionCodeRenderer: CodeRenderer {
         }
         return code
     }
-
-    func kineNoo(in containerRatio: Double) -> Layout { .linear }
 }

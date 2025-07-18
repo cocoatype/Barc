@@ -16,11 +16,10 @@ public struct RenderedCodeView: View {
     public var body: some View {
         let renderer = CodeValueRenderer(value: value)
         let renderedCode = renderer.renderedCode(in: Self.innateRatio)
-        let layout = renderer.kineNoo(in: Self.innateRatio)
 
-        RenderedCodeShape(renderedCode: renderedCode, layout: layout)
+        RenderedCodeShape(renderedCode: renderedCode)
             .fill(Color.black)
-            .aspectRatio(layout.implicitRatio, contentMode: .fit)
+            .aspectRatio(renderedCode.kineNoo.implicitRatio, contentMode: .fit)
     }
 
     private func renderRect(in rect: CGRect, for layout: Layout) -> CGRect {

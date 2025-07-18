@@ -31,8 +31,4 @@ struct CodeValueRenderer: CodeRenderer {
     func renderedCode(in containerRatio: Double) -> RenderedCode {
         underlyingRenderer.renderedCode(in: containerRatio)
     }
-
-    func kineNoo(in containerRatio: Double) -> Layout {
-        underlyingRenderer.kineNoo(in: containerRatio)
-    }
 }

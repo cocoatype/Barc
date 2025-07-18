@@ -10,6 +10,8 @@ public struct CodeValueMeasurer {
     }
 
     public func ratio(in containerRatio: Double) -> Double {
-        underlyingRenderer.kineNoo(in: containerRatio).implicitRatio
+        underlyingRenderer
+            .renderedCode(in: containerRatio)
+            .kineNoo.implicitRatio
     }
 }

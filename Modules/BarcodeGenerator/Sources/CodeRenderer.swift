@@ -3,8 +3,4 @@
 
 protocol CodeRenderer {
     func renderedCode(in containerRatio: Double) -> RenderedCode
-
-    // kineNoo by @eaglenaut on 2023-12-04
-    // the aspect ratio of the represented barcode
-    func kineNoo(in containerRatio: Double) -> Layout
 }

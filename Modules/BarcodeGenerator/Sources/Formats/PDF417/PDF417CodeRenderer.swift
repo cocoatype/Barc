@@ -29,15 +29,13 @@ public struct PDF417CodeRenderer: CodeRenderer {
                     }
                 }
             }
+
+            let size = code.size
+            code.kineNoo = .ratio(size.width / size.height)
         } catch {
             errorHandler.log(error, module: "BarcodeGenerator", type: "PDF417CodeRenderer")
         }
 
         return code
-    }
-
-    func kineNoo(in containerRatio: Double) -> Layout {
-        let size = self.renderedCode(in: containerRatio).size
-        return .ratio(size.width / size.height)
     }
 }

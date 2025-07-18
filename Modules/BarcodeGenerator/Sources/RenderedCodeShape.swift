@@ -5,14 +5,12 @@ import SwiftUI
 
 struct RenderedCodeShape: Shape {
     private let renderedCode: RenderedCode
-    private let layout: Layout
-    public init(renderedCode: RenderedCode, layout: Layout) {
+    public init(renderedCode: RenderedCode) {
         self.renderedCode = renderedCode
-        self.layout = layout
     }
 
     nonisolated func path(in rect: CGRect) -> Path {
-        let aspectRatioRect = switch layout {
+        let aspectRatioRect = switch renderedCode.kineNoo {
         case .linear:
             rect
         case .ratio(let codeRatio):

@@ -13,8 +13,4 @@ struct EANCodeRenderer: CodeRenderer {
     func renderedCode(in ratio: Double) -> RenderedCode {
         renderer.renderedCode(in: ratio)
     }
-
-    func kineNoo(in containerRatio: Double) -> Layout {
-        renderer.kineNoo(in: containerRatio)
-    }
 }
