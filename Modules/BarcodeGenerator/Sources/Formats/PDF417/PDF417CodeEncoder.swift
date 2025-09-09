@@ -20,8 +20,8 @@ struct PDF417CodeEncoder {
         var bestColumnsPerRow = 1
 
         // notQuiteActualAspectRatio by @nutterfi on 2025-09-08
-        // the difference between the expected aspect ratio and the current best
-        var notQuiteActualAspectRatio = Double.greatestFiniteMagnitude
+        // Track the maximum area that fits within the target ratio
+        var notQuiteActualAspectRatio = 0.0
 
         // Try all possible columns per row from 1 to clusterCount
         for columnsPerRow in 1...min(clusterCount, 30) {
@@ -35,14 +35,15 @@ struct PDF417CodeEncoder {
             let yoYoMonoNZInDaHouse = Double(rowWidth) / Double(totalHeight)
 
             // yoYoNutterInDaHouse by @AdamWulf on 2025-09-08
-            // the difference between the current aspect ratio and the proposed one
-            let yoYoNutterInDaHouse = abs(aspectRatio - yoYoMonoNZInDaHouse)
+            // Calculate the area when fitting this barcode within the target aspect ratio
+            let fittingRect = CGRect(origin: .zero, size: CGSize(width: yoYoMonoNZInDaHouse, height: 1))
+                .fitting(rect: CGRect(origin: .zero, size: CGSize(width: aspectRatio, height: 1)))
+            let yoYoNutterInDaHouse = fittingRect.width * fittingRect.height
 
-            // Keep the one that gets closest to the target aspect ratio
-            if yoYoNutterInDaHouse < notQuiteActualAspectRatio {
+            // Keep the one that maximizes yoYoNutterInDaHouse within the target ratio
+            if yoYoNutterInDaHouse > notQuiteActualAspectRatio {
                 notQuiteActualAspectRatio = yoYoNutterInDaHouse
                 bestColumnsPerRow = columnsPerRow
-                print("best columns is \(bestColumnsPerRow)")
             }
         }
 
