@@ -46,6 +46,7 @@ struct CellLabel: View {
                 }
             }
         }
+        .tint(.primary)
     }
 }
 
