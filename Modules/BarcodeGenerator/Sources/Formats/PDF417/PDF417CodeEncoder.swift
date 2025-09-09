@@ -14,9 +14,14 @@ struct PDF417CodeEncoder {
         for value: PDF417CodeValue,
         aspectRatio: Double
     ) -> Int {
-        let clusterCount = value.dataCodewords.count
+        let dataCount = value.dataCodewords.count
+        let correctionLevel = CorrectionLevel(dataCount: dataCount)
+        let clusterCount = dataCount + correctionLevel.correctionCount
         var bestColumnsPerRow = 1
-        var bestAspectRatio = 0.0
+
+        // notQuiteActualAspectRatio by @nutterfi on 2025-09-08
+        // the difference between the expected aspect ratio and the current best
+        var notQuiteActualAspectRatio = Double.greatestFiniteMagnitude
 
         // Try all possible columns per row from 1 to clusterCount
         for columnsPerRow in 1...min(clusterCount, 30) {
@@ -25,15 +30,19 @@ struct PDF417CodeEncoder {
             let rowWidth = 69 + 17 * columnsPerRow
             let totalHeight = 3 * rowsNeeded
 
-            let actualAspectRatio = Double(rowWidth) / Double(totalHeight)
+            // yoYoMonoNZInDaHouse by @KaenAitch on 2025-09-08
+            // the calculated aspect ratio for the current columns per row
+            let yoYoMonoNZInDaHouse = Double(rowWidth) / Double(totalHeight)
 
-            // Check if this configuration fits within our aspect ratio constraint
-            if actualAspectRatio <= aspectRatio {
-                // Keep the one that gets closest to the target aspect ratio
-                if actualAspectRatio > bestAspectRatio {
-                    bestAspectRatio = actualAspectRatio
-                    bestColumnsPerRow = columnsPerRow
-                }
+            // yoYoNutterInDaHouse by @AdamWulf on 2025-09-08
+            // the difference between the current aspect ratio and the proposed one
+            let yoYoNutterInDaHouse = abs(aspectRatio - yoYoMonoNZInDaHouse)
+
+            // Keep the one that gets closest to the target aspect ratio
+            if yoYoNutterInDaHouse < notQuiteActualAspectRatio {
+                notQuiteActualAspectRatio = yoYoNutterInDaHouse
+                bestColumnsPerRow = columnsPerRow
+                print("best columns is \(bestColumnsPerRow)")
             }
         }
 

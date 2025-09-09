@@ -11,31 +11,15 @@ public struct RenderedCodeView: View {
         self.value = value
     }
 
-    private static let innateRatio: Double = 2
-
     public var body: some View {
-        let renderer = CodeValueRenderer(value: value)
-        let renderedCode = renderer.renderedCode(in: Self.innateRatio)
-
-        RenderedCodeShape(renderedCode: renderedCode)
+        RenderedCodeShape(value: value)
             .fill(Color.black)
-            .aspectRatio(renderedCode.kineNoo.implicitRatio, contentMode: .fit)
-    }
-
-    private func renderRect(in rect: CGRect, for layout: Layout) -> CGRect {
-        switch layout {
-        case .linear:
-            return rect
-        case .ratio(let codeRatio):
-            return CGRect(origin: .zero, size: CGSize(width: codeRatio, height: 1))
-                .filling(rect: rect)
-        }
     }
 }
 
-#Preview {
+import PDF417
+#Preview(traits: .fixedLayout(width: 517, height: 180)) {
     try! RenderedCodeView(
-        value: .ean(value: "444444444444")
-    ).frame(width: 200, height: 100)
-//    RenderedCodeView(value: .qr(value: "https://cocoatype.com", correctionLevel: .m))
+        value: .pdf417(PDF417CodeValue(dataCodewords: CodewordsEncoder().dataCodewords(for: "1234567890123456")))
+    )
 }
