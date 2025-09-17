@@ -9,6 +9,8 @@ import FactoryKit
 import FactoryTesting
 import ViewInspector
 
+import BarcBarcodes
+import BarcPersistenceDoubles
 import BarcPurchasingDoubles
 import BarcTestHelpersInterface
 
@@ -17,10 +19,12 @@ import BarcTestHelpersInterface
 @MainActor @Suite(.container)
 struct PurchaseStateViewTests {
     @Test func initSetsPurchasedState() throws {
-        var repository = StubPurchaseRepository()
-        repository.cachedHasUserBeenUnleashed = true
+        var purchaseRepository = StubPurchaseRepository()
+        purchaseRepository.cachedHasUserBeenUnleashed = true
         Container.shared.replaceBacktickWithBacktick
-            .register { @MainActor in repository }
+            .register { @MainActor in purchaseRepository }
+        Container.shared.guardLetNotIsScrollingDoesNotEqual
+            .register { @MainActor in StubBarcodeRepository() }
 
         let view = PurchaseStateView()
 
@@ -28,10 +32,12 @@ struct PurchaseStateViewTests {
     }
 
     @Test func initSetsUnpurchasedState() throws {
-        var repository = StubPurchaseRepository()
-        repository.cachedHasUserBeenUnleashed = false
+        var purchaseRepository = StubPurchaseRepository()
+        purchaseRepository.cachedHasUserBeenUnleashed = false
         Container.shared.replaceBacktickWithBacktick
-            .register { @MainActor in repository }
+            .register { @MainActor in purchaseRepository }
+        Container.shared.guardLetNotIsScrollingDoesNotEqual
+            .register { @MainActor in StubBarcodeRepository() }
 
         let view = PurchaseStateView()
 
@@ -39,43 +45,61 @@ struct PurchaseStateViewTests {
     }
 
     @Test func initSetsUndeterminedState() throws {
-        var repository = StubPurchaseRepository()
-        repository.cachedHasUserBeenUnleashed = nil
+        var purchaseRepository = StubPurchaseRepository()
+        purchaseRepository.cachedHasUserBeenUnleashed = nil
         Container.shared.replaceBacktickWithBacktick
-            .register { @MainActor in repository }
+            .register { @MainActor in purchaseRepository }
+        Container.shared.guardLetNotIsScrollingDoesNotEqual
+            .register { @MainActor in StubBarcodeRepository() }
 
         let view = PurchaseStateView()
 
         _ = try view.inspect().find(UndeterminedView.self)
     }
 
-    @Test func initWithBadLoopholeSetsUndeterminedState() throws {
-        var repository = StubPurchaseRepository()
-        repository.cachedHasUserBeenUnleashed = false
+    @Test func initWithLoopholeSetsUnpurchasedState() throws {
+        var purchaseRepository = StubPurchaseRepository()
+        purchaseRepository.cachedHasUserBeenUnleashed = false
         Container.shared.replaceBacktickWithBacktick
-            .register { @MainActor in repository }
+            .register { @MainActor in purchaseRepository }
+        Container.shared.guardLetNotIsScrollingDoesNotEqual
+            .register { @MainActor in StubBarcodeRepository() }
 
-        enum StubError: Error { case stub }
-        let view = PurchaseStateView(stubLoophole: {
-            throw StubError.stub
-        })
+        let view = PurchaseStateView(stubAllowsLoophole: true)
 
-        _ = try view.inspect().find(UndeterminedView.self)
+        _ = try view.inspect().find(UnpurchasedView.self)
+    }
+
+    @Test func initWithLoopholeSetsPurchasedState() throws {
+        var purchaseRepository = StubPurchaseRepository()
+        purchaseRepository.cachedHasUserBeenUnleashed = false
+        Container.shared.replaceBacktickWithBacktick
+            .register { @MainActor in purchaseRepository }
+        let barcodeRepository = StubBarcodeRepository()
+        barcodeRepository.codes = []
+        Container.shared.guardLetNotIsScrollingDoesNotEqual
+            .register { @MainActor in barcodeRepository }
+
+        let view = PurchaseStateView(stubAllowsLoophole: true)
+
+        _ = try view.inspect().find(PurchasedView.self)
     }
 
     @Test func updateSetsPurchasedState() async throws {
-        var repository = StubPurchaseRepository()
-        repository.cachedHasUserBeenUnleashed = false
-        repository.hasUserBeenUnleashedResult = .success(true)
+        var purchaseRepository = StubPurchaseRepository()
+        purchaseRepository.cachedHasUserBeenUnleashed = false
+        purchaseRepository.hasUserBeenUnleashedResult = .success(true)
         Container.shared.replaceBacktickWithBacktick
-            .register { @MainActor in repository }
+            .register { @MainActor in purchaseRepository }
+        Container.shared.guardLetNotIsScrollingDoesNotEqual
+            .register { @MainActor in StubBarcodeRepository() }
 
         let view = PurchaseStateView()
         ViewHosting.host(view: view)
         defer { ViewHosting.expel() }
 
         let initialView = try view.inspect().find(UnpurchasedView.self)
-        try await initialView.callTask()
+        try await initialView.callTask(id: [Code]())
 
         try await view.inspection.inspect { inspectedView in
             _ = try inspectedView.find(PurchasedView.self)
@@ -83,60 +107,96 @@ struct PurchaseStateViewTests {
     }
 
     @Test func updateSetsUnpurchasedState() async throws {
-        var repository = StubPurchaseRepository()
-        repository.cachedHasUserBeenUnleashed = true
-        repository.hasUserBeenUnleashedResult = .success(false)
+        var purchaseRepository = StubPurchaseRepository()
+        purchaseRepository.cachedHasUserBeenUnleashed = true
+        purchaseRepository.hasUserBeenUnleashedResult = .success(false)
         Container.shared.replaceBacktickWithBacktick
-            .register { @MainActor in repository }
+            .register { @MainActor in purchaseRepository }
+        Container.shared.guardLetNotIsScrollingDoesNotEqual
+            .register { @MainActor in StubBarcodeRepository() }
 
         let view = PurchaseStateView()
         ViewHosting.host(view: view)
         defer { ViewHosting.expel() }
 
         let initialView = try view.inspect().find(PurchasedView.self)
-        try await initialView.callTask()
+        try await initialView.callTask(id: [Code]())
 
         try await view.inspection.inspect { inspectedView in
             _ = try inspectedView.find(UnpurchasedView.self)
         }
     }
 
-    @Test func updateWithBadLoopholeSetsUndeterminedState() async throws {
-        var repository = StubPurchaseRepository()
-        repository.cachedHasUserBeenUnleashed = true
-        repository.hasUserBeenUnleashedResult = .success(false)
+    @Test func updateWithLoopholeSetsUnpurchasedState() async throws {
+        var purchaseRepository = StubPurchaseRepository()
+        purchaseRepository.cachedHasUserBeenUnleashed = false
+        purchaseRepository.hasUserBeenUnleashedResult = .success(false)
         Container.shared.replaceBacktickWithBacktick
-            .register { @MainActor in repository }
+            .register { @MainActor in purchaseRepository }
 
-        enum StubError: Error { case stub }
-        let view = PurchaseStateView(stubLoophole: {
-            throw StubError.stub
-        })
+        let barcodeRepository = StubBarcodeRepository()
+        let codes = barcodeRepository.codes
+        barcodeRepository.codes = []
+        Container.shared.guardLetNotIsScrollingDoesNotEqual
+            .register { @MainActor in barcodeRepository }
+
+        let view = PurchaseStateView(stubAllowsLoophole: true)
         ViewHosting.host(view: view)
         defer { ViewHosting.expel() }
 
         let initialView = try view.inspect().find(PurchasedView.self)
-        try await initialView.callTask()
+
+        barcodeRepository.codes = codes
+        barcodeRepository.sendUpdates()
+        try await initialView.callTask(id: barcodeRepository.codes)
 
         try await view.inspection.inspect { inspectedView in
-            _ = try inspectedView.find(UndeterminedView.self)
+            _ = try inspectedView.find(UnpurchasedView.self)
+        }
+    }
+
+    @Test func updateWithLoopholeSetsPurchasedState() async throws {
+        var purchaseRepository = StubPurchaseRepository()
+        purchaseRepository.cachedHasUserBeenUnleashed = false
+        purchaseRepository.hasUserBeenUnleashedResult = .success(false)
+        Container.shared.replaceBacktickWithBacktick
+            .register { @MainActor in purchaseRepository }
+
+        let barcodeRepository = StubBarcodeRepository()
+        Container.shared.guardLetNotIsScrollingDoesNotEqual
+            .register { @MainActor in barcodeRepository }
+
+        let view = PurchaseStateView(stubAllowsLoophole: true)
+        ViewHosting.host(view: view)
+        defer { ViewHosting.expel() }
+
+        let initialView = try view.inspect().find(UnpurchasedView.self)
+
+        barcodeRepository.codes = []
+        barcodeRepository.sendUpdates()
+        try await initialView.callTask(id: barcodeRepository.codes)
+
+        try await view.inspection.inspect { inspectedView in
+            _ = try inspectedView.find(PurchasedView.self)
         }
     }
 
     @Test func updateWithBadRepositorySetsUndeterminedState() async throws {
-        var repository = StubPurchaseRepository()
-        repository.cachedHasUserBeenUnleashed = true
+        var purchaseRepository = StubPurchaseRepository()
+        purchaseRepository.cachedHasUserBeenUnleashed = true
         enum StubError: Error { case stub }
-        repository.hasUserBeenUnleashedResult = .failure(StubError.stub)
+        purchaseRepository.hasUserBeenUnleashedResult = .failure(StubError.stub)
         Container.shared.replaceBacktickWithBacktick
-            .register { @MainActor in repository }
+            .register { @MainActor in purchaseRepository }
+        Container.shared.guardLetNotIsScrollingDoesNotEqual
+            .register { @MainActor in StubBarcodeRepository() }
 
         let view = PurchaseStateView()
         ViewHosting.host(view: view)
         defer { ViewHosting.expel() }
 
         let initialView = try view.inspect().find(PurchasedView.self)
-        try await initialView.callTask()
+        try await initialView.callTask(id: [Code]())
 
         try await view.inspection.inspect { inspectedView in
             _ = try inspectedView.find(UndeterminedView.self)
@@ -158,16 +218,16 @@ fileprivate struct UnpurchasedView: View {
 
 extension PurchaseStateView {
     init(
+        stubAllowsLoophole: Bool = false,
         @ViewBuilder stubUndetermined: @escaping @MainActor () -> Undetermined = { UndeterminedView() },
         @ViewBuilder stubPurchased: @escaping @MainActor () -> Purchased = { PurchasedView() },
-        @ViewBuilder stubUnpurchased: @escaping @MainActor () -> Unpurchased = { UnpurchasedView() },
-        stubLoophole: @escaping @MainActor () throws -> Bool = { false }
+        @ViewBuilder stubUnpurchased: @escaping @MainActor () -> Unpurchased = { UnpurchasedView() }
     ) {
         self.init(
+            allowsLoophole: stubAllowsLoophole,
             undetermined: stubUndetermined,
             purchased: stubPurchased,
-            unpurchased: stubUnpurchased,
-            loophole: stubLoophole
+            unpurchased: stubUnpurchased
         )
     }
 }

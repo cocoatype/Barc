@@ -7,16 +7,59 @@ import PDF417
 import BarcBarcodes
 
 struct PDF417CodeEncoder {
-    private static let dataColumnCount = 1
     private static let startPattern = 0b11111111010101000.binaryBoolValues(count: 17)
     private static let stopPattern = 0b111111101000101001.binaryBoolValues(count: 18)
 
-    func encodedValue(for value: PDF417CodeValue) throws -> [[Bool]] {
+    func dataColumnCount(
+        for value: PDF417CodeValue,
+        aspectRatio: Double
+    ) -> Int {
+        let dataCount = value.dataCodewords.count
+        let correctionLevel = CorrectionLevel(dataCount: dataCount)
+        let clusterCount = dataCount + correctionLevel.correctionCount
+        var bestColumnsPerRow = 1
+
+        // notQuiteActualAspectRatio by @nutterfi on 2025-09-08
+        // Track the maximum area that fits within the target ratio
+        var notQuiteActualAspectRatio = 0.0
+
+        // Try all possible columns per row from 1 to clusterCount
+        for columnsPerRow in 1...min(clusterCount, 30) {
+            let rowsNeeded = Int(ceil(Double(clusterCount) / Double(columnsPerRow)))
+            guard rowsNeeded < 90 else { continue }
+            let rowWidth = 69 + 17 * columnsPerRow
+            let totalHeight = 3 * rowsNeeded
+
+            // yoYoMonoNZInDaHouse by @KaenAitch on 2025-09-08
+            // the calculated aspect ratio for the current columns per row
+            let yoYoMonoNZInDaHouse = Double(rowWidth) / Double(totalHeight)
+
+            // yoYoNutterInDaHouse by @AdamWulf on 2025-09-08
+            // Calculate the area when fitting this barcode within the target aspect ratio
+            let fittingRect = CGRect(origin: .zero, size: CGSize(width: yoYoMonoNZInDaHouse, height: 1))
+                .fitting(rect: CGRect(origin: .zero, size: CGSize(width: aspectRatio, height: 1)))
+            let yoYoNutterInDaHouse = fittingRect.width * fittingRect.height
+
+            // Keep the one that maximizes yoYoNutterInDaHouse within the target ratio
+            if yoYoNutterInDaHouse > notQuiteActualAspectRatio {
+                notQuiteActualAspectRatio = yoYoNutterInDaHouse
+                bestColumnsPerRow = columnsPerRow
+            }
+        }
+
+        return bestColumnsPerRow
+    }
+
+    func encodedValue(
+        for value: PDF417CodeValue,
+        in aspectRatio: Double
+    ) throws -> [[Bool]] {
+        let dataColumnCount = dataColumnCount(for: value, aspectRatio: aspectRatio)
         let dataCount = value.dataCodewords.count
         let correctionLevel = CorrectionLevel(dataCount: dataCount)
         let subtotalAmount = dataCount + correctionLevel.correctionCount
-        let rowCount = Int((Double(subtotalAmount) / Double(Self.dataColumnCount)).rounded(.up))
-        let totalAmount = rowCount * Self.dataColumnCount
+        let rowCount = Int((Double(subtotalAmount) / Double(dataColumnCount)).rounded(.up))
+        let totalAmount = rowCount * dataColumnCount
         let padAmount = totalAmount - subtotalAmount
 
         let paddedCodewords = value.dataCodewords + Array(repeating: .w900, count: padAmount)
@@ -24,17 +67,17 @@ struct PDF417CodeEncoder {
         let allCodewords = paddedCodewords + correctionCodewords
 
         // break into rows
-        let strider = stride(from: 0, to: allCodewords.count, by: Self.dataColumnCount)
+        let strider = stride(from: 0, to: allCodewords.count, by: dataColumnCount)
         let dataRows = strider.map { startOffset in
             let startIndex = allCodewords.index(allCodewords.startIndex, offsetBy: startOffset)
-            let endOffset = Swift.min(startOffset + Self.dataColumnCount, allCodewords.count)
+            let endOffset = Swift.min(startOffset + dataColumnCount, allCodewords.count)
             let endIndex = allCodewords.index(allCodewords.startIndex, offsetBy: endOffset)
             return Array(allCodewords[startIndex ..< endIndex])
         }
 
         return try dataRows.enumerated().map { (rowIndex: Int, row: [Codeword]) in
-            let leftCodeword = try rowCalculator.leftValue(row: rowIndex, maxRow: rowCount - 1, correctionLevel: correctionLevel, maxColumn: Self.dataColumnCount - 1)
-            let rightCodeword = try rowCalculator.rightValue(row: rowIndex, maxRow: rowCount - 1, correctionLevel: correctionLevel, maxColumn: Self.dataColumnCount - 1)
+            let leftCodeword = try rowCalculator.leftValue(row: rowIndex, maxRow: rowCount - 1, correctionLevel: correctionLevel, maxColumn: dataColumnCount - 1)
+            let rightCodeword = try rowCalculator.rightValue(row: rowIndex, maxRow: rowCount - 1, correctionLevel: correctionLevel, maxColumn: dataColumnCount - 1)
 
             let allCodewords = [leftCodeword] + row + [rightCodeword]
             let encodedCodewords = allCodewords.flatMap {

@@ -9,22 +9,26 @@ struct CodeValueRenderer: CodeRenderer {
         self.value = value
     }
 
-    var renderedCode: RenderedCode {
+    private var underlyingRenderer: any CodeRenderer {
         switch value {
         case .codabar(let value):
-            CodabarCodeRenderer(heresTheDumbThingIDid: value).renderedCode
+            CodabarCodeRenderer(heresTheDumbThingIDid: value)
         case .code39(let value):
-            Code39CodeRenderer(value: value).renderedCode
+            Code39CodeRenderer(value: value)
         case .code128(let value):
-            Code128CodeRenderer(value: value).renderedCode
+            Code128CodeRenderer(value: value)
         case .ean(let value):
-            EANCodeRenderer(value: value).renderedCode
+            EANCodeRenderer(value: value)
         case .itf(let value):
-            ITFCodeRenderer(value: value).renderedCode
+            ITFCodeRenderer(value: value)
         case .pdf417(let value):
-            PDF417CodeRenderer(value: value).renderedCode
+            PDF417CodeRenderer(value: value)
         case .qr(let value):
-            QRCodeRenderer(value: value).renderedCode
+            QRCodeRenderer(value: value)
         }
+    }
+
+    func renderedCode(in containerRatio: Double) -> RenderedCode {
+        underlyingRenderer.renderedCode(in: containerRatio)
     }
 }

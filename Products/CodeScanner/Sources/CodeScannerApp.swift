@@ -1,31 +1,55 @@
 //  Created by Geoff Pado on 9/22/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-import BarcImageReader
 import SwiftUI
+
+import BarcBarcodes
+import BarcImageReader
 
 @main
 struct CodeScannerApp: App {
+    @State private var text = "Hello, world!"
+
     var body: some Scene {
         WindowGroup {
             ZStack {
-                Rectangle()
-                Text("Hello, world!")
+                Rectangle().fill(Color.clear)
+                Text(text)
             }
                 .dropDestination(for: Data.self) { items, location in
                     guard let imageData = items.first else { fatalError("No data") }
                     let image = CGImage.image(from: imageData)
                     Task {
                         do {
-                            try await dump(reader.codeValue(in: image))
+                            let value = try await reader.codeValue(in: image)
+                            text = try description(for: value)
+                            try print(description(for: value).count)
                         } catch {
-                            print(String(describing: error))
+                            text = String(describing: error)
                         }
                     }
 
                     return true
                 }
         }
+    }
+
+    private func barcodeType(for codeValue: CodeValue?) -> String {
+        guard let codeValue else { return "(null)" }
+        return switch codeValue {
+        case .code128: "Code 128"
+        case .code39: "Code 39"
+        case .codabar: "Codabar"
+        case .ean: "EAN-13"
+        case .itf: "ITF"
+        case .pdf417: "PDF 417"
+        case .qr: "QR"
+        }
+    }
+
+    private func description(for codeValue: CodeValue?) throws -> String {
+        guard let codeValue else { return "(null)" }
+        return try "\(barcodeType(for: codeValue)): \(codeValue.stringRepresentation)"
     }
 
     private let reader = ImageReader()

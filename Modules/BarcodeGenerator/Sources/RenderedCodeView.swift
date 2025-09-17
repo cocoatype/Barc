@@ -12,37 +12,14 @@ public struct RenderedCodeView: View {
     }
 
     public var body: some View {
-        let renderedCode = CodeValueRenderer(value: value).renderedCode
-
-        GeometryReader { proxy in
-            let proxyRect = CGRect(origin: .zero, size: proxy.size)
-            let aspectRatioRect = renderRect(in: proxyRect, for: value.kineNoo)
-            let scaledCode = renderedCode.scaled(to: aspectRatioRect.size)
-                .translated(to: aspectRatioRect.origin)
-
-            Path { path in
-                for i in 0..<scaledCode.rects.count {
-                    path.addRect(scaledCode.rects[i])
-                }
-            }
+        RenderedCodeShape(value: value)
             .fill(Color.black)
-        }
-    }
-
-    private func renderRect(in rect: CGRect, for layout: BarcBarcodes.Layout) -> CGRect {
-        switch layout {
-        case .square:
-            return CGRect(origin: .zero, size: CGSize(width: 1, height: 1))
-                .fitting(rect: rect)
-        case .linear:
-            return rect
-        }
     }
 }
 
-#Preview {
+import PDF417
+#Preview(traits: .fixedLayout(width: 517, height: 180)) {
     try! RenderedCodeView(
-        value: .ean(value: "444444444444")
-    ).frame(width: 200, height: 100)
-//    RenderedCodeView(value: .qr(value: "https://cocoatype.com", correctionLevel: .m))
+        value: .pdf417(PDF417CodeValue(dataCodewords: CodewordsEncoder().dataCodewords(for: "1234567890123456")))
+    )
 }

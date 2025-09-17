@@ -4,6 +4,7 @@
 import SwiftUI
 
 import BarcBarcodes
+import BarcBarcodeGenerator
 import BarcDesignSystem
 
 struct BarcodeViewBackground: View {
@@ -18,10 +19,16 @@ struct BarcodeViewBackground: View {
         GeometryReader { geometry in
             VStack(spacing: 0) {
                 Color.barcodeViewHeader
-                    .frame(height: offset + (LargeBarcode.width * value.kineNoo.implicitRatio * 0.7))
+                    .frame(height: offset + height)
                 Color.systemGroupedBackground
             }.ignoresSafeArea()
         }
+    }
+
+    private var height: Double {
+        let measurer = CodeValueMeasurer(value: value)
+        let ratio = measurer.ratio(in: 2)
+        return LargeBarcode.width / ratio
     }
 }
 

@@ -9,6 +9,7 @@ import ViewInspector
 
 import BarcLogging
 import BarcLoggingDoubles
+import BarcPersistenceDoubles
 import BarcTestHelpers
 
 @testable import BarcPaywall
@@ -20,6 +21,8 @@ struct PaywallViewTests {
     func onAppearEvent() async throws {
         let logger = SpyLogger()
         Container.shared.logger.register { logger }
+        Container.shared.guardLetNotIsScrollingDoesNotEqual
+            .register { @MainActor in StubBarcodeRepository() }
         let paywall = PaywallView()
 
         ViewHosting.host(view: paywall)
