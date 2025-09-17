@@ -31,6 +31,7 @@ struct AppIconRow: View {
                 }
             }
         }
+        .tint(.primary)
     }
 }
 

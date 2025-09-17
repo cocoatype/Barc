@@ -31,15 +31,12 @@ struct PhotoLibraryToolbarItem: View {
     }
 
     @ViewBuilder private var currentButton: some View {
-        PurchaseStateView {
+        PurchaseStateView(allowsLoophole: true) {
             PhotoLibraryDisabledButton()
         } purchased: {
             PhotoLibraryPresentingButton()
         } unpurchased: {
             PhotoLibraryAlertButton(isShowingPurchaseAlert: $isShowingPurchaseAlert)
-        } loophole: {
-            let codesCount = try barcodeRepository.codes.count
-            return codesCount < Purchasing.maxBarcodesCount
         }
     }
 }

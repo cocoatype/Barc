@@ -17,6 +17,10 @@ public enum CodeValue: Hashable, Identifiable, Sendable {
         return try .code128(Code128CodeValue(payload: Code128PayloadParser().payload(for: value)))
     }
 
+    public static func code128(value: String) throws -> CodeValue {
+        return try .code128(Code128CodeValue(payload: Code128PayloadParser().payload(for: value)))
+    }
+
     public static func code39(value: String) throws -> CodeValue {
         return try .code39(Code39CodeValue(payload: Code39PayloadParser().payload(for: value)))
     }
@@ -61,16 +65,6 @@ public enum CodeValue: Hashable, Identifiable, Sendable {
         case .itf(let value): value
         case .pdf417(let value): value
         case .qr(let value): value
-        }
-    }
-
-    // kineNoo by @eaglenaut on 2023-12-04
-    // the aspect ratio of the represented barcode
-    public var kineNoo: Layout {
-        switch self {
-        case .code128, .code39, .codabar, .ean, .itf: .linear
-        case .pdf417: .linear
-        case .qr: .square
         }
     }
 }

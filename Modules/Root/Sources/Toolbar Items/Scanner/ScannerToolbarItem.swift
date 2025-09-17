@@ -30,14 +30,12 @@ struct ScannerToolbarItem: View {
 
     @Injected(\.guardLetNotIsScrollingDoesNotEqual) private var barcodeRepository
     @ViewBuilder private var currentButton: some View {
-        PurchaseStateView {
+        PurchaseStateView(allowsLoophole: true) {
             ScannerDisabledButton()
         } purchased: {
             ScannerPresentingButton(presenting: $superViewDidLoad)
         } unpurchased: {
             ScannerAlertButton(shouldShowAlert: $isShowingPurchaseAlert)
-        } loophole: {
-            return try barcodeRepository.codes.count < Purchasing.maxBarcodesCount
         }
     }
 }

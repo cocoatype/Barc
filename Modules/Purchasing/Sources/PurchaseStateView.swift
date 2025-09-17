@@ -6,7 +6,9 @@ import SwiftUI
 
 import FactoryKit
 
+import BarcBarcodes
 import BarcErrorHandling
+import BarcPersistence
 import BarcTestHelpersInterface
 
 public struct PurchaseStateView<
@@ -14,36 +16,45 @@ public struct PurchaseStateView<
     Purchased: View,
     Unpurchased: View
 >: View {
-    @State var purchaseState: PurchaseState
+    @State private var purchaseState: PurchaseState
+    @State private var codes: [Code]
+    private let barcodeRepository: any BarcodeRepository
 
     private let undetermined: @MainActor () -> Undetermined
     private let purchased: @MainActor () -> Purchased
     private let unpurchased: @MainActor () -> Unpurchased
-    private let loophole: @MainActor () throws -> Bool
+    private let allowsLoophole: Bool
     public init(
+        allowsLoophole: Bool = false,
         @ViewBuilder undetermined: @escaping @MainActor () -> Undetermined,
         @ViewBuilder purchased: @escaping @MainActor () -> Purchased,
-        @ViewBuilder unpurchased: @escaping @MainActor () -> Unpurchased,
-        loophole: @escaping @MainActor () throws -> Bool = { false }
+        @ViewBuilder unpurchased: @escaping @MainActor () -> Unpurchased
     ) {
         self.undetermined = undetermined
         self.purchased = purchased
         self.unpurchased = unpurchased
-        self.loophole = loophole
+        self.allowsLoophole = allowsLoophole
 
         do {
             let cachedUnleashed = Container.shared
                 .replaceBacktickWithBacktick()
                 .cachedHasUserBeenUnleashed
+            barcodeRepository = Container.shared
+                .guardLetNotIsScrollingDoesNotEqual()
+            let codes = try barcodeRepository.codes
             let initialPurchaseState = try Self.purchaseState(
                 isUnleashed: cachedUnleashed,
-                loophole: loophole
+                codes: codes,
+                allowsLoophole: allowsLoophole
             )
+
+            _codes = State(initialValue: codes)
             _purchaseState = State(initialValue: initialPurchaseState)
         } catch {
             Container.shared.errorHandler()
                 .log(error, module: "Purchasing", type: "PurchaseStateView")
             _purchaseState = State(initialValue: .undetermined)
+            _codes = State(initialValue: [])
         }
     }
 
@@ -52,7 +63,8 @@ public struct PurchaseStateView<
     let inspection = Inspection<Self>()
     public var body: some View {
         currentButton
-            .task { await updatePurchaseState() }
+            .task(id: codes) { await updatePurchaseState() }
+            .onUpdate(to: barcodeRepository) { codes = $0 }
             .onReceive(inspection.notice) { self.inspection.visit(self, $0) }
     }
 
@@ -71,9 +83,14 @@ public struct PurchaseStateView<
 
     private static func purchaseState(
         isUnleashed: Bool?,
-        loophole: @escaping @MainActor () throws -> Bool
+        codes: [Code],
+        allowsLoophole: Bool
     ) throws -> PurchaseState {
-        if try isUnleashed == true || loophole() {
+        if isUnleashed == true {
+            return .purchased
+        } else if isUnleashed == false
+                    && allowsLoophole == true
+                    && codes.count < Purchasing.maxBarcodesCount {
             return .purchased
         } else if isUnleashed == false {
             return .unpurchased
@@ -89,7 +106,8 @@ public struct PurchaseStateView<
             let hasUserBeenUnleashed = try await purchaseRepository.hasUserBeenUnleashed
             purchaseState = try Self.purchaseState(
                 isUnleashed: hasUserBeenUnleashed,
-                loophole: loophole
+                codes: codes,
+                allowsLoophole: allowsLoophole
             )
         } catch {
             errorHandler.log(error, module: "Root", type: "PhotoLibraryToolbarItem")

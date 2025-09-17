@@ -4,7 +4,7 @@
 import BarcBarcodes
 import BarcPersistence
 
-public struct StubBarcodeRepository: BarcodeRepository {
+public final class StubBarcodeRepository: BarcodeRepository {
     public var codes: [Code] = [
         Code(name: "Cocoatype", value: .qr(value: "https://cocoatype.com", correctionLevel: .m)),
         try! Code(name: "Fours", value: .ean(value: "4444444444444")),
@@ -16,9 +16,18 @@ public struct StubBarcodeRepository: BarcodeRepository {
     public func update(_ code: Code) {}
     public func delete(_ code: Code) {}
 
+    private var continuations = [AsyncStream<[Code]>.Continuation]()
     public func subscribeToUpdates() -> AsyncStream<[Code]> {
-        return AsyncStream<[Code]>(unfolding: { nil })
+        let (stream, continuation) = AsyncStream<[Code]>.makeStream()
+        continuations.append(continuation)
+        return stream
     }
 
     public init() {}
+
+    public func sendUpdates() {
+        for continuation in continuations {
+            continuation.yield(codes)
+        }
+    }
 }

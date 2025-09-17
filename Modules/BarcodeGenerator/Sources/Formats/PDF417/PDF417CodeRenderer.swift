@@ -10,26 +10,30 @@ import BarcBarcodes
 import BarcErrorHandling
 
 public struct PDF417CodeRenderer: CodeRenderer {
-
-    private let encodedValue: [[Bool]]
+    private let value: PDF417CodeValue
     init(value: PDF417CodeValue) {
-        do {
-            self.encodedValue = try PDF417CodeEncoder().encodedValue(for: value)
-        } catch {
-            Container.shared.errorHandler().log(error, module: "BarcodeGenerator", type: "PDF417CodeRenderer")
-            self.encodedValue = []
-        }
+        self.value = value
     }
 
-    var renderedCode: RenderedCode {
+    @Injected(\.errorHandler) private var errorHandler
+    func renderedCode(in containerRatio: Double) -> RenderedCode {
         var code = RenderedCode()
-        for rowIndex in 0..<encodedValue.count {
-            let row = encodedValue[rowIndex]
-            for columnIndex in 0..<row.count {
-                if row[columnIndex] {
-                    code.addRect(CGRect(x: Double(columnIndex), y: Double(rowIndex), width: 1, height: 1))
+        do {
+            let encodedValue = try PDF417CodeEncoder()
+                .encodedValue(for: value, in: containerRatio)
+            for rowIndex in 0..<encodedValue.count {
+                let row = encodedValue[rowIndex]
+                for columnIndex in 0..<row.count {
+                    if row[columnIndex] {
+                        code.addRect(CGRect(x: Double(columnIndex), y: Double(rowIndex * 3), width: 1, height: 3))
+                    }
                 }
             }
+
+            let size = code.size
+            code.kineNoo = .ratio(size.width / size.height)
+        } catch {
+            errorHandler.log(error, module: "BarcodeGenerator", type: "PDF417CodeRenderer")
         }
 
         return code

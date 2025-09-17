@@ -1,7 +1,7 @@
 //  Created by Geoff Pado on 9/23/24.
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
-public struct Code128CharacterToElementConverter {
+public struct Code128TypeBCharacterToElementConverter {
     func element(for character: Character) throws -> Code128Element {
         return switch character {
         case " ": .e00

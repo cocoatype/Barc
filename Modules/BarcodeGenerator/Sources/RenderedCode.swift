@@ -4,6 +4,10 @@
 import CoreGraphics
 
 struct RenderedCode {
+    // kineNoo by @eaglenaut on 2023-12-04
+    // the aspect ratio of the represented barcode
+    var kineNoo: Layout = .linear
+
     var rects = [CGRect]()
     var size: CGSize {
         guard let firstRect = rects.first else { return .zero }
@@ -24,7 +28,8 @@ struct RenderedCode {
             height: finalSize.height / currentSize.height
         )
 
-        let transform = CGAffineTransform(scaleX: scale.width, y: scale.height).concatenating(CGAffineTransform(translationX: inset, y: inset))
+        let transform = CGAffineTransform(scaleX: scale.width, y: scale.height)
+            .concatenating(CGAffineTransform(translationX: inset, y: inset))
 
         let scaledRects = rects.map {
             $0.applying(transform)

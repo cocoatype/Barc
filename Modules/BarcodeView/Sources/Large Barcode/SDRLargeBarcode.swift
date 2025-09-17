@@ -17,10 +17,19 @@ struct SDRLargeBarcode: View {
             Color.clear
             RenderedCodeView(value: value)
                 .clipShape(RoundedRectangle(cornerRadius: 7))
-                .frame(width: LargeBarcode.width, height: LargeBarcode.width * value.kineNoo.implicitRatio)
+                .frame(width: size.width, height: size.height)
                 .padding(LargeBarcode.padding)
                 .background(CodeBackground())
         }
+    }
+
+    private var size: CGSize {
+        let measurer = CodeValueMeasurer(value: value)
+        let ratio = measurer.ratio(in: 2)
+        return CGSize(
+            width: LargeBarcode.width,
+            height: (LargeBarcode.width / ratio)
+        )
     }
 }
 

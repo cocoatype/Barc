@@ -4,13 +4,13 @@
 import BarcBarcodes
 
 struct Code128CodeRenderer: CodeRenderer {
-    private let encodedValue: [Bool]
-    private let encoder = Code128Encoder()
+    private let renderer: SingleDimensionCodeRenderer
     init(value: Code128CodeValue) {
-        self.encodedValue = encoder.encodedValue(from: value.payload)
+        let encodedValue = Code128Encoder().encodedValue(from: value.payload)
+        renderer = SingleDimensionCodeRenderer(encodedValue: encodedValue)
     }
     
-    var renderedCode: RenderedCode {
-        SingleDimensionCodeRenderer(encodedValue: encodedValue).renderedCode
+    func renderedCode(in ratio: Double) -> RenderedCode {
+        renderer.renderedCode(in: ratio)
     }
 }
