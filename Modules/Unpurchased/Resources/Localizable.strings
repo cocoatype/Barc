@@ -14,7 +14,7 @@
 "UnpurchasedFeature.alternateIcons.message" = "Customizing your app icon requires Barc Unleashed.";
 
 // The message of the alert shown if a user tries to add more barcodes than allowed without purchasing Barc.
-"UnpurchasedFeature.unlimitedBarcodes.message" = "Adding more barcodes requires Barc Unleashed.";
+"UnpurchasedFeature.unlimitedBarcodes.message" = "Adding more than %d barcodes requires Barc Unleashed.";
 
 // The message of the alert shown if a user tries to export to Apple Wallet without purchasing Barc.
 "UnpurchasedFeature.walletExport.message" = "Exporting to Apple Wallet requires Barc Unleashed.";

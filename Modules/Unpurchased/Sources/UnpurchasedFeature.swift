@@ -2,6 +2,7 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import Foundation
+import BarcPurchasing
 
 public struct UnpurchasedFeature: Sendable {
     public static let alternateIcons = UnpurchasedFeature(
@@ -9,7 +10,7 @@ public struct UnpurchasedFeature: Sendable {
     )
 
     public static let unlimitedBarcodes = UnpurchasedFeature(
-        message: Strings.UnlimitedBarcodes.message
+        message: Strings.UnlimitedBarcodes.message(Purchasing.maxBarcodesCount)
     )
 
     public static let walletExport = UnpurchasedFeature(

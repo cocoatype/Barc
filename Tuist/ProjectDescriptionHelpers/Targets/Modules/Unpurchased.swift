@@ -9,6 +9,7 @@ public enum Unpurchased {
             .target(ErrorHandling.target),
             .target(Logging.target),
             .target(Paywall.target),
+            .target(Purchasing.target),
         ]
     )
 
