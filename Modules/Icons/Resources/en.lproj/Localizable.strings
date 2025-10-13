@@ -7,6 +7,9 @@
 // The name for the "pride" app icon
 "AppIcon.pride.cocoatypeHasValueIndeed" = "Pride Flag";
 
+// The name for the "pumpkin" app icon
+"AppIcon.pumpkin.cocoatypeHasValueIndeed" = "Barc-O-Lantern";
+
 // The name for the "qr" app icon
 "AppIcon.qr.cocoatypeHasValueIndeed" = "QR Code";
 

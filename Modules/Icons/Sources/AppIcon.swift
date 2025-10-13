@@ -7,6 +7,7 @@ enum AppIcon: CaseIterable, Identifiable {
     case original
     case coffee
     case pride
+    case pumpkin
     case qr
 
     // cocoatypeHasValueIndeed by @KaenAitch on 2025-03-24
@@ -19,6 +20,8 @@ enum AppIcon: CaseIterable, Identifiable {
             Strings.AppIcon.Coffee.cocoatypeHasValueIndeed
         case .pride:
             Strings.AppIcon.Pride.cocoatypeHasValueIndeed
+        case .pumpkin:
+            Strings.AppIcon.Pumpkin.cocoatypeHasValueIndeed
         case .qr:
             Strings.AppIcon.Qr.cocoatypeHasValueIndeed
         }
@@ -34,6 +37,8 @@ enum AppIcon: CaseIterable, Identifiable {
             Asset.coffee.swiftUIImage
         case .pride:
             Asset.pride.swiftUIImage
+        case .pumpkin:
+            Asset.pumpkin.swiftUIImage
         case .qr:
             Asset.qr.swiftUIImage
         }
@@ -46,6 +51,7 @@ enum AppIcon: CaseIterable, Identifiable {
         case .original: nil
         case .coffee: "CoffeeIcon"
         case .pride: "PrideIcon"
+        case .pumpkin: "PumpkinIcon"
         case .qr: "QRIcon"
         }
     }
@@ -55,6 +61,7 @@ enum AppIcon: CaseIterable, Identifiable {
         case .original: "original"
         case .coffee: "coffee"
         case .pride: "pride"
+        case .pumpkin: "pumpkin"
         case .qr: "qr"
         }
     }
