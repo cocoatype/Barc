@@ -30,6 +30,7 @@ public enum App {
                 "ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES": [
                     "CoffeeIcon",
                     "PrideIcon",
+                    "PumpkinIcon",
                     "QRIcon",
                 ],
                 "DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER": "NO",
