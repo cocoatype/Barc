@@ -19,7 +19,7 @@ import BarcReleasesDoubles
 struct ReleasesSiteURLCellTests {
     @Test("Uses correct subtitle for version")
     func subtitleForVersion() throws {
-        Container.shared.defaultsProvider.register { StubDefaultsProvider() }
+        Container.shared.defaultsProvider.register { @MainActor in StubDefaultsProvider() }
         Container.shared.versionProvider.register { StubVersionProvider(version: "99.0") }
         let cell = ReleasesSiteURLCell()
 
@@ -31,7 +31,7 @@ struct ReleasesSiteURLCellTests {
 
     @Test("Uses correct subtitle for nil version")
     func subtitleForNilVersion() throws {
-        Container.shared.defaultsProvider.register { StubDefaultsProvider() }
+        Container.shared.defaultsProvider.register { @MainActor in StubDefaultsProvider() }
         Container.shared.versionProvider.register { StubVersionProvider(version: nil) }
         let cell = ReleasesSiteURLCell()
 
@@ -45,7 +45,7 @@ struct ReleasesSiteURLCellTests {
 
     @Test("Shows badge if new release available")
     func showsBadgeIfNewReleaseAvailable() async throws {
-        Container.shared.defaultsProvider.register { StubDefaultsProvider(lastSeenVersion: "99.0") }
+        Container.shared.defaultsProvider.register { @MainActor in StubDefaultsProvider(lastSeenVersion: "99.0") }
         Container.shared.versionProvider.register { StubVersionProvider(version: "100.0") }
         let cell = ReleasesSiteURLCell()
 
@@ -61,7 +61,7 @@ struct ReleasesSiteURLCellTests {
 
     @Test("Hides badge if no new release")
     func hidesBadgeIfNoNewRelease() async throws {
-        Container.shared.defaultsProvider.register { StubDefaultsProvider(lastSeenVersion: "99.0") }
+        Container.shared.defaultsProvider.register { @MainActor in StubDefaultsProvider(lastSeenVersion: "99.0") }
         Container.shared.versionProvider.register { StubVersionProvider(version: "99.0") }
         let cell = ReleasesSiteURLCell()
 
@@ -86,7 +86,7 @@ struct ReleasesSiteURLCellTests {
         defer { ViewHosting.expel() }
         
         try await cell.inspection.inspect { _ in
-            await #expect(defaultsProvider.value(for: Keys.lastSeenVersion) == "99.0")
+            #expect(defaultsProvider.value(for: Keys.lastSeenVersion) == "99.0")
         }
     }
 }
