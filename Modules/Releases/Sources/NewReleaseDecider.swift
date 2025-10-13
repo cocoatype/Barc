@@ -5,13 +5,13 @@ import FactoryKit
 
 import BarcDefaults
 
-public struct NewReleaseDecider: Sendable {
+@MainActor public struct NewReleaseDecider: Sendable {
     public init() {}
 
     @Injected(\.defaultsProvider) private var defaultsProvider
     @Injected(\.versionProvider) private var versionProvider
-    public func shouldShowNewReleaseBadge() async -> Bool {
-        guard let lastSeenVersion = await defaultsProvider.value(for: Keys.lastSeenVersion),
+    public func shouldShowNewReleaseBadge() -> Bool {
+        guard let lastSeenVersion = defaultsProvider.value(for: Keys.lastSeenVersion),
               let currentVersion = versionProvider.version
         else { return false }
 

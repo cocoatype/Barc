@@ -11,4 +11,5 @@ public struct Key<ValueType>: Sendable {
 public enum Keys {
     public static let hasSeenOnboarding = Key<Bool>(value: "RootView.hasSeenOnboarding")
     public static let lastSeenVersion = Key<String>(value: "Keys.lastSeenVersion")
+    public static let manualEntryFormat = Key<String>(value: "Keys.manualEntryFormat")
 }

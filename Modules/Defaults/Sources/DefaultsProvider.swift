@@ -1,7 +1,7 @@
 //  Created by Geoff Pado on 1/20/25.
 //  Copyright © 2025 Cocoatype, LLC. All rights reserved.
 
-public protocol DefaultsProvider: Actor {
+@MainActor public protocol DefaultsProvider {
     func value(for key: Key<Bool>) -> Bool
     func set(_ value: Bool, for key: Key<Bool>)
 

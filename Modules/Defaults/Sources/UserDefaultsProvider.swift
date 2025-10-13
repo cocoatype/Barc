@@ -3,7 +3,7 @@
 
 import Foundation
 
-actor UserDefaultsProvider: DefaultsProvider {
+struct UserDefaultsProvider: DefaultsProvider {
     init(userDefaults: UserDefaults) {
         self.userDefaults = userDefaults
     }
@@ -27,7 +27,4 @@ actor UserDefaultsProvider: DefaultsProvider {
     // MARK: - Test Hooks
 
     let userDefaults: UserDefaults
-    func perform<T>(_ op: @Sendable (isolated UserDefaultsProvider) throws -> sending T) rethrows -> sending T {
-        try op(self)
-    }
 }

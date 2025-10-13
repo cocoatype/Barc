@@ -7,7 +7,7 @@ import FactoryKit
 
 public extension Container {
     var defaultsProvider: Factory<any DefaultsProvider> {
-        Factory(self) {
+        Factory(self) { @MainActor in
             if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] != nil {
                 PreviewDefaultsProvider()
             } else {

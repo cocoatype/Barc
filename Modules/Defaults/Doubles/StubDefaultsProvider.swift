@@ -3,7 +3,7 @@
 
 @testable import BarcDefaults
 
-public actor StubDefaultsProvider: DefaultsProvider {
+public class StubDefaultsProvider: DefaultsProvider {
     private var backingData = [String: Any]()
     public init(
         hasSeenOnboarding: Bool = false,

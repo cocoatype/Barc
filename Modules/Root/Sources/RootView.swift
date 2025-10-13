@@ -60,9 +60,9 @@ public struct RootView: View {
             navigate(to: route)
         }
         .task {
-            if await defaultsProvider.value(for: Keys.hasSeenOnboarding) == false {
+            if defaultsProvider.value(for: Keys.hasSeenOnboarding) == false {
                 navigate(to: .onboarding)
-                await defaultsProvider.set(true, for: Keys.hasSeenOnboarding)
+                defaultsProvider.set(true, for: Keys.hasSeenOnboarding)
             }
         }
     }

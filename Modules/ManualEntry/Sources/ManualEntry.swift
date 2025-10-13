@@ -4,9 +4,14 @@
 import SwiftUI
 
 public struct ManualEntry: View {
-    public init() {}
+    private let formatHandler: ManualEntryDefaultFormatHandler
+    public init() {
+        formatHandler = ManualEntryDefaultFormatHandler()
+        _partialCode = State(initialValue: formatHandler.newPartialCode())
+    }
 
-    @State private var partialCode = PartialCode()
+    @State private var partialCode: PartialCode
+
     public var body: some View {
         NavigationStack {
             ManualEntryForm(partialCode: $partialCode)
@@ -22,6 +27,9 @@ public struct ManualEntry: View {
                 }
                 .navigationTitle(Strings.ManualEntry.navigationTitle)
                 .navigationBarTitleDisplayMode(.inline)
+        }
+        .onChange(of: partialCode.type) {
+            formatHandler.updateDefaultFormat(to: partialCode.type)
         }
     }
 }
