@@ -4,27 +4,27 @@
 import SwiftUI
 
 struct ManualEntryFormPicker: View {
-    @Binding private var codeType: PartialCode.BarcodeType
-    init(codeType: Binding<PartialCode.BarcodeType>) {
+    @Binding private var codeType: PartialCode.BarcodeFormat
+    init(codeType: Binding<PartialCode.BarcodeFormat>) {
         _codeType = codeType
     }
 
     var body: some View {
         Picker(Strings.label, selection: $codeType) {
             Text(Strings.codabarType)
-                .tag(PartialCode.BarcodeType.codabar)
+                .tag(PartialCode.BarcodeFormat.codabar)
             Text(Strings.code39Type)
-                .tag(PartialCode.BarcodeType.code39)
+                .tag(PartialCode.BarcodeFormat.code39)
             Text(Strings.code128Type)
-                .tag(PartialCode.BarcodeType.code128)
+                .tag(PartialCode.BarcodeFormat.code128)
             Text(Strings.eanType)
-                .tag(PartialCode.BarcodeType.ean)
+                .tag(PartialCode.BarcodeFormat.ean)
             Text(Strings.itfType)
-                .tag(PartialCode.BarcodeType.itf)
+                .tag(PartialCode.BarcodeFormat.itf)
             Text(Strings.pdf417Type)
-                .tag(PartialCode.BarcodeType.pdf417)
+                .tag(PartialCode.BarcodeFormat.pdf417)
             Text(Strings.qrType)
-                .tag(PartialCode.BarcodeType.qr)
+                .tag(PartialCode.BarcodeFormat.qr)
         }
     }
 

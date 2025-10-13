@@ -7,9 +7,11 @@ public enum ManualEntry {
         dependencies: [
             .target(AppShortcuts.target),
             .target(Barcodes.target),
+            .target(Defaults.target),
             .target(ErrorHandling.target),
             .target(Persistence.target),
             .target(ReviewRequest.target),
+            .external(name: "FactoryKit"),
             .external(name: "PDF417"),
         ]
     )

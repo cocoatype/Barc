@@ -7,7 +7,7 @@ import BarcBarcodes
 
 struct PartialCode {
     var name: String = ""
-    var type: BarcodeType = .ean
+    var type: BarcodeFormat = .ean
     var value: String = ""
 
     var isValid: Bool { (try? code) != nil }
@@ -19,7 +19,7 @@ struct PartialCode {
         }
     }
 
-    enum BarcodeType: Hashable {
+    enum BarcodeFormat: Hashable {
         case codabar
         case code39
         case code128
