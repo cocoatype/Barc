@@ -15,6 +15,9 @@ struct ManualEntryForm: View {
         Form {
             Section {
                 TextField(Strings.nameLabel, text: $partialCode.name)
+            } header: {
+                PartialCodePreview(partialCode: partialCode)
+                    .padding()
             }
             Section {
                 ManualEntryFormPicker(codeType: $partialCode.type)
