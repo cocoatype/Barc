@@ -6,6 +6,7 @@ public enum ManualEntry {
         hasResources: true,
         dependencies: [
             .target(AppShortcuts.target),
+            .target(BarcodeGenerator.target),
             .target(Barcodes.target),
             .target(Defaults.target),
             .target(ErrorHandling.target),
