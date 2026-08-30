@@ -17,7 +17,11 @@ public struct OnboardingView: View {
                 currentPage: $currentPageIndex
             )
             .environment(\.advance, AdvanceAction {
-                currentPageIndex = (currentPageIndex + 1) % OnboardingPage.allCases.count
+                if currentPageIndex == (OnboardingPage.allCases.count - 1) {
+                    dismiss()
+                } else {
+                    currentPageIndex = (currentPageIndex + 1)
+                }
             })
     }
 
