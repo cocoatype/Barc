@@ -18,7 +18,6 @@ struct DeepLinkHandler {
             switch firstPathComponent(from: url) {
             case "details": return try code(for: url).map { .barcodeDetails($0) }
             case "event": return websiteURL(for: url).map { .website($0) }
-            case "purchase": return .paywall
             case "scanner": return .scanner
             default: return nil
             }

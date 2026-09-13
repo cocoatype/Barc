@@ -8,7 +8,6 @@ public enum PhotoLibrary {
             .target(AppShortcuts.target),
             .target(BarcodeEdit.target),
             .target(Barcodes.target),
-            .target(ErrorHandling.target),
             .target(ImageReader.target),
             .target(Persistence.target),
             .target(ReviewRequest.target),

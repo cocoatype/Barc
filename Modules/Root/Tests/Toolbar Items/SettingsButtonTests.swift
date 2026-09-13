@@ -28,7 +28,7 @@ struct SettingsButtonTests {
         ViewHosting.host(view: button)
         defer { ViewHosting.expel() }
 
-        try button.inspect().find(viewWithAccessibilityIdentifier: "SettingsButton").button().tap()
+        try button.inspect().find(ViewType.Button.self).tap()
         #expect(sheetRoute.wrappedValue == .menu)
     }
 

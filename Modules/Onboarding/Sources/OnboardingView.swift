@@ -3,8 +3,6 @@
 
 import SwiftUI
 
-import BarcPaywall
-
 public struct OnboardingView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var currentPageIndex = 0

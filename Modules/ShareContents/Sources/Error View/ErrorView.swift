@@ -36,8 +36,6 @@ struct ErrorView: View {
         switch error {
         case ShareError.noCodeInImage:
             return Strings.noCodeTitle
-        case ShareError.userIsNotUnleashed:
-            return Strings.unpurchasedTitle
         case BarcodeResultMapperError.invalidSymbology:
             return Strings.invalidSymbologyTitle
         default:
@@ -49,8 +47,6 @@ struct ErrorView: View {
         switch error {
         case ShareError.noCodeInImage:
             return Strings.noCodeMessage
-        case ShareError.userIsNotUnleashed:
-            return Strings.unpurchasedMessage
         case BarcodeResultMapperError.invalidSymbology:
             return Strings.invalidSymbologyMessage
         default:

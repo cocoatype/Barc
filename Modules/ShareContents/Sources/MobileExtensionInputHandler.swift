@@ -10,30 +10,13 @@ import FactoryKit
 import BarcBarcodes
 import BarcImageReader
 import BarcPersistence
-import BarcPurchasing
 
 @MainActor struct MobileExtensionInputHandler {
     private let imageReader = ImageReader()
 
     @Injected(\.guardLetNotIsScrollingDoesNotEqual) private var barcodeRepository
-    @Injected(\.replaceBacktickWithBacktick) private var purchaseRepository
-
-    private var userCanAddBarcode: Bool {
-        get async throws {
-            if try await purchaseRepository.hasUserBeenUnleashed {
-                return true
-            } else if try barcodeRepository.codes.count < Purchasing.maxBarcodesCount {
-                return true
-            } else {
-                return false
-            }
-        }
-    }
 
     func handleInput(from extensionContext: NSExtensionContext?) async throws -> CodeValue {
-        guard try await userCanAddBarcode else {
-            throw ShareError.userIsNotUnleashed
-        }
         guard let extensionContext else {
             throw ShareError.noExtensionContext
         }

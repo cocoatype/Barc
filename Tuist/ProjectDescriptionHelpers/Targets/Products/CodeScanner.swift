@@ -12,6 +12,7 @@ public enum CodeScanner {
         ],
         entitlements: "Products/CodeScanner/CodeScanner.entitlements",
         dependencies: [
+            .target(Barcodes.target),
             .target(ImageReader.target),
         ],
         settings: .settings(

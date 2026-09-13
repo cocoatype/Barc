@@ -16,10 +16,8 @@ public enum App {
         entitlements: "App/Mobile/Barc.entitlements",
         dependencies: [
             .target(AppShortcuts.target),
-            .target(Defaults.target),
-            .target(Logging.target),
-            .target(Purchasing.target),
             .target(Root.target),
+            .target(Routing.target),
             .target(Share.target),
             .target(Watch.target),
             .target(Widgets.target),

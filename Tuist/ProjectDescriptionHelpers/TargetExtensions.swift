@@ -42,7 +42,6 @@ extension Target {
             resources: hasResources ? ["Modules/\(name)/TestResources/**"] : nil,
             dependencies: [
                 .target(name: "Barc\(name)"),
-                .target(TestHelpers.target),
             ] + dependencies,
             settings: .settings(
                 base: [
@@ -64,7 +63,6 @@ extension Target {
             sources: ["Modules/\(name)/Doubles/**"],
             dependencies: [
                 .target(name: "Barc\(name)"),
-                .target(TestHelpers.interfaceTarget),
             ] + dependencies,
             settings: .settings(
                 base: [

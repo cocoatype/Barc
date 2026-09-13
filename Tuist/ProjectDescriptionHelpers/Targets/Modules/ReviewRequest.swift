@@ -4,7 +4,6 @@ public enum ReviewRequest {
     public static let target = Target.moduleTarget(
         name: "ReviewRequest",
         dependencies: [
-            .target(ErrorHandling.target),
             .target(Persistence.target),
             .external(name: "FactoryKit"),
         ]
@@ -16,6 +15,7 @@ public enum ReviewRequest {
             .target(Barcodes.target),
             .target(Persistence.doublesTarget),
             .target(TestHelpers.interfaceTarget),
+            .target(TestHelpers.target),
             .external(name: "FactoryKit"),
             .external(name: "FactoryTesting"),
         ]

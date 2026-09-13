@@ -17,5 +17,10 @@ public enum Logging {
         ]
     )
 
-    public static let doublesTarget = Target.moduleDoublesTarget(name: "Logging")
+    public static let doublesTarget = Target.moduleDoublesTarget(
+        name: "Logging",
+        dependencies: [
+            .target(TestHelpers.interfaceTarget),
+        ]
+    )
 }

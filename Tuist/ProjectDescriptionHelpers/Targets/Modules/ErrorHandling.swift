@@ -14,8 +14,14 @@ public enum ErrorHandling {
         name: "ErrorHandling",
         dependencies: [
             .target(ErrorHandling.doublesTarget),
+            .target(TestHelpers.target),
         ]
     )
 
-    public static let doublesTarget = Target.moduleDoublesTarget(name: "ErrorHandling")
+    public static let doublesTarget = Target.moduleDoublesTarget(
+        name: "ErrorHandling",
+        dependencies: [
+            .target(TestHelpers.interfaceTarget),
+        ]
+    )
 }

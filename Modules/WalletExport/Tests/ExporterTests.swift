@@ -8,7 +8,6 @@ import FactoryTesting
 
 import BarcBarcodes
 import BarcErrorHandlingDoubles
-import BarcPurchasingDoubles
 
 @testable import BarcWalletExport
 
@@ -18,11 +17,6 @@ struct ExporterTests {
     func requestExportCallsAddPasses() async throws {
         await confirmation { addPasses in
             let passLibrary = SpyPassLibrary(addPassesConfirmation: addPasses)
-            Container.shared.replaceBacktickWithBacktick.register { @MainActor in
-                var purchaseRepository = StubPurchaseRepository()
-                purchaseRepository.hasUserBeenUnleashedResult = .success(true)
-                return purchaseRepository
-            }
             Container.shared.errorHandler.register { StubErrorHandler() }
 
             let exporter = Exporter(

@@ -8,7 +8,6 @@ public enum ExportResult: Sendable {
     case needsReview(ExportedPass)
     case cancelled
     case error(Error)
-    case unpurchased
 
     init(passResult: PKPassLibraryAddPassesStatus, for pass: ExportedPass) {
         self = switch passResult {
@@ -22,14 +21,14 @@ public enum ExportResult: Sendable {
     public var pass: ExportedPass? {
         switch self {
         case .needsReview(let pass): pass
-        case .success, .cancelled, .error, .unpurchased: nil
+        case .success, .cancelled, .error: nil
         }
     }
 
     public var error: (any Error)? {
         switch self {
         case .error(let error): error
-        case .success, .needsReview, .cancelled, .unpurchased: nil
+        case .success, .needsReview, .cancelled: nil
         }
     }
 }
@@ -58,18 +57,6 @@ extension Optional<ExportResult> {
             } else {
                 self = nil
             }
-        }
-    }
-
-    var isUnpurchased: Bool {
-        get {
-            switch self {
-            case .unpurchased: true
-            case .success, .needsReview, .cancelled, .error, .none: false
-            }
-        }
-        set {
-            if newValue == false { self = nil }
         }
     }
 }

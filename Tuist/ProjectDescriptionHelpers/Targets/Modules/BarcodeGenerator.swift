@@ -10,6 +10,7 @@ public enum BarcodeGenerator {
             .target(DesignSystem.target),
             .target(ErrorHandling.target),
             .external(name: "FactoryKit"),
+            .external(name: "PDF417"),
             .external(name: "QRCodeGenerator"),
         ]
     )

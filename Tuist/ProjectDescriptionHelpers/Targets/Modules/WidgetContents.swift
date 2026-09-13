@@ -10,6 +10,7 @@ public enum WidgetContents {
             .target(BarcodeGenerator.target),
             .target(ErrorHandling.target),
             .target(Persistence.target),
+            .target(ShortcutsModels.target),
             .target(WidgetShortcuts.target),
             .external(name: "FactoryKit"),
         ]

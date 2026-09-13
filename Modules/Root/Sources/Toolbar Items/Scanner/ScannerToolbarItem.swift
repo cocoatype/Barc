@@ -6,9 +6,7 @@ import SwiftUI
 import FactoryKit
 
 import BarcPersistence
-import BarcPurchasing
 import BarcRouting
-import BarcUnpurchased
 
 struct ScannerToolbarItem: View {
     nonisolated static let systemImage = "barcode.viewfinder"
@@ -22,21 +20,7 @@ struct ScannerToolbarItem: View {
 
     @State private var isShowingPurchaseAlert = false
     var body: some View {
-        currentButton.unpurchasedAlert(
-            for: .unlimitedBarcodes,
-            isPresented: $isShowingPurchaseAlert
-        )
-    }
-
-    @Injected(\.guardLetNotIsScrollingDoesNotEqual) private var barcodeRepository
-    @ViewBuilder private var currentButton: some View {
-        PurchaseStateView(allowsLoophole: true) {
-            ScannerDisabledButton()
-        } purchased: {
-            ScannerPresentingButton(presenting: $superViewDidLoad)
-        } unpurchased: {
-            ScannerAlertButton(shouldShowAlert: $isShowingPurchaseAlert)
-        }
+        ScannerPresentingButton(presenting: $superViewDidLoad)
     }
 }
 

@@ -7,7 +7,6 @@ public enum ImageReader {
         hasResources: true,
         dependencies: [
             .target(Barcodes.target),
-            .target(ErrorHandling.target),
         ]
     )
 

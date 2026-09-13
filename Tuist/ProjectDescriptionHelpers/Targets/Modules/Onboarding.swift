@@ -6,11 +6,7 @@ public enum Onboarding {
         hasResources: true,
         dependencies: [
             .target(DesignSystem.target),
-            .target(ErrorHandling.target),
-            .target(Logging.target),
-            .target(Paywall.target),
             .target(Permission.target),
-            .target(Purchasing.target),
         ]
     )
 
@@ -18,6 +14,7 @@ public enum Onboarding {
         name: "Onboarding",
         dependencies: [
             .external(name: "ViewInspector"),
+            .target(TestHelpers.target),
         ]
     )
 }

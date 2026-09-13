@@ -1,9 +1,10 @@
 {
+  "originHash" : "bc83d0ec79c4f0507426e2759a3f8a06bf4ab5462b913f58b747c781690cf162",
   "pins" : [
     {
       "identity" : "bigint",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/attaswift/BigInt.git",
+      "location" : "https://github.com/attaswift/BigInt",
       "state" : {
         "revision" : "114343a705df4725dfe7ab8a2a326b8883cfd79c",
         "version" : "5.5.1"
@@ -12,7 +13,7 @@
     {
       "identity" : "factory",
       "kind" : "remoteSourceControl",
-      "location" : "git@github.com:hmlongco/Factory.git",
+      "location" : "git@github.com:hmlongco/Factory",
       "state" : {
         "revision" : "22157b88670bbeac591895c0fc8b8f7f340cf757",
         "version" : "2.5.0"
@@ -21,25 +22,16 @@
     {
       "identity" : "pdf417",
       "kind" : "remoteSourceControl",
-      "location" : "git@github.com:cocoatype/PDF417.git",
+      "location" : "git@github.com:cocoatype/PDF417",
       "state" : {
         "branch" : "trunk",
         "revision" : "26e6a421fdcc80d5a1fba65f23fa35e14cb087fe"
       }
     },
     {
-      "identity" : "purchases-ios-spm",
-      "kind" : "remoteSourceControl",
-      "location" : "git@github.com:RevenueCat/purchases-ios-spm.git",
-      "state" : {
-        "revision" : "d723de873b8bd8146fe1bed0cd809ab73d1a3105",
-        "version" : "5.14.6"
-      }
-    },
-    {
       "identity" : "swift-qrcode-generator",
       "kind" : "remoteSourceControl",
-      "location" : "git@github.com:fwcd/swift-qrcode-generator.git",
+      "location" : "git@github.com:fwcd/swift-qrcode-generator",
       "state" : {
         "revision" : "2b1980b825f08a81ccc762b0c4d17fcde9d5e953",
         "version" : "2.0.2"
@@ -48,7 +40,7 @@
     {
       "identity" : "swiftclient",
       "kind" : "remoteSourceControl",
-      "location" : "git@github.com:TelemetryDeck/SwiftClient.git",
+      "location" : "git@github.com:TelemetryDeck/SwiftClient",
       "state" : {
         "revision" : "a7fd1eb469589a3c8fd8cc3abe19b092b5d674dc",
         "version" : "2.9.4"
@@ -57,7 +49,7 @@
     {
       "identity" : "swiftui-introspect",
       "kind" : "remoteSourceControl",
-      "location" : "git@github.com:siteline/swiftui-introspect.git",
+      "location" : "git@github.com:siteline/swiftui-introspect",
       "state" : {
         "revision" : "807f73ce09a9b9723f12385e592b4e0aaebd3336",
         "version" : "1.3.0"
@@ -66,7 +58,7 @@
     {
       "identity" : "viewinspector",
       "kind" : "remoteSourceControl",
-      "location" : "git@github.com:nalexn/ViewInspector.git",
+      "location" : "git@github.com:nalexn/ViewInspector",
       "state" : {
         "revision" : "788e7879d38a839c4e348ab0762dcc0364e646a2",
         "version" : "0.10.1"

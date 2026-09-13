@@ -6,15 +6,10 @@ public enum Menu {
         hasResources: true,
         dependencies: [
             .target(Defaults.target),
-            .target(ErrorHandling.target),
             .target(Icons.target),
-            .target(Logging.target),
             .target(Onboarding.target),
-            .target(Paywall.target),
-            .target(Purchasing.target),
             .target(Releases.target),
             .target(TestHelpers.interfaceTarget),
-            .target(Unpurchased.target),
             .target(Web.target),
             .external(name: "FactoryKit"),
         ]
@@ -25,11 +20,10 @@ public enum Menu {
         dependencies: [
             .target(Defaults.target),
             .target(Defaults.doublesTarget),
-            .target(Persistence.target),
             .target(Persistence.doublesTarget),
-            .target(Purchasing.doublesTarget),
             .target(Releases.target),
             .target(Releases.doublesTarget),
+            .target(TestHelpers.interfaceTarget),
             .external(name: "FactoryKit"),
             .external(name: "FactoryTesting"),
             .external(name: "ViewInspector"),
