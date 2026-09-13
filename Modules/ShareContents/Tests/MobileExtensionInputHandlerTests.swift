@@ -7,7 +7,6 @@ import FactoryKit
 import FactoryTesting
 
 import BarcPersistenceDoubles
-import BarcPurchasingDoubles
 import BarcTestHelpers
 
 @testable import BarcShareContents
@@ -17,11 +16,10 @@ import BarcTestHelpers
 struct MobileExtensionInputHandlerTests {
     @Test("handleInput with no extension context throws error")
     func handleInputWithNoExtensionContext() async throws {
-        var barcodeRepository = StubBarcodeRepository()
+        let barcodeRepository = StubBarcodeRepository()
         barcodeRepository.codes = []
 
         Container.shared.guardLetNotIsScrollingDoesNotEqual.register { @MainActor in barcodeRepository }
-        Container.shared.replaceBacktickWithBacktick.register { StubPurchaseRepository() }
 
         let handler = MobileExtensionInputHandler()
         let error = await #expect(throws: ShareError.self) {

@@ -3,4 +3,6 @@
 
 import Testing
 
+import BarcScanner
+
 struct DataScannerTests {}

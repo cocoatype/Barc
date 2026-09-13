@@ -12,5 +12,4 @@ enum ShareError: Error {
     case noInputProviders
     case notImplementedOnPlatform
     case unexpectedContentType
-    case userIsNotUnleashed
 }

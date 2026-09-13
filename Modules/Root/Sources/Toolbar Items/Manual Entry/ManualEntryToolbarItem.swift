@@ -7,9 +7,7 @@ import FactoryKit
 
 import BarcBarcodes
 import BarcPersistence
-import BarcPurchasing
 import BarcRouting
-import BarcUnpurchased
 
 struct ManualEntryToolbarItem: View {
     nonisolated static let systemImage = "plus"
@@ -26,24 +24,10 @@ struct ManualEntryToolbarItem: View {
         }
     }
 
-    @State private var isShowingPurchaseAlert = false
-    var body: some View {
-        currentButton
-            .unpurchasedAlert(
-                for: .unlimitedBarcodes,
-                isPresented: $isShowingPurchaseAlert
-            )
-    }
-
     @State private var codes: [Code]
-    @ViewBuilder private var currentButton: some View {
-        PurchaseStateView(allowsLoophole: true) {
-            ManualEntryDisabledButton()
-        } purchased: {
-            ManualEntryPresentingButton(presenting: $sheetRoute)
-        } unpurchased: {
-            ManualEntryAlertButton(shouldShowAlert: $isShowingPurchaseAlert)
-        }.onUpdate(to: barcodeRepository) { codes = $0 }
+    var body: some View {
+        ManualEntryPresentingButton(presenting: $sheetRoute)
+            .onUpdate(to: barcodeRepository) { codes = $0 }
     }
 }
 

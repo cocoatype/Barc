@@ -7,7 +7,6 @@ public enum LocationEditor {
         dependencies: [
             .target(Barcodes.target),
             .target(DesignSystem.target),
-            .target(ErrorHandling.target),
         ]
     )
 

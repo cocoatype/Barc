@@ -3,8 +3,6 @@
 
 import SwiftUI
 
-import BarcUnpurchased
-
 struct ExportResultViewModifier: ViewModifier {
     @Binding private var exportResult: ExportResult?
     init(
@@ -22,11 +20,6 @@ struct ExportResultViewModifier: ViewModifier {
                 pass: $exportResult.pass,
                 error: $reviewError
             )
-            .unpurchasedAlert(
-                for: .walletExport,
-                isPresented: $exportResult.isUnpurchased
-            )
-
     }
 }
 

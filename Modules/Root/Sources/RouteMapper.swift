@@ -9,7 +9,6 @@ import BarcManualEntry
 import BarcMenu
 import BarcRouting
 import BarcOnboarding
-import BarcPaywall
 import BarcPhotoLibrary
 import BarcScanner
 import BarcWeb
@@ -25,7 +24,6 @@ struct RouteMapper {
         case .manualEntry: ManualEntry()
         case .menu: MenuView()
         case .onboarding: OnboardingView()
-        case .paywall: PaywallView()
         case .scanner: ScannerContainer()
         case .website(let url): WebView(url: url)
         }

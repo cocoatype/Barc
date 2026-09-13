@@ -3,6 +3,8 @@
 
 import Testing
 
+import BarcErrorHandling
+
 import BarcErrorHandlingDoubles
 import BarcTestHelpers
 

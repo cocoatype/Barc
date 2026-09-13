@@ -11,7 +11,6 @@ public enum BarcodeDetails {
             .target(BarcodeView.target),
             .target(ErrorHandling.target),
             .target(Persistence.target),
-            .target(Purchasing.target),
             .target(WalletExport.target),
             .external(name: "FactoryKit"),
         ]

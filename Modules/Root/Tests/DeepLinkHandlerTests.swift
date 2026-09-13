@@ -34,16 +34,6 @@ struct DeepLinkHandlerTests {
         #expect(code == repository.codes.first)
     }
 
-    @Test func paywallURL() throws {
-        Container.shared.guardLetNotIsScrollingDoesNotEqual.register { @MainActor in StubBarcodeRepository() }
-        Container.shared.errorHandler.register { StubErrorHandler() }
-        let url = try #require(URL(string: "barc:///purchase"))
-        let handler = DeepLinkHandler()
-
-        let route = try #require(handler.route(for: url))
-        #expect(route == .paywall)
-    }
-
     @Test func scannerURL() throws {
         Container.shared.guardLetNotIsScrollingDoesNotEqual.register { @MainActor in StubBarcodeRepository() }
         Container.shared.errorHandler.register { StubErrorHandler() }

@@ -11,6 +11,7 @@ public enum Defaults {
     public static let testTarget = Target.moduleTestTarget(
         name: "Defaults",
         dependencies: [
+            .target(TestHelpers.target),
         ]
     )
 

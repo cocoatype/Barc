@@ -7,7 +7,6 @@ public enum WidgetShortcuts {
         hasResources: true,
         dependencies: [
             .target(Barcodes.target),
-            .target(ErrorHandling.target),
             .target(ShortcutsModels.target),
         ]
     )
@@ -15,9 +14,6 @@ public enum WidgetShortcuts {
     public static let testTarget = Target.moduleTestTarget(
         name: "WidgetShortcuts",
         dependencies: [
-            .target(Barcodes.target),
-            .target(ErrorHandling.target),
-            .target(ErrorHandling.doublesTarget),
             .target(ShortcutsModels.target),
         ]
     )

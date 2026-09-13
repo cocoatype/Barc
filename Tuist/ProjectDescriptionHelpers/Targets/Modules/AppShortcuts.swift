@@ -7,7 +7,6 @@ public enum AppShortcuts {
         dependencies: [
             .target(BarcodeGenerator.target),
             .target(Barcodes.target),
-            .target(ErrorHandling.target),
             .target(ImageReader.target),
             .target(Persistence.target),
             .target(Routing.target),
@@ -22,6 +21,7 @@ public enum AppShortcuts {
         dependencies: [
             .target(Barcodes.target),
             .target(Persistence.doublesTarget),
+            .target(Persistence.target),
             .target(ShortcutsModels.target),
             .external(name: "FactoryKit"),
             .external(name: "FactoryTesting"),

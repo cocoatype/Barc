@@ -9,7 +9,6 @@ enum OnboardingPage: CaseIterable {
     case tag
     case `import`
     case view
-    case paywall
 
     @MainActor @ViewBuilder
     func pageView(
@@ -21,7 +20,6 @@ enum OnboardingPage: CaseIterable {
         case .tag: TagPage(currentPage: currentPage)
         case .import: ImportPage(currentPage: currentPage)
         case .view: ViewPage(currentPage: currentPage)
-        case .paywall: PaywallPage()
         }
     }
 }

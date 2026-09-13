@@ -3,8 +3,6 @@
 
 import SwiftUI
 
-import BarcPaywall
-
 public struct OnboardingView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var currentPageIndex = 0
@@ -17,7 +15,11 @@ public struct OnboardingView: View {
                 currentPage: $currentPageIndex
             )
             .environment(\.advance, AdvanceAction {
-                currentPageIndex = (currentPageIndex + 1) % OnboardingPage.allCases.count
+                if currentPageIndex == (OnboardingPage.allCases.count - 1) {
+                    dismiss()
+                } else {
+                    currentPageIndex = (currentPageIndex + 1)
+                }
             })
     }
 

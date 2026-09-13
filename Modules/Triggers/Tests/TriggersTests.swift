@@ -2,3 +2,5 @@
 //  Copyright © 2024 Cocoatype, LLC. All rights reserved.
 
 import Foundation
+
+import BarcTriggers

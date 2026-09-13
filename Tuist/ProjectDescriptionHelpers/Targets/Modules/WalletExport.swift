@@ -7,8 +7,6 @@ public enum WalletExport {
         dependencies: [
             .target(Barcodes.target),
             .target(ErrorHandling.target),
-            .target(Purchasing.target),
-            .target(Unpurchased.target),
             .external(name: "FactoryKit"),
             .external(name: "PDF417"),
         ]
@@ -19,7 +17,6 @@ public enum WalletExport {
         dependencies: [
             .target(Barcodes.target),
             .target(ErrorHandling.doublesTarget),
-            .target(Purchasing.doublesTarget),
             .external(name: "FactoryKit"),
             .external(name: "FactoryTesting"),
         ]

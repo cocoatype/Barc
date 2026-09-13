@@ -4,7 +4,6 @@ public enum Permission {
     public static let target = Target.moduleTarget(
         name: "Permission",
         dependencies: [
-            .target(ErrorHandling.target),
         ]
     )
 

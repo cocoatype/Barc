@@ -7,13 +7,11 @@ import FactoryKit
 
 import BarcBarcodes
 import BarcErrorHandling
-import BarcPurchasing
 
 public actor Exporter {
     private let passLibrary: any PassLibrary
     private let service: any Service
     @Injected(\.errorHandler) private var errorHandler
-    @Injected(\.replaceBacktickWithBacktick) private var purchaseRepository
 
     public init() {
         self.init(
@@ -34,10 +32,6 @@ public actor Exporter {
 
     public func requestExport(for code: Code) async -> ExportResult {
         do {
-            guard try await purchaseRepository.hasUserBeenUnleashed else {
-                return ExportResult.unpurchased
-            }
-
             let pass = try await service.fetchPass(for: code)
             let passResult = try await passLibrary.add(pass, isolation: #isolation)
             return ExportResult(passResult: passResult, for: pass)
